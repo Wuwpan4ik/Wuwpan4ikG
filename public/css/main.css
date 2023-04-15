@@ -149,12 +149,24 @@ body.dark h2 {
   border-top: 1px solid #2A2F39;
 }
 .menu-items a,form {
-  padding: 15px 20px;
   display: flex;
   border-radius: 10px;
   gap: 10px;
   align-items: center;
-  margin-top: 10px;
+}
+
+.tab__link-edit {
+    display: flex;
+    cursor: pointer;
+}
+
+.footer__menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer__menu-items .menu-item {
+    padding: 15px 20px;
 }
 
 .menu-items form button {
@@ -211,6 +223,11 @@ body.dark h2 {
 }
 .systemRole:hover .hoverItems {
   opacity: 1;
+}
+.hoverItems {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .systemRole .hoverItems {
   opacity: 0;

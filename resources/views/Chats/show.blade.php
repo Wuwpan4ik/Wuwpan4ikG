@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.index', ["show" => true])
 @section('content')
     <div class="mainWrapper">
         <section class="msger">
@@ -16,18 +16,7 @@
             <main class="msger-chat">
                 <!--Плашка в начале чата-->
                 @if ($messages)
-                @foreach($messages as $message)
-                    <div class="msg @if($message->is_bot) left-msg @else right-msg @endif">
-                        <div class="msg-img" style="background-image: url(https://api.dicebear.com/5.x/micah/svg?seed=42425763-11a6-4741-bf7d-dc916907fab5)"></div>
-                        <div class="msg-bubble">
-                            <div class="msg-info">
-                                <div class="msg-info-name">@if($message->is_bot) Bot @else You @endif</div>
-                                <div class="msg-info-time">17:02</div>
-                            </div>
-                            <div class="msg-text" id="undefined">{{ $message->message }}</div>
-                        </div>
-                    </div>
-                @endforeach
+                    @include('components.message')
                 @else
                     <div class="welcome-chat">
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,4 +72,16 @@
             </div>
         </section>
     </div>
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        function myFunction(id) {
+            $('.msger-chat').load(`/messages.get/${id}`);
+            let stateObj = { id: "100" };
+            window.history.replaceState(stateObj,
+                "Page 3", `/chats/${id}`);
+            $('#chat_id').val(id);
+        }
+    </script>
 @endsection

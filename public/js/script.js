@@ -67,7 +67,7 @@ function sendMsg(msg) {
                 .then(response => response.text())
                 .then(response => {
                     msgerSendBtn.disabled = false;
-                    appendMessage(BOT_NAME, PERSON_IMG, "left", "<code>" + response + "</code>", uuid);
+                    appendMessage(BOT_NAME, PERSON_IMG, "left", response, uuid);
                 })
         })
         .catch(error => console.error(error));
