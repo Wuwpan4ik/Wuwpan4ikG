@@ -9,7 +9,7 @@
             </clipPath>
         </defs>
     </svg>
-    {{ $chat->title }}
+    <p>{{ $chat->title }}</p>
 </div>
 <div class="hoverItems">
     <!--Удаление чата !!!!НАВЕСИТЬ ФОРМУ!!!!-->
