@@ -99,7 +99,7 @@
             </button>
             @foreach($folder->children as $chat)
                 @empty($show)
-                    <a href="{{ route('chats.show', $chat->id) }}" class="tablink addChatIcon" onclick="openTab(event, 'tab1')">
+                    <a href="{{ route('chats.show', $chat->id) }}" class="tablink addChatIcon">
                         @include('components.chat')
                     </a>
                 @else

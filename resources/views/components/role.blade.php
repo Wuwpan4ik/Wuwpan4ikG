@@ -53,3 +53,6 @@
         </div>
     </div>
 @endempty
+<script>
+    SystemRole();
+</script>

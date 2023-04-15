@@ -125,31 +125,34 @@ function deleteAllCookies() {
 /* Системная роль */
 
 //Copy btn system role
-document.querySelector("button.copyBtn").onclick = function() {
-    var copyTextarea = document.createElement("textarea");
-    copyTextarea.style.position = "fixed";
-    copyTextarea.style.opacity = "0";
-    copyTextarea.textContent = String(document.getElementById("systemRole").textContent).trim();
-    document.body.appendChild(copyTextarea);
-    copyTextarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(copyTextarea);
-}
+function SystemRole() {
+    document.querySelector("button.copyBtn").onclick = function() {
+        var copyTextarea = document.createElement("textarea");
+        copyTextarea.style.position = "fixed";
+        copyTextarea.style.opacity = "0";
+        copyTextarea.textContent = String(document.getElementById("systemRole").textContent).trim();
+        document.body.appendChild(copyTextarea);
+        copyTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(copyTextarea);
+    }
 
 //Кнопка редактирования в системной роли
-document.querySelector('.systemRole button.renameChat').onclick = () =>{
-    document.querySelector('.formSystemRole').classList.remove('nonActive');
-    document.querySelector('.systemRole .hoverItems').classList.add('nonActive');
-    document.getElementById('systemRoleText').innerText = document.querySelector('.systemRole span').textContent;
-    document.querySelector('.systemRole span').textContent = "";
-}
+    document.querySelector('.systemRole button.renameChat').onclick = () =>{
+        document.querySelector('.formSystemRole').classList.remove('nonActive');
+        document.querySelector('.systemRole .hoverItems').classList.add('nonActive');
+        document.getElementById('systemRoleText').innerText = document.querySelector('.systemRole span').textContent;
+        document.querySelector('.systemRole span').textContent = "";
+    }
 
 //Кнопка отменить в системной роли
-document.getElementById('dismissRole').onclick = () =>{
-    document.querySelector('.formSystemRole').classList.add('nonActive');
-    document.querySelector('.systemRole .hoverItems').classList.remove('nonActive');
-    document.querySelector('.systemRole span').textContent = document.getElementById('systemRoleText').innerText;
+    document.getElementById('dismissRole').onclick = () =>{
+        document.querySelector('.formSystemRole').classList.add('nonActive');
+        document.querySelector('.systemRole .hoverItems').classList.remove('nonActive');
+        document.querySelector('.systemRole span').textContent = document.getElementById('systemRoleText').innerText;
+    }
 }
+SystemRole();
 
 //Folder button
 
