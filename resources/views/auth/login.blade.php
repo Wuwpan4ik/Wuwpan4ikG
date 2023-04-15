@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="first-row">
-            <img src="{{ asset('LaravelGPT/resources/assets/loginForm.jpg') }}" />
+            <img src="{{ asset('/assets/loginForm.jpg') }}" />
         </div>
         <!-- Email Address -->
         <div class="second-row">
