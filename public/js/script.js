@@ -63,7 +63,7 @@ function sendMsg(msg) {
         .then(response => response.json())
         .then(data => {
             let uuid = uuidv4()
-            fetch("/event-stream", {headers: {'Content-Type': 'charset=utf-8'}})
+            fetch(`/event-stream/${data}`, {headers: {'Content-Type': 'charset=utf-8'}})
                 .then(response => response.text())
                 .then(response => {
                     msgerSendBtn.disabled = false;

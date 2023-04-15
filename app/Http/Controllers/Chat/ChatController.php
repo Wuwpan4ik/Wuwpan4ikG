@@ -63,9 +63,15 @@ class ChatController extends Controller
         return view('Chats.show', compact('chat', 'chats', 'messages', 'folders'));
     }
 
+    public function ShowRole(Chat $chat)
+    {
+        $show = true;
+        return view('components.role', compact('chat', 'show'));
+    }
+
     public function Reshow(Chat $chat)
     {
-        $messages = Message::where('chat_id', $chat->id)->orderBy('id')->take(5)->get();
+        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->take(8)->get()->sortBy("id");
         return view('components.message', compact('messages'));
     }
 
@@ -83,6 +89,15 @@ class ChatController extends Controller
     public function update(Request $request, string $id)
     {
         //
+    }
+
+    public function updateRole(Request $request, Chat $chat)
+    {
+        $chat->update([
+            "role" => $request->role
+        ]);
+
+        return redirect()->route('chats.show', $chat->id);
     }
 
     /**

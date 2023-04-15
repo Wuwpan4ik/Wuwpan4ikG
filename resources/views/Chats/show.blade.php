@@ -82,6 +82,9 @@
             window.history.replaceState(stateObj,
                 "Page 3", `/chats/${id}`);
             $('#chat_id').val(id);
+            var element = document.querySelector(".msger-chat");
+            element.scrollTop = element.scrollHeight;
+            $('.sidebarMain.right').load(`/chat.role/${id}`)
         }
     </script>
 @endsection

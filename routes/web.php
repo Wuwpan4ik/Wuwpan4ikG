@@ -19,11 +19,13 @@ Route::middleware('auth')->group(function() {
     Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index']);
     Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class);
     Route::post('/chats.folder_store', [\App\Http\Controllers\Chat\ChatController::class, 'storeInFolder'])->name('chats.folder_store');
+    Route::post("/chats/{chat}/updateRole", [\App\Http\Controllers\Chat\ChatController::class, 'updateRole'])->name("chat.updateRole");
     Route::post('/folder', [\App\Http\Controllers\Folder\FolderController::class, 'store'])->name('folder.store');
     Route::get("/messages.get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'Reshow'])->name('messages.get');
+    Route::get("/chat.role/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'ShowRole'])->name('role.get');
 });
 Route::post('/sendMessage', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'send__message'])->name('sendMessage');
-Route::get('/event-stream', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream']);
+Route::get('/event-stream/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
