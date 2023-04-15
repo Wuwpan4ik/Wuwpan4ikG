@@ -14,6 +14,23 @@
 <body class="dark">
 <header id="mainHeader">
     <nav class="navbar">
+        <ul class="first-col">
+            <li>
+                <a href="/chats/" class="active">
+                    Чат
+                </a>
+            </li>
+            <li>
+                <a href="/chats/">
+                    Библиотека подсказок
+                </a>
+            </li>
+            <li>
+                <a href="/chats/>">
+                    Каталог ролей
+                </a>
+            </li>
+        </ul>
         <ul class="second-col">
             <li>
                 <button id="settings">
@@ -75,38 +92,40 @@
         </div>
 
         @foreach($folders as $folder)
-            <button class="folderBtn">
-                <div class="firstRow">
-                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_47_509)">
-                            <path d="M14.25 2.75024H9.354C9.23801 2.75101 9.12336 2.72536 9.01875 2.67524L6.65175 1.48724C6.33929 1.33165 5.99505 1.25053 5.646 1.25024H3.75C2.7558 1.25144 1.80267 1.64691 1.09966 2.34991C0.396661 3.05291 0.00119089 4.00605 0 5.00024L0 14.0002C0.00119089 14.9944 0.396661 15.9476 1.09966 16.6506C1.80267 17.3536 2.7558 17.7491 3.75 17.7502H14.25C15.2442 17.7491 16.1973 17.3536 16.9003 16.6506C17.6033 15.9476 17.9988 14.9944 18 14.0002V6.50024C17.9988 5.50605 17.6033 4.55291 16.9003 3.84991C16.1973 3.14691 15.2442 2.75144 14.25 2.75024V2.75024ZM3.75 2.75024H5.646C5.76199 2.74948 5.87664 2.77513 5.98125 2.82524L8.34825 4.00949C8.66039 4.16638 9.00465 4.24879 9.354 4.25024H14.25C14.6985 4.25098 15.1366 4.38575 15.508 4.63725C15.8794 4.88876 16.1671 5.24552 16.3342 5.66174L1.5 5.74574V5.00024C1.5 4.40351 1.73705 3.83121 2.15901 3.40925C2.58097 2.9873 3.15326 2.75024 3.75 2.75024V2.75024ZM14.25 16.2502H3.75C3.15326 16.2502 2.58097 16.0132 2.15901 15.5912C1.73705 15.1693 1.5 14.597 1.5 14.0002V7.24574L16.5 7.16099V14.0002C16.5 14.597 16.2629 15.1693 15.841 15.5912C15.419 16.0132 14.8467 16.2502 14.25 16.2502Z" fill="white" fill-opacity="0.3"/>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_47_509">
-                                <rect width="18" height="18" fill="white" transform="translate(0 0.5)"/>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    <span class="folderName">Новая папка</span>
-                </div>
-                <div class="hoverItems">
-                    <div class="dropdownButton">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.9999 11.625C8.80294 11.6254 8.60786 11.5868 8.42586 11.5115C8.24387 11.4362 8.07855 11.3257 7.9394 11.1863L3.96965 7.21577L5.03015 6.15527L8.9999 10.125L12.9697 6.15527L14.0302 7.21577L10.0604 11.1855C9.92132 11.3251 9.75602 11.4357 9.57402 11.5111C9.39202 11.5866 9.19691 11.6253 8.9999 11.625Z" fill="white" fill-opacity="0.3"/>
+            <div class="folderBtn">
+                <div class="buttonOpen">
+                    <div class="firstRow">
+                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_47_509)">
+                                <path d="M14.25 2.75024H9.354C9.23801 2.75101 9.12336 2.72536 9.01875 2.67524L6.65175 1.48724C6.33929 1.33165 5.99505 1.25053 5.646 1.25024H3.75C2.7558 1.25144 1.80267 1.64691 1.09966 2.34991C0.396661 3.05291 0.00119089 4.00605 0 5.00024L0 14.0002C0.00119089 14.9944 0.396661 15.9476 1.09966 16.6506C1.80267 17.3536 2.7558 17.7491 3.75 17.7502H14.25C15.2442 17.7491 16.1973 17.3536 16.9003 16.6506C17.6033 15.9476 17.9988 14.9944 18 14.0002V6.50024C17.9988 5.50605 17.6033 4.55291 16.9003 3.84991C16.1973 3.14691 15.2442 2.75144 14.25 2.75024V2.75024ZM3.75 2.75024H5.646C5.76199 2.74948 5.87664 2.77513 5.98125 2.82524L8.34825 4.00949C8.66039 4.16638 9.00465 4.24879 9.354 4.25024H14.25C14.6985 4.25098 15.1366 4.38575 15.508 4.63725C15.8794 4.88876 16.1671 5.24552 16.3342 5.66174L1.5 5.74574V5.00024C1.5 4.40351 1.73705 3.83121 2.15901 3.40925C2.58097 2.9873 3.15326 2.75024 3.75 2.75024V2.75024ZM14.25 16.2502H3.75C3.15326 16.2502 2.58097 16.0132 2.15901 15.5912C1.73705 15.1693 1.5 14.597 1.5 14.0002V7.24574L16.5 7.16099V14.0002C16.5 14.597 16.2629 15.1693 15.841 15.5912C15.419 16.0132 14.8467 16.2502 14.25 16.2502Z" fill="white" fill-opacity="0.3"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_47_509">
+                                    <rect width="18" height="18" fill="white" transform="translate(0 0.5)"/>
+                                </clipPath>
+                            </defs>
                         </svg>
+                        <p class="folderName">Новая папка</p>
+                    </div>
+                    <div class="hoverItems">
+                        <div class="dropdownButton">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.9999 11.625C8.80294 11.6254 8.60786 11.5868 8.42586 11.5115C8.24387 11.4362 8.07855 11.3257 7.9394 11.1863L3.96965 7.21577L5.03015 6.15527L8.9999 10.125L12.9697 6.15527L14.0302 7.21577L10.0604 11.1855C9.92132 11.3251 9.75602 11.4357 9.57402 11.5111C9.39202 11.5866 9.19691 11.6253 8.9999 11.625Z" fill="white" fill-opacity="0.3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
-            </button>
-            @foreach($folder->children as $chat)
-                @empty($show)
-                    <a href="{{ route('chats.show', $chat->id) }}" class="tablink addChatIcon">
-                        @include('components.chat')
-                    </a>
-                @else
-                    <div onclick="myFunction({{ $chat->id }})" class="tablink addChatIcon tab__link-edit">
-                        @include('components.chat')
-                    </div>
-                @endempty
+                <div class="folderItems">
+                    @foreach($folder->children as $child)
+                    @empty($show)
+                        <a href="{{ route('chats.show', $child->id) }}" class="tablink addChatIcon ">
+                            @include('components.chat')
+                        </a>
+                    @else
+                        <div onclick="myFunction({{ $child->id }})" class="tablink addChatIcon tab__link-edit">
+                            @include('components.chat')
+                        </div>
+                    @endempty
             @endforeach
             <form action="{{ route('chats.folder_store') }}" method="POST">
                 @csrf
@@ -125,6 +144,8 @@
                     Новый чат
                 </button>
             </form>
+            </div>
+            </div>
         @endforeach
 
         @foreach($chats as $chat)

@@ -56,6 +56,5 @@ class OpenAiController extends Controller
         $message->save();
         Debugbar::log($d);
         return $d->choices[0]->message->content;
-
     }
 }
