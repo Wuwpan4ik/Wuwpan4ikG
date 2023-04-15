@@ -37,8 +37,6 @@ html {
   cursor: pointer !important;
 }
 
-<<<<<<< HEAD
-=======
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -51,7 +49,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
->>>>>>> master
 body.dark #mainHeader {
   background: #0F131B;
   border-bottom: 1px solid #2A2F39;
@@ -82,11 +79,7 @@ body.dark .addChatIcon {
 body.dark button.buttonTool {
   background: rgba(255, 255, 255, 0.1);
 }
-<<<<<<< HEAD
 body.dark .menu-items a, form {
-=======
-body.dark .menu-items a {
->>>>>>> master
   color: #525459;
 }
 body.dark .welcome-chat h2 {
@@ -105,11 +98,7 @@ body.dark h2 {
   width: 100%;
   top: 0px;
   left: 0px;
-<<<<<<< HEAD
-  z-index: 2;
-=======
   z-index: 9999;
->>>>>>> master
 }
 #mainHeader .navbar {
   display: flex;
@@ -134,15 +123,12 @@ body.dark h2 {
   border-radius: 10px;
   height: 38px;
 }
-<<<<<<< HEAD
-=======
 #mainHeader .navbar button.active {
   background: #13B8A6;
 }
 #mainHeader .navbar button.active svg path {
   fill: white;
 }
->>>>>>> master
 #mainHeader #tokensLeft {
   display: flex;
   align-items: center;
@@ -180,17 +166,11 @@ body.dark h2 {
   padding-top: 4px;
   border-top: 1px solid #2A2F39;
 }
-<<<<<<< HEAD
 .menu-items a,form {
-=======
-.menu-items a {
-  padding: 15px 20px;
->>>>>>> master
   display: flex;
   border-radius: 10px;
   gap: 10px;
   align-items: center;
-<<<<<<< HEAD
 }
 
 .tab__link-edit {
@@ -220,11 +200,6 @@ body.dark h2 {
     background: transparent;
 }
 .menu-items a,form:hover {
-=======
-  margin-top: 10px;
-}
-.menu-items a:hover {
->>>>>>> master
   background: #1D2129;
 }
 
@@ -267,14 +242,11 @@ body.dark h2 {
 .systemRole:hover .hoverItems {
   opacity: 1;
 }
-<<<<<<< HEAD
 .hoverItems {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-=======
->>>>>>> master
 .systemRole .hoverItems {
   opacity: 0;
   position: absolute;
@@ -305,7 +277,6 @@ body.dark h2 {
   border: none;
   height: auto;
   min-height: auto;
-  max-height: auto;
   color: white;
   margin-bottom: 20px;
 }
@@ -421,27 +392,18 @@ button.promptBtn {
 
 .welcome-chat {
   height: 100%;
-<<<<<<< HEAD
-=======
   background: url("../assets/background.jpg");
   background-size: 100%;
->>>>>>> master
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-<<<<<<< HEAD
-  max-width: 690px;
-  margin: 0 auto;
-}
-=======
   margin: 0 auto;
 }
 .welcome-chat .welcome-chat-wrapper {
   max-width: 690px;
 }
->>>>>>> master
 .welcome-chat svg {
   margin-bottom: 24px;
 }
@@ -494,16 +456,10 @@ button.promptBtn {
 
 .msg {
   display: flex;
-<<<<<<< HEAD
-  align-items: flex-end;
-  padding: 10px;
-  background: #0F131B;
-=======
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 10px;
   padding: 24px 30px;
->>>>>>> master
 }
 
 .msg:last-of-type {
@@ -511,27 +467,14 @@ button.promptBtn {
 }
 
 .msg-img {
-<<<<<<< HEAD
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-=======
   width: 30px;
   height: 30px;
->>>>>>> master
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 50%;
 }
 
-<<<<<<< HEAD
-.msg-bubble {
-  max-width: 450px;
-  padding: 15px;
-  border-radius: 15px;
-  background: var(--left-msg-bg);
-=======
 .msg-header {
   display: Flex;
   color: white;
@@ -549,7 +492,6 @@ button.promptBtn {
 .msg-bubble .msg-text {
   color: #CFCFCF;
   font-size: 15px;
->>>>>>> master
 }
 
 .msg-info {
@@ -560,19 +502,11 @@ button.promptBtn {
 }
 
 .msg-info-name {
-<<<<<<< HEAD
-  margin-right: 10px;
-=======
->>>>>>> master
   font-weight: bold;
 }
 
 .msg-info-time {
-<<<<<<< HEAD
-  font-size: 0.85em;
-=======
   font-size: 10px;
->>>>>>> master
 }
 
 .left-msg .msg-bubble {
@@ -701,9 +635,6 @@ button.promptBtn {
   color: rgb(255, 255, 255);
   text-decoration: underline;
   cursor: pointer;
-<<<<<<< HEAD
-}/*# sourceMappingURL=main.css.map */
-=======
 }
 
 .popup {
@@ -1091,4 +1022,3 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
   border-radius: 10px;
   width: 100%;
 }/*# sourceMappingURL=main.css.map */
->>>>>>> master

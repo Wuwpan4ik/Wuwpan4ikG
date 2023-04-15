@@ -38,9 +38,6 @@ html {
 * button{
     cursor: pointer !important;
 }
-<<<<<<< HEAD
-=======
-
 
 //Inputs
 
@@ -56,7 +53,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
->>>>>>> master
 //Dark | Light theme
 
 body.dark{
@@ -116,11 +112,7 @@ body.dark{
     width: 100%;
     top:0px;
     left:0px;
-<<<<<<< HEAD
-    z-index: 2;
-=======
     z-index: 9999;
->>>>>>> master
     .navbar{
         display:flex;
         height:100%;
@@ -136,7 +128,7 @@ body.dark{
                     padding:10px;
                     font-size:15px;
                     font-weight: 400;
-                    
+
                 }
             }
         }
@@ -145,8 +137,6 @@ body.dark{
             border:none;
             border-radius: 10px;
             height:38px;
-<<<<<<< HEAD
-=======
             &.active{
                 background: #13B8A6;
                 svg{
@@ -155,7 +145,6 @@ body.dark{
                     }
                 }
             }
->>>>>>> master
         }
     }
     #tokensLeft{
@@ -411,23 +400,16 @@ button.promptBtn{
 
 .welcome-chat{
     height: 100%;
-<<<<<<< HEAD
-=======
     background:url("../assets/background.jpg");
     background-size:100%;
->>>>>>> master
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-<<<<<<< HEAD
-    max-width: 690px;
-=======
     .welcome-chat-wrapper{
         max-width: 690px;
     }
->>>>>>> master
     margin:0 auto;
     svg{
         margin-bottom: 24px;
@@ -483,15 +465,10 @@ button.promptBtn{
 
 .msg {
     display: flex;
-<<<<<<< HEAD
-    align-items: flex-end;
-    margin-bottom: 10px;
-=======
     align-items: flex-start;
     flex-direction: column;
     margin-bottom: 10px;
     padding:24px 30px;
->>>>>>> master
 }
 
 .msg:last-of-type {
@@ -499,27 +476,14 @@ button.promptBtn{
 }
 
 .msg-img {
-<<<<<<< HEAD
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-=======
     width: 30px;
     height: 30px;
->>>>>>> master
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     border-radius: 50%;
 }
 
-<<<<<<< HEAD
-.msg-bubble {
-    max-width: 450px;
-    padding: 15px;
-    border-radius: 15px;
-    background: var(--left-msg-bg);
-=======
 .msg-header{
     display:Flex;
     color:white;
@@ -537,7 +501,6 @@ button.promptBtn{
         color: #CFCFCF;
         font-size: 15px;
     }
->>>>>>> master
 }
 
 .msg-info {
@@ -548,19 +511,11 @@ button.promptBtn{
 }
 
 .msg-info-name {
-<<<<<<< HEAD
-    margin-right: 10px;
-=======
->>>>>>> master
     font-weight: bold;
 }
 
 .msg-info-time {
-<<<<<<< HEAD
-    font-size: 0.85em;
-=======
     font-size: 10px;
->>>>>>> master
 }
 
 .left-msg .msg-bubble {
@@ -688,8 +643,6 @@ button.promptBtn{
     text-decoration: underline;
     cursor: pointer;
 }
-<<<<<<< HEAD
-=======
 
 
 //Попапы
@@ -903,18 +856,18 @@ input[type=range].styled-slider {
     height: 16px;
     -webkit-appearance: none;
   }
-  
+
   /*progress support*/
   input[type=range].styled-slider.slider-progress {
     --range: calc(var(--max) - var(--min));
     --ratio: calc((var(--value) - var(--min)) / var(--range));
     --sx: calc(0.5 * 16px + var(--ratio) * (100% - 16px));
   }
-  
+
   input[type=range].styled-slider:focus {
     outline: none;
   }
-  
+
   /*webkit*/
   input[type=range].styled-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -926,7 +879,7 @@ input[type=range].styled-slider {
     box-shadow: 0 0 2px black;
     margin-top: calc(max((1em - 1px - 1px) * 0.5,0px) - max(16px * 0.5,4px));
   }
-  
+
   input[type=range].styled-slider::-webkit-slider-runnable-track {
     height: 1em;
     border: 1px solid #b2b2b2;
@@ -934,19 +887,19 @@ input[type=range].styled-slider {
     background: #111419;
     box-shadow: none;
   }
-  
+
   input[type=range].styled-slider:hover::-webkit-slider-runnable-track {
     border-color: #9a9a9a;
   }
-  
+
   input[type=range].styled-slider:active::-webkit-slider-runnable-track {
     border-color: #c1c1c1;
   }
-  
+
   input[type=range].styled-slider.slider-progress::-webkit-slider-runnable-track {
     background: linear-gradient(#13B8A6,#13B8A6) 0/var(--sx) 100% no-repeat, #111419;
   }
-  
+
   /*mozilla*/
   input[type=range].styled-slider::-moz-range-thumb {
     width: max(calc(16px - 4px - 4px),0px);
@@ -956,7 +909,7 @@ input[type=range].styled-slider {
     border: 4px solid #FFFFFF;
     box-shadow: 0 0 2px black;
   }
-  
+
   input[type=range].styled-slider::-moz-range-track {
     height: max(calc(1em - 1px - 1px),0px);
     border: 1px solid #b2b2b2;
@@ -964,30 +917,30 @@ input[type=range].styled-slider {
     background: #111419;
     box-shadow: none;
   }
-  
+
   input[type=range].styled-slider:hover::-moz-range-track {
     border-color: #9a9a9a;
   }
-  
+
   input[type=range].styled-slider:active::-moz-range-track {
     border-color: #c1c1c1;
   }
-  
+
   input[type=range].styled-slider.slider-progress::-moz-range-track {
     background: linear-gradient(#13B8A6,#13B8A6) 0/var(--sx) 100% no-repeat, #111419;
   }
-  
+
   /*ms*/
   input[type=range].styled-slider::-ms-fill-upper {
     background: transparent;
     border-color: transparent;
   }
-  
+
   input[type=range].styled-slider::-ms-fill-lower {
     background: transparent;
     border-color: transparent;
   }
-  
+
   input[type=range].styled-slider::-ms-thumb {
     width: 16px;
     height: 16px;
@@ -998,7 +951,7 @@ input[type=range].styled-slider {
     margin-top: 0;
     box-sizing: border-box;
   }
-  
+
   input[type=range].styled-slider::-ms-track {
     height: 1em;
     border-radius: 0.5em;
@@ -1007,15 +960,15 @@ input[type=range].styled-slider {
     box-shadow: none;
     box-sizing: border-box;
   }
-  
+
   input[type=range].styled-slider:hover::-ms-track {
     border-color: #9a9a9a;
   }
-  
+
   input[type=range].styled-slider:active::-ms-track {
     border-color: #c1c1c1;
   }
-  
+
   input[type=range].styled-slider.slider-progress::-ms-fill-lower {
     height: max(calc(1em - 1px - 1px),0px);
     border-radius: 0.5em 0 0 0.5em;
@@ -1082,4 +1035,3 @@ input[type=range].styled-slider {
     }
   }
 //Adaptive
->>>>>>> master

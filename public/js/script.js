@@ -16,7 +16,6 @@ const msgerSendBtn = get(".msger-send-btn");
 
 
 // Icons made by Freepik from www.flaticon.com
-<<<<<<< HEAD
 const PERSON_IMG = "https://api.dicebear.com/5.x/micah/svg?seed=" + document.getElementById("id").value
 const BOT_NAME = "ChatGPT";
 const PERSON_NAME = "You";
@@ -42,36 +41,6 @@ function appendMessage(name, img, side, text, id) {
           <div class="msg-info-time">${formatDate(new Date())}</div>
         </div>
 
-=======
-const BOT_IMG = "../assets/botlogo.svg";
-const PERSON_IMG = "../assets/user.jpg";
-const BOT_NAME = "ChatGPT";
-const PERSON_NAME = "User Name";
-
-
-msgerForm.addEventListener("submit", event => {
-    event.preventDefault();
-
-    const msgText = msgerInput.value;
-    if (!msgText) return;
-
-    appendMessage(PERSON_NAME, PERSON_IMG, msgText);
-    msgerInput.value = "";
-
-    sendMsg(msgText)
-});
-
-function appendMessage(name, img, text, id) {
-    //   Simple solution for small apps
-    const msgHTML = `
-    <div class="msg">
-        <div class="msg-header">
-            <div class="msg-img" style="background-image: url(${img})"></div>
-            <div class="msg-info-name">${name}</div>
-            <div class="msg-info-time">${formatDate(new Date())}</div>
-        </div>
-      <div class="msg-bubble">
->>>>>>> master
         <div class="msg-text" id=${id}>${text}</div>
       </div>
     </div>
@@ -83,7 +52,6 @@ function appendMessage(name, img, text, id) {
 
 function sendMsg(msg) {
     msgerSendBtn.disabled = true
-<<<<<<< HEAD
     let key = document.querySelector('input[name=_token]').value;
     let user_id = document.querySelector("#user_id").value;
     let params = {
@@ -103,36 +71,6 @@ function sendMsg(msg) {
                 })
         })
         .catch(error => console.error(error));
-
-=======
-    var formData = new FormData();
-    fetch('/sendMessage', {headers: {_token: '{{csrf_token()}}'}, method: 'POST', body: formData})
-        .then(response => response.json())
-        .then(data => {
-            let uuid = uuidv4()
-            const eventSource = new EventSource(`/event-stream?chat_history_id=${data.id}&id=${encodeURIComponent(USER_ID)}`);
-            appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
-            const div = document.getElementById(uuid);
-
-            eventSource.onmessage = function (e) {
-                if (e.data == "[DONE]") {
-                    msgerSendBtn.disabled = false
-                    eventSource.close();
-                } else {
-                    let txt = JSON.parse(e.data).choices[0].delta.content
-                    if (txt !== undefined) {
-                        div.innerHTML += txt.replace(/(?:\r\n|\r|\n)/g, '<br>');
-                    }
-                }
-            };
-            eventSource.onerror = function (e) {
-                msgerSendBtn.disabled = false
-                console.log(e);
-                eventSource.close();
-            };
-        })
-        .catch(error => console.error(error));
->>>>>>> master
 }
 
 // Utils
@@ -183,8 +121,6 @@ function deleteAllCookies() {
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 }
-<<<<<<< HEAD
-=======
 
 /* Системная роль */
 
@@ -257,4 +193,3 @@ document.querySelector('.closeBtnBuy button').onclick = () =>{
 document.getElementById('tokensLeft').onclick = () =>{
     document.querySelector('#pay-popup').classList.add('active');
 }
->>>>>>> master

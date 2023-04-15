@@ -196,17 +196,13 @@ return [
         App\Providers\RouteServiceProvider::class,
 
     ],
-<<<<<<< HEAD
 
-=======
-    
     'locale' => 'en',
     'available_locales' => [
         'en',
         'de',
         'fr'
     ],
->>>>>>> master
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
