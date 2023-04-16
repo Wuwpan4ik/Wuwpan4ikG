@@ -40,10 +40,11 @@ class OpenAiController extends Controller
         $opts = [
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
-            'temperature' => 1.0,
-            'max_tokens' => 3000,
-            'frequency_penalty' => 0,
-            'presence_penalty' => 0
+            'temperature' => session()->get('settings')['temperature'] ?? 1,
+            'max_tokens' => session()->get('settings')['max_tokens'] ?? 3000,
+            'Top_p' => session()->get('settings')['top_p'] ?? 1,
+            'frequency_penalty' => session()->get('settings')['frequency'] ?? 0,
+            'presence_penalty' => session()->get('settings')['presence'] ?? 0
         ];
         $open_ai = new OpenAi(env('open_ai_key'));
         $chat = $open_ai->chat($opts);

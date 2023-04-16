@@ -75,7 +75,6 @@
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="{{asset('js/script.js')}}"></script>
     <script>
         function myFunction(id) {
             $('.msger-chat').load(`/messages.get/${id}`);

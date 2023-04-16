@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\Folder;
 use App\Models\Message;
+use App\Models\UserModelSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -17,9 +18,10 @@ class ChatController extends Controller
      */
     public function index()
     {
+        $settings = UserModelSettings::where("user_id", Auth::id());
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get();
         $folders = Folder::with('children')->get();
-        return view('Chats.index', compact('chats', 'folders'));
+        return view('Chats.index', compact('chats', 'folders', 'settings'));
     }
 
     /**
@@ -35,11 +37,11 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        Chat::create([
+        $chat = Chat::create([
             'user_id' => Auth::id()
         ]);
 
-        return redirect('/');
+        return redirect()->route('chats.show', $chat->id);
     }
 
     public function storeInFolder(Request $request)

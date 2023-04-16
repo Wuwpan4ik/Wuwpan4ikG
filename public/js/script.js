@@ -1,4 +1,4 @@
-if (getCookie("id") == "") {
+if (getCookie("id") === "") {
     uuid = uuidv4()
     document.cookie = "id=" + uuid
     document.getElementById("id").value = uuid
@@ -14,7 +14,6 @@ const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
-if (msgerForm && msgerInput) {
 
 
 // Icons made by Freepik from www.flaticon.com
@@ -102,21 +101,6 @@ function sendMsg(msg) {
     }
 
 // Utils
-    function get(selector, root = document) {
-        return root.querySelector(selector);
-    }
-
-    function formatDate(date) {
-        const h = "0" + date.getHours();
-        const m = "0" + date.getMinutes();
-
-        return `${h.slice(-2)}:${m.slice(-2)}`;
-    }
-
-    function random(min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
-    }
-
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -131,6 +115,21 @@ function sendMsg(msg) {
             }
         }
         return "";
+    }
+
+    function get(selector, root = document) {
+        return root.querySelector(selector);
+    }
+
+    function formatDate(date) {
+        const h = "0" + date.getHours();
+        const m = "0" + date.getMinutes();
+
+        return `${h.slice(-2)}:${m.slice(-2)}`;
+    }
+
+    function random(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
     }
 
     function uuidv4() {
@@ -182,7 +181,46 @@ function sendMsg(msg) {
     }
 
     SystemRole();
+//Открытие попапа настроек
 
+    document.getElementById('settings').onclick = () => {
+        if (document.getElementById('settings').classList.contains('active')) {
+            document.getElementById('settings').classList.remove('active');
+            document.getElementById('settingsTab').classList.remove('active');
+        } else {
+            document.getElementById('settings').classList.add('active');
+            document.getElementById('settingsTab').classList.add('active');
+        }
+    }
+
+    //попап оплаты
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    function countTokens() {
+        let priceAll = document.querySelector('.finalPrice span');
+        priceAll.textContent = document.querySelector('input#priceStealer').value;
+        //Токены
+        document.querySelector(".howMuchTokens").textContent = numberWithSpaces(Math.round(document.querySelector('input#priceStealer').value / 0.69) * 1000);
+        //Слова
+        document.querySelector(".words span").textContent = numberWithSpaces(Math.round(document.querySelector('input#priceStealer').value / 0.69) * 750);
+        //Страницы
+        document.querySelector(".papers span").textContent = numberWithSpaces(Math.floor(((document.querySelector('input#priceStealer').value / 0.69) * 1000) / 1800));
+    }
+
+    document.querySelector('input#priceStealer').oninput = countTokens;
+
+
+    //Закрытие попапа оплаты
+
+    document.querySelector('.closeBtnBuy button').onclick = () => {
+        document.querySelector('#pay-popup').classList.remove('active');
+    }
+
+    document.getElementById('tokensLeft').onclick = () => {
+        document.querySelector('#pay-popup').classList.add('active');
+    }
 //Папки - открытие и закрытие
 
     let foldersBtn = document.querySelectorAll('div.folderBtn');
@@ -192,4 +230,3 @@ function sendMsg(msg) {
             item.parentElement.querySelector('.folderBtn').classList.toggle('opened');
         }
     })
-}

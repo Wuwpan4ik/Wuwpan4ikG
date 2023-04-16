@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\AIModel;
 use App\Models\Chat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -22,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::share("ai_versions", AIModel::all());
     }
 }

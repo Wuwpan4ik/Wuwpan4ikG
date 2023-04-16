@@ -881,7 +881,7 @@ button.promptBtn{
 .popup-setting{
     width: 100%;
     max-width: 306.67px;
-    .popup-setting-title{
+    &-title{
         color: #A2A2A3;
         font-size: 12px;
         line-height: 15px;
@@ -1215,7 +1215,7 @@ input[type=range].styled-slider {
 
   form.menu-item{
     button{
-        
+
     }
   }
 
