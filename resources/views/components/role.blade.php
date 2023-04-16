@@ -2,7 +2,7 @@
 @else
     <div class="firstRow">
         <h2 class="title">
-            Роль системы в чате
+            {{ __("systemRole") }}
         </h2>
         <div class="systemRole" id="systemRole">
             <span>@if($chat->role) {{ $chat->role }} @else Пользователь @endif</span>
