@@ -5,6 +5,7 @@ if (getCookie("id") == "") {
 } else {
     document.getElementById("id").value = getCookie("id");
 }
+const converter = new showdown.Converter();
 const idSession = get(".id_session");
 const USER_ID = document.getElementById("id").value;
 idSession.textContent = USER_ID
@@ -31,19 +32,25 @@ if (msgerForm && msgerInput) {
         msgerInput.value = "";
     }
 
-    msgerForm.addEventListener("submit", event => {
-        sendMessage(event);
-    });
+//Chatgpt typing style
+function typeText(element, text) {
+    let index = 0
 
-    msgerForm.addEventListener('keydown', event => {
-        if (event.keyCode == 13) {
-            sendMessage(event)
+    let interval = setInterval(() => {
+        if (index < text.length) {
+            element.innerHTML += text.charAt(index)
+            index++
+        } else {
+            clearInterval(interval)
         }
-    })
+    }, 20)
+}
 
-    function appendMessage(name, img, side, text, id) {
-        //   Simple solution for small apps
-        const msgHTML = `
+function appendMessage(name, img, side, text, id) {
+    //   Simple solution for small apps
+    //Markdown
+    var result = converter.makeHtml(text.trim());
+    const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
             <div class="msg-img" style="background-image: url(${img})"></div>
@@ -51,28 +58,35 @@ if (msgerForm && msgerInput) {
             <div class="msg-info-time">${formatDate(new Date())}</div>
         </div>
       <div class="msg-bubble">
-        <div class="msg-text" id=${id}>${text}</div>
+        <div class="msg-text" id=${id}>${result}</div>
       </div>
     </div>
   `;
 
-        msgerChat.insertAdjacentHTML("beforeend", msgHTML);
-        msgerChat.scrollTop += 500;
+    msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+    hljs.highlightAll();
+    msgerChat.scrollTop += 500;
+}
+
+function sendMsg(msg) {
+    msgerSendBtn.disabled = true
+    let key = document.querySelector('input[name=_token]').value;
+    let user_id = document.querySelector("#user_id").value;
+    let params = {
+        chat_id: document.querySelector('#chat_id').value,
+        message: msg
     }
 
-    function sendMsg(msg) {
-        msgerSendBtn.disabled = true
-        let key = document.querySelector('input[name=_token]').value;
-        let user_id = document.querySelector("#user_id").value;
-        let params = {
-            chat_id: document.querySelector('#chat_id').value,
-            message: msg
-        }
-
-        fetch('/sendMessage', {
-            headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key},
-            method: 'POST',
-            body: JSON.stringify(params)
+    fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
+        .then(response => response.json())
+        .then(data => {
+            let uuid = uuidv4()
+            fetch(`/event-stream/${data}`, {headers: {'Content-Type': 'charset=utf-8'}})
+                .then(response => response.text())
+                .then(response => {
+                    msgerSendBtn.disabled = false;
+                    appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
+                })
         })
             .then(response => response.json())
             .then(data => {
