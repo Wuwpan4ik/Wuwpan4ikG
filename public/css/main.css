@@ -20,21 +20,6 @@ html {
   transition: 0.3s all ease;
 }
 
-* p {
-  -ms-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -ms-line-clamp: 1;
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
-  display: -webkit-box;
-  display: box;
-  word-wrap: break-word;
-  -webkit-box-orient: vertical;
-  box-orient: vertical;
-  width: 100%;
-}
-
 * ul {
   list-style: none;
 }
@@ -68,6 +53,10 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+body {
+  min-height: 100%;
+}
+
 body.dark #mainHeader {
   background: #0F131B;
   border-bottom: 1px solid #2A2F39;
@@ -87,6 +76,9 @@ body.dark #mainHeader button {
   background: #101F25;
 }
 body.dark #mainHeader #tokensLeft {
+  color: white;
+}
+body.dark textarea {
   color: white;
 }
 body.dark .sidebarLeft {
@@ -109,6 +101,111 @@ body.dark .welcome-chat p {
 }
 body.dark h2 {
   color: white;
+}
+
+body.light {
+  background: white;
+}
+body.light header#mainHeader {
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(42, 47, 57, 0.1);
+}
+body.light header#mainHeader a {
+  color: black;
+}
+body.light header#mainHeader a:hover {
+  color: #13B8A6;
+  background: rgba(19, 184, 166, 0.1);
+}
+body.light header#mainHeader a.active {
+  color: #13B8A6;
+  background: rgba(19, 184, 166, 0.1);
+}
+body.light header#mainHeader button {
+  background: rgba(19, 184, 166, 0.1);
+}
+body.light header#mainHeader #tokensLeft {
+  color: black;
+}
+body.light .sidebarMain {
+  background: #F5F5F5 !important;
+}
+body.light .addChatIcon {
+  color: white;
+}
+body.light .folderBtn .buttonOpen {
+  color: #626262;
+}
+body.light .folderBtn .buttonOpen:hover {
+  background: #DFDFDF;
+}
+body.light .tablink p {
+  color: #626262;
+}
+body.light .add-chat, body.light .add-folder {
+  color: #626262;
+}
+body.light .add-chat:hover, body.light .add-folder:hover {
+  background: #DFDFDF;
+}
+body.light .msger, body.light .msger-chat, body.light .messageInput {
+  background: #FFFFFF;
+}
+body.light .messageInput {
+  border-top: 1px solid #DDDDDD;
+}
+body.light .messageInput textarea {
+  background: #F8F8F8;
+  border: 1px solid #DDDDDD;
+}
+body.light .promptBtn {
+  background: #E8F8F7;
+}
+body.light .menu-items {
+  border-top: 1px solid #DDDDDD;
+}
+body.light a.menu-item:hover {
+  background: #DFDFDF;
+}
+body.light .folderRow {
+  border-bottom: 1px solid #DDDDDD;
+}
+body.light .folderRow form button {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  color: #626262;
+}
+body.light form.menu-item button svg path {
+  fill: #8E8E8F;
+}
+body.light form.menu-item button:hover {
+  background: #DFDFDF;
+}
+body.light .addChatIcon:hover {
+  background: #DFDFDF;
+}
+body.light .svgPath path {
+  fill: #8E8E8F;
+}
+body.light button.buttonTool {
+  background: rgba(255, 255, 255, 0.1);
+}
+body.light .menu-items a {
+  color: #525459;
+}
+body.light .welcome-chat h2 {
+  color: white;
+}
+body.light .welcome-chat p {
+  color: #A4A4A4;
+}
+body.light h2 {
+  color: #626262;
+}
+body.light .msg.right-msg .msg-header {
+  color: black;
+}
+body.light .msg-bubble .msg-text {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 #mainHeader {
@@ -147,6 +244,20 @@ body.dark h2 {
 }
 #mainHeader .navbar button.active svg path {
   fill: white;
+}
+#mainHeader * p {
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -ms-line-clamp: 1;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  width: 100%;
 }
 #mainHeader #tokensLeft {
   display: flex;
@@ -446,6 +557,8 @@ button.promptBtn {
 .msger-chat {
   flex: 1;
   overflow-y: auto;
+  max-width: 100%;
+  overflow-x: hidden;
   padding: 10px 10px 40px 10px;
   background: #0F131B;
 }
@@ -500,6 +613,9 @@ button.promptBtn {
 .msg-bubble .msg-text {
   color: #CFCFCF;
   font-size: 15px;
+}
+.msg-bubble ul {
+  list-style: circle;
 }
 
 .msg-info {

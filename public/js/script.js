@@ -5,6 +5,7 @@ if (getCookie("id") == "") {
 } else {
     document.getElementById("id").value = getCookie("id");
 }
+const converter = new showdown.Converter();
 const idSession = get(".id_session");
 const USER_ID = document.getElementById("id").value;
 idSession.textContent = USER_ID
@@ -17,7 +18,7 @@ const msgerSendBtn = get(".msger-send-btn");
 
 // Icons made by Freepik from www.flaticon.com
 const PERSON_IMG = "../assets/user.jpg";
-const BOT_IMG = "../assets/botlogo.svg";
+const BOT_IMG = "../assets/botlogo.jpg";
 const BOT_NAME = "Meta GPT";
 const PERSON_NAME = "User";
 
@@ -40,8 +41,24 @@ msgerForm.addEventListener('keydown', event => {
     }
 })
 
+//Chatgpt typing style
+function typeText(element, text) {
+    let index = 0
+
+    let interval = setInterval(() => {
+        if (index < text.length) {
+            element.innerHTML += text.charAt(index)
+            index++
+        } else {
+            clearInterval(interval)
+        }
+    }, 20)
+}
+
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
+    //Markdown
+    var result = converter.makeHtml(text.trim());
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
@@ -50,12 +67,13 @@ function appendMessage(name, img, side, text, id) {
             <div class="msg-info-time">${formatDate(new Date())}</div>
         </div>
       <div class="msg-bubble">
-        <div class="msg-text" id=${id}>${text}</div>
+        <div class="msg-text" id=${id}>${result}</div>
       </div>
     </div>
   `;
 
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+    hljs.highlightAll();
     msgerChat.scrollTop += 500;
 }
 
@@ -67,7 +85,7 @@ function sendMsg(msg) {
         chat_id: document.querySelector('#chat_id').value,
         message: msg
     }
-
+    
     fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
         .then(response => response.json())
         .then(data => {
