@@ -64,6 +64,9 @@ body{
 }
 
 body.dark{
+    .welcome-chat-wrapper{
+        background:url('../assets/background-dark.jpg');background-repeat: no-repeat;
+    }
     #mainHeader{
         background:#0F131B;
         border-bottom:1px solid #2A2F39;
@@ -154,6 +157,14 @@ body.light{
     .tablink p{
         color:#626262;
     }
+    .welcome-chat{
+        h2{
+            color:black !important;
+        }
+        span{
+            color: rgba(0, 0, 0, 0.6);
+        }
+    }
     .add-chat, .add-folder{
         color:#626262;
         &:hover{
@@ -188,6 +199,56 @@ body.light{
             button{
                 border: 1px solid rgba(0, 0, 0, 0.6);
                 color: #626262;
+            }
+        }
+    }
+    #settingsTab{
+        .popupContent{
+            background: #FFFFFF;
+            .popup-setting-content.withoutBorder button{
+                background: #DFDFDF;
+                color: #626262;
+            }
+            .popup-setting-content.withoutBorder .modelSettings{
+                background: #DFDFDF;
+                color: #626262;
+            }
+            .popup-setting-content.withoutBorder input{
+                color: #626262;
+            }
+            .popup-setting .popup-setting-title{
+                color: rgba(0, 0, 0, 0.6);
+            }
+            .popup-setting-desc{
+                color: rgba(0, 0, 0, 0.4);
+            }
+            .popup-setting-content button{
+                background: #EDEDED;
+                color: #6C6C6C;
+            }
+            .popup-setting-content button.active{
+                background: #13B8A6;
+                color:white;
+                svg{
+                    path{
+                        fill:white;
+                    }
+                }
+            }
+            svg{
+                path{
+                    fill: #8E8E8F;
+                }
+            }
+            .button-save{
+                svg{
+                    path{
+                        fill:white;
+                    }
+                }
+            }
+            .popup-setting-content.withoutBorder .modelSettings .secondRow button{
+                background: #CDCDCD;
             }
         }
     }
@@ -272,7 +333,7 @@ body.light{
             border:none;
             border-radius: 10px;
             height:38px;
-            &.active{
+            &#settings.active{
                 background: #13B8A6;
                 svg{
                     path{
@@ -617,7 +678,6 @@ button.promptBtn{
     overflow-y: auto;
     max-width: 100%;
     overflow-x: hidden;
-    padding: 10px 10px 40px 10px;
     background:#0F131B;
 }
 
@@ -708,7 +768,7 @@ button.promptBtn{
         background-image:url('../assets/user.jpg');
     }
     .msg-img.bot_img{
-        background-image:url('../assets/botlogo.svg');
+        background-image:url('../assets/botlogo.jpg');
     }
 }
 
