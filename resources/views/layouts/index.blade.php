@@ -91,7 +91,7 @@
                 </button>
             </form>
         </div>
-
+        <div class="tablinks-container">
         @foreach($folders as $folder)
             <div class="folderBtn">
                 <div class="buttonOpen">
@@ -160,6 +160,7 @@
                 </div>
             @endempty
         @endforeach
+        </div>
     </div>
     <div class="menu-items footer__menu-items">
         <a class="menu-item" id="aboutProject">
