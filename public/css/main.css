@@ -430,6 +430,9 @@ body.light .msg-bubble .msg-text {
   border: 1px solid #374151;
   border-radius: 10px;
 }
+.systemRole .hoverItems.active {
+  opacity: 1;
+}
 .systemRole .formSystemRole textarea {
   width: 100%;
   max-width: 100%;
@@ -505,11 +508,24 @@ body.light .msg-bubble .msg-text {
 .addChatIcon .firstRow {
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+.addChatIcon input {
+  height: 35px;
+  background: #2A2F39;
+  border-radius: 10px;
+  color: white;
+  padding: 8px 6px;
+  outline: none;
+  border: none;
 }
 .addChatIcon .hoverItems {
   opacity: 0;
   display: flex;
   gap: 5px;
+}
+.addChatIcon .hoverItems.active {
+  opacity: 1;
 }
 .addChatIcon button.buttonTool {
   border-radius: 50%;
@@ -872,7 +888,7 @@ button.promptBtn {
   width: 100%;
   max-width: 306.67px;
 }
-.popup-setting .popup-setting-title {
+.popup-setting-title {
   color: #A2A2A3;
   font-size: 12px;
   line-height: 15px;
@@ -903,6 +919,13 @@ button.promptBtn {
 }
 .popup-setting-content button.active {
   background: #13B8A6;
+}
+.popup-setting-content select {
+  width: 100%;
+  height: 48px;
+  border: none;
+  background: #1D2129;
+  color: white;
 }
 .popup-setting-content.withoutBorder {
   gap: 0px;
@@ -1231,4 +1254,118 @@ button.add-chat:hover {
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.tablinks-container .tablinks-library {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-gap: 20px;
+}
+.tablinks-container .tablink-library {
+  border: none;
+  width: 100%;
+  display: flex;
+  border-radius: 10px;
+  opacity: 0.8;
+  align-items: center;
+  height: 50px;
+  justify-content: center;
+  gap: 10px;
+}
+.tablinks-container .tablink-library.kitchen {
+  background: #A855F7;
+  color: #FFFFFF;
+}
+.tablinks-container .tablink-library.map {
+  color: #EF4444;
+  background: #25181F;
+}
+.tablinks-container .tablink-library.photo {
+  color: #F59E0B;
+  background: #262119;
+}
+.tablinks-container .tablink-library.beauty {
+  background: #101525;
+  color: #2E49D8;
+}
+.tablinks-container .tablink-library.fitness {
+  color: #06B6D4;
+  background: #0E242E;
+}
+.tablinks-container .tablink-library.heart {
+  background: #102522;
+  color: #22C55E;
+}
+.tablinks-container .tablink-library.active {
+  opacity: 1;
+}
+.tablinks-container .tablink-library:hover {
+  opacity: 1;
+}
+
+.library {
+  width: 100%;
+  height: 100%;
+  background: #0F131B;
+}
+
+.library-items {
+  padding: 40px;
+}
+
+.library-title {
+  font-weight: 600;
+  padding-bottom: 30px;
+  font-size: 22px;
+  color: #A2A2A3;
+}
+
+.library-items-container {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+  grid-gap: 20px;
+}
+
+.library-item {
+  background: #191F29;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 20px;
+  height: auto;
+  position: relative;
+  color: #757D8A;
+}
+.library-item span {
+  font-size: 15px;
+}
+.library-item .hoverItems {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(25, 31, 41, 0) 0%, #191F29 100%);
+  padding: 20px;
+  gap: 8px;
+}
+.library-item .hoverItems button {
+  width: 100%;
+  height: 38px;
+  background: #272B34;
+  border: 1px solid #374151;
+  border-radius: 10px;
+}
+.library-item:hover .hoverItems {
+  opacity: 1;
+}
+
+.confirmDelete {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }/*# sourceMappingURL=main.css.map */

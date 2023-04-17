@@ -42,6 +42,8 @@ msgerForm.addEventListener('keydown', event => {
 
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
+    var md = window.markdownit();
+    var result = md.render(String(text).trim());
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
@@ -50,7 +52,7 @@ function appendMessage(name, img, side, text, id) {
             <div class="msg-info-time">${formatDate(new Date())}</div>
         </div>
       <div class="msg-bubble">
-        <div class="msg-text" id=${id}>${text}</div>
+        <div class="msg-text" id=${id}>${result}</div>
       </div>
     </div>
   `;
@@ -86,7 +88,7 @@ function sendMsg(msg) {
                     appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
                     $('.tokens_chat').load(`/messages-cost/get/${data}`);
                 })
-        })
+        })  
         .catch(error => console.error(error));
 }
 
@@ -183,10 +185,78 @@ document.getElementById('tokensLeft').onclick = () =>{
 
 //Папки - открытие и закрытие
 
-let foldersBtn = document.querySelectorAll('div.folderBtn');
+let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen');
 
-foldersBtn.forEach((item)=>{
-    item.onclick = () =>{
-        item.classList.toggle('opened');
+for(let i = 0; i < foldersBtn.length;i++){
+    foldersBtn[i].onclick = () =>{
+        foldersBtn[i].parentElement.classList.toggle('opened');
     }
-})
+}
+
+
+//Переименовывание чата
+
+let renameChats = document.querySelectorAll('.tablink button.renameChat'),
+renameChatNo = document.querySelectorAll('.tablink button.renameChatNo');
+
+function renameChat(item){
+    let input = item.parentElement.parentElement.parentElement.querySelector('input'),
+    nameChat = item.parentElement.parentElement.parentElement.querySelector('p'),
+    hoverItems = item.parentElement.parentElement,
+    confirmRename = item.parentElement.parentElement.querySelector('.confirmRename'),
+    btnDelete = item.parentElement.parentElement.querySelector('button.deleteChat');
+    if(hoverItems.classList.contains('active')){
+        hoverItems.classList.remove('active');
+        input.classList.add('nonActive');
+        confirmRename.classList.add('nonActive');
+        item.classList.remove('nonActive');
+        btnDelete.classList.remove('nonActive');
+        nameChat.classList.remove('nonActive');
+    }else{
+        hoverItems.classList.add('active');
+        input.classList.remove('nonActive');
+        confirmRename.classList.remove('nonActive');
+        item.classList.add('nonActive');
+        btnDelete.classList.add('nonActive');
+        input.value = nameChat.textContent;
+        nameChat.classList.add('nonActive');
+    }
+}
+
+for(let i =0; i < renameChats.length;i++){
+    renameChats[i].onclick = () =>{
+        renameChat(renameChats[i]);
+    }
+    renameChatNo[i].onclick = () =>{
+        renameChat(renameChats[i]);
+    }
+}
+
+
+//Удаление чата
+
+let deleteChatBtns = document.querySelectorAll('.tablink button.deleteChat'),
+deleteChatNo = document.querySelectorAll('.tablink button.deleteChatNo');
+
+function deleteChat(item){
+    if(item.parentElement.parentElement.querySelector('.renameChat').classList.contains('nonActive')){
+        item.parentElement.parentElement.querySelector('.renameChat').classList.remove('nonActive');
+        item.parentElement.parentElement.querySelector('.confirmDelete').classList.add('nonActive');
+        item.parentElement.parentElement.querySelector('.hoverItems').classList.remove('active');
+        item.classList.remove('nonActive');
+    }else{
+        item.parentElement.parentElement.querySelector('.renameChat').classList.add('nonActive');
+        item.parentElement.parentElement.querySelector('.confirmDelete').classList.remove('nonActive');
+        item.parentElement.parentElement.querySelector('.hoverItems').classList.add('active');
+        item.classList.add('nonActive');
+    }
+}
+
+for(let i = 0; i < deleteChatBtns.length;i++){
+    deleteChatBtns[i].onclick = () =>{
+        deleteChat(deleteChatBtns[i]);
+    }
+    deleteChatNo[i].onclick = () =>{
+        deleteChat(deleteChatBtns[i]);
+    }
+}
