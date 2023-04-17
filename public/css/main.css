@@ -91,6 +91,9 @@ body.dark .sidebarLeft {
 body.dark .addChatIcon {
   color: white;
 }
+body.dark .addChatIcon.active {
+  background: #101F25;
+}
 body.dark button.buttonTool {
   background: rgba(255, 255, 255, 0.1);
 }
@@ -136,6 +139,9 @@ body.light .sidebarMain {
 }
 body.light .addChatIcon {
   color: white;
+}
+body.light .addChatIcon.active {
+  background: #DFDFDF;
 }
 body.light .folderBtn .buttonOpen {
   color: #626262;
@@ -629,7 +635,7 @@ button.promptBtn {
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 10px;
-  padding: 24px 30px;
+  padding: 20px 40px;
 }
 
 .msg:last-of-type {

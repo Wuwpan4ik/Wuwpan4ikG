@@ -96,6 +96,9 @@ body.dark{
     }
     .addChatIcon{
         color:white;
+        &.active{
+            background: #101F25;
+        }
     }
     button.buttonTool{
         background: rgba(255, 255, 255, 0.1);
@@ -147,6 +150,9 @@ body.light{
     }
     .addChatIcon{
         color:white;
+        &.active{
+            background:#DFDFDF;
+        }
     }
     .folderBtn .buttonOpen{
         color: #626262;
@@ -698,7 +704,7 @@ button.promptBtn{
     align-items: flex-start;
     flex-direction: column;
     margin-bottom: 10px;
-    padding:24px 30px;
+    padding:20px 40px;
 }
 
 .msg:last-of-type {

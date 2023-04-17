@@ -247,7 +247,6 @@
             document.getElementById('settingsTab').classList.add('active');
         }
     }
-
     //попап оплаты
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
