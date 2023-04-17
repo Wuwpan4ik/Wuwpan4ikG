@@ -57,6 +57,10 @@ body {
   min-height: 100%;
 }
 
+body.dark .welcome-chat-wrapper {
+  background: url("../assets/background-dark.jpg");
+  background-repeat: no-repeat;
+}
 body.dark #mainHeader {
   background: #0F131B;
   border-bottom: 1px solid #2A2F39;
@@ -86,6 +90,9 @@ body.dark .sidebarLeft {
 }
 body.dark .addChatIcon {
   color: white;
+}
+body.dark .addChatIcon.active {
+  background: #101F25;
 }
 body.dark button.buttonTool {
   background: rgba(255, 255, 255, 0.1);
@@ -133,6 +140,9 @@ body.light .sidebarMain {
 body.light .addChatIcon {
   color: white;
 }
+body.light .addChatIcon.active {
+  background: #DFDFDF;
+}
 body.light .folderBtn .buttonOpen {
   color: #626262;
 }
@@ -141,6 +151,12 @@ body.light .folderBtn .buttonOpen:hover {
 }
 body.light .tablink p {
   color: #626262;
+}
+body.light .welcome-chat h2 {
+  color: black !important;
+}
+body.light .welcome-chat span {
+  color: rgba(0, 0, 0, 0.6);
 }
 body.light .add-chat, body.light .add-folder {
   color: #626262;
@@ -173,6 +189,46 @@ body.light .folderRow {
 body.light .folderRow form button {
   border: 1px solid rgba(0, 0, 0, 0.6);
   color: #626262;
+}
+body.light #settingsTab .popupContent {
+  background: #FFFFFF;
+}
+body.light #settingsTab .popupContent .popup-setting-content.withoutBorder button {
+  background: #DFDFDF;
+  color: #626262;
+}
+body.light #settingsTab .popupContent .popup-setting-content.withoutBorder .modelSettings {
+  background: #DFDFDF;
+  color: #626262;
+}
+body.light #settingsTab .popupContent .popup-setting-content.withoutBorder input {
+  color: #626262;
+}
+body.light #settingsTab .popupContent .popup-setting .popup-setting-title {
+  color: rgba(0, 0, 0, 0.6);
+}
+body.light #settingsTab .popupContent .popup-setting-desc {
+  color: rgba(0, 0, 0, 0.4);
+}
+body.light #settingsTab .popupContent .popup-setting-content button {
+  background: #EDEDED;
+  color: #6C6C6C;
+}
+body.light #settingsTab .popupContent .popup-setting-content button.active {
+  background: #13B8A6;
+  color: white;
+}
+body.light #settingsTab .popupContent .popup-setting-content button.active svg path {
+  fill: white;
+}
+body.light #settingsTab .popupContent svg path {
+  fill: #8E8E8F;
+}
+body.light #settingsTab .popupContent .button-save svg path {
+  fill: white;
+}
+body.light #settingsTab .popupContent .popup-setting-content.withoutBorder .modelSettings .secondRow button {
+  background: #CDCDCD;
 }
 body.light form.menu-item button svg path {
   fill: #8E8E8F;
@@ -239,10 +295,10 @@ body.light .msg-bubble .msg-text {
   border-radius: 10px;
   height: 38px;
 }
-#mainHeader .navbar button.active {
+#mainHeader .navbar button#settings.active {
   background: #13B8A6;
 }
-#mainHeader .navbar button.active svg path {
+#mainHeader .navbar button#settings.active svg path {
   fill: white;
 }
 #mainHeader * p {
@@ -559,7 +615,6 @@ button.promptBtn {
   overflow-y: auto;
   max-width: 100%;
   overflow-x: hidden;
-  padding: 10px 10px 40px 10px;
   background: #0F131B;
 }
 
@@ -580,7 +635,7 @@ button.promptBtn {
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 10px;
-  padding: 24px 30px;
+  padding: 20px 40px;
 }
 
 .msg:last-of-type {
@@ -645,7 +700,7 @@ button.promptBtn {
   background-image: url("../assets/user.jpg");
 }
 .msg .msg-img.bot_img {
-  background-image: url("../assets/botlogo.svg");
+  background-image: url("../assets/botlogo.jpg");
 }
 
 .messageInput {
