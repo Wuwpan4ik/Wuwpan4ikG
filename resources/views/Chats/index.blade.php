@@ -1,5 +1,8 @@
 @extends('layouts.index')
 @section('content')
+    @empty($settings)
+        {{ $settings }}
+    @endempty
     <div class="mainWrapper">
         <section class="msger">
             <header class="msger-header">

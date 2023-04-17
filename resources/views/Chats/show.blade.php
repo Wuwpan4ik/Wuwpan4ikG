@@ -40,8 +40,8 @@
             </main>
             <div class="messageInput">
                 <!--Токены, которые пользователь слил в определенном чате-->
-                <div class="tokensSpent">
-                    Запрос содержит: 360 токенов
+                <div class="tokens_chat">
+                    @include('components.tokens_in_chat')
                 </div>
                 <form class="msger-inputarea">
                     @csrf
@@ -74,11 +74,13 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="{{asset('js/script.js')}}"></script>
     <script>
         function myFunction(id) {
-            $('.msger-chat').load(`/messages.get/${id}`);
+            $.each($('.tablink'), function (index, val) {
+                val.classList.remove('active')
+            })
+            event.target.classList.add('active');
+            $('.msger-chat').load(`/messages/get/${id}`);
             let stateObj = { id: "100" };
             window.history.replaceState(stateObj,
                 "Page 3", `/chats/${id}`);
@@ -89,7 +91,8 @@
             event.target.classList.add('active');
             var element = document.querySelector(".msger-chat");
             element.scrollTop = element.scrollHeight;
-            $('.sidebarMain.right').load(`/chat.role/${id}`)
+            $('.sidebarMain.right').load(`/chat/role/${id}`)
+            $('.tokens_chat').load(`/messages-cost/get/${id}`);
         }
     </script>
 @endsection

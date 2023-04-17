@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserModelSettings;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -21,6 +23,14 @@ class SettingsController extends Controller
     {
         session()->put('theme', $request->theme);
 
+        return redirect()->back();
+    }
+
+    public function store(Request $request)
+    {
+        Debugbar::log($request->all());
+        UserModelSettings::create($request->all());
+        session()->put('settings', $request->all());
         return redirect()->back();
     }
 }
