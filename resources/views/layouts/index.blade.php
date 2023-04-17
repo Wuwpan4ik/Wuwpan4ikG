@@ -222,7 +222,6 @@
 @include('components.popups.popup-pay')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
-<script src="{{asset('js/highlight.min.js')}}"></script>
 <script src="{{asset('js/showdown.min.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
 @yield('script')

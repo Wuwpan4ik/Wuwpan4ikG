@@ -61,8 +61,13 @@ class ChatController extends Controller
     {
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get();
         $folders = Folder::with('children')->get();
-        $messages = Message::where('chat_id', $chat->id)->orderBy('id')->take(5)->get();
+        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->take(8)->get()->sortBy("id");;
         return view('Chats.show', compact('chat', 'chats', 'messages', 'folders'));
+    }
+
+    public function ShowCost(Chat $chat)
+    {
+        return view('components.tokens_in_chat', compact('chat'));
     }
 
     public function ShowRole(Chat $chat)
