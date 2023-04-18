@@ -180,7 +180,8 @@ document.querySelector('.closeBtnBuy button').onclick = () =>{
 }
 
 document.getElementById('tokensLeft').onclick = () =>{
-    document.querySelector('#pay-popup').classList.add('active');
+    document.getElementById('tokensLeft').classList.toggle('active');
+    document.querySelector('#pay-popup').classList.toggle('active');
 }
 
 //Папки - открытие и закрытие

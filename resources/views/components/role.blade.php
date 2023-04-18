@@ -60,7 +60,7 @@
         var copyTextarea = document.createElement("textarea");
         copyTextarea.style.position = "fixed";
         copyTextarea.style.opacity = "0";
-        copyTextarea.textContent = String(document.getElementById("systemRole").textContent).trim();
+        copyTextarea.textContent = String(document.querySelector("#systemRole span").textContent).trim();
         document.body.appendChild(copyTextarea);
         copyTextarea.select();
         document.execCommand("copy");
