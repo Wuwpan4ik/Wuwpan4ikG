@@ -44,7 +44,22 @@ if (msgerForm) {
 }
 
 
-function appendMessage(name, img, side, text, id) {
+function typeText(element, text) {
+    let index = 0
+    console.log(element)
+
+    let interval = setInterval(() => {
+        if (index < text.length) {
+            console.log(text.charAt(index))
+            element.innerHTML += text.charAt(index)
+            index++
+        } else {
+            clearInterval(interval)
+        }
+    }, 20)
+}
+
+async function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
     var md = window.markdownit();
     var result = md.render(String(text).trim());
@@ -56,13 +71,17 @@ function appendMessage(name, img, side, text, id) {
             <div class="msg-info-time">${formatDate(new Date())}</div>
         </div>
       <div class="msg-bubble">
-        <div class="msg-text" id=${id}>${result}</div>
+        <div class="msg-text" id=${id}></div>
       </div>
     </div>
   `;
 
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+    let block = document.querySelectorAll('.msg-text');
+    await typeText(block[block.length - 1], result);
+
     msgerChat.scrollTop += 500;
+
 }
 
 if (document.querySelector('.settings_form')) {
@@ -72,6 +91,7 @@ if (document.querySelector('.settings_form')) {
         let key = document.querySelector("input[name='_token']").value
         let params = {
             'model_id': form.querySelector('select[name="model_id"]').value,
+            'user_id': form.querySelector('input[name="user_id"]').value,
             'max_tokens': form.querySelector('input[name="max_tokens"]').value,
             'temperature': form.querySelector('input[name="temperature"]').value,
             'frequency': form.querySelector('input[name="frequency"]').value,
@@ -101,7 +121,7 @@ function sendMsg(msg) {
                     appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
                     $('.tokens_chat').load(`/messages-cost/get/${data}`);
                 })
-        })  
+        })
         .catch(error => console.error(error));
 }
 

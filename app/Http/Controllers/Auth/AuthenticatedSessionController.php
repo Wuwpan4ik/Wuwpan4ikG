@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\UserModelSettings;
 use App\Providers\RouteServiceProvider;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +30,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        $settings = UserModelSettings::where('user_id', Auth::id())->take(1)->get()->toArray();
+
+        session()->put('settings', $settings[0]);
+
+        Debugbar::log($settings[0]);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

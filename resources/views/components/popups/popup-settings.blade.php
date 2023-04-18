@@ -49,6 +49,7 @@
             </div>
             <form class="settings_form" action="{{ route('settingsSave') }}" method="POST">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                 <div class="popup-settings" style="flex-wrap:wrap">
                     <div class="popup-setting">
                         <div class="popup-setting-title">

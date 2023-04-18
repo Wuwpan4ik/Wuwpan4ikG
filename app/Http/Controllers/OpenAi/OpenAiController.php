@@ -39,15 +39,15 @@ class OpenAiController extends Controller
         $total_tokens = session()->get('settings')['max_tokens'] ?? 4000;
 
         //echo $history;
-        
+
         $opts = [
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
-            'temperature' => session()->get('settings')['temperature'] ?? 1,
+            'temperature' => (integer)session()->get('settings')['temperature'] ?? 1,
             "max_tokens" => $total_tokens - $prompt_tokens,
-            'top_p' => session()->get('settings')['top_p'] ?? 1,
-            'frequency_penalty' => session()->get('settings')['frequency'] ?? 0,
-            'presence_penalty' => session()->get('settings')['presence'] ?? 0
+            'top_p' => (integer)session()->get('settings')['top_p'] ?? 1,
+            'frequency_penalty' => (integer)session()->get('settings')['frequency'] ?? 0,
+            'presence_penalty' => (integer)session()->get('settings')['presence'] ?? 0
         ];
         Debugbar::log($opts);
         $open_ai = new OpenAi(env('open_ai_key'));

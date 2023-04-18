@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "112fa64b110585153137f1f9e1413ec0",
+    "content-hash": "540fd15443c3ea00e02906f75a299851",
     "packages": [
         {
             "name": "brick/math",
@@ -980,6 +980,56 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "kaoken/markdown-it-php",
+            "version": "13.0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kaoken/markdown-it-php.git",
+                "reference": "60fb29258f9c866311590ecac58b299d8db8a872"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kaoken/markdown-it-php/zipball/60fb29258f9c866311590ecac58b299d8db8a872",
+                "reference": "60fb29258f9c866311590ecac58b299d8db8a872",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "ext-pthreads": "*",
+                "symfony/yaml": "5.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kaoken\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kaoken",
+                    "homepage": "https://github.com/kaoken/markdown-it-php"
+                }
+            ],
+            "description": "PHP version makdown-it",
+            "keywords": [
+                "markdown",
+                "markdown-it"
+            ],
+            "support": {
+                "issues": "https://github.com/kaoken/markdown-it-php/issues",
+                "source": "https://github.com/kaoken/markdown-it-php/tree/13.0.1.1"
+            },
+            "time": "2022-12-05T13:05:33+00:00"
         },
         {
             "name": "laravel/framework",
