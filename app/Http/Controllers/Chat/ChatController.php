@@ -18,10 +18,12 @@ class ChatController extends Controller
      */
     public function index()
     {
-        $settings = UserModelSettings::where("user_id", Auth::id());
-        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get();
-        $folders = Folder::with('children')->get();
-        return view('Chats.index', compact('chats', 'folders', 'settings'));
+        if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->id);
+        $chat = Chat::create([
+            'user_id' => Auth::id()
+        ]);
+
+        return redirect()->route('chats.show', $chat->id);
     }
 
     /**

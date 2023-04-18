@@ -30,15 +30,19 @@ function sendMessage(event){
     msgerInput.value = "";
 }
 
-msgerForm.addEventListener("submit", event => {
-    sendMessage(event);
-});
 
-msgerForm.addEventListener('keydown', event => {
-    if(event.keyCode == 13){
-        sendMessage(event)
-    }
-})
+if (msgerForm) {
+    msgerForm.addEventListener("submit", event => {
+        sendMessage(event);
+    });
+
+    msgerForm.addEventListener('keydown', event => {
+        if(event.keyCode == 13){
+            sendMessage(event)
+        }
+    })
+}
+
 
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
@@ -58,14 +62,24 @@ function appendMessage(name, img, side, text, id) {
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
     msgerChat.scrollTop += 500;
 }
-if (document.querySelectorAll('.ajax_form')) {
-    document.querySelectorAll('.ajax_form').forEach(item => {
-        item.addEventListener('submit', event => {
-            event.preventDefault()
-            fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": item.querySelector('input[name=_token]').value}, method: 'POST', body: $(item).serialize()})
-        })
+
+if (document.querySelector('.settings_form')) {
+    let form = document.querySelector('.settings_form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault()
+        let key = document.querySelector("input[name='_token']").value
+        let params = {
+            'model_id': form.querySelector('select[name="model_id"]').value,
+            'max_tokens': form.querySelector('input[name="max_tokens"]').value,
+            'temperature': form.querySelector('input[name="temperature"]').value,
+            'frequency': form.querySelector('input[name="frequency"]').value,
+            'top_p': form.querySelector('input[name="top_p"]').value,
+            'presence': form.querySelector('input[name="presence"]').value
+        }
+        fetch('/settings/store', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
     })
 }
+
 function sendMsg(msg) {
     msgerSendBtn.disabled = true
     let key = document.querySelector('input[name=_token]').value;
@@ -74,7 +88,6 @@ function sendMsg(msg) {
         chat_id: document.querySelector('#chat_id').value,
         message: msg
     }
-
     fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
         .then(response => response.json())
         .then(data => {

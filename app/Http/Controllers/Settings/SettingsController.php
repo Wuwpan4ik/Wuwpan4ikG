@@ -7,6 +7,8 @@ use App\Models\UserModelSettings;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use function Pest\Laravel\json;
 
 class SettingsController extends Controller
 {
@@ -28,9 +30,8 @@ class SettingsController extends Controller
 
     public function store(Request $request)
     {
-        Debugbar::log($request->all());
-        UserModelSettings::create($request->all());
-        session()->put('settings', $request->all());
-        return redirect()->back();
+        $param = $request->except('_token');
+        UserModelSettings::firstOrCreate($param);
+        session()->put('settings', $param);
     }
 }

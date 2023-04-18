@@ -26,7 +26,7 @@ class OpenAiController extends Controller
     {
         $msg = $request->msg;
         $id = $chat->id;
-        $results = Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy("id");
+        $results = Message::where('chat_id', $id)->orderByDesc('id')->get()->sortBy("id");
         if (empty($chat->role)) {
             $history[] = array("role" => "system", "content" => "You are a helpful assistant.");
         } else {

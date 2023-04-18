@@ -220,7 +220,7 @@
 <!--Попапы-->
 @include('components.popups.popup-settings')
 @include('components.popups.popup-pay')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
 <script src="{{asset('js/showdown.min.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
@@ -228,11 +228,16 @@
 <script type="text/javascript">
 
     $(".changeLang").click(function(){
-        window.location.href = "{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang");
+        fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
     });
 
     $(".switchTheme").click(function(){
-        window.location.href = "{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme");
+        $.each($(".switchTheme"), function (num, item) {
+            item.classList.remove('active')
+        })
+        $(this).addClass('active')
+
+        fetch("{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme"))
     });
 
 </script>

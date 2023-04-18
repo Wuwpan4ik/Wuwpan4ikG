@@ -39,7 +39,7 @@
             <div class="popup-title" style="padding-top:60px;">
                 Настройки модели
             </div>
-            <form class="ajax_form" action="{{ route('settingsSave') }}" method="POST">
+            <form class="settings_form" action="{{ route('settingsSave') }}" method="POST">
                 @csrf
                 <div class="popup-settings" style="flex-wrap:wrap">
                     <div class="popup-setting">
