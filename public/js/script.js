@@ -26,7 +26,7 @@ async function sendMessage(event){
     const msgText = msgerInput.value;
     if (!msgText) return;
     await appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
-    await sendMsg(msgText)
+    sendMsg(msgText)
     msgerInput.value = "";
 }
 

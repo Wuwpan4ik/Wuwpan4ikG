@@ -36,17 +36,31 @@ class OpenAiController extends Controller
         $history[] = ["role" => 'user', "content" => $msg];
 
         $prompt_tokens = count($this->gpt_encode($msg));
-        $total_tokens = session()->get('settings')['max_tokens'] ?? 4000;
+
+        if (empty(session()->get('settings'))) {
+            $total_tokens = 4000;
+            $temperature = 1;
+            $top_p = 1;
+            $frequency_penalty = 0;
+            $presence_penalty = 0;
+        } else {
+            $total_tokens = session()->get('settings')['max_tokens'];
+            $temperature = (integer)session()->get('settings')['temperature'];
+            $top_p = (integer)session()->get('settings')['top_p'];
+            $frequency_penalty = (integer)session()->get('settings')['frequency'];
+            $presence_penalty = (integer)session()->get('settings')['presence'];
+        }
 
         $opts = [
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
-            'temperature' => (integer)session()->get('settings')['temperature'] ?? 1,
+            'temperature' => $temperature,
             "max_tokens" => $total_tokens - $prompt_tokens,
-            'top_p' => (integer)session()->get('settings')['top_p'] ?? 1,
-            'frequency_penalty' => (integer)session()->get('settings')['frequency'] ?? 0,
-            'presence_penalty' => (integer)session()->get('settings')['presence'] ?? 0
+            'top_p' => $top_p,
+            'frequency_penalty' => $frequency_penalty,
+            'presence_penalty' => $presence_penalty
         ];
+
         Debugbar::log($opts);
         $open_ai = new OpenAi(env('open_ai_key'));
         $chat_ai = $open_ai->chat($opts);
