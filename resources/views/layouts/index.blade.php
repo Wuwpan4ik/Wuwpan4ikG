@@ -92,7 +92,7 @@
                 </button>
             </form>
         </div>
-
+        <div class="tablinks-container">
         @foreach($folders as $folder)
             <div class="folderBtn">
                 <div class="buttonOpen">
@@ -161,6 +161,7 @@
                 </div>
             @endempty
         @endforeach
+        </div>
     </div>
     <div class="menu-items footer__menu-items">
         <a class="menu-item" id="aboutProject">
@@ -223,6 +224,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
 <script src="{{asset('js/showdown.min.js')}}"></script>
+<script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
 <script src="{{asset('js/script.js')}}"></script>
 @yield('script')
 <script type="text/javascript">

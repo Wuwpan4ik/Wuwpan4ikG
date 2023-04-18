@@ -38,6 +38,8 @@ class OpenAiController extends Controller
         $prompt_tokens = count($this->gpt_encode($msg));
         $total_tokens = session()->get('settings')['max_tokens'] ?? 4000;
 
+        //echo $history;
+        
         $opts = [
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
@@ -51,6 +53,7 @@ class OpenAiController extends Controller
         $open_ai = new OpenAi(env('open_ai_key'));
         $chat_ai = $open_ai->chat($opts);
         Debugbar::log($chat_ai);
+        Debugbar::log($history);
         $d = json_decode($chat_ai);
         $message = new Message;
         $message->message = $d->choices[0]->message->content;
