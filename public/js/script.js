@@ -21,12 +21,12 @@ const BOT_IMG = "../assets/botlogo.svg";
 const BOT_NAME = "Meta GPT";
 const PERSON_NAME = "User";
 
-function sendMessage(event){
+async function sendMessage(event){
     event.preventDefault();
     const msgText = msgerInput.value;
     if (!msgText) return;
-    appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
-    sendMsg(msgText)
+    await appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+    await sendMsg(msgText)
     msgerInput.value = "";
 }
 
@@ -59,7 +59,7 @@ function typeText(element, text) {
     }, 20)
 }
 
-async function appendMessage(name, img, side, text, id) {
+function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
     var md = window.markdownit();
     var result = md.render(String(text).trim());
@@ -78,7 +78,7 @@ async function appendMessage(name, img, side, text, id) {
 
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
     let block = document.querySelectorAll('.msg-text');
-    await typeText(block[block.length - 1], result);
+    typeText(block[block.length - 1], result);
 
     msgerChat.scrollTop += 500;
 

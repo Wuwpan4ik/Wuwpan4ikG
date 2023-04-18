@@ -33,9 +33,11 @@ class AuthenticatedSessionController extends Controller
 
         $settings = UserModelSettings::where('user_id', Auth::id())->take(1)->get()->toArray();
 
-        session()->put('settings', $settings[0]);
+        if (!empty($settings)) {
+            session()->put('settings', $settings[0]);
 
-        Debugbar::log($settings[0]);
+            Debugbar::log($settings[0]);
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
