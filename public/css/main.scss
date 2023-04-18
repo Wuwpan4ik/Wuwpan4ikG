@@ -43,6 +43,27 @@ html {
     cursor: pointer !important;
 }
 
+
+* h2{
+    font-size: 1.146vw;
+}
+
+* textarea{
+    font-size:0.781vw !important;
+}
+
+* svg{
+    width:0.938vw !important;
+    height:0.938vw !important;
+}
+
+* button.buttonTool{
+    svg{
+        width: 0.521vw !important;
+        height:0.521vw !important;
+    }
+}
+
 //Inputs
 
 /* Chrome, Safari, Edge, Opera */
@@ -1346,6 +1367,8 @@ input[type=range].styled-slider {
 //Library
 
 .tablinks-container{
+    max-height: 27.344vw;
+    overflow: auto;
     .tablinks-library{
         display: grid;
         grid-template-columns: repeat(2,50%);

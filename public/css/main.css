@@ -41,6 +41,24 @@ html {
   cursor: pointer !important;
 }
 
+* h2 {
+  font-size: 1.146vw;
+}
+
+* textarea {
+  font-size: 0.781vw !important;
+}
+
+* svg {
+  width: 0.938vw !important;
+  height: 0.938vw !important;
+}
+
+* button.buttonTool svg {
+  width: 0.521vw !important;
+  height: 0.521vw !important;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -1260,6 +1278,10 @@ button.add-chat:hover {
   width: 100%;
 }
 
+.tablinks-container {
+  max-height: 27.344vw;
+  overflow: auto;
+}
 .tablinks-container .tablinks-library {
   display: grid;
   grid-template-columns: repeat(2, 50%);

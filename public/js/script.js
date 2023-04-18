@@ -63,6 +63,7 @@ function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
     var md = window.markdownit();
     var result = md.render(String(text).trim());
+    console.log(text);
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
@@ -119,6 +120,7 @@ function sendMsg(msg) {
                 .then(response => {
                     msgerSendBtn.disabled = false;
                     appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
+                    console.log(response);
                     $('.tokens_chat').load(`/messages-cost/get/${data}`);
                 })
         })

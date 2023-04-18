@@ -38,8 +38,6 @@ class OpenAiController extends Controller
         $prompt_tokens = count($this->gpt_encode($msg));
         $total_tokens = session()->get('settings')['max_tokens'] ?? 4000;
 
-        //echo $history;
-
         $opts = [
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
