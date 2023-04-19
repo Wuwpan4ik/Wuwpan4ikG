@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AIModelSeeder::class,
+            PromptsFolderSeeder::class,
+            RoleSeeder::class
         ]);
     }
 }
