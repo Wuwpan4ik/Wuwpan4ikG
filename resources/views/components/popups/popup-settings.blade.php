@@ -20,7 +20,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="popup-setting">
+                <div class="popup-setting" style="display:none">
                     <div class="popup-setting-title">
                         Язык интерфейса
                     </div>

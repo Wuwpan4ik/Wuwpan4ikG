@@ -59,7 +59,7 @@ class OpenAiController extends Controller
             'top_p' => $top_p,
             'frequency_penalty' => $frequency_penalty,
             'presence_penalty' => $presence_penalty,
-            'stream' => true,
+            //'stream' => true,
         ];
 
         Debugbar::log($opts);

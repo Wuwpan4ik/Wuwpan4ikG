@@ -47,8 +47,6 @@ if (msgerForm) {
 
 function typeText(element, text) {
     let index = 0
-    console.log(element)
-
     let interval = setInterval(() => {
         if (index < text.length) {
             element.innerHTML += text.charAt(index)
@@ -57,16 +55,54 @@ function typeText(element, text) {
             var md = window.markdownit();
             var result = md.render(String(text));
             element.innerHTML = result;
+            copyBtnPre();
             clearInterval(interval)
         }
     }, 20)
+}
+
+function renderAllMessages(){
+    let messageText = document.querySelectorAll('.msger-chat .msg-text'),
+    md = window.markdownit();
+    messageText.forEach(function(text){
+        var result = md.render(String(text.innerHTML));
+        text.innerHTML = result;
+        copyBtnPre();
+    })
+}
+
+window.addEventListener('DOMContentLoaded', renderAllMessages);
+
+function copyBtnPre(){
+    var copy = function(target) {
+        var textArea = document.createElement('textarea')
+        textArea.setAttribute('style','width:1px;border:0;opacity:0;')
+        document.body.appendChild(textArea)
+        textArea.value = target.innerHTML
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+    }
+    
+    var pres = document.querySelectorAll(".msg-text pre")
+    pres.forEach(function(pre){
+      var button = document.createElement("button")
+      button.className = "btn btn-sm"
+      button.innerHTML = "copy"
+      if(pre.querySelector('.btn-sm') == false){
+        pre.append(button);
+      }
+      button.addEventListener('click', function(e){
+        e.preventDefault()
+        copy(pre.childNodes[0])
+      })
+    });
 }
 
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
     var md = window.markdownit();
     var result = md.render(String(text));
-    console.log(text);
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
@@ -79,7 +115,6 @@ function appendMessage(name, img, side, text, id) {
       </div>
     </div>
   `;
-    console.log(result);
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
     let block = document.querySelectorAll('.msg-text');
     typeText(block[block.length - 1], text);
@@ -125,12 +160,17 @@ function sendMsg(msg) {
                 .then(response => {
                     msgerSendBtn.disabled = false;
                     appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
-                    console.log(response);
                     $('.tokens_chat').load(`/messages-cost/get/${data}`);
                 })
         })
         .catch(error => console.error(error));
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((el) => {
+      hljs.highlightElement(el);
+    });
+});
 
 // Utils
 function get(selector, root = document) {
