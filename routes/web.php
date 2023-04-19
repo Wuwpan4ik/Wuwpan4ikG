@@ -36,7 +36,10 @@ Route::middleware('auth')->group(function() {
     Route::delete("/prompts_folder/{prompt_folders}", [\App\Http\Controllers\Prompt\PromptController::class, 'destroyFolder'])->name('prompts_folder.destroy');
 
     Route::get("/role", [\App\Http\Controllers\Role\RoleController::class, 'index'])->name('role.index');
+    Route::get("payer", [\App\Http\Controllers\Payer\PayerController::class, 'Buy'])->name('payer.buy');
 });
+
+
 Route::post('/sendMessage', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'send__message'])->name('sendMessage');
 Route::get('/event-stream/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream']);
 
