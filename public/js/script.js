@@ -25,6 +25,7 @@ async function sendMessage(event){
     event.preventDefault();
     const msgText = msgerInput.value;
     if (!msgText) return;
+    if (document.querySelector('.welcome-chat')) document.querySelector('.welcome-chat').remove()
     await appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
     sendMsg(msgText)
     msgerInput.value = "";

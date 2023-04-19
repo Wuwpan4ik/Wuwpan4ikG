@@ -9,7 +9,7 @@
             </clipPath>
         </defs>
     </svg>
-    <p>{{ $chat->title }}</p>
+    <p>{{ $main->title }}</p>
     <input type="text" name="chatName" class="nonActive" id="renameChatInput">
 </div>
 <div class="hoverItems">
@@ -30,7 +30,7 @@
     </button>
     <!--Подтверждение удаления чата-->
     <div class="confirmDelete nonActive">
-        <form class="deleteChatForm" action="{{ route('chats.destroy', $chat->id) }}" method="POST">
+        <form class="deleteChatForm" action="@empty($chat) {{ route('prompts_folder.destroy', $main->id) }} @else{{ route('chats.destroy', $main->id) }} @endempty" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="deleteChatYes buttonTool">
