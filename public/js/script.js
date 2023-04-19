@@ -50,10 +50,12 @@ function typeText(element, text) {
 
     let interval = setInterval(() => {
         if (index < text.length) {
-            console.log(text.charAt(index))
             element.innerHTML += text.charAt(index)
-            index++
+            index++;
         } else {
+            var md = window.markdownit();
+            var result = md.render(String(text));
+            element.innerHTML = result;
             clearInterval(interval)
         }
     }, 20)
@@ -62,7 +64,7 @@ function typeText(element, text) {
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
     var md = window.markdownit();
-    var result = md.render(String(text).trim());
+    var result = md.render(String(text));
     console.log(text);
     const msgHTML = `
     <div class="msg ${side}-msg">
@@ -76,10 +78,10 @@ function appendMessage(name, img, side, text, id) {
       </div>
     </div>
   `;
-
+    console.log(result);
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
     let block = document.querySelectorAll('.msg-text');
-    typeText(block[block.length - 1], result);
+    typeText(block[block.length - 1], text);
 
     msgerChat.scrollTop += 500;
 
@@ -111,8 +113,10 @@ function sendMsg(msg) {
         chat_id: document.querySelector('#chat_id').value,
         message: msg
     }
-    fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
-        .then(response => response.json())
+    const res = fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
+        .then(
+            response => response.json(),
+        )
         .then(data => {
             let uuid = uuidv4()
             fetch(`/event-stream/${data}?msg=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})

@@ -85,7 +85,7 @@ body{
 }
 
 body.dark{
-    .welcome-chat-wrapper{
+    .welcome-chat{
         background:url('../assets/background-dark.jpg');background-repeat: no-repeat;
     }
     #mainHeader{
@@ -693,6 +693,31 @@ button.promptBtn{
     .welcome-chat{
         max-width: 690px;
         margin:0 auto;
+    }
+}
+
+.welcome-chat{
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color:white;
+    text-align: center;
+    span{
+        color: #A4A4A4;
+        max-width: 35.938vw;
+        font-size:0.625vw;
+    }
+    svg{
+        width:2.604vw !important;
+        height:2.604vw !important;
+    }
+    .h3-title{
+        padding-bottom: 16px;
+        padding-top: 24px;
+        font-size:1.146vw;
     }
 }
 
