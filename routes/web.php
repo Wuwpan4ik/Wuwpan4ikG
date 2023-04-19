@@ -30,11 +30,12 @@ Route::middleware('auth')->group(function() {
 
     Route::get("/prompts", [\App\Http\Controllers\Prompt\PromptController::class, 'index'])->name('prompts.index');
     Route::get("/prompts/{PromptFolder}", [\App\Http\Controllers\Prompt\PromptController::class, 'show'])->name('prompts.show');
-    Route::get("/prompts/catalog", function () { return view("Prompts.catalog"); })->name('prompts.catalog');
     Route::get("/prompts/{PromptFolder}/main", [\App\Http\Controllers\Prompt\PromptController::class, 'showMain'])->name('prompts.getMain');
     Route::post("/prompts", [\App\Http\Controllers\Prompt\PromptController::class, 'store'])->name('prompts.store');
     Route::post("/prompts_folder", [\App\Http\Controllers\Prompt\PromptController::class, 'storeFolder'])->name('prompts_folder.store');
     Route::delete("/prompts_folder/{prompt_folders}", [\App\Http\Controllers\Prompt\PromptController::class, 'destroyFolder'])->name('prompts_folder.destroy');
+
+    Route::get("/role", [\App\Http\Controllers\Role\RoleController::class, 'index'])->name('role.index');
 });
 Route::post('/sendMessage', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'send__message'])->name('sendMessage');
 Route::get('/event-stream/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream']);

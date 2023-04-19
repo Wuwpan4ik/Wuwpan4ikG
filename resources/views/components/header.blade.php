@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('prompts.catalog') }}">
+                <a href="{{ route('role.index') }}">
                     {{ __("Catalog") }}
                 </a>
             </li>
