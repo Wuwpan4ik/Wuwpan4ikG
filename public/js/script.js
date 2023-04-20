@@ -267,15 +267,22 @@ function countTokens(){
 document.querySelector('input#priceStealer').oninput = countTokens;
 
 
-//Закрытие попапа оплаты
+//Закрытие / открытие попапа оплаты
+
+let tokensLeftBtn = document.querySelectorAll("#tokensLeft");
+
+tokensLeftBtn.forEach((item)=>{
+    item.onclick = () =>{
+        item.classList.toggle('active');
+        document.querySelector('#pay-popup').classList.toggle('active');
+    }
+});
 
 document.querySelector('.closeBtnBuy button').onclick = () =>{
     document.querySelector('#pay-popup').classList.remove('active');
-}
-
-document.getElementById('tokensLeft').onclick = () =>{
-    document.getElementById('tokensLeft').classList.toggle('active');
-    document.querySelector('#pay-popup').classList.toggle('active');
+    tokensLeftBtn.forEach((item)=>{
+        item.classList.remove('active');
+    })
 }
 
 //Папки - открытие и закрытие
@@ -370,4 +377,23 @@ for(let i = 0; i < deleteChatBtns.length;i++){
     deleteChatNo[i].onclick = () =>{
         deleteChat(deleteChatBtns[i]);
     }
+}
+
+
+//Копирование подсказок
+
+let copyPromptBtns = document.querySelectorAll('button.promptBtn');
+
+copyPromptBtns.forEach((item)=>{
+    item.onclick = () =>{
+        var textArea = document.querySelector('textarea.msger-input');
+        textArea.value = String(item.querySelector('.promptText').innerText).trim();
+    }
+})
+
+//Мобильные кнопки
+
+document.getElementById('openChats').onclick = () =>{
+    document.getElementById('openChats').classList.toggle('active');
+    document.querySelector('.sidebarMain.left').classList.toggle('active');
 }

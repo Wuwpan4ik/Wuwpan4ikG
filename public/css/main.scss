@@ -419,6 +419,9 @@ body.light{
     background: #0F131B;
     padding:20px;
     nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         ul{
             display:flex;
             align-items: center;
@@ -713,6 +716,9 @@ body.light{
         }
     }
     button.buttonTool{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 50%;
         width: 1.146vw;
         height: 1.146vw;
@@ -763,6 +769,9 @@ button.promptBtn{
     font-weight: 500;
     font-size: 0.781vw;
     border-radius: 0.417vw;
+    .promptText{
+        display:none;
+    }
 }
 
 .welcome-chat-wrapper{
@@ -830,6 +839,7 @@ button.promptBtn{
     border-radius: 0.26vw;
     background: var(--msger-bg);
     box-shadow: 0 0.781vw 0.781vw -0.26vw rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .msger-header {
@@ -866,8 +876,7 @@ button.promptBtn{
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    margin-bottom: 0.521vw;
-    padding:1.042vw 2.083vw;
+    padding:0.782vw 2.083vw;
 }
 
 .msg:last-of-type {
@@ -1719,9 +1728,62 @@ pre{
 }
 
 
+//Loader response
+
+.loaderResponse{
+    position: fixed;z-index: 222;
+    bottom:1.042vw;
+    right:1.042vw;
+    display:flex;
+    border-radius: 0.521vw;
+    background: #0F131B;
+    padding:1.042vw;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    justify-content: space-between;
+    width:20.625vw;
+    align-items: center;
+    .firstRow{
+        display: flex;
+        align-items: center;
+        gap:1.042vw;
+        .loaderGif{
+            background-image:url('https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width:1.5vw;
+            height:1.5vw;
+        }   
+    }
+    p{
+        font-size:0.7vw;
+        color:white;
+    }
+    span{
+        font-size:0.5vw;
+        color:white;
+    }
+    button{
+        background:none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border:none;
+    }
+}
+
+//Scroll bottom btn
+
+#scrollBottomBtn{
+    position: fixed;
+    bottom: 13.021vw;
+    border-radius: 50%;
+    width:1.563vw;
+    height:1.563vw;
+    border:none;
+    right: 26.042vw;
+}
+
 //Adaptive
-
-
 @media(max-width:768px){
     * svg{
         width:unset!important;
@@ -1884,5 +1946,69 @@ pre{
     }
     .msg{
         padding: 5px 20px 5px 20px;
+    }
+    //Mobile menu btns
+    #openChats.active{
+        background: #13B8A6;
+        svg{
+            path{
+                fill:white;
+            }
+        }
+    }
+    //Scroll bottom btn
+    #scrollBottomBtn{
+        bottom: 230px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+    }
+
+    //Popups
+    .popup{
+        padding-top: 78px;
+    }
+    #menu-mob{
+        display: none;
+        .popup-inner{
+            height: 100%;
+            justify-content: space-between;
+            max-width: 100%;
+            padding:20px 40px 40px 40px;
+        }
+        &.active{
+            display: flex;
+        }
+        .menu-header{
+            border-top: 1px solid #2A2F39;
+            padding-top: 30px;
+            li{
+                list-style:none;
+                margin-bottom: 20px;
+                a{
+                    font-size: 15px;
+                    padding:10px;
+                    color:white;border-radius: 10px;
+                    &.active{
+                        background: #101F25;color: #13B8A6;
+                    }
+                }
+            }
+        }
+        .menu-items{
+            padding-top:14px;
+            a{
+                padding:14px 20px;
+                gap:10px;
+                font-size: 15px;
+                border-radius: 10px;
+            }
+            form button{
+                padding:14px 20px;
+                gap:10px;
+                font-size: 15px;
+                border-radius: 10px;
+            }
+        }
     }
 }

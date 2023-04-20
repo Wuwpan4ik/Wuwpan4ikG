@@ -23,6 +23,10 @@
     "loginInAccount": "Войдите в аккаунт",
     "loginBtn": "Войти",
     "noAccount": "Ещё нет аккаунта?",
+    "haveAccount": "Уже есть аккаунт?",
     "registerBtn": "Зарегистрируйтесь",
-    "enterMessage": "Введите ваше сообщение"
+    "logBtn": "Тогда войдите",
+    "enterMessage": "Введите ваше сообщение",
+    "registerTitle": "Зарегистрироваться",
+    "regName": "Имя"
 }

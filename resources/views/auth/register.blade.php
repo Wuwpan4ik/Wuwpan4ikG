@@ -9,7 +9,7 @@
         <div class="second-row">
             <div class="top-row">
                 <h2 class="title">
-                Зарегистрироваться
+                    {{ __("registerTitle") }}
                 </h2>
                 <!--Имя, позже скрыть-->
                 <div class="input-form">
@@ -60,7 +60,7 @@
                     {{ __('Already registered?') }}
                 </a>
                 -->
-                Уже есть аккаунт? <a href='{{ route("login") }}'>Тогда войдите</a>
+                {{__("haveAccount")}} <a href='{{ route("login") }}'>{{__("logBtn")}}</a>
             </div>
     </form>
 </x-guest-layout>
