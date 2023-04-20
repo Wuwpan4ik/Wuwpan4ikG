@@ -1,4 +1,4 @@
-<div class="tablinks-container">
+<div class="tablinks-container libraryItems">
     <div class="tablinks-library">
         @foreach($main_prompts as $prompt)
             <button class="tablink-library" onclick="myFunction({{ $prompt->id }})" style="background-color: {{ $prompt->main_background_color }}; color: {{ $prompt->main_color }}">

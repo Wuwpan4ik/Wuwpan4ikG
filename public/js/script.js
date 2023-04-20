@@ -38,8 +38,12 @@ if (msgerForm) {
     });
 
     msgerForm.addEventListener('keydown', event => {
+        console.log(event.keyCode)
         if(event.keyCode == 13){
             sendMessage(event)
+        }
+        else if(event.keyCode == 16 + event.keyCode == 13){
+            return;
         }
     })
 }
@@ -47,24 +51,62 @@ if (msgerForm) {
 
 function typeText(element, text) {
     let index = 0
-    console.log(element)
-
     let interval = setInterval(() => {
         if (index < text.length) {
-            console.log(text.charAt(index))
             element.innerHTML += text.charAt(index)
-            index++
+            index++;
         } else {
+            var md = window.markdownit();
+            var result = md.render(String(text));
+            element.innerHTML = result;
+            copyBtnPre();
             clearInterval(interval)
         }
     }, 20)
 }
 
+function renderAllMessages(){
+    let messageText = document.querySelectorAll('.msger-chat .msg-text'),
+    md = window.markdownit();
+    messageText.forEach(function(text){
+        var result = md.render(String(text.innerHTML));
+        text.innerHTML = result;
+        copyBtnPre();
+    })
+}
+
+window.addEventListener('DOMContentLoaded', renderAllMessages);
+
+function copyBtnPre(){
+    var copy = function(target) {
+        var textArea = document.createElement('textarea')
+        textArea.setAttribute('style','width:1px;border:0;opacity:0;')
+        document.body.appendChild(textArea)
+        textArea.value = target.innerHTML
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+    }
+
+    var pres = document.querySelectorAll(".msg-text pre")
+    pres.forEach(function(pre){
+      var button = document.createElement("button")
+      button.className = "btn btn-sm"
+      button.innerHTML = "copy"
+      if(pre.querySelector('.btn-sm') == false){
+        pre.append(button);
+      }
+      button.addEventListener('click', function(e){
+        e.preventDefault()
+        copy(pre.childNodes[0])
+      })
+    });
+}
+
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
     var md = window.markdownit();
-    var result = md.render(String(text).trim());
-    console.log(text);
+    var result = md.render(String(text));
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
@@ -77,10 +119,9 @@ function appendMessage(name, img, side, text, id) {
       </div>
     </div>
   `;
-
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
     let block = document.querySelectorAll('.msg-text');
-    typeText(block[block.length - 1], result);
+    typeText(block[block.length - 1], text);
 
     msgerChat.scrollTop += 500;
 
@@ -112,8 +153,10 @@ function sendMsg(msg) {
         chat_id: document.querySelector('#chat_id').value,
         message: msg
     }
-    fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
-        .then(response => response.json())
+    const res = fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
+        .then(
+            response => response.json(),
+        )
         .then(data => {
             let uuid = uuidv4()
             fetch(`/event-stream/${data}?message=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})
@@ -136,6 +179,12 @@ function sendMsg(msg) {
         })
         .catch(error => console.error(error));
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((el) => {
+      hljs.highlightElement(el);
+    });
+});
 
 // Utils
 function get(selector, root = document) {

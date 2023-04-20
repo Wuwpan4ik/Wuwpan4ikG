@@ -1,5 +1,11 @@
 <div class="library-title">
-    {{ $folder->title }}
+    <div class="library-item-titles">
+        {{ $folder->title }}
+    </div>
+    <!--Выводим кол-во подсказок-->
+    <div class="library-item-count">
+        0 {{__('promptsCount')}}
+    </div>
 </div>
 <div class="library-items-container">
     @foreach($prompts as $prompt)
