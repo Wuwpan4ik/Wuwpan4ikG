@@ -539,8 +539,39 @@ body.light .msg-bubble .msg-text {
   background: #525459;
 }
 
+.folderBtn .hoverItems {
+  display: flex;
+  gap: 10px;
+}
+.folderBtn .hoverItems .hoverItems-folder {
+  display: flex;
+  gap: 0.26vw;
+  opacity: 0;
+}
+.folderBtn .hoverItems .hoverItems-folder button {
+  width: 1.146vw;
+  height: 1.146vw;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.313vw;
+}
+.folderBtn .hoverItems .hoverItems-folder button svg {
+  width: 0.521vw !important;
+  height: 0.521vw !important;
+}
+.folderBtn:hover .hoverItems-folder {
+  opacity: 1;
+}
+
 .folderBtn.opened .buttonOpen {
   background: #1D2129;
+}
+.folderBtn.opened .buttonOpen .dropdownButton {
+  transform: rotate(0deg);
 }
 .folderBtn.opened .folderItems {
   display: flex;
@@ -566,6 +597,9 @@ body.light .msg-bubble .msg-text {
 }
 .folderBtn .buttonOpen .hoverItems.active .dropdownButton {
   transform: rotate(-180deg);
+}
+.folderBtn .buttonOpen .dropdownButton {
+  transform: rotate(-90deg);
 }
 .folderBtn .buttonOpen:hover {
   background: #1D2129;

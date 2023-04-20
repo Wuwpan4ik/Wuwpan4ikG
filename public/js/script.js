@@ -38,8 +38,12 @@ if (msgerForm) {
     });
 
     msgerForm.addEventListener('keydown', event => {
+        console.log(event.keyCode)
         if(event.keyCode == 13){
             sendMessage(event)
+        }
+        else if(event.keyCode == 16 + event.keyCode == 13){
+            return;
         }
     })
 }

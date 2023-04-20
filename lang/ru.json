@@ -19,6 +19,10 @@
     "templatesRoles": "Шаблоны ролей",
     "systemRoles": "Система",
     "promptsCount": "подсказок",
-    "rolesCount": "ролей"
-    
+    "rolesCount": "ролей",
+    "loginInAccount": "Войдите в аккаунт",
+    "loginBtn": "Войти",
+    "noAccount": "Ещё нет аккаунта?",
+    "registerBtn": "Зарегистрируйтесь",
+    "enterMessage": "Введите ваше сообщение"
 }

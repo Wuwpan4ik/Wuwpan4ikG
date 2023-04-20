@@ -11,7 +11,7 @@
         <div class="second-row">
             <div class="top-row">
                 <h2 class="title">
-                    Войдите в аккаунт
+                    {{ __('loginInAccount') }}
                 </h2>
                 <div class="input-form">
                     <x-input-label for="email" :value="__('Ваша почта')" />
@@ -42,7 +42,7 @@
                 -->
                 <div class="buttonSubmit">
                     <x-primary-button class="ml-3">
-                        {{ __('Log in') }}
+                        {{ __('loginBtn') }}
                     </x-primary-button>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         </a>
                         -->
                         <!-- Рега-->
-                        Ещё нет аккаунта? <a href='{{ route("register") }}'>Зарегистрируйтесь</a>
+                        {{__("noAccount")}} <a href='{{ route("register") }}'>{{__("registerBtn")}}</a>
                     @endif
                 </div>
             </div>

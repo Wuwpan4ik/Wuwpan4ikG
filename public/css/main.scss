@@ -608,9 +608,42 @@ body.light{
 }
 
 //Add folder
+.folderBtn{
+    .hoverItems{
+        display:flex;
+        gap:10px;
+        .hoverItems-folder{
+            display: flex;
+            gap:0.26vw;
+            opacity: 0;
+            button{
+                width: 1.146vw;
+                height: 1.146vw;background: rgba(255, 255, 255, 0.1);border-radius: 50%;
+                border:none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding:0.313vw;
+                svg{
+                    width: 0.521vw !important;
+                    height: 0.521vw !important;
+                }
+            }
+        }
+    }
+    &:hover{
+        .hoverItems-folder{
+            opacity: 1;
+        }
+    }
+}
+
 .folderBtn.opened{
     .buttonOpen{
         background: #1D2129;
+        .dropdownButton{
+            transform: rotate(0deg);
+        }
     }
     .folderItems{
         display:flex;
@@ -637,6 +670,9 @@ body.light{
         .dropdownButton{
             transform: rotate(-180deg);
         }
+    }
+    .dropdownButton{
+        transform: rotate(-90deg);
     }
     &:hover{
         background: #1D2129;
