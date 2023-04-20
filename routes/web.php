@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function() {
-    Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index']);
+    Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
     Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class);
     Route::post('/chats.folder_store', [\App\Http\Controllers\Chat\ChatController::class, 'storeInFolder'])->name('chats.folder_store');
     Route::post("/chats/{chat}/updateRole", [\App\Http\Controllers\Chat\ChatController::class, 'updateRole'])->name("chat.updateRole");
@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function() {
     Route::get("/prompts/{PromptFolder}/main", [\App\Http\Controllers\Prompt\PromptController::class, 'showMain'])->name('prompts.getMain');
     Route::post("/prompts", [\App\Http\Controllers\Prompt\PromptController::class, 'store'])->name('prompts.store');
     Route::post("/prompts_folder", [\App\Http\Controllers\Prompt\PromptController::class, 'storeFolder'])->name('prompts_folder.store');
+    Route::post("/prompts_folder/{prompt_folders}", [\App\Http\Controllers\Prompt\PromptController::class, 'update'])->name('prompts_folder.update');
     Route::delete("/prompts_folder/{prompt_folders}", [\App\Http\Controllers\Prompt\PromptController::class, 'destroyFolder'])->name('prompts_folder.destroy');
 
     Route::get("/role", [\App\Http\Controllers\Role\RoleController::class, 'index'])->name('role.index');

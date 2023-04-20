@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\Payer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Payer\BuyRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PayerController extends Controller
 {
-    public function Buy(Request $request)
+    public function Buy(BuyRequest $request)
     {
-        $user_id = $request->user_id;
-        $amount = $request->amount;
+        $data = $request->validated();
+        $user_id = $data['user_id'];
+        $amount = $data['amount'];
 
-        Auth::user()->tokens += 1450 * $amount;
-        Auth::user()->save();
+        User::where('id', $user_id)->increment('tokens', 1450 * $amount);
     }
 }

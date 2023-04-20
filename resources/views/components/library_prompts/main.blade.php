@@ -1,5 +1,5 @@
 <div class="library-title">
-    Кулинария
+    {{ $folder->title }}
 </div>
 <div class="library-items-container">
     @foreach($prompts as $prompt)

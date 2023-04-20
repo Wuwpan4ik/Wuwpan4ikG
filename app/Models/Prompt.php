@@ -9,5 +9,12 @@ class Prompt extends Model
 {
     protected $table = 'prompts';
 
+    protected $fillable = [
+        'user_id',
+        'folder_id',
+        'description',
+        'is_main'
+    ];
+
     protected $guarded = false;
 }

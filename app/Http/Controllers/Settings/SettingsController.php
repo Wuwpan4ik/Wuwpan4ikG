@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Settings\ChangeLangRequest;
+use App\Http\Requests\Settings\ChangeThemeRequest;
+use App\Http\Requests\Settings\StoreRequest;
 use App\Models\UserModelSettings;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
@@ -12,24 +15,26 @@ use function Pest\Laravel\json;
 
 class SettingsController extends Controller
 {
-    public function changeLanguage(Request $request)
+    public function changeLanguage(ChangeLangRequest $request)
     {
-
-        App::setLocale($request->lang);
-        session()->put('locale', $request->lang);
+        $data = $request->validated();
+        App::setLocale($data['lang']);
+        session()->put('locale', $data['lang']);
 
         return redirect()->back();
     }
 
-    public function changeTheme(Request $request)
+    public function changeTheme(ChangeThemeRequest $request)
     {
-        session()->put('theme', $request->theme);
+        $data = $request->validated();
+        session()->put('theme', $data['theme']);
 
         return redirect()->back();
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
+//      Не доделал
         $param = $request->except('_token');
         UserModelSettings::firstOrCreate($param);
         session()->put('settings', $param);

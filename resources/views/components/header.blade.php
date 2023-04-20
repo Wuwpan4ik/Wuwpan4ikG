@@ -1,22 +1,7 @@
 <header id="mainHeader">
     <nav class="navbar">
-        <ul class="first-col">
-            <li>
-                <a href="/" class="active">
-                    {{ __("Chat") }}
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('prompts.index') }}">
-                    {{ __("Library") }}
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('role.index') }}">
-                    {{ __("Catalog") }}
-                </a>
-            </li>
-        </ul>
+        <x-menu>
+        </x-menu>
         <ul class="second-col">
             <li>
                 <button id="settings">

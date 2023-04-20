@@ -11,6 +11,10 @@ class Folder extends Model
 
     protected $guarded = false;
 
+    protected $fillable = [
+        'user_id'
+    ];
+
     public function children()
     {
         return $this->hasMany(Chat::class, 'folder_id', 'id');

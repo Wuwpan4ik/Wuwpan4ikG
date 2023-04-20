@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PromptFolder extends Model
+class Language extends Model
 {
-    protected $table = 'prompt_folders';
-
-    protected $fillable = [
-        'id',
-        'title'
-    ];
+    protected $table = 'languages';
 
     protected $guarded = false;
 }

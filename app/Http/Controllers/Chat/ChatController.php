@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Chat\StoreInFolderRequest;
+use App\Http\Requests\Chat\StoreRequest;
+use App\Http\Requests\Chat\UpdateRequest;
+use App\Http\Requests\Chat\UpdateRoleRequest;
 use App\Models\Chat;
 use App\Models\Folder;
 use App\Models\Message;
@@ -18,8 +22,6 @@ class ChatController extends Controller
      */
     public function index()
     {
-        Auth::user()->tokens = 1000;
-        Auth::user()->save();
         if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->id);
         $chat = Chat::create([
             'user_id' => Auth::id()
@@ -48,11 +50,12 @@ class ChatController extends Controller
         return redirect()->route('chats.show', $chat->id);
     }
 
-    public function storeInFolder(Request $request)
+    public function storeInFolder(StoreInFolderRequest $request)
     {
+        $data = $request->validated();
         Chat::create([
             'user_id' => Auth::id(),
-            'folder_id' => $request->folder_id
+            'folder_id' => $data['folder_id']
         ]);
 
         return redirect('/');
@@ -63,9 +66,9 @@ class ChatController extends Controller
      */
     public function show(Chat $chat)
     {
-        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get();
+        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get()->sortBy("id");
         $folders = Folder::with('children')->get();
-        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");;
+        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
         return view('Chats.show', compact('chat', 'chats', 'messages', 'folders'));
     }
 
@@ -97,19 +100,21 @@ class ChatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chat $chat)
+    public function update(UpdateRequest $request, Chat $chat)
     {
+        $data = $request->validated();
         $chat->update([
-            "title" => $request->title
+            "title" => "{$data['title']}"
         ]);
 
         return redirect()->route('chats.show', $chat->id);
     }
 
-    public function updateRole(Request $request, Chat $chat)
+    public function updateRole(UpdateRoleRequest $request, Chat $chat)
     {
+        $data = $request->validated();
         $chat->update([
-            "role" => $request->role
+            "role" => "{$data['role']}"
         ]);
 
         return redirect()->route('chats.show', $chat->id);

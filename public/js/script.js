@@ -116,7 +116,7 @@ function sendMsg(msg) {
         .then(response => response.json())
         .then(data => {
             let uuid = uuidv4()
-            fetch(`/event-stream/${data}?msg=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})
+            fetch(`/event-stream/${data}?message=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})
                 .then(response => {
                     if (response.ok) {
                         return response.text()

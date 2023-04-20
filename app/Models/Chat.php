@@ -12,6 +12,13 @@ class Chat extends Model
 
     protected $guarded = false;
 
+    protected $fillable = [
+        'title',
+        'role',
+        'folder_id',
+        'user_id',
+    ];
+
     protected $casts = [
         'created_at' => 'datetime:H:i',
     ];

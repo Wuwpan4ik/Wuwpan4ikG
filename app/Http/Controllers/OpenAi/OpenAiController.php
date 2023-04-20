@@ -3,32 +3,33 @@
 namespace App\Http\Controllers\OpenAi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OpenAI\SendRequest;
+use App\Http\Requests\OpenAI\StreamRequest;
 use App\Models\Chat;
 use App\Models\Message;
-use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orhanerday\OpenAi\OpenAi;
 
 class OpenAiController extends Controller
 {
 
-    public function send__message(Request $request)
+    public function send__message(SendRequest $request)
     {
+        $data = $request->validated();
         $message = new Message;
-        $message->message = $request->message;
-        $message->chat_id = $request->chat_id;
+        $message->message = $data['message'];
+        $message->chat_id = $data['chat_id'];
         $message->save();
 
         return response()->json($message->chat_id);
     }
 
-    public function event__stream(Request $request, Chat $chat)
+    public function event__stream(StreamRequest $request, Chat $chat)
     {
-        $msg = $request->msg;
+        $data = $request->validated();
+        $msg = $data['message'];
         $id = $chat->id;
-        $results = Message::where('chat_id', $id)->orderByDesc('id')->get()->sortBy("id");
         if (empty($chat->role)) {
             $history[] = array("role" => "system", "content" => "You are a helpful assistant.");
         } else {
