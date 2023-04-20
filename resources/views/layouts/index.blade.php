@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/highlight.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('css/main.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('css/highlight.min.css') }}">--}}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
 </head>
 
@@ -180,9 +180,55 @@
 <script src="{{asset('js/showdown.min.js')}}"></script>
 <script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
 <script src="{{asset('js/script.js')}}"></script>
-@yield('script')
-<script type="text/javascript">
 
+@yield('script')
+<script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+<script src="{{asset('js/payment.js')}}"></script>
+<script>
+    this.pay = function () {
+        var widget = new cp.CloudPayments();
+        widget.pay('auth', // или 'charge'
+            { //options
+                publicId: 'test_api_00000000000000000000002', //id из личного кабинета
+                description: 'Покупка токенов,',
+                amount: document.querySelector('#priceStealer').value, //сумма
+                currency: 'RUB', //валюта
+                invoiceId: {{ Auth::id() }},
+                accountId: '{{ Auth::user()->email }}', //идентификатор плательщика (необязательно)
+                skin: "mini", //дизайн виджета (необязательно)
+                data: {
+                    myProp: 'myProp value'
+                },
+            },
+            {
+                onSuccess: function (options) {
+                },
+                onFail: function (reason, options) { // fail
+                    //действие при неуспешной оплате
+                },
+                onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+                    if (paymentResult.success) {
+                        let params = {
+                            "amount": options.amount,
+                            "user_id": options.invoiceId
+                        }
+                        fetch("{{ route('payer.buy') }}", {
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8',
+                                "X-CSRF-Token": document.querySelector('#pay-popup').querySelector('input[name="_token"]').value
+                            }, method: 'POST', body: JSON.stringify(params)
+                        })
+                    }
+                }
+            }
+
+        )
+    };
+
+    $('#checkout').click(pay);
+
+</script>
+<script type="text/javascript">
     $(".changeLang").click(function(){
         fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
     });
