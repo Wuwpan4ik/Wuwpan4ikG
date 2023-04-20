@@ -63,7 +63,7 @@
             $.each($('.tablink'), function (index, val) {
                 val.classList.remove('active')
             })
-
+            console.log()
             event.target.classList.add('active');
             $('.msger-chat').load(`/messages/get/${id}`);
 
@@ -71,10 +71,6 @@
             window.history.replaceState(stateObj,
                 "Page 3", `/chats/${id}`);
             $('#chat_id').val(id);
-            $.each($('.tablink'), function (index, val) {
-                val.classList.remove('active')
-            })
-            event.target.classList.add('active');
             var element = document.querySelector(".msger-chat");
             element.scrollTop = element.scrollHeight;
             $('.sidebarMain.right').load(`/chat/role/${id}`)

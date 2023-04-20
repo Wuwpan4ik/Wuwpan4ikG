@@ -7,7 +7,7 @@
     <title>Meta GPT</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 </head>
-<body class="dark">
+<body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
     @include('components.header')
     <div class="sidebarMain left">
         <!--Новый чат и новая папка-->

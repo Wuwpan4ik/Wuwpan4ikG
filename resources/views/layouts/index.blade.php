@@ -12,7 +12,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
 </head>
 
-<body class="{{ session()->get('theme') }}">
+<body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
 @include('components.header')
 <div class="sidebarMain left">
     <!--Новый чат и новая папка-->
