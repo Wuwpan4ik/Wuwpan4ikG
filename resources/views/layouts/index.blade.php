@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-{{--    <link rel="stylesheet" href="{{ asset('css/main.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('css/highlight.min.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/highlight.min.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
 </head>
 
-<body class="dark">
+<body class="{{ session()->get('theme') }}">
 @include('components.header')
 <div class="sidebarMain left">
     <!--Новый чат и новая папка-->
@@ -80,16 +80,10 @@
                 </div>
                 <div class="folderItems">
                     @foreach($folder->children as $chat)
-                    @empty($show)
-                        <a href="{{ route('chats.show', $chat->id) }}" class="tablink addChatIcon ">
-                            @include('components.chat')
-                        </a>
-                    @else
                         <div onclick="myFunction({{ $chat->id }})" class="tablink addChatIcon tab__link-edit">
-                            @include('components.chat')
+                            @include('components.chat', ['main' => $chat])
                         </div>
-                    @endempty
-            @endforeach
+                    @endforeach
             <form action="{{ route('chats.folder_store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="folder_id" value="1">
@@ -173,6 +167,7 @@
 <div class="sidebarMain right">
     @include('components.role')
 </div>
+<div class="theme" style="display: none;"></div>
 <!--Попапы-->
 @include('components.popups.popup-settings')
 @include('components.popups.popup-pay')
@@ -180,10 +175,8 @@
 <script src="{{asset('js/showdown.min.js')}}"></script>
 <script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
 <script src="{{asset('js/script.js')}}"></script>
-
 @yield('script')
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
-<script src="{{asset('js/payment.js')}}"></script>
 <script>
     this.pay = function () {
         var widget = new cp.CloudPayments();
@@ -240,6 +233,8 @@
         $(this).addClass('active')
 
         fetch("{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme"))
+
+        $('body').toggleClass('dark light');
     });
 
 </script>

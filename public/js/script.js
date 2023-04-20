@@ -117,11 +117,20 @@ function sendMsg(msg) {
         .then(data => {
             let uuid = uuidv4()
             fetch(`/event-stream/${data}?msg=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})
-                .then(response => response.text())
+                .then(response => {
+                    if (response.ok) {
+                        return response.text()
+                    } else {
+                        // Вот тут открывай любые попапы
+                        $('#tokensLeft').click()
+                        return Promise.reject('error 404')
+                        msgerSendBtn.disabled = false;
+                    }
+                })
                 .then(response => {
                     msgerSendBtn.disabled = false;
                     appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
-                    console.log(response);
+                    $('.tokens').load(`/get_tokens`);
                     $('.tokens_chat').load(`/messages-cost/get/${data}`);
                 })
         })
@@ -233,15 +242,15 @@ for(let i = 0; i < foldersBtn.length;i++){
 
 //Переименовывание чата
 
-let renameChats = document.querySelectorAll('.tablink button.renameChat'),
-renameChatNo = document.querySelectorAll('.tablink button.renameChatNo');
+    let renameChats = document.querySelectorAll('.tablink button.renameChat'),
+    renameChatNo = document.querySelectorAll('.tablink button.renameChatNo');
 
 function renameChat(item){
-    let input = item.parentElement.parentElement.parentElement.querySelector('input'),
-    nameChat = item.parentElement.parentElement.parentElement.querySelector('p'),
-    hoverItems = item.parentElement.parentElement,
-    confirmRename = item.parentElement.parentElement.querySelector('.confirmRename'),
-    btnDelete = item.parentElement.parentElement.querySelector('button.deleteChat');
+    let input = item.parentElement.parentElement.parentElement.querySelector('#renameChatInput');
+    let nameChat = item.parentElement.parentElement.parentElement.querySelector('p');
+    let hoverItems = item.parentElement.parentElement;
+    let confirmRename = item.parentElement.parentElement.querySelector('.confirmRename');
+    let btnDelete = item.parentElement.parentElement.querySelector('button.deleteChat');
     if(hoverItems.classList.contains('active')){
         hoverItems.classList.remove('active');
         input.classList.add('nonActive');
@@ -255,10 +264,26 @@ function renameChat(item){
         confirmRename.classList.remove('nonActive');
         item.classList.add('nonActive');
         btnDelete.classList.add('nonActive');
-        input.value = nameChat.textContent;
+        input.value = nameChat.innerHTML;
         nameChat.classList.add('nonActive');
     }
 }
+document.querySelectorAll('.renameChatYes').forEach(item => {
+    item.addEventListener('click', function () {
+        item.parentElement.parentElement.parentElement.parentElement.querySelector('#submit_rename').click()
+    })
+})
+
+document.querySelectorAll('.chat__update-form').forEach(item => {
+    item.addEventListener('submit', function (event) {
+        // event.preventDefault();
+        // let key = document.querySelector('input[name="_token"]').value
+        // let params = {
+        //     'title': document.querySelector('#renameChatInput').value
+        // }
+        // fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'PATCH', body: JSON.stringify(params)})
+    })
+})
 
 for(let i =0; i < renameChats.length;i++){
     renameChats[i].onclick = () =>{

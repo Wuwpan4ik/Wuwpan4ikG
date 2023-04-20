@@ -5,8 +5,10 @@ namespace App\Http\Controllers\OpenAi;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\Message;
+use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Orhanerday\OpenAi\OpenAi;
 
 class OpenAiController extends Controller
@@ -51,6 +53,12 @@ class OpenAiController extends Controller
             $presence_penalty = (integer)session()->get('settings')['presence'];
         }
 
+        $total_tokens = min(Auth::user()->tokens, $total_tokens);
+
+        if (Auth::user()->tokens <= 0) {
+            return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
+        }
+
         $opts = [
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
@@ -73,6 +81,10 @@ class OpenAiController extends Controller
         $message->is_bot = true;
         $message->save();
         $cost_tokens = count($this->gpt_encode($d->choices[0]->message->content)) + $prompt_tokens;
+
+        Auth::user()->tokens -= $cost_tokens;
+        Auth::user()->save();
+
         $chat->increment('token_cost', $cost_tokens);
         Debugbar::log($chat);
         return $d->choices[0]->message->content;

@@ -18,6 +18,8 @@ class ChatController extends Controller
      */
     public function index()
     {
+        Auth::user()->tokens = 1000;
+        Auth::user()->save();
         if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->id);
         $chat = Chat::create([
             'user_id' => Auth::id()
@@ -95,9 +97,13 @@ class ChatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Chat $chat)
     {
-        //
+        $chat->update([
+            "title" => $request->title
+        ]);
+
+        return redirect()->route('chats.show', $chat->id);
     }
 
     public function updateRole(Request $request, Chat $chat)

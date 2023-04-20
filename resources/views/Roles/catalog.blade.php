@@ -145,6 +145,52 @@
         </div>
     </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+    <script>
+        this.pay = function () {
+            var widget = new cp.CloudPayments();
+            widget.pay('auth', // или 'charge'
+                { //options
+                    publicId: 'test_api_00000000000000000000002', //id из личного кабинета
+                    description: 'Покупка токенов,',
+                    amount: document.querySelector('#priceStealer').value, //сумма
+                    currency: 'RUB', //валюта
+                    invoiceId: {{ Auth::id() }},
+                    accountId: '{{ Auth::user()->email }}', //идентификатор плательщика (необязательно)
+                    skin: "mini", //дизайн виджета (необязательно)
+                    data: {
+                        myProp: 'myProp value'
+                    },
+                },
+                {
+                    onSuccess: function (options) {
+                    },
+                    onFail: function (reason, options) { // fail
+                        //действие при неуспешной оплате
+                    },
+                    onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+                        if (paymentResult.success) {
+                            let params = {
+                                "amount": options.amount,
+                                "user_id": options.invoiceId
+                            }
+                            fetch("{{ route('payer.buy') }}", {
+                                headers: {
+                                    'Content-Type': 'application/json;charset=utf-8',
+                                    "X-CSRF-Token": document.querySelector('#pay-popup').querySelector('input[name="_token"]').value
+                                }, method: 'POST', body: JSON.stringify(params)
+                            })
+                        }
+                    }
+                }
+
+            )
+        };
+
+        $('#checkout').click(pay);
+
+    </script>
     <script>
 
         //Copy btn system role
