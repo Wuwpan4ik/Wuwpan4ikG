@@ -71,13 +71,25 @@ html {
     border-radius: 0.521vw;
 }
 
-
-
 * button.buttonTool{
     svg{
         width: 0.521vw !important;
         height:0.521vw !important;
     }
+}
+
+
+//Стилизация прокрутки
+
+//Mozzilla
+html, body {
+    scrollbar-width: thin;  /* толщина */
+}
+//Webkit
+::-webkit-scrollbar {
+    width: 24px; /* ширина для вертикального скролла */
+    height: 8px; /* высота для горизонтального скролла */
+    background-color: #143861;
 }
 
 //Inputs
@@ -611,10 +623,15 @@ body.light{
 }
 
 //Add folder
+.confirmRename, .deleteFolderConfirm , .renameFolderConfirm{
+    display:flex;
+    gap:0.26vw;
+}
 .folderBtn{
     .hoverItems{
         display:flex;
-        gap:10px;
+        gap:0.521vw;
+        align-items: center;
         .hoverItems-folder{
             display: flex;
             gap:0.26vw;
@@ -669,6 +686,12 @@ body.light{
         display: flex;
         align-items: center;
     }
+    .hoverItems.showed{
+        .hoverItems-folder{
+            opacity: 1;
+
+        }
+    }
     .hoverItems.active{
         .dropdownButton{
             transform: rotate(-180deg);
@@ -692,6 +715,7 @@ body.light{
     font-size: 0.781vw;
     padding:0.833vw 1.042vw;
     margin-bottom: 0.729vw;
+    gap:0.521vw;
     justify-content: space-between;
     .firstRow{
         display: flex;
@@ -699,7 +723,9 @@ body.light{
         align-items: center;
     }
     input{
+        width: 100%;
         height:1.823vw;
+        font-size:0.781vw;
         background: #2A2F39;
         border-radius: 0.521vw;
         color:white;
@@ -1101,6 +1127,9 @@ button.promptBtn{
                 color: #A2A2A3;
                 font-weight: 600;
                 font-size: 1.146vw;
+                &.second{
+                    padding-top: 3.125vw;
+                }
             }
             .closeBtnBuy{
                 position: absolute;
@@ -1502,6 +1531,18 @@ input[type=range].styled-slider {
     display:flex;
     justify-content: space-between;
     width: 100%;
+    gap:0.521vw;
+    input{
+        width: 100%;
+        border:none;
+        font-size: 0.781vw;
+        color:white;
+        padding:0.417vw 0.313vw;
+        border-radius: 0.521vw;
+        height: 1.823vw;
+        outline: none;
+        background: #2A2F39;
+    }
   }
 
 //Library
@@ -1956,6 +1997,22 @@ pre{
             }
         }
     }
+    #openSettings.active{
+        background: #13B8A6;
+        svg{
+            path{
+                fill:white;
+            }
+        }
+    }
+    #openMenu.active{
+        background: #13B8A6;
+        svg{
+            path{
+                fill:white;
+            }
+        }
+    }
     //Scroll bottom btn
     #scrollBottomBtn{
         bottom: 230px;
@@ -1969,7 +2026,7 @@ pre{
         padding-top: 78px;
     }
     #menu-mob{
-        display: none;
+        display:none;
         .popup-inner{
             height: 100%;
             justify-content: space-between;
@@ -1977,7 +2034,7 @@ pre{
             padding:20px 40px 40px 40px;
         }
         &.active{
-            display: flex;
+            display:flex;
         }
         .menu-header{
             border-top: 1px solid #2A2F39;
@@ -2008,6 +2065,170 @@ pre{
                 gap:10px;
                 font-size: 15px;
                 border-radius: 10px;
+            }
+        }
+    }
+    #settingsTab{
+        display:none;
+        background:#0F131B;
+        overflow: auto;
+        &.active{
+            display:flex;
+        }
+        .popupContent{
+            height: auto;
+            padding-bottom: 20px;
+        }
+        .button-save{
+            padding-top:20px;
+            button{
+                height: 39px;
+                border-radius: 10px;
+                font-size: 12px;
+                gap:10px;
+            }
+        }
+        .popup-inner{
+            max-width: 100%;
+            padding: 0px 40px 20px 40px;
+            .popup-title{
+                font-size: 22px;
+                margin-bottom: 30px;
+                &.second{
+                    padding-top: 50px;
+                }
+            }
+            .popup-setting-title{
+                font-size: 12px;
+                padding-bottom: 10px;
+                line-height: 100%;
+            }
+            .popup-setting-content{
+                padding:0px;
+                height: 50px;
+                button{
+                    height: 38px;
+                    font-size: 12px;
+                    gap:10px;
+                    border-radius: 10px;
+                }
+                &.cool{
+                    padding:6px;
+                }
+            }
+            .popup-setting{
+                max-width: 100%;
+            }
+            .popup-setting-desc{
+                font-size: 10px;
+                padding-top: 10.003px
+            }
+            .popup-setting-content.withoutBorder .modelSettings{
+                height: 50px;
+                border-radius: 10px;
+                padding: 15.994px 20.006px;
+                position: relative;
+                .firstRow{
+                    gap:10px;
+                    svg{
+                        width:18px !important;
+                        height: 18px !important;
+                    }
+                }
+                .secondRow{
+                    position: absolute;
+                    right: 10px;
+                    gap:5px;
+                    button{
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
+            .popup-setting{
+                padding-top:20px;
+                &:first-child{
+                    padding-top:0px;
+                }
+            }
+            .popup-setting-content select{
+                height: 50px;
+            }
+            .popup-setting-content.withoutBorder input{
+                font-size: 12px;
+            }
+        }
+    }
+    #pay-popup{
+        .popupContent{
+            background: #0F131B;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding:0px 20px;
+            height: 100%;
+            .popup-inner{
+                max-width: 100%;
+                background:none;
+                max-height: auto;
+                .buyBtn{
+                    padding-top:20px;
+                    button{
+                        height: 55px;font-size: 12px;gap:10px;border-radius: 10px;
+                    }
+                }
+                .popup-title{
+                    font-size: 22px;
+                    max-width: 258px;
+                    padding-bottom: 30px;
+                    margin:0 auto;
+                }
+                .closeBtnBuy{
+                    display:none;
+                }
+                .pay-popup-wrapper{
+                    padding: 20px;
+                    .pay-popup-wrapper-title{
+                        font-size: 12px;
+                    }
+                    .finalPrice{
+                        font-size: 60px;
+                    }
+                    .howMuch{
+                        flex-direction: column;
+                        .howMuch-step{
+                            .howMuch-title{
+                                padding-bottom: 10px;
+                            }
+                            .howMuchTokens{
+                                font-size: 32px;
+                            }
+                            &.first{
+                                width:100%;
+                                padding-bottom: 20px;
+                            }
+                            .howMuchInner{
+                                border-radius: 10px;
+                                padding:16px 20px;
+                                &.howMuchTokens{
+                                    padding:0px;
+                                }
+                                .howMuchIn{
+                                    font-size:12px;
+                                    gap:10px;
+                                    .words{
+                                        gap:4px;
+                                    }
+                                    .papers{
+                                        gap:4px;
+                                    }
+                                }
+                            }
+                        }
+                        .howMuch-title{
+                            font-size: 12px;
+                        }
+                    }
+                }
             }
         }
     }

@@ -9,7 +9,7 @@
                     <div class="popup-setting-title">
                         Световая тема
                     </div>
-                    <div class="popup-setting-content">
+                    <div class="popup-setting-content cool">
                         <button type="button" class="switchTheme @if(session()->get('theme') == 'dark' || !session()->get('theme')) active @endif" data-theme="dark">
                             <svg class="svgPath" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_302_2326)"><path d="M10.6673 18.0002C8.28114 17.9976 5.99345 17.0486 4.30618 15.3613C2.61891 13.6741 1.66987 11.3864 1.66729 9.00023C1.55254 2.28322 9.19054 -2.23852 15.0105 1.13198L16.1753 1.77848L15.018 2.43848C9.99304 5.20447 10.3605 12.841 15.618 15.118L16.8338 15.6662L15.7335 16.4207C14.2436 17.4478 12.477 17.9986 10.6673 18.0002ZM10.6673 1.50023C8.67884 1.50241 6.77245 2.29329 5.3664 3.69934C3.96035 5.10539 3.16948 7.01177 3.16729 9.00023C3.05104 14.338 8.98954 18.1502 13.7835 15.8117C12.6612 15.0585 11.7308 14.053 11.0668 12.8756C10.4029 11.6983 10.0238 10.3818 9.95991 9.03166C9.89605 7.6815 10.1492 6.33515 10.6991 5.10039C11.249 3.86563 12.0803 2.77676 13.1265 1.92098C12.337 1.64081 11.5051 1.49849 10.6673 1.50023Z" fill="white"/></g><defs><clipPath id="clip0_302_2326"><rect width="18" height="18" fill="white" transform="translate(0.166992)"/></clipPath></defs></svg>
                             Темная тема
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="popup-title" style="padding-top:60px;">
+            <div class="popup-title second">
                 Настройки модели
             </div>
             <form class="settings_form" action="{{ route('settingsSave') }}" method="POST">

@@ -38,12 +38,8 @@ if (msgerForm) {
     });
 
     msgerForm.addEventListener('keydown', event => {
-        console.log(event.keyCode)
         if(event.keyCode == 13){
             sendMessage(event)
-        }
-        else if(event.keyCode == 16 + event.keyCode == 13){
-            return;
         }
     })
 }
@@ -287,11 +283,19 @@ document.querySelector('.closeBtnBuy button').onclick = () =>{
 
 //Папки - открытие и закрытие
 
-let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen');
+let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen'),
+folderInputBtn = document.querySelectorAll('div.folderBtn .buttonOpen input');
 
 for(let i = 0; i < foldersBtn.length;i++){
     foldersBtn[i].onclick = () =>{
-        foldersBtn[i].parentElement.classList.toggle('opened');
+        if(folderInputBtn[i].classList.contains('nonActive')){
+            foldersBtn[i].parentElement.classList.toggle('opened');
+        }else{
+            return false;
+        }
+    }
+    folderInputBtn[i].onclick = () =>{
+        return false;
     }
 }
 
@@ -392,8 +396,119 @@ copyPromptBtns.forEach((item)=>{
 })
 
 //Мобильные кнопки
+//Открытие чатов
+
+function disableAllPops(){
+    let popups = document.querySelectorAll('.popup');
+    let sidebar = document.querySelectorAll('.sidebarMain');
+    if(document.getElementById('openSettings').classList.contains('active')){
+        document.getElementById('openSettings').classList.remove('active');
+    }
+    if(document.getElementById('openMenu').classList.contains('active')){
+        document.getElementById('openMenu').classList.remove('active');
+    }
+    if(document.getElementById('openChats').classList.contains('active')){
+        document.getElementById('openChats').classList.remove('active');
+    }
+    popups.forEach((item)=>{
+        item.classList.remove('active');
+    })
+    sidebar.forEach((item)=>{
+        item.classList.remove('active');
+    })
+}
 
 document.getElementById('openChats').onclick = () =>{
-    document.getElementById('openChats').classList.toggle('active');
-    document.querySelector('.sidebarMain.left').classList.toggle('active');
+    if(document.querySelector('.sidebarMain.left').classList.contains('active')){
+        document.getElementById('openChats').classList.remove('active');
+        document.querySelector('.sidebarMain.left').classList.remove('active');
+    }else{
+        disableAllPops();
+        document.getElementById('openChats').classList.add('active');
+        document.querySelector('.sidebarMain.left').classList.add('active');
+    }
+}
+//Открытие меню
+document.getElementById('openMenu').onclick = () =>{
+    if(document.getElementById('openMenu').classList.contains('active')){
+        document.getElementById('menu-mob').classList.remove('active');
+        document.getElementById('openMenu').classList.remove('active');
+    }else{
+        disableAllPops();
+        document.getElementById('menu-mob').classList.add('active');
+        document.getElementById('openMenu').classList.add('active');
+    }
+}
+//Открытие настроек
+document.getElementById('openSettings').onclick = () =>{
+    if(document.getElementById('settingsTab').classList.contains('active')){
+        document.getElementById('openSettings').classList.remove('active');
+        document.getElementById('settingsTab').classList.remove('active');
+    }else{
+        disableAllPops();
+        document.getElementById('openSettings').classList.add('active');
+        document.getElementById('settingsTab').classList.add('active');
+    }
+}
+
+//Функции для папок
+
+let folderRenameBtns = document.querySelectorAll('button#renameFolderBtn'),
+folderRenameBtnsNo = document.querySelectorAll('button.renameFolderNo'),
+folderDeleteBtns = document.querySelectorAll('button#deleteFolderBtn'),
+folderDeleteBtnsNo = document.querySelectorAll('button.deleteFolderNo');
+
+for(let i = 0; folderRenameBtns.length > i; i++){
+    folderRenameBtns[i].onclick = () =>{
+        renameFolder(folderRenameBtns[i]);
+    }
+    folderRenameBtnsNo[i].onclick = () =>{
+        renameFolder(folderRenameBtnsNo[i]);
+    }
+    folderDeleteBtns[i].onclick = () =>{
+        deleteFolder(folderDeleteBtns[i]);
+    }
+    folderDeleteBtnsNo[i].onclick = () =>{
+        deleteFolder(folderDeleteBtnsNo[i]);
+    }
+}
+
+function renameFolder(item){
+    let input = item.parentElement.parentElement.parentElement.parentElement.querySelector('input'),folderText = item.parentElement.parentElement.parentElement.parentElement.querySelector('p'),hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems'),buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),confirmRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('.renameFolderConfirm');
+    if(input.classList.contains('nonActive')){
+        buttonDelete.classList.add('nonActive');
+        buttonRename.classList.add('nonActive');
+        hoverItems.classList.add('showed');
+        input.classList.remove('nonActive');
+        folderText.classList.add('nonActive');
+        confirmRename.classList.remove('nonActive');
+        input.value = folderText.innerText;
+    }else{
+        buttonDelete.classList.remove('nonActive');
+        buttonRename.classList.remove('nonActive');
+        hoverItems.classList.remove('showed');
+        input.classList.add('nonActive');
+        folderText.classList.remove('nonActive');
+        confirmRename.classList.add('nonActive');
+        input.value = folderText.innerText;
+    }
+}
+
+function deleteFolder(item){
+    let confirmDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('.deleteFolderConfirm'),
+    buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),
+    buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),
+    hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems');
+
+    if(confirmDelete.classList.contains('nonActive')){
+        buttonDelete.classList.add('nonActive');
+        buttonRename.classList.add('nonActive');
+        confirmDelete.classList.remove('nonActive');
+        hoverItems.classList.add('showed');
+    }else{
+        buttonDelete.classList.remove('nonActive');
+        buttonRename.classList.remove('nonActive');
+        confirmDelete.classList.add('nonActive');
+        hoverItems.classList.remove('showed');
+    }
 }
