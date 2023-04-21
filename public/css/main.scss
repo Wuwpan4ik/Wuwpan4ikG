@@ -578,6 +578,7 @@ body.light{
         button{
             width:100%;
             height: 1.979vw;
+            font-size: 0.729vw;
             background: #272B34;
             border: 0.052vw solid #374151;
             border-radius: 0.521vw;
@@ -608,6 +609,7 @@ body.light{
             button{
                 width: 100%;
                 height:1.979vw;
+                font-size:0.729vw;
                 border:none;
                 border-radius: 0.417vw;
                 color:white;
@@ -928,6 +930,31 @@ button.promptBtn{
     padding-bottom: 0.833vw;
 }
 
+.msg-options{
+    padding-top:0.521vw;
+    display: flex;
+    align-items: center;
+    gap:0.521vw;
+    button{
+        width: 1.146vw;
+        height: 1.146vw;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        padding:0.313vw;
+        display: flex;
+        justify-content: center;
+        border:none;
+        align-items: center;
+        svg{
+            width: 0.729vw;
+            height: 0.729vw;
+            path{
+                fill:white;
+            }
+        }
+    }
+}
+
 .msg-bubble {
     max-width: 100%;
     width:100%;
@@ -1180,6 +1207,7 @@ button.promptBtn{
         background: rgba(255, 255, 255, 0.2);
         border:none;
         height: 1.979vw;
+        font-size: 0.625vw;
         border-radius: 0.521vw;
         justify-content: center;
         gap:0.521vw;
@@ -1278,9 +1306,8 @@ button.promptBtn{
         .popup-inner{
             max-width: 33.854vw;
             background: #000000;
-            height:100%;
             width:100%;
-            max-height: 26.823vw;
+            max-height: auto;
             padding:2.083vw;
             border-radius: 1.042vw;
             .popup-title{
