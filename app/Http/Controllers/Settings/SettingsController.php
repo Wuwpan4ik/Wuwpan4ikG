@@ -34,9 +34,14 @@ class SettingsController extends Controller
 
     public function store(StoreRequest $request)
     {
-//      Не доделал
-        $param = $request->except('_token');
-        UserModelSettings::firstOrCreate($param);
-        session()->put('settings', $param);
+        $validated  = $request->except(['_token']);
+        $settings = UserModelSettings::where('user_id', Auth::id())->first();
+        if ($settings) {
+            $settings->update($validated);
+        } else {
+            UserModelSettings::create($validated);
+        }
+
+        session()->put('settings', $validated);
     }
 }
