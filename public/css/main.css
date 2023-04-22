@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap");
 :root {
   --body-bg: #202123;
@@ -71,6 +72,16 @@ html {
 * button.buttonTool svg {
   width: 0.521vw !important;
   height: 0.521vw !important;
+}
+
+html, body {
+  scrollbar-width: thin; /* толщина */
+}
+
+::-webkit-scrollbar {
+  width: 24px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #143861;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -364,6 +375,11 @@ body.light .msg-bubble .msg-text {
   background: #0F131B;
   padding: 20px;
 }
+#mobileHeader nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 #mobileHeader nav ul {
   display: flex;
   align-items: center;
@@ -499,6 +515,7 @@ body.light .msg-bubble .msg-text {
 .systemRole .hoverItems button {
   width: 100%;
   height: 1.979vw;
+  font-size: 0.729vw;
   background: #272B34;
   border: 0.052vw solid #374151;
   border-radius: 0.521vw;
@@ -528,6 +545,7 @@ body.light .msg-bubble .msg-text {
 .systemRole .formSystemRole .buttons button {
   width: 100%;
   height: 1.979vw;
+  font-size: 0.729vw;
   border: none;
   border-radius: 0.417vw;
   color: white;
@@ -539,9 +557,15 @@ body.light .msg-bubble .msg-text {
   background: #525459;
 }
 
+.confirmRename, .deleteFolderConfirm, .renameFolderConfirm {
+  display: flex;
+  gap: 0.26vw;
+}
+
 .folderBtn .hoverItems {
   display: flex;
-  gap: 10px;
+  gap: 0.521vw;
+  align-items: center;
 }
 .folderBtn .hoverItems .hoverItems-folder {
   display: flex;
@@ -595,6 +619,9 @@ body.light .msg-bubble .msg-text {
   display: flex;
   align-items: center;
 }
+.folderBtn .buttonOpen .hoverItems.showed .hoverItems-folder {
+  opacity: 1;
+}
 .folderBtn .buttonOpen .hoverItems.active .dropdownButton {
   transform: rotate(-180deg);
 }
@@ -613,6 +640,7 @@ body.light .msg-bubble .msg-text {
   font-size: 0.781vw;
   padding: 0.833vw 1.042vw;
   margin-bottom: 0.729vw;
+  gap: 0.521vw;
   justify-content: space-between;
 }
 .addChatIcon .firstRow {
@@ -621,7 +649,9 @@ body.light .msg-bubble .msg-text {
   align-items: center;
 }
 .addChatIcon input {
+  width: 100%;
   height: 1.823vw;
+  font-size: 0.781vw;
   background: #2A2F39;
   border-radius: 0.521vw;
   color: white;
@@ -638,6 +668,9 @@ body.light .msg-bubble .msg-text {
   opacity: 1;
 }
 .addChatIcon button.buttonTool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   width: 1.146vw;
   height: 1.146vw;
@@ -683,6 +716,9 @@ button.promptBtn {
   font-weight: 500;
   font-size: 0.781vw;
   border-radius: 0.417vw;
+}
+button.promptBtn .promptText {
+  display: none;
 }
 
 .welcome-chat-wrapper {
@@ -750,6 +786,7 @@ button.promptBtn {
   border-radius: 0.26vw;
   background: var(--msger-bg);
   box-shadow: 0 0.781vw 0.781vw -0.26vw rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .msger-header {
@@ -785,8 +822,7 @@ button.promptBtn {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  margin-bottom: 0.521vw;
-  padding: 1.042vw 2.083vw;
+  padding: 0.782vw 2.083vw;
 }
 
 .msg:last-of-type {
@@ -810,6 +846,31 @@ button.promptBtn {
   font-size: 0.729vw;
   align-items: center;
   padding-bottom: 0.833vw;
+}
+
+.msg-options {
+  padding-top: 0.521vw;
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+}
+.msg-options button {
+  width: 1.146vw;
+  height: 1.146vw;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  padding: 0.313vw;
+  display: flex;
+  justify-content: center;
+  border: none;
+  align-items: center;
+}
+.msg-options button svg {
+  width: 0.729vw;
+  height: 0.729vw;
+}
+.msg-options button svg path {
+  fill: white;
 }
 
 .msg-bubble {
@@ -1008,6 +1069,9 @@ button.promptBtn {
   font-weight: 600;
   font-size: 1.146vw;
 }
+.popup .popupContent .popup-inner .popup-title.second {
+  padding-top: 3.125vw;
+}
 .popup .popupContent .popup-inner .closeBtnBuy {
   position: absolute;
   top: 2.083vw;
@@ -1055,6 +1119,7 @@ button.promptBtn {
   background: rgba(255, 255, 255, 0.2);
   border: none;
   height: 1.979vw;
+  font-size: 0.625vw;
   border-radius: 0.521vw;
   justify-content: center;
   gap: 0.521vw;
@@ -1151,9 +1216,8 @@ button.promptBtn {
 #pay-popup .popupContent .popup-inner {
   max-width: 33.854vw;
   background: #000000;
-  height: 100%;
   width: 100%;
-  max-height: 26.823vw;
+  max-height: auto;
   padding: 2.083vw;
   border-radius: 1.042vw;
 }
@@ -1397,6 +1461,18 @@ button.add-chat:hover {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  gap: 0.521vw;
+}
+.buttonOpen input {
+  width: 100%;
+  border: none;
+  font-size: 0.781vw;
+  color: white;
+  padding: 0.417vw 0.313vw;
+  border-radius: 0.521vw;
+  height: 1.823vw;
+  outline: none;
+  background: #2A2F39;
 }
 
 .tablinks-container {
@@ -1619,6 +1695,58 @@ pre {
   margin: 0;
 }
 
+.loaderResponse {
+  position: fixed;
+  z-index: 222;
+  bottom: 1.042vw;
+  right: 1.042vw;
+  display: flex;
+  border-radius: 0.521vw;
+  background: #0F131B;
+  padding: 1.042vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  justify-content: space-between;
+  width: 20.625vw;
+  align-items: center;
+}
+.loaderResponse .firstRow {
+  display: flex;
+  align-items: center;
+  gap: 1.042vw;
+}
+.loaderResponse .firstRow .loaderGif {
+  background-image: url("https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 1.5vw;
+  height: 1.5vw;
+}
+.loaderResponse p {
+  font-size: 0.7vw;
+  color: white;
+}
+.loaderResponse span {
+  font-size: 0.5vw;
+  color: white;
+}
+.loaderResponse button {
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+#scrollBottomBtn {
+  position: fixed;
+  bottom: 13.021vw;
+  border-radius: 50%;
+  width: 1.563vw;
+  height: 1.563vw;
+  border: none;
+  right: 26.042vw;
+}
+
 @media (max-width: 768px) {
   * svg {
     width: unset !important;
@@ -1792,5 +1920,240 @@ pre {
   }
   .msg {
     padding: 5px 20px 5px 20px;
+  }
+  #openChats.active {
+    background: #13B8A6;
+  }
+  #openChats.active svg path {
+    fill: white;
+  }
+  #openSettings.active {
+    background: #13B8A6;
+  }
+  #openSettings.active svg path {
+    fill: white;
+  }
+  #openMenu.active {
+    background: #13B8A6;
+  }
+  #openMenu.active svg path {
+    fill: white;
+  }
+  #scrollBottomBtn {
+    bottom: 230px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+  }
+  .popup {
+    padding-top: 78px;
+  }
+  #menu-mob {
+    display: none;
+  }
+  #menu-mob .popup-inner {
+    height: 100%;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 20px 40px 40px 40px;
+  }
+  #menu-mob.active {
+    display: flex;
+  }
+  #menu-mob .menu-header {
+    border-top: 1px solid #2A2F39;
+    padding-top: 30px;
+  }
+  #menu-mob .menu-header li {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  #menu-mob .menu-header li a {
+    font-size: 15px;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+  }
+  #menu-mob .menu-header li a.active {
+    background: #101F25;
+    color: #13B8A6;
+  }
+  #menu-mob .menu-items {
+    padding-top: 14px;
+  }
+  #menu-mob .menu-items a {
+    padding: 14px 20px;
+    gap: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+  #menu-mob .menu-items form button {
+    padding: 14px 20px;
+    gap: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+  #settingsTab {
+    display: none;
+    background: #0F131B;
+    overflow: auto;
+  }
+  #settingsTab.active {
+    display: flex;
+  }
+  #settingsTab .popupContent {
+    height: auto;
+    padding-bottom: 20px;
+  }
+  #settingsTab .button-save {
+    padding-top: 20px;
+  }
+  #settingsTab .button-save button {
+    height: 39px;
+    border-radius: 10px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  #settingsTab .popup-inner {
+    max-width: 100%;
+    padding: 0px 40px 20px 40px;
+  }
+  #settingsTab .popup-inner .popup-title {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+  #settingsTab .popup-inner .popup-title.second {
+    padding-top: 50px;
+  }
+  #settingsTab .popup-inner .popup-setting-title {
+    font-size: 12px;
+    padding-bottom: 10px;
+    line-height: 100%;
+  }
+  #settingsTab .popup-inner .popup-setting-content {
+    padding: 0px;
+    height: 50px;
+  }
+  #settingsTab .popup-inner .popup-setting-content button {
+    height: 38px;
+    font-size: 12px;
+    gap: 10px;
+    border-radius: 10px;
+  }
+  #settingsTab .popup-inner .popup-setting-content.cool {
+    padding: 6px;
+  }
+  #settingsTab .popup-inner .popup-setting {
+    max-width: 100%;
+  }
+  #settingsTab .popup-inner .popup-setting-desc {
+    font-size: 10px;
+    padding-top: 10.003px;
+  }
+  #settingsTab .popup-inner .popup-setting-content.withoutBorder .modelSettings {
+    height: 50px;
+    border-radius: 10px;
+    padding: 15.994px 20.006px;
+    position: relative;
+  }
+  #settingsTab .popup-inner .popup-setting-content.withoutBorder .modelSettings .firstRow {
+    gap: 10px;
+  }
+  #settingsTab .popup-inner .popup-setting-content.withoutBorder .modelSettings .firstRow svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  #settingsTab .popup-inner .popup-setting-content.withoutBorder .modelSettings .secondRow {
+    position: absolute;
+    right: 10px;
+    gap: 5px;
+  }
+  #settingsTab .popup-inner .popup-setting-content.withoutBorder .modelSettings .secondRow button {
+    width: 18px;
+    height: 18px;
+  }
+  #settingsTab .popup-inner .popup-setting {
+    padding-top: 20px;
+  }
+  #settingsTab .popup-inner .popup-setting:first-child {
+    padding-top: 0px;
+  }
+  #settingsTab .popup-inner .popup-setting-content select {
+    height: 50px;
+  }
+  #settingsTab .popup-inner .popup-setting-content.withoutBorder input {
+    font-size: 12px;
+  }
+  #pay-popup .popupContent {
+    background: #0F131B;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px 20px;
+    height: 100%;
+  }
+  #pay-popup .popupContent .popup-inner {
+    max-width: 100%;
+    background: none;
+    max-height: auto;
+  }
+  #pay-popup .popupContent .popup-inner .buyBtn {
+    padding-top: 20px;
+  }
+  #pay-popup .popupContent .popup-inner .buyBtn button {
+    height: 55px;
+    font-size: 12px;
+    gap: 10px;
+    border-radius: 10px;
+  }
+  #pay-popup .popupContent .popup-inner .popup-title {
+    font-size: 22px;
+    max-width: 258px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+  }
+  #pay-popup .popupContent .popup-inner .closeBtnBuy {
+    display: none;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper {
+    padding: 20px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .pay-popup-wrapper-title {
+    font-size: 12px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .finalPrice {
+    font-size: 60px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch {
+    flex-direction: column;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuch-title {
+    padding-bottom: 10px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchTokens {
+    font-size: 32px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step.first {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner {
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner.howMuchTokens {
+    padding: 0px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner .howMuchIn {
+    font-size: 12px;
+    gap: 10px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner .howMuchIn .words {
+    gap: 4px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner .howMuchIn .papers {
+    gap: 4px;
+  }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-title {
+    font-size: 12px;
   }
 }/*# sourceMappingURL=main.css.map */

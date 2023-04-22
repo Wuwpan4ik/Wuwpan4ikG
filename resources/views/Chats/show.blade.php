@@ -16,6 +16,7 @@
             <main class="msger-chat">
                 <!--Плашка в начале чата-->
                 @include('components.message')
+                <!--Кнопка скролла вниз-->
             </main>
             <div class="messageInput">
                 <!--Токены, которые пользователь слил в определенном чате-->
@@ -42,15 +43,27 @@
                 <div class="prompts">
                     <button class="promptBtn">
                         Обобщите текст
+                        <div class="promptText">
+                            Обобщи нормальный текст
+                        </div>
                     </button>
                     <button class="promptBtn">
                         Правильная грамматика
+                        <div class="promptText">
+                            Обобщи нормальный текстasdadad
+                        </div>
                     </button>
                     <button class="promptBtn">
                         Создай код
+                        <div class="promptText">
+                            Обобщи нормальный текст
+                        </div>
                     </button>
                     <button class="promptBtn">
                         Сделай ветер
+                        <div class="promptText">
+                            Обобщи нормальный текст
+                        </div>
                     </button>
                 </div>
             </div>
@@ -58,6 +71,37 @@
     </div>
 @endsection
 @section('script')
+    <div class="loaderResponse nonActive">
+        <div class="firstRow">
+            <div class="loaderGif">
+
+            </div>
+            <div class="responseStat">
+                <p>Meta GPT обрабатывает ваш запрос</p>
+                <span>Дождитесь ответа</span>
+            </div>
+        </div>
+        <div class="secondRow">
+            <button id="responseStop">
+                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_17_1429)"><path d="M9.87819 0.622361C9.80006 0.544248 9.6941 0.500366 9.58361 0.500366C9.47313 0.500366 9.36716 0.544248 9.28903 0.622361L5.00028 4.91111L0.711527 0.622361C0.633391 0.544248 0.527429 0.500366 0.416944 0.500366C0.306459 0.500366 0.200497 0.544248 0.122361 0.622361C0.0442476 0.700497 0.000366211 0.806459 0.000366211 0.916944C0.000366211 1.02743 0.0442476 1.13339 0.122361 1.21153L4.41111 5.50028L0.122361 9.78903C0.0442476 9.86716 0.000366211 9.97313 0.000366211 10.0836C0.000366211 10.1941 0.0442476 10.3001 0.122361 10.3782C0.200497 10.4563 0.306459 10.5002 0.416944 10.5002C0.527429 10.5002 0.633391 10.4563 0.711527 10.3782L5.00028 6.08944L9.28903 10.3782C9.36716 10.4563 9.47313 10.5002 9.58361 10.5002C9.6941 10.5002 9.80006 10.4563 9.87819 10.3782C9.95631 10.3001 10.0002 10.1941 10.0002 10.0836C10.0002 9.97313 9.95631 9.86716 9.87819 9.78903L5.58944 5.50028L9.87819 1.21153C9.95631 1.13339 10.0002 1.02743 10.0002 0.916944C10.0002 0.806459 9.95631 0.700497 9.87819 0.622361Z" fill="white"/></g><defs><clipPath id="clip0_17_1429"><rect width="10" height="10" fill="white" transform="translate(0 0.5)"/></clipPath></defs></svg>
+            </button>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            if($(window).scrollTop() < 100) {
+                $('#scrollBottomBtn').show();
+                } else {
+                $('#scrollBottomBtn').hide();
+            }
+            $('#scrollBottomBtn').click(function(){
+                $(".msger-chat").animate({
+                    scrollTop: $('.msger-chat')[0].scrollHeight
+                }, 800);
+                return false;
+            });
+        });
+    </script>
     <script>
         function myFunction(id) {
             $.each($('.tablink'), function (index, val) {
@@ -71,8 +115,11 @@
             window.history.replaceState(stateObj,
                 "Page 3", `/chats/${id}`);
             $('#chat_id').val(id);
-            var element = document.querySelector(".msger-chat");
-            element.scrollTop = element.scrollHeight;
+            $.each($('.tablink'), function (index, val) {
+                val.classList.remove('active')
+            })
+            event.target.classList.add('active');
+            $(".msger-chat").scrollTop($(".msger-chat")[0].scrollHeight);
             $('.sidebarMain.right').load(`/chat/role/${id}`)
             $('.tokens_chat').load(`/messages-cost/get/${id}`);
         }
