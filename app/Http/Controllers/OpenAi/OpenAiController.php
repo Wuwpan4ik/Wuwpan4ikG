@@ -57,8 +57,10 @@ class OpenAiController extends Controller
         $total_tokens = min(Auth::user()->tokens, $total_tokens);
 
         if (Auth::user()->tokens <= 0) {
-            return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
-        }
+        return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
+    }
+
+        global $opts;
 
         $opts = [
             'model' => 'gpt-3.5-turbo',
@@ -68,28 +70,46 @@ class OpenAiController extends Controller
             'top_p' => $top_p,
             'frequency_penalty' => $frequency_penalty,
             'presence_penalty' => $presence_penalty,
-            //'stream' => true,
+            'stream' => true,
         ];
-
-        Debugbar::log($opts);
         $open_ai = new OpenAi(env('open_ai_key'));
-        $chat_ai = $open_ai->chat($opts);
-        Debugbar::log($chat_ai);
-        Debugbar::log($history);
-        $d = json_decode($chat_ai);
-        $message = new Message;
-        $message->message = $d->choices[0]->message->content;
-        $message->chat_id = $id;
-        $message->is_bot = true;
-        $message->save();
-        $cost_tokens = count($this->gpt_encode($d->choices[0]->message->content)) + $prompt_tokens;
 
-        Auth::user()->tokens -= $cost_tokens;
-        Auth::user()->save();
+        return response()->stream(function () use ($open_ai, $opts, $chat, $prompt_tokens, $id) {
+            $txt = '';
+            $complete = $open_ai->chat($opts, function ($curl_info, $data) use (&$txt) {
+                if ($obj = json_decode($data) and $obj->error->message != "") {
+                    error_log(json_encode($obj->error->message));
+                } else {
+                    echo $data;
+                    $clean = str_replace("data: ", "", $data);
+                    $arr = json_decode($clean, true);
+                        if ($data != "data: [DONE]\n\n" and isset($arr["choices"][0]["delta"]["content"])) {
+                        $txt .= $arr["choices"][0]["delta"]["content"];
+                    }
+                }
+                echo PHP_EOL;
+                ob_flush();
+                flush();
+                return strlen($data);
+            });
 
-        $chat->increment('token_cost', $cost_tokens);
-        Debugbar::log($chat);
-        return $d->choices[0]->message->content;
+
+            $message = new Message;
+            $message->message = $txt;
+            $message->chat_id = $id;
+            $message->is_bot = true;
+            $message->save();
+            $cost_tokens = count($this->gpt_encode($txt)) + $prompt_tokens;
+
+            Auth::user()->tokens -= $cost_tokens;
+            Auth::user()->save();
+
+            $chat->increment('token_cost', $cost_tokens);
+        }, 200, [
+            'Cache-Control' => 'no-cache',
+            'Content-Type' => 'text/event-stream',
+        ]);
+
     }
 
     private function gpt_utf8_encode(string $str): string

@@ -202,30 +202,47 @@ function sendMsg(msg) {
         )
         .then(data => {
             let uuid = uuidv4()
-            fetch(`/event-stream/${data}?message=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})
-                .then(response => {
-                    if (response.ok) {
-                        return response.text()
-                    } else {
-                        // Вот тут открывай любые попапы
-                        $('#tokensLeft').click()
-                        return Promise.reject('error 404')
-                        msgerSendBtn.disabled = false;
+            appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
+            const stream = new EventSource(`/event-stream/${data}?message=${msg}`);
+            const div = document.getElementById(uuid);
+            stream.onmessage = function (e) {
+                if (e.data == "[DONE]") {
+                    msgerSendBtn.disabled = false
+                    stream.close();
+                } else {
+                    let txt = JSON.parse(e.data).choices[0].delta.content
+                    if (txt !== undefined) {
+                        div.innerHTML += txt.replace(/(?:\r\n|\r|\n)/g, '<br>');
                     }
-                })
-                .then(response => {
-                    msgerSendBtn.disabled = false;
-                    appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
-                    $('.tokens').load(`/get_tokens`);
-                    $('.tokens_chat').load(`/messages-cost/get/${data}`);
-                })
+                }
+            };
+            $('.tokens').load(`/get_tokens`);
+            $('.tokens_chat').load(`/messages-cost/get/${data}`);
+
+            // fetch(`/event-stream/${data}?message=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})
+            //     .then(response => {
+            //         if (response.ok) {
+            //             return response.text()
+            //         } else {
+            //             // Вот тут открывай любые попапы
+            //             $('#tokensLeft').click()
+            //             return Promise.reject('error 404')
+            //             msgerSendBtn.disabled = false;
+            //         }
+            //     })
+            //     .then(response => {
+            //         msgerSendBtn.disabled = false;
+            //         appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
+            //         $('.tokens').load(`/get_tokens`);
+            //         $('.tokens_chat').load(`/messages-cost/get/${data}`);
+            //     })
         })
         .catch(error => console.error(error));
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('pre code').forEach((el) => {
-      hljs.highlightElement(el);
+      // hljs.highlightElement(el);
     });
 });
 
@@ -532,7 +549,7 @@ for(let i = 0; folderRenameBtns.length > i; i++){
 }
 
 function renameFolder(item){
-    let input = item.parentElement.parentElement.parentElement.parentElement.querySelector('input'),folderText = item.parentElement.parentElement.parentElement.parentElement.querySelector('p'),hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems'),buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),confirmRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('.renameFolderConfirm');
+    let input = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderInput'),folderText = item.parentElement.parentElement.parentElement.parentElement.querySelector('p'),hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems'),buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),confirmRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('.renameFolderConfirm');
     if(input.classList.contains('nonActive')){
         buttonDelete.classList.add('nonActive');
         buttonRename.classList.add('nonActive');
@@ -551,6 +568,12 @@ function renameFolder(item){
         input.value = folderText.innerText;
     }
 }
+
+document.querySelectorAll('.removeFolderYes').forEach(item => {
+    item.addEventListener('click', function () {
+        item.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form').submit();
+    })
+})
 
 function deleteFolder(item){
     let confirmDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('.deleteFolderConfirm'),

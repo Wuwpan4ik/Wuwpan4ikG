@@ -12,8 +12,11 @@ class Folder extends Model
     protected $guarded = false;
 
     protected $fillable = [
-        'user_id'
+        'id',
+        'title'
     ];
+
+    protected $primaryKey = 'id';
 
     public function children()
     {

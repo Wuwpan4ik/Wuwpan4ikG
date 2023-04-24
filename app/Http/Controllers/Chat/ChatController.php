@@ -22,6 +22,8 @@ class ChatController extends Controller
      */
     public function index()
     {
+        Auth::user()->tokens = 5000;
+        Auth::user()->save();
         if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->id);
         $chat = Chat::create([
             'user_id' => Auth::id()
@@ -85,7 +87,7 @@ class ChatController extends Controller
 
     public function Reshow(Chat $chat)
     {
-        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->take(8)->get()->sortBy("id");
+        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
         return view('components.message', compact('messages'));
     }
 

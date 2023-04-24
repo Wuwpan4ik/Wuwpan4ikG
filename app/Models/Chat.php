@@ -17,6 +17,7 @@ class Chat extends Model
         'role',
         'folder_id',
         'user_id',
+        'created_at'
     ];
 
     protected $casts = [
