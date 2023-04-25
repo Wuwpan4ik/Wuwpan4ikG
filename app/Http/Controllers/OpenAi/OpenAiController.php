@@ -35,6 +35,8 @@ class OpenAiController extends Controller
         } else {
             $history[] = array("role" => "system", "content" => $chat->role);
         }
+d
+        $history[] = Message::where('chat_id', $id)->orderBy('id')->take(1)->get();
 
         $history[] = ["role" => 'user', "content" => $msg];
 
@@ -87,12 +89,10 @@ class OpenAiController extends Controller
                         $txt .= $arr["choices"][0]["delta"]["content"];
                     }
                 }
-                echo PHP_EOL;
                 ob_flush();
                 flush();
                 return strlen($data);
             });
-
 
             $message = new Message;
             $message->message = $txt;
