@@ -27,7 +27,7 @@ class PromptController extends Controller
         $folder = PromptFolder::where('id', $PromptFolder)->first();
         $main_prompts = PromptFolder::where('is_main', 1)->get();
         $prompts_folder = PromptFolder::where('user_id', Auth::id())->get();
-        $prompts = Prompt::where('user_id', Auth::id())->where('folder_id', (int)$PromptFolder)->get();
+        $prompts = Prompt::where('folder_id', (int)$PromptFolder)->get();
         $prompts_id = (int)$PromptFolder;
         return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_id'));
     }
@@ -49,6 +49,8 @@ class PromptController extends Controller
             'folder_id' => $data['folder_id'],
             'description' => $data['description']
         ]);
+
+
     }
 
     public function update(UpdateRequest $request, PromptFolder $promptFolder)
@@ -58,11 +60,11 @@ class PromptController extends Controller
 
     public function storeFolder()
     {
-        PromptFolder::create([
+        $folder = PromptFolder::create([
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('prompts.index');
+        return redirect()->route('prompts.show', $folder->id);
     }
 
     public function destroyFolder(PromptFolder $promptFolder)

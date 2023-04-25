@@ -595,7 +595,6 @@ function deleteFolder(item){
 }
 
 //Функции в сообщениях
-
 let copyMessagesBtns = document.querySelectorAll('.msg-options button#btnCopyMessage'),
 btnsRefreshMessage = document.querySelectorAll('.msg-options button#btnRefreshMessage');
 

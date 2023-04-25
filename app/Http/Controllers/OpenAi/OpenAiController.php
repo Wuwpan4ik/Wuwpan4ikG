@@ -83,7 +83,7 @@ class OpenAiController extends Controller
                     echo $data;
                     $clean = str_replace("data: ", "", $data);
                     $arr = json_decode($clean, true);
-                        if ($data != "data: [DONE]\n\n" and isset($arr["choices"][0]["delta"]["content"])) {
+                    if ($data != "data: [DONE]\n\n" and isset($arr["choices"][0]["delta"]["content"])) {
                         $txt .= $arr["choices"][0]["delta"]["content"];
                     }
                 }

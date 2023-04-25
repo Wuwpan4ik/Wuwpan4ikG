@@ -11,6 +11,9 @@ class PromptFolder extends Model
 
     protected $fillable = [
         'id',
+        'title',
+        'user_id',
+        'is_main',
         'title'
     ];
 

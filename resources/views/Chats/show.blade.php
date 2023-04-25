@@ -88,19 +88,22 @@
         </div>
     </div>
     <script>
-        $(function(){
-            if($(window).scrollTop() < 100) {
-                $('#scrollBottomBtn').show();
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.msger-chat').addEventListener('scroll', function () {
+                if($(this).scrollTop() + 1000 > document.querySelector('.msger-chat').scrollHeight) {
+                    $('#scrollBottomBtn').hide();
                 } else {
-                $('#scrollBottomBtn').hide();
-            }
+                    $('#scrollBottomBtn').show();
+                }
+            })
             $('#scrollBottomBtn').click(function(){
                 $(".msger-chat").animate({
                     scrollTop: $('.msger-chat')[0].scrollHeight
                 }, 800);
                 return false;
             });
-        });
+        })
+
     </script>
     <script>
         function myFunction(id) {

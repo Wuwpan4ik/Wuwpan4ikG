@@ -4,7 +4,7 @@
     </div>
     <!--Выводим кол-во подсказок-->
     <div class="library-item-count">
-        0 {{__('promptsCount')}}
+        {{ count($prompts) }} {{__('promptsCount')}}
     </div>
 </div>
 <div class="library-items-container">
