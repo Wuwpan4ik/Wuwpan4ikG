@@ -72,7 +72,7 @@ class OpenAiController extends Controller
             'top_p' => $top_p,
             'frequency_penalty' => $frequency_penalty,
             'presence_penalty' => $presence_penalty,
-            'stream' => true,
+            //'stream' => true,
         ];
         $open_ai = new OpenAi(env('open_ai_key'));
 

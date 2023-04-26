@@ -331,11 +331,7 @@ folderInputBtn = document.querySelectorAll('div.folderBtn .buttonOpen input');
 
 for(let i = 0; i < foldersBtn.length;i++){
     foldersBtn[i].onclick = () =>{
-        if(folderInputBtn[i].classList.contains('nonActive')){
-            foldersBtn[i].parentElement.classList.toggle('opened');
-        }else{
-            return false;
-        }
+        foldersBtn[i].parentElement.classList.toggle('opened');
     }
     folderInputBtn[i].onclick = () =>{
         return false;
