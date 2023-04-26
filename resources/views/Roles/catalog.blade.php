@@ -123,8 +123,29 @@
         </h2>
     </div>
     </div>
+    @include('components.popups.popup-settings')
+    @include('components.popups.popup-pay')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+    <script src="{{asset('js/showdown.min.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
+    <script>
+        $(".changeLang").click(function(){
+            fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
+        });
+
+        $(".switchTheme").click(function(){
+            $.each($(".switchTheme"), function (num, item) {
+                item.classList.remove('active')
+            })
+            $(this).addClass('active')
+
+            fetch("{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme"))
+
+            $('body').toggleClass('dark light');
+        });
+    </script>
     <script>
         this.pay = function () {
             var widget = new cp.CloudPayments();

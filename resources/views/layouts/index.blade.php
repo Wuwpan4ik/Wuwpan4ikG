@@ -333,7 +333,7 @@
     $('#checkout').click(pay);
 
 </script>
-<script type="text/javascript">
+<script>
     $(".changeLang").click(function(){
         fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
     });
@@ -348,7 +348,6 @@
 
         $('body').toggleClass('dark light');
     });
-
 </script>
 </body>
 

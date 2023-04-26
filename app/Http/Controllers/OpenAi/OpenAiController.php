@@ -35,7 +35,7 @@ class OpenAiController extends Controller
         } else {
             $history[] = array("role" => "system", "content" => $chat->role);
         }
-d
+
         $history[] = Message::where('chat_id', $id)->orderBy('id')->take(1)->get();
 
         $history[] = ["role" => 'user', "content" => $msg];
