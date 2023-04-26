@@ -428,7 +428,6 @@ for(let i = 0; i < deleteChatBtns.length;i++){
 
 
 //Копирование подсказок
-
 let copyPromptBtns = document.querySelectorAll('button.promptBtn');
 
 copyPromptBtns.forEach((item)=>{

@@ -90,7 +90,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.msger-chat').addEventListener('scroll', function () {
-                if($(this).scrollTop() + 1000 > document.querySelector('.msger-chat').scrollHeight) {
+                if($(this).scrollTop() + 1000 > document.querySelector('.msger-chat').scrollHeight && document.querySelector('.msger-chat').scrollHeight === document.querySelector('.msger-chat').offsetHeight) {
                     $('#scrollBottomBtn').hide();
                 } else {
                     $('#scrollBottomBtn').show();
