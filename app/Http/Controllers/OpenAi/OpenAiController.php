@@ -36,7 +36,7 @@ class OpenAiController extends Controller
             $history[] = array("role" => "system", "content" => $chat->role);
         }
 
-//        Контент
+//        Контекст
 //        $history[] = ["role" => 'assistant', "content" => Message::where('chat_id', $id)->orderBy('id')->take(1)->get()];
 
         $history[] = ["role" => 'user', "content" => $msg];
@@ -73,7 +73,7 @@ class OpenAiController extends Controller
             'top_p' => $top_p,
             'frequency_penalty' => $frequency_penalty,
             'presence_penalty' => $presence_penalty,
-            //'stream' => true,
+            'stream' => true,
         ];
         $open_ai = new OpenAi(env('open_ai_key'));
 
