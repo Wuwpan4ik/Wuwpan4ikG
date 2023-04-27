@@ -48,6 +48,11 @@ html {
 
 * textarea {
   font-size: 0.781vw !important;
+  outline: none;
+  transition: 0.6s all ease;
+}
+* textarea:focus {
+  border: 0.052vw solid rgba(255, 255, 255, 0.4);
 }
 
 * svg {
@@ -72,6 +77,18 @@ html {
 * button.buttonTool svg {
   width: 0.521vw !important;
   height: 0.521vw !important;
+}
+
+select {
+  font-size: 0.625vw;
+}
+
+p.aboutRazdel {
+  padding-top: 1.042vw;
+  font-size: 0.8vw;
+  opacity: 0.4;
+  color: white;
+  line-height: 1.25vw;
 }
 
 html, body {
@@ -100,6 +117,9 @@ body {
   min-height: 100%;
 }
 
+body.dark p.aboutRazdel {
+  color: white;
+}
 body.dark .welcome-chat {
   background: url("../assets/background-dark.jpg");
   background-repeat: no-repeat;
@@ -152,9 +172,24 @@ body.dark .welcome-chat p {
 body.dark h2 {
   color: white;
 }
+body.dark h2.aboutRs {
+  color: #A2A2A3;
+}
 
 body.light {
   background: white;
+}
+body.light select {
+  background: #DFDFDF;
+}
+body.light .popup-setting-content.ai_model .firstRow {
+  background: #DFDFDF !important;
+}
+body.light .popup-setting-content.ai_model .firstRow select {
+  color: #626262;
+}
+body.light .welcome-chat {
+  background-image: url("../assets/background.png");
 }
 body.light header#mainHeader {
   background: #FFFFFF;
@@ -220,9 +255,6 @@ body.light .messageInput textarea {
 body.light .promptBtn {
   background: #E8F8F7;
 }
-body.light .menu-items {
-  border-top: 0.052vw solid #DDDDDD;
-}
 body.light a.menu-item:hover {
   background: #DFDFDF;
 }
@@ -267,6 +299,9 @@ body.light #settingsTab .popupContent .popup-setting-content button.active svg p
 body.light #settingsTab .popupContent svg path {
   fill: #8E8E8F;
 }
+body.light #settingsTab .popupContent .button-save button {
+  background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+}
 body.light #settingsTab .popupContent .button-save svg path {
   fill: white;
 }
@@ -282,11 +317,17 @@ body.light form.menu-item button:hover {
 body.light .addChatIcon:hover {
   background: #DFDFDF;
 }
+body.light .addChatIcon:hover p {
+  color: #000000;
+}
 body.light .svgPath path {
   fill: #8E8E8F;
 }
 body.light button.buttonTool {
-  background: rgba(255, 255, 255, 0.1);
+  background: #B6B7B8;
+}
+body.light button.buttonTool svg path {
+  fill: #49494A;
 }
 body.light .menu-items a {
   color: #525459;
@@ -305,6 +346,91 @@ body.light .msg.right-msg .msg-header {
 }
 body.light .msg-bubble .msg-text {
   color: rgba(0, 0, 0, 0.6);
+}
+body.light .folderBtn .hoverItems .hoverItems-folder button {
+  background: #B6B7B8;
+}
+body.light .folderBtn .hoverItems .hoverItems-folder button svg path {
+  fill: #49494A;
+}
+body.light #systemRole {
+  background: #E3E3E3;
+  border: 0.052vw solid #D1D1D1;
+}
+body.light #systemRole .hoverItems {
+  background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #FAFAFA 100%);
+}
+body.light #systemRole textarea {
+  color: black;
+}
+body.light .tablinks-library button.tablink-library:nth-child(1) {
+  background: rgba(168, 85, 247, 0.2) !important;
+  color: #A855F7 !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(1) svg path {
+  fill: #A855F7 !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(2) {
+  background: rgba(34, 197, 94, 0.2) !important;
+  color: #22C55E !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(2) svg path {
+  fill: #22C55E !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(3) {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #EF4444 !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(3) svg path {
+  fill: #EF4444 !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(4) {
+  background: rgba(6, 182, 212, 0.2) !important;
+  color: #06B6D4 !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(4) svg path {
+  fill: #06B6D4 !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(5) {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #F59E0B !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(5) svg path {
+  fill: #F59E0B !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(6) {
+  background: rgba(46, 73, 216, 0.2) !important;
+  color: #2E49D8 !important;
+}
+body.light .tablinks-library button.tablink-library:nth-child(6) svg path {
+  fill: #2E49D8 !important;
+}
+body.light .tablinks-container.sobsRazdeli form button {
+  color: #191F29;
+  border: 0.052vw solid rgba(42, 47, 57, 0.6);
+}
+body.light .tablinks-container.sobsRazdeli form button svg path {
+  fill: #8E8E8F;
+}
+body.light .mainWrapper .library {
+  background: #FFFFFF;
+}
+body.light form.add_new_prompt button {
+  color: #191F29;
+}
+body.light .library-item {
+  background: #E3E3E3;
+  border: 0.052vw solid #D1D1D1;
+  color: #484D55;
+}
+body.light .library-item .hoverItems {
+  background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #FAFAFA 100%);
+}
+body.light .msg-options button {
+  background: #DFDFDF;
+}
+body.light .msg-options button svg path {
+  fill: #49494A;
 }
 
 #mainHeader {
@@ -337,6 +463,9 @@ body.light .msg-bubble .msg-text {
   border: none;
   border-radius: 0.521vw;
   height: 1.979vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #mainHeader .navbar button#settings.active {
   background: #13B8A6;
@@ -366,6 +495,10 @@ body.light .msg-bubble .msg-text {
   align-items: center;
   gap: 0.521vw;
   font-size: 0.781vw;
+}
+#mainHeader #tokensLeft .firstRow {
+  gap: 0.208vw;
+  display: flex;
 }
 
 #mobileHeader {
@@ -439,7 +572,6 @@ body.light .msg-bubble .msg-text {
   display: flex;
   flex-direction: column;
   padding-top: 0.208vw;
-  border-top: 0.052vw solid #2A2F39;
 }
 .menu-items form button, .menu-items a {
   padding: 0.781vw 1.042vw;
@@ -462,9 +594,8 @@ body.light .msg-bubble .msg-text {
   display: flex;
   width: 100%;
   gap: 0.521vw;
-  padding-bottom: 1.042vw;
+  padding-bottom: 0.521vw;
   margin-bottom: 1.042vw;
-  border-bottom: 0.052vw solid #2A2F39;
 }
 .folderRow form {
   width: 100%;
@@ -480,24 +611,15 @@ body.light .msg-bubble .msg-text {
   justify-content: center;
   color: white;
   gap: 0.521vw;
-  font-size: 0.781vw;
+  color: #4e5156;
+  font-size: 0.729vw;
+}
+.folderRow form button:hover {
+  color: white;
+  background: #1D2129;
 }
 
-.systemRole {
-  margin-top: 1.042vw;
-  background: #191F29;
-  border: 0.052vw solid #374151;
-  border-radius: 0.417vw;
-  padding: 1.042vw;
-  font-size: 0.781vw;
-  line-height: 1.25vw;
-  color: #757D8A;
-  position: relative;
-}
-.systemRole:hover .hoverItems {
-  opacity: 1;
-}
-.systemRole .hoverItems {
+.hoverItems.prompts {
   opacity: 0;
   position: absolute;
   width: 100%;
@@ -512,7 +634,7 @@ body.light .msg-bubble .msg-text {
   padding: 1.042vw;
   gap: 0.417vw;
 }
-.systemRole .hoverItems button {
+.hoverItems.prompts button {
   width: 100%;
   height: 1.979vw;
   font-size: 0.729vw;
@@ -520,7 +642,22 @@ body.light .msg-bubble .msg-text {
   border: 0.052vw solid #374151;
   border-radius: 0.521vw;
 }
-.systemRole .hoverItems.active {
+.hoverItems.prompts.active {
+  opacity: 1;
+}
+
+.systemRole {
+  margin-top: 1.042vw;
+  background: #191F29;
+  border: 0.052vw solid #374151;
+  border-radius: 0.417vw;
+  padding: 1.042vw;
+  font-size: 0.781vw;
+  line-height: 1.25vw;
+  color: #757D8A;
+  position: relative;
+}
+.systemRole:hover .hoverItems {
   opacity: 1;
 }
 .systemRole .formSystemRole textarea {
@@ -590,9 +727,6 @@ body.light .msg-bubble .msg-text {
   width: 0.521vw !important;
   height: 0.521vw !important;
 }
-.folderBtn:hover .hoverItems-folder {
-  opacity: 1;
-}
 
 .folderBtn.opened .buttonOpen {
   background: #1D2129;
@@ -618,7 +752,7 @@ body.light .msg-bubble .msg-text {
   border: none;
 }
 .folderBtn .buttonOpen .firstRow {
-  gap: 10px;
+  gap: 0.521vw;
   display: flex;
   align-items: center;
 }
@@ -634,13 +768,16 @@ body.light .msg-bubble .msg-text {
 .folderBtn .buttonOpen:hover {
   background: #1D2129;
 }
+.folderBtn .buttonOpen:hover .hoverItems-folder {
+  opacity: 1;
+}
 
 .addChatIcon {
   display: flex;
   align-items: center;
   height: 2.604vw;
   border-radius: 0.521vw;
-  font-size: 0.781vw;
+  font-size: 0.729vw;
   padding: 0.833vw 1.042vw;
   margin-bottom: 0.729vw;
   gap: 0.521vw;
@@ -704,11 +841,6 @@ body.light .msg-bubble .msg-text {
   font-family: Helvetica, sans-serif;
 }
 
-.prompts {
-  display: flex;
-  gap: 0.833vw;
-}
-
 button.promptBtn {
   text-align: center;
   padding: 0.417vw 1.042vw;
@@ -747,7 +879,8 @@ button.promptBtn .promptText {
 }
 .welcome-chat-wrapper span {
   color: white;
-  font-size: 0.625vw;
+  font-size: 0.729vw;
+  line-height: 0.885vw;
 }
 .welcome-chat-wrapper .welcome-chat {
   max-width: 690px;
@@ -767,7 +900,8 @@ button.promptBtn .promptText {
 .welcome-chat span {
   color: #A4A4A4;
   max-width: 35.938vw;
-  font-size: 0.625vw;
+  font-size: 0.729vw;
+  line-height: 0.885vw;
 }
 .welcome-chat svg {
   width: 2.604vw !important;
@@ -842,17 +976,35 @@ button.promptBtn .promptText {
   border-radius: 50%;
 }
 
+.msg:hover .msg-header .secondRow {
+  opacity: 1;
+}
+
 .msg-header {
   display: Flex;
   color: white;
   gap: 0.521vw;
   font-size: 0.729vw;
   align-items: center;
-  padding-bottom: 0.833vw;
+  padding-bottom: 0.45vw;
+  width: 100%;
+  justify-content: space-between;
+}
+.msg-header .firstRow {
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+}
+.msg-header .secondRow {
+  opacity: 0;
+}
+.msg-header .secondRow button {
+  width: 1.5vw;
+  height: 1.5vw;
+  padding: 0.35vw;
 }
 
 .msg-options {
-  padding-top: 0.521vw;
   display: flex;
   align-items: center;
   gap: 0.521vw;
@@ -884,9 +1036,11 @@ button.promptBtn .promptText {
 .msg-bubble .msg-text {
   color: #CFCFCF;
   font-size: 0.781vw;
+  line-height: 1.25vw;
 }
 .msg-bubble .msg-text p {
   padding: 0.26vw 0px;
+  white-space: pre-wrap;
 }
 .msg-bubble ul {
   list-style: circle;
@@ -932,11 +1086,25 @@ button.promptBtn .promptText {
   border-top: 0.052vw solid #2A2F39;
 }
 
-.tokensSpent {
+.tokens_chat {
   display: flex;
-  justify-content: flex-end;
-  color: #CFCFCF;
+  justify-content: space-between;
+  align-items: center;
   padding-bottom: 1.042vw;
+}
+.tokens_chat button {
+  color: #13B8A6;
+  line-height: 1.25vw;
+  font-weight: 500;
+  background: #101F25;
+  border-radius: 0.417vw;
+  padding: 0.417vw 1.042vw;
+  border: none;
+  font-size: 0.781vw;
+}
+
+.tokensSpent {
+  color: #CFCFCF;
   font-weight: 500;
   font-size: 0.729vw;
 }
@@ -991,7 +1159,9 @@ button.promptBtn .promptText {
 }
 
 .msger-send-btn:hover {
-  background: #4c5563;
+  background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+  opacity: 0.9;
+  box-shadow: 0vw 0.521vw 1.563vw rgba(19, 184, 166, 0.5);
 }
 
 .sidebar {
@@ -1036,6 +1206,91 @@ button.promptBtn .promptText {
   cursor: pointer;
 }
 
+#popup-library {
+  z-index: 9999;
+  padding-top: 0px;
+}
+#popup-library .popupContent {
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#popup-library .popupContent .popup-inner {
+  background: #0F131B;
+  border-radius: 20px;
+  padding: 2.083vw;
+}
+#popup-library .popupContent .popup-inner h2 {
+  font-size: 1.667vw;
+  font-weight: 600;
+  color: #A2A2A3;
+  line-height: 2.031vw;
+  padding-bottom: 2.083vw;
+}
+#popup-library .popupContent .popup-inner .prompts-in-category {
+  margin-top: 1.563vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category {
+  width: 16.311vw;
+  background: #191F29;
+  border: 0.052vw solid #374151;
+  padding: 1.042vw;
+  color: #757D8A;
+  border-radius: 0.417vw;
+  font-size: 0.781vw;
+  line-height: 1.25vw;
+  text-align: start;
+  position: relative;
+}
+#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category:hover .hoverItems {
+  opacity: 1;
+}
+#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category .hoverItems button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 0.521vw;
+  color: white;
+  font-size: 0.625vw;
+  font-weight: 600;
+}
+#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category .hoverItems.active {
+  opacity: 1;
+}
+#popup-library .popupContent .popup-inner .prompts-category .slick-track {
+  display: flex;
+  gap: 1.042vw;
+}
+#popup-library .popupContent .popup-inner .prompts-category button {
+  height: 2.604vw;
+  display: flex;
+  padding: 0px 0.26vw;
+  align-items: center;
+  gap: 0.521vw;
+}
+#popup-library .popupContent .popup-inner .prompts-category .slick-next {
+  right: -1.502vw !important;
+}
+#popup-library .popupContent .popup-inner .prompts-category .slick-prev {
+  left: -1.502vw !important;
+}
+#popup-library .popupContent .popup-inner .prompts-category .slick-track::after, #popup-library .popupContent .popup-inner .prompts-category .slick-track::before {
+  display: none !important;
+}
+
+.popupWrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
 .popup {
   position: fixed;
   width: 100%;
@@ -1054,6 +1309,8 @@ button.promptBtn .promptText {
 }
 .popup .popupContent {
   background: #0F131B;
+  position: relative;
+  z-index: 88;
   width: 100%;
   height: 100%;
 }
@@ -1210,6 +1467,10 @@ button.promptBtn .promptText {
   padding-top: 0.521vw;
 }
 
+#pay-popup {
+  padding-top: 0px;
+  z-index: 99999;
+}
 #pay-popup .popupContent {
   background: none;
   display: flex;
@@ -1454,9 +1715,13 @@ button.add-chat {
   align-items: center;
   font-size: 0.729vw;
   display: flex;
+  justify-content: center;
   padding: 0.833vw 1.042vw;
+  border: 0.052vw solid #2A2F39;
+  color: #4e5156;
 }
 button.add-chat:hover {
+  color: white;
   background: #1D2129;
 }
 
@@ -1499,13 +1764,15 @@ button.add-chat:hover {
   overflow: hidden !important;
 }
 .tablinks-container.sobsRazdeli {
+  margin-top: 30px;
+  border-top: 0.052vw solid #2A2F39;
   max-height: 100%;
 }
 .tablinks-container.sobsRazdeli h2 {
-  padding: 1.563vw 0px;
+  padding: 1.563vw 0px 1.042vw 0px;
 }
 .tablinks-container.sobsRazdeli form {
-  padding-top: 0.781vw;
+  padding-top: 0.26vw;
 }
 .tablinks-container.sobsRazdeli form button {
   width: 100%;
@@ -1520,7 +1787,8 @@ button.add-chat:hover {
   border: 0.052vw solid #2A2F39;
   border-radius: 0.521vw;
 }
-.tablinks-container .tablink-library {
+
+.tablink-library {
   border: none;
   width: 8.594vw;
   display: flex;
@@ -1532,40 +1800,40 @@ button.add-chat:hover {
   justify-content: center;
   gap: 0.521vw;
 }
-.tablinks-container .tablink-library.kitchen {
+.tablink-library.kitchen {
   background: #A855F7;
   color: #FFFFFF;
 }
-.tablinks-container .tablink-library.map {
+.tablink-library.map {
   color: #EF4444;
   background: #25181F;
 }
-.tablinks-container .tablink-library.photo {
+.tablink-library.photo {
   color: #F59E0B;
   background: #262119;
 }
-.tablinks-container .tablink-library.beauty {
+.tablink-library.beauty {
   background: #101525;
   color: #2E49D8;
 }
-.tablinks-container .tablink-library.fitness {
+.tablink-library.fitness {
   color: #06B6D4;
   background: #0E242E;
 }
-.tablinks-container .tablink-library.system {
+.tablink-library.system {
   background: #262119;
   color: #F59E0B;
   justify-content: flex-start;
   padding: 0px 20px;
 }
-.tablinks-container .tablink-library.heart {
+.tablink-library.heart {
   background: #102522;
   color: #22C55E;
 }
-.tablinks-container .tablink-library.active {
+.tablink-library.active {
   opacity: 1;
 }
-.tablinks-container .tablink-library:hover {
+.tablink-library:hover {
   opacity: 1;
 }
 
@@ -1617,10 +1885,10 @@ button.add-chat:hover {
   line-height: 100%;
 }
 .library-item .library-item-title {
-  font-size: 20px;
+  font-size: 1.042vw;
   font-weight: 700;
   color: #757D8A;
-  padding-bottom: 10px;
+  padding-bottom: 0.521vw;
 }
 .library-item .hoverItems {
   opacity: 0;
@@ -1742,12 +2010,12 @@ pre {
 
 #scrollBottomBtn {
   position: fixed;
-  bottom: 13.021vw;
+  bottom: 12.021vw;
   border-radius: 50%;
   width: 1.563vw;
   height: 1.563vw;
   border: none;
-  right: 26.042vw;
+  right: 25.042vw;
 }
 
 @media (max-width: 768px) {
@@ -1894,21 +2162,6 @@ pre {
     border-radius: 8px;
     right: 10px;
     top: 20px;
-  }
-  .prompts {
-    padding-top: 16px;
-  }
-  .prompts button {
-    height: 40px;
-    border-radius: 8px;
-    font-size: 15px;
-    padding: 8px 0px;
-  }
-  .prompts button:first-child {
-    display: none;
-  }
-  .prompts button:last-child {
-    display: none;
   }
   .msg-img {
     width: 20px;

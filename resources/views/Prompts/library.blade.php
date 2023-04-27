@@ -136,9 +136,15 @@
     </div>
     <div class="sidebarMain right">
     <div class="firstRow">
-        <h2 class="title">
+        <h2 class="title aboutRs">
             {{__("aboutRazdel")}}
         </h2>
+        <p class="aboutRazdel">
+            Библиотека подсказок — это набор заранее созданных ответов, который GPT может использовать для помощи в формулировании своих ответов на запросы пользователей. В данном разделе содержаться подсказки на различные темы. 
+        </p>
+        <p class="aboutRazdel">
+            Раздел содержат информацию о часто задаваемых вопросах и типичных сценариях общения, что позволяет улучшить качество ответов и повысить скорость их предоставления.
+        </p>
     </div>
     </div>
     @include('components.popups.popup-settings')
@@ -246,7 +252,6 @@
 
         //Копирование промтов
         let btnCopies = document.querySelectorAll('.library-item button.copyRole');
-        console.log(btnCopies)
         for(let i = 0; i < btnCopies.length; i++){
             btnCopies[i].onclick = () =>{
                 var copyTextarea = document.createElement("textarea");

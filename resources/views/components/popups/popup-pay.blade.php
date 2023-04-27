@@ -1,5 +1,6 @@
 <div class="popup" id="pay-popup">
     @csrf
+    <div class="popupWrapper"></div>
     <div class="popupContent">
         <div class="popup-inner">
             <div class="popup-title">

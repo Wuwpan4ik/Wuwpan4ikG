@@ -50,6 +50,11 @@ html {
 
 * textarea{
     font-size:0.781vw !important;
+    outline: none;
+    transition: .6s all ease;
+    &:focus{
+        border:0.052vw solid rgba(255, 255, 255, 0.4);
+    }
 }
 
 * svg{
@@ -78,6 +83,18 @@ html {
     }
 }
 
+select{
+    font-size: 0.625vw;
+}
+
+p.aboutRazdel{
+    padding-top:1.042vw;
+    font-size:0.8vw;
+    opacity: 0.4;
+    color:white;
+    line-height: 1.25vw;
+    //word-break: break-all;
+}
 
 //Стилизация прокрутки
 
@@ -113,6 +130,9 @@ body{
 }
 
 body.dark{
+    p.aboutRazdel{
+        color:white;
+    }
     .welcome-chat{
         background:url('../assets/background-dark.jpg');background-repeat: no-repeat;
     }
@@ -167,12 +187,29 @@ body.dark{
     }
     h2{
         color:white;
+        &.aboutRs{
+            color:#A2A2A3;
+        }
     }
 }
 
 
 body.light{
     background:white;
+    select{
+        background: #DFDFDF;
+    }
+    .popup-setting-content.ai_model{
+        .firstRow{
+            background: #DFDFDF !important;
+            select{
+                color: #626262;
+            }
+        }
+    }
+    .welcome-chat{
+        background-image:url('../assets/background.png')
+    }
     header#mainHeader{
         background:#FFFFFF;
         border-bottom:0.052vw solid rgba(42, 47, 57, 0.1);
@@ -240,9 +277,6 @@ body.light{
     .promptBtn{
         background: #E8F8F7;
     }
-    .menu-items{
-        border-top:0.052vw solid #DDDDDD;
-    }
     a.menu-item{
         &:hover{
             background: #DFDFDF;
@@ -296,6 +330,9 @@ body.light{
                 }
             }
             .button-save{
+                button{
+                    background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+                }
                 svg{
                     path{
                         fill:white;
@@ -322,13 +359,21 @@ body.light{
     .addChatIcon{
         &:hover{
             background:#DFDFDF;
+            p{
+                color: #000000;
+            }
         }
     }
     .svgPath path{
         fill:#8E8E8F;
     }
     button.buttonTool{
-        background: rgba(255, 255, 255, 0.1);
+        background: #B6B7B8;
+        svg{
+            path{
+                fill:#49494A
+            }
+        }
     }
     .menu-items{
         a{
@@ -353,6 +398,124 @@ body.light{
     }
     .msg-bubble .msg-text{
         color: rgba(0, 0, 0, 0.6);
+    }
+    .folderBtn .hoverItems .hoverItems-folder button{
+        background: #B6B7B8;
+        svg{
+            path{
+                fill: #49494A;
+            }
+        }
+    }
+
+    //Системная роль
+    #systemRole{
+        background:#E3E3E3;
+        border: 0.052vw solid #D1D1D1;
+        .hoverItems{
+            background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #FAFAFA 100%);
+        }
+        textarea{
+            color:black;
+        }
+    }
+
+    //Библиотека подсказок
+    .tablinks-library{
+        button.tablink-library:nth-child(1){
+            background: rgba(168, 85, 247, 0.2) !important;
+            color: #A855F7 !important;
+            svg{
+                path{
+                    fill: #A855F7 !important;
+                }
+            }
+        }
+        button.tablink-library:nth-child(2){
+            background: rgba(34, 197, 94, 0.2) !important;
+            color: #22C55E !important;
+            svg{
+                path{
+                    fill: #22C55E !important;
+                }
+            }
+        }
+        button.tablink-library:nth-child(3){
+            background: rgba(239, 68, 68, 0.2) !important;
+            color: #EF4444 !important;
+            svg{
+                path{
+                    fill: #EF4444 !important;
+                }
+            }
+        }
+        button.tablink-library:nth-child(4){
+            background: rgba(6, 182, 212, 0.2) !important;
+            color: #06B6D4 !important;
+            svg{
+                path{
+                    fill: #06B6D4 !important;
+                }
+            }
+        }
+        button.tablink-library:nth-child(5){
+            background: rgba(245, 158, 11, 0.2) !important;
+            color: #F59E0B !important;
+            svg{
+                path{
+                    fill: #F59E0B !important;
+                }
+            }
+        }
+        button.tablink-library:nth-child(6){
+            background: rgba(46, 73, 216, 0.2) !important;
+            color: #2E49D8 !important;
+            svg{
+                path{
+                    fill: #2E49D8 !important;
+                }
+            }
+        }
+    }
+    .tablinks-container.sobsRazdeli{
+        form{
+            button{
+                color: #191F29;
+                border: 0.052vw solid rgba(42, 47, 57, 0.6);
+                svg{
+                    path{
+                        fill: #8E8E8F;
+                    }
+                }
+            }
+        }
+    }
+    .mainWrapper{
+        .library{
+            background: #FFFFFF;
+        }
+    }
+    form.add_new_prompt{
+        button{
+            color: #191F29;
+        }
+    }
+    //Каталог ролей
+    .library-item{
+        background: #E3E3E3;
+        border: 0.052vw solid #D1D1D1;
+        color: #484D55;
+        .hoverItems{
+            background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #FAFAFA 100%);
+        }
+    }
+    .msg-options button{
+        background: #DFDFDF;
+        svg{
+            path{
+                fill:#49494A;
+            }
+        }
     }
 }
 //Header
@@ -388,6 +551,9 @@ body.light{
             border:none;
             border-radius: 0.521vw;
             height:1.979vw;
+            display:flex;
+            justify-content: center;
+            align-items: center;
             &#settings.active{
                 background: #13B8A6;
                 svg{
@@ -421,6 +587,10 @@ body.light{
         align-items: center;
         gap:0.521vw;
         font-size: 0.781vw;
+        .firstRow{
+            gap:0.208vw;
+            display: flex;
+        }
     }
 }
 
@@ -501,7 +671,6 @@ body.light{
     display:flex;
     flex-direction: column;
     padding-top:0.208vw;
-    border-top: 0.052vw solid #2A2F39;
     form button, a{
         padding:0.781vw 1.042vw;
         display: flex;
@@ -524,9 +693,8 @@ body.light{
     display:flex;
     width: 100%;
     gap:0.521vw;
-    padding-bottom: 1.042vw;
+    padding-bottom: 0.521vw;
     margin-bottom: 1.042vw;
-    border-bottom: 0.052vw solid #2A2F39;
     form{
         width: 100%;
         button{
@@ -540,8 +708,40 @@ body.light{
             justify-content: center;
             color:white;
             gap:0.521vw;
-            font-size: 0.781vw;
+            color:#4e5156;
+            font-size: 0.729vw;
+            &:hover{
+                color:white;
+                background: #1D2129;
+            }
         }
+    }
+}
+
+.hoverItems.prompts{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height:100%;
+    border-radius: 0.417vw;
+    top:0px;
+    left:0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background: linear-gradient(180deg, rgba(25, 31, 41, 0) 0%, #191F29 100%);
+    padding:1.042vw;
+    gap:0.417vw;
+    button{
+        width:100%;
+        height: 1.979vw;
+        font-size: 0.729vw;
+        background: #272B34;
+        border: 0.052vw solid #374151;
+        border-radius: 0.521vw;
+    }
+    &.active{
+        opacity: 1;
     }
 }
 
@@ -558,32 +758,6 @@ body.light{
     position: relative;
     &:hover{
         .hoverItems{
-            opacity: 1;
-        }
-    }
-    .hoverItems{
-        opacity: 0;
-        position: absolute;
-        width: 100%;
-        height:100%;
-        border-radius: 0.417vw;
-        top:0px;
-        left:0px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-        background: linear-gradient(180deg, rgba(25, 31, 41, 0) 0%, #191F29 100%);
-        padding:1.042vw;
-        gap:0.417vw;
-        button{
-            width:100%;
-            height: 1.979vw;
-            font-size: 0.729vw;
-            background: #272B34;
-            border: 0.052vw solid #374151;
-            border-radius: 0.521vw;
-        }
-        &.active{
             opacity: 1;
         }
     }
@@ -654,11 +828,6 @@ body.light{
             }
         }
     }
-    &:hover{
-        .hoverItems-folder{
-            opacity: 1;
-        }
-    }
 }
 
 .folderBtn.opened{
@@ -685,7 +854,7 @@ body.light{
     align-items: center;
     border:none;
     .firstRow{
-        gap:10px;
+        gap:0.521vw;
         display: flex;
         align-items: center;
     }
@@ -705,6 +874,9 @@ body.light{
     }
     &:hover{
         background: #1D2129;
+        .hoverItems-folder{
+            opacity: 1;
+        }
     }
 }
 
@@ -715,7 +887,7 @@ body.light{
     align-items: center;
     height: 2.604vw;
     border-radius: 0.521vw;
-    font-size: 0.781vw;
+    font-size: 0.729vw;
     padding:0.833vw 1.042vw;
     margin-bottom: 0.729vw;
     gap:0.521vw;
@@ -784,10 +956,6 @@ body.light{
 //Chat
 
 //Prompt button
-.prompts{
-    display: flex;
-    gap:0.833vw;
-}
 button.promptBtn{
     text-align: center;
     padding:0.417vw 1.042vw;
@@ -825,7 +993,8 @@ button.promptBtn{
     }
     span{
         color:white;
-        font-size: 0.625vw;
+        font-size: 0.729vw;
+        line-height: 0.885vw;
     }
     .welcome-chat{
         max-width: 690px;
@@ -845,7 +1014,8 @@ button.promptBtn{
     span{
         color: #A4A4A4;
         max-width: 35.938vw;
-        font-size:0.625vw;
+        font-size:0.729vw;
+        line-height: 0.885vw;
     }
     svg{
         width:2.604vw !important;
@@ -922,17 +1092,39 @@ button.promptBtn{
     border-radius: 50%;
 }
 
+.msg:hover{
+    .msg-header{
+        .secondRow{
+            opacity: 1;
+        }
+    }
+}
+
 .msg-header{
     display:Flex;
     color:white;
     gap:0.521vw;
     font-size: 0.729vw;
     align-items: center;
-    padding-bottom: 0.833vw;
+    padding-bottom: 0.45vw;
+    width: 100%;
+    justify-content: space-between;
+    .firstRow{
+        display: flex;
+        align-items: center;
+        gap:0.521vw;
+    }
+    .secondRow{
+        opacity: 0;
+        button{
+            width: 1.500vw;
+            height:1.500vw;
+            padding:0.35vw;
+        }
+    }
 }
 
 .msg-options{
-    padding-top:0.521vw;
     display: flex;
     align-items: center;
     gap:0.521vw;
@@ -963,8 +1155,10 @@ button.promptBtn{
     .msg-text{
         color: #CFCFCF;
         font-size: 0.781vw;
+        line-height: 1.25vw;
         p{
             padding:0.26vw 0px;
+            white-space: pre-wrap;
         }
     }
     ul{
@@ -1018,11 +1212,24 @@ button.promptBtn{
     border-top:0.052vw solid #2A2F39;
 }
 
-.tokensSpent{
-    display: flex;
-    justify-content: flex-end;
-    color: #CFCFCF;
+.tokens_chat{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
     padding-bottom:1.042vw;
+    button{
+        color: #13B8A6;
+        line-height: 1.25vw;font-weight: 500;
+        background: #101F25;
+        border-radius: 0.417vw;
+        padding:0.417vw 1.042vw;
+        border:none;
+        font-size: 0.781vw;
+    }
+}
+
+.tokensSpent{
+    color: #CFCFCF;
     font-weight: 500;
     font-size: 0.729vw;
 }
@@ -1076,7 +1283,9 @@ button.promptBtn{
     cursor: pointer;
 }
 .msger-send-btn:hover {
-    background: #4c5563;
+    background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+    opacity: 0.9;
+    box-shadow: 0vw 0.521vw 1.563vw rgba(19, 184, 166, 0.5);
 }
 .sidebar {
     position: sticky;
@@ -1123,6 +1332,95 @@ button.promptBtn{
 
 //Попапы
 
+#popup-library{
+    z-index: 9999;
+    padding-top: 0px;
+    .popupContent{
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .popup-inner{
+            background: #0F131B;border-radius: 20px;
+            padding:2.083vw;
+            h2{
+                font-size: 1.667vw;font-weight: 600;
+                color: #A2A2A3;line-height: 2.031vw;
+                padding-bottom: 2.083vw;
+            }
+            .prompts-in-category{
+                margin-top: 1.563vw;
+                display: flex;
+                flex-wrap:wrap;
+                .prompt-category{
+                    width: 16.311vw;background: #191F29;
+                    border: 0.052vw solid #374151;
+                    padding:1.042vw;
+                    color: #757D8A;
+                    border-radius: 0.417vw;
+                    font-size: 0.781vw;
+                    line-height: 1.25vw;
+                    text-align: start;
+                    position: relative;
+                    &:hover{
+                        .hoverItems{
+                            opacity: 1;
+                        }
+                    }
+                    .hoverItems{
+                        button{
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;
+                            gap:0.521vw;
+                            color:white;
+                            font-size: 0.625vw;
+                            font-weight: 600;
+                        }
+                        &.active{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            .prompts-category{
+                .slick-track{
+                    display:flex;
+                gap:1.042vw;
+                }
+                button{
+                    height: 2.604vw;
+                    display: flex;
+                    padding:0px 0.26vw;
+                    align-items: center;
+                    gap:0.521vw;
+                }
+                //Slider
+                .slick-next{
+                    right:-1.502vw !important;
+                }
+                
+                .slick-prev{
+                    left:-1.502vw !important;
+                }
+                .slick-track::after, .slick-track::before {
+                    display: none !important;
+                }
+            }
+        }
+    }
+}
+
+.popupWrapper{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0px;
+    left:0px;
+    z-index: 1;
+}
+
 .popup{
     position: fixed;
     width: 100%;
@@ -1140,6 +1438,8 @@ button.promptBtn{
     }
     .popupContent{
         background: #0F131B;
+        position: relative;
+        z-index: 88;
         width: 100%;
         height: 100%;
         .popup-inner{
@@ -1299,6 +1599,8 @@ button.promptBtn{
 
 
 #pay-popup{
+    padding-top: 0px;
+    z-index: 99999;
     .popupContent{
         background:none;
         display:flex;
@@ -1550,8 +1852,12 @@ input[type=range].styled-slider {
     align-items: center;
     font-size:0.729vw;
     display: flex;
+    justify-content: center;
     padding:0.833vw 1.042vw;
+    border: 0.052vw solid #2A2F39;
+    color:#4e5156;
     &:hover{
+        color:white;
         background: #1D2129;
     }
   }
@@ -1595,12 +1901,14 @@ input[type=range].styled-slider {
         overflow: hidden !important;
     }
     &.sobsRazdeli{
+        margin-top:30px;
+        border-top: 0.052vw solid #2A2F39;
         max-height: 100%;
         h2{
-            padding:1.563vw 0px;
+            padding:1.563vw 0px 1.042vw 0px;
         }
         form{
-            padding-top:0.781vw;
+            padding-top:0.26vw;
             button{
                 width:100%;
                 height: 2.396vw;
@@ -1616,50 +1924,51 @@ input[type=range].styled-slider {
             }
         }
     }
-    .tablink-library{
-        border:none;
-        width: 8.594vw;
-        display: flex;
-        border-radius: 0.521vw;
-        opacity: 0.8;
-        font-size: 0.781vw;
-        align-items: center;
-        height: 2.604vw;
-        justify-content: center;
-        gap:0.521vw;
-        &.kitchen{
-            background: #A855F7;
-            color: #FFFFFF;
-        }
-        &.map{
-            color: #EF4444;
-            background: #25181F;
-        }
-        &.photo{
-            color: #F59E0B;background: #262119;
-        }
-        &.beauty{
-            background: #101525;color: #2E49D8;
-        }
-        &.fitness{
-            color: #06B6D4;
-            background: #0E242E;
-        }
-        &.system{
-            background: #262119;color: #F59E0B;
-            justify-content: flex-start;
-            padding:0px 20px;
-        }
-        &.heart{
-            background: #102522;
-            color: #22C55E;
-        }
-        &.active{
-            opacity: 1;
-        }   
-        &:hover{
-            opacity: 1;
-        }
+}
+
+.tablink-library{
+    border:none;
+    width: 8.594vw;
+    display: flex;
+    border-radius: 0.521vw;
+    opacity: 0.8;
+    font-size: 0.781vw;
+    align-items: center;
+    height: 2.604vw;
+    justify-content: center;
+    gap:0.521vw;
+    &.kitchen{
+        background: #A855F7;
+        color: #FFFFFF;
+    }
+    &.map{
+        color: #EF4444;
+        background: #25181F;
+    }
+    &.photo{
+        color: #F59E0B;background: #262119;
+    }
+    &.beauty{
+        background: #101525;color: #2E49D8;
+    }
+    &.fitness{
+        color: #06B6D4;
+        background: #0E242E;
+    }
+    &.system{
+        background: #262119;color: #F59E0B;
+        justify-content: flex-start;
+        padding:0px 20px;
+    }
+    &.heart{
+        background: #102522;
+        color: #22C55E;
+    }
+    &.active{
+        opacity: 1;
+    }   
+    &:hover{
+        opacity: 1;
     }
 }
 
@@ -1706,10 +2015,10 @@ input[type=range].styled-slider {
         line-height: 100%;
     }
     .library-item-title{
-        font-size: 20px;
+        font-size: 1.042vw;
         font-weight: 700;
         color: #757D8A;
-        padding-bottom: 10px;;
+        padding-bottom: 0.521vw;
     }
     .hoverItems{
         opacity: 0;
@@ -1844,12 +2153,12 @@ pre{
 
 #scrollBottomBtn{
     position: fixed;
-    bottom: 13.021vw;
+    bottom: 12.021vw;
     border-radius: 50%;
     width:1.563vw;
     height:1.563vw;
     border:none;
-    right: 26.042vw;
+    right: 25.042vw;
 }
 
 //Adaptive
@@ -1988,18 +2297,6 @@ pre{
         height: 44px;border-radius: 8px;
         right: 10px;
         top: 20px;
-    }
-    .prompts{
-        padding-top:16px;
-        button{
-            height: 40px;border-radius: 8px;font-size: 15px;padding:8px 0px;
-            &:first-child{
-                display:none;
-            }
-            &:last-child{
-                display:none;
-            }
-        }
     }
     //Messages
     .msg-img{
