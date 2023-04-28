@@ -135,7 +135,7 @@ function appendMessage(name, img, side, text, id) {
         </div>
       <div class="msg-bubble">
         <div class="msg-text" id=${id}>
-            ${side == "right" ? `<p>${text}</p>` : ``}
+            ${side == "right" ? `<p>${String(text).trim()}</p>` : ``}
         </div>
       </div>
     </div>
@@ -216,7 +216,7 @@ function sendMsg(msg) {
                         'id': document.querySelector('#chat_id').value,
                         'txt': document.getElementById(uuid).innerHTML
                     }
-                    console.log(params)
+                    //console.log(params)
                     fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     $('.tokens').load("/get_tokens");
                     $('.tokens_chat').load(`/messages-cost/get/${data}`);

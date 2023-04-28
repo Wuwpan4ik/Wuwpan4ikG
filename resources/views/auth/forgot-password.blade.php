@@ -1,25 +1,44 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
+<head>
+    <title>
+        Meta GPT - {{__('forgotPassword')}}
+    </title>
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
+</head>
 
+<x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+    <form method="POST" action="{{ route('register') }}">
         @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="first-row">
+            <img src="../assets/reg-mob.jpg" alt="" />
         </div>
+        <!-- Name -->
+        <div class="second-row">
+            <div class="top-row">
+                <h2 class="title">
+                    {{ __("forgotPassword") }}
+                </h2>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
+                <!-- Email Address -->
+                <div class="mt-4 input-form">
+                    <x-input-label for="email" :value="__('yourEmail')" />
+                    <x-text-input id="email" placeholder="example@gmail.com" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    <div class="desc-info">
+                        Укажите email на который вы регистрировали аккунт, чтобы мы могли прислать на него письмо с новым паролем
+                    </div>
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
+
+                <div class="buttonSubmit">
+                    <x-primary-button>
+                        {{ __('sendNewPass') }}
+                    </x-primary-button>
+                </div>
+            </div>
+            <div class="bottom-row">
+                {{__("haveAccount")}} <a href='{{ route("login") }}'>{{__("logBtn")}}</a>
+            </div>
     </form>
 </x-guest-layout>

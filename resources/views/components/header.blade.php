@@ -15,7 +15,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Meta GPT" />
     <meta property="og:description" content=" Наш сервис предоставляет доступ к использованию chatGPT - самой передовой технологии генерации текста на сегодняшний день." />
-    <meta property="og:image" content="upload/logo.png" />
+    <meta property="og:image" content="{{ asset('assets/meta-img.jpg') }}" />
     <!--Метрика-->
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
@@ -61,6 +61,11 @@
                     <div class="firstRow">
                         <span class="tokens">{{ Auth::user()->tokens }}</span>{{ __("TokensLeft") }}
                     </div>
+                </button>
+            </li>
+            <li>
+                <button id="about-user">
+                    <img src="{{ asset('assets/user.jpg') }}">
                 </button>
             </li>
         </ul>

@@ -117,6 +117,21 @@ body {
   min-height: 100%;
 }
 
+#about-user {
+  background: none !important;
+  width: 1.979vw;
+  height: 1.979vw;
+  padding: 0.521vw;
+}
+#about-user img {
+  padding: 0.261vw;
+  border-radius: 50%;
+  height: 1.979vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 1.979vw;
+}
+
 body.dark p.aboutRazdel {
   color: white;
 }
@@ -1206,6 +1221,95 @@ button.promptBtn .promptText {
   cursor: pointer;
 }
 
+#profile-popup {
+  z-index: 9999;
+  padding-top: 0px;
+}
+#profile-popup .popupContent {
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#profile-popup .popupContent .popup-inner {
+  max-width: 21.771vw;
+  width: 100%;
+  background: #0F131B;
+  border-radius: 1.042vw;
+  padding: 2.083vw;
+}
+#profile-popup .popupContent .popup-inner h2 {
+  text-align: start;
+}
+#profile-popup .popupContent .popup-inner .profile-info {
+  padding-top: 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .profile-photo {
+  border-radius: 0.521vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.521vw;
+  border: 0.052vw dashed rgba(255, 255, 255, 0.2);
+}
+#profile-popup .popupContent .popup-inner .profile-photo img {
+  border-radius: 50%;
+  width: 2.083vw;
+  height: 2.083vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#profile-popup .popupContent .popup-inner .change-photo {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0.521vw;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 1.198vw;
+}
+#profile-popup .popupContent .popup-inner .change-photo label {
+  cursor: pointer;
+  color: white;
+}
+#profile-popup .popupContent .popup-inner .change-photo label div {
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+  font-size: 0.625vw;
+}
+#profile-popup .popupContent .popup-inner .change-photo input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+#profile-popup .popupContent .popup-inner .form-profile {
+  padding-top: 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput {
+  padding-bottom: 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .input-label {
+  font-size: 0.625vw;
+  color: #A2A2A3;
+  padding-bottom: 0.521vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input {
+  display: flex;
+  gap: 0.521vw;
+  align-items: center;
+  background: #1D2129;
+  border-radius: 0.521vw;
+  padding: 0.625vw 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input p {
+  font-size: 0.625vw;
+  color: rgba(255, 255, 255, 0.6);
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input input {
+  width: 100%;
+}
+
 #popup-library {
   z-index: 9999;
   padding-top: 0px;
@@ -2006,6 +2110,14 @@ pre {
   align-items: center;
   justify-content: center;
   border: none;
+}
+
+table {
+  width: auto;
+  overflow: auto;
+}
+table th {
+  text-align: start;
 }
 
 #scrollBottomBtn {
