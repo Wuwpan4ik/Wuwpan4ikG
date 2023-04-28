@@ -112,7 +112,7 @@
                         </p>
                     </div>
                 @else
-                    @include('components.library_prompts.main')
+                    @include('components.library_prompts.main', ['library' => 1])
                 @endempty
             </div>
             <div class="add_prompt">
@@ -128,7 +128,7 @@
             {{__("aboutRazdel")}}
         </h2>
         <p class="aboutRazdel">
-            Библиотека подсказок — это набор заранее созданных ответов, который GPT может использовать для помощи в формулировании своих ответов на запросы пользователей. В данном разделе содержаться подсказки на различные темы. 
+            Библиотека подсказок — это набор заранее созданных ответов, который GPT может использовать для помощи в формулировании своих ответов на запросы пользователей. В данном разделе содержаться подсказки на различные темы.
         </p>
         <p class="aboutRazdel">
             Раздел содержат информацию о часто задаваемых вопросах и типичных сценариях общения, что позволяет улучшить качество ответов и повысить скорость их предоставления.
@@ -227,7 +227,7 @@
 
             event.target.classList.add('active');
             $('input[name="folder_id"]').val(id)
-            $('.library-items').load(`/prompts/${id}/main`);
+            $('.library-items').load(`/prompts/${id}/main/1`);
             if (id > 6) {
                 $('.add_prompt').load(`/add_formPrompt/${id}`);
             } else {

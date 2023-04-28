@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="msg-bubble">
-                <div class="msg-text" id="undefined">{!! $message->message !!}</div>
+                <div class="msg-text" id="undefined">{!! ($message->message) !!}</div>
             </div>
         </div>
     @endforeach

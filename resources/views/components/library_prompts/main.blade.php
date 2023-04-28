@@ -1,12 +1,14 @@
-<div class="library-title">
-    <div class="library-item-titles">
-        {{ $folder->title }}
+@if ($library == 1)
+    <div class="library-title">
+        <div class="library-item-titles">
+            {{ $folder->title }}
+        </div>
+        <!--Выводим кол-во подсказок-->
+        <div class="library-item-count">
+            {{ count($prompts) }} {{__('promptsCount')}}
+        </div>
     </div>
-    <!--Выводим кол-во подсказок-->
-    <div class="library-item-count">
-        {{ count($prompts) }} {{__('promptsCount')}}
-    </div>
-</div>
+@endempty
 <div class="library-items-container">
     @foreach($prompts as $prompt)
         <div class="library-item">

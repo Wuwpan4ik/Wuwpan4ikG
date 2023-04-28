@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function() {
 
     Route::get("/prompts", [\App\Http\Controllers\Prompt\PromptController::class, 'index'])->name('prompts.index');
     Route::get("/prompts/{PromptFolder}", [\App\Http\Controllers\Prompt\PromptController::class, 'show'])->name('prompts.show');
-    Route::get("/prompts/{PromptFolder}/main", [\App\Http\Controllers\Prompt\PromptController::class, 'showMain'])->name('prompts.getMain');
+    Route::get("/prompts/{PromptFolder}/main/{library}", [\App\Http\Controllers\Prompt\PromptController::class, 'showMain'])->name('prompts.getMain');
     Route::post("/prompts", [\App\Http\Controllers\Prompt\PromptController::class, 'store'])->name('prompts.store');
     Route::post("/prompts_folder", [\App\Http\Controllers\Prompt\PromptController::class, 'storeFolder'])->name('prompts_folder.store');
     Route::post("/prompts_folder/{prompt_folders}", [\App\Http\Controllers\Prompt\PromptController::class, 'update'])->name('prompts_folder.update');
