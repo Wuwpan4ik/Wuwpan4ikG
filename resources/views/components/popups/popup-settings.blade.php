@@ -55,7 +55,7 @@
                         <div class="popup-setting-title">
                             Модель GPT
                         </div>
-                        <div class="popup-setting-content withoutBorder" style="position: relative;">
+                        <div class="popup-setting-content withoutBorder ai_model" style="position: relative;">
                             <div class="firstRow" style="display: flex;
 align-items: center;
 width: 100%;

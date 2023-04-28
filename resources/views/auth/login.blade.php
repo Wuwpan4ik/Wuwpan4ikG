@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="first-row">
-            <img src="{{ asset('/assets/loginForm.jpg') }}" />
+            <img src="{{ asset('/assets/login-mob.jpg') }}" />
         </div>
         <!-- Email Address -->
         <div class="second-row">
@@ -14,18 +14,19 @@
                     {{ __('loginInAccount') }}
                 </h2>
                 <div class="input-form">
-                    <x-input-label for="email" :value="__('Ваша почта')" />
-                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                    <x-input-label for="email" :value="__('yourEmail')" />
+                    <x-text-input id="email" class="block mt-1 w-full" placeholder="example@gmail.com" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-4 input-form">
-                    <x-input-label for="password" :value="__('Введите пароль')" />
+                    <x-input-label for="password" :value="__('enterPassword')" />
 
                     <x-text-input id="password" class="block mt-1 w-full"
                                     type="password"
                                     name="password"
+                                    placeholder="********"
                                     required autocomplete="current-password" />
 
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
