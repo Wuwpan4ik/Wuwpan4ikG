@@ -7,6 +7,7 @@ use App\Http\Requests\Prompt\StoreRequest;
 use App\Http\Requests\Prompt\UpdateRequest;
 use App\Models\Prompt;
 use App\Models\PromptFolder;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,14 +42,19 @@ class PromptController extends Controller
         return view('components.library_prompts.main', compact('folder_id', 'folder', 'prompts_id', 'prompts'));
     }
 
+    public function showAddForm($prompts_id)
+    {
+        return view('components.add_formPrompt', compact('prompts_id'));
+    }
+
     public function store(StoreRequest $request)
     {
-        $data = $request->validated();
+//        $data = $request->validated();
         Prompt::create([
             'user_id' => Auth::id(),
-            'folder_id' => $data['folder_id'],
-            'description' => $data['description']
+            'folder_id' => $request->folder_id
         ]);
+
 
 
     }

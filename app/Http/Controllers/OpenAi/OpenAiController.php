@@ -36,10 +36,18 @@ class OpenAiController extends Controller
             $history[] = array("role" => "system", "content" => $chat->role);
         }
 
-//        Контент
-//        $history[] = ["role" => 'assistant', "content" => Message::where('chat_id', $id)->orderBy('id')->take(1)->get()];
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(3)->get()->sortBy('id');
 
-        $history[] = ["role" => 'user', "content" => $msg];
+        foreach ($message as $mess) {
+            if ($mess->is_bot) {
+                $history[] = ["role" => 'assistant', "content" => $mess->message];
+            } else {
+                $history[] = ["role" => 'user', "content" => $mess->message];
+            }
+
+        }
+
+        Debugbar::log($history);
 
         $prompt_tokens = count($this->gpt_encode($msg));
 
@@ -95,11 +103,7 @@ class OpenAiController extends Controller
                 return strlen($data);
             });
 
-            $message = new Message;
-            $message->message = $txt;
-            $message->chat_id = $id;
-            $message->is_bot = true;
-            $message->save();
+
             $cost_tokens = count($this->gpt_encode($txt)) + $prompt_tokens;
 
             Auth::user()->tokens -= $cost_tokens;

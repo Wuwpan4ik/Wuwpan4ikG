@@ -7,7 +7,7 @@
                 <div class="msg-info-time">{{ $message->created_at->format('H:i') }}</div>
             </div>
             <div class="msg-bubble">
-                <div class="msg-text" id="undefined">{{ $message->message }}</div>
+                <div class="msg-text" id="undefined">{!! $message->message !!}</div>
             </div>
             <div class="msg-options">
                 @if($message->is_bot)

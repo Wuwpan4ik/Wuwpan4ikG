@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/folder', [\App\Http\Controllers\Folder\FolderController::class, 'store'])->name('folder.store');
     Route::delete('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'delete'])->name('folder.delete');
 
+    Route::resource('messages', \App\Http\Controllers\Message\MessageController::class);
     Route::get("/messages/get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'Reshow'])->name('messages.get');
     Route::get("/messages-cost/get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'ShowCost'])->name('messages-cost.get');
     Route::get("/chat/role/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'ShowRole'])->name('role.get');
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function() {
     Route::post("/payer", [\App\Http\Controllers\Payer\PayerController::class, 'Buy'])->name('payer.buy');
 
     Route::get("/get_tokens", function () { return view('components.count_tokens'); });
+    Route::get("/add_formPrompt/{prompts_id}", [\App\Http\Controllers\Prompt\PromptController::class, 'showAddForm']);
 
     Route::post('/sendMessage', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'send__message'])->name('sendMessage');
     Route::get('/event-stream/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream']);

@@ -11,6 +11,7 @@ use App\Models\Chat;
 use App\Models\Folder;
 use App\Models\Message;
 use App\Models\UserModelSettings;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -46,7 +47,8 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $chat = Chat::create([
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'role' => env('default_role')
         ]);
 
         return redirect()->route('chats.show', $chat->id);
@@ -108,6 +110,7 @@ class ChatController extends Controller
         $chat->update([
             "title" => "{$data['title']}"
         ]);
+        Debugbar::log($chat);
 
         return redirect()->route('chats.show', $chat->id);
     }

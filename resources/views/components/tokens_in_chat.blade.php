@@ -1,3 +1,3 @@
 <div class="tokensSpent">
-    Запрос содержит: {{ $chat->token_cost }} токенов
+    Всего использовано: {{ $chat->token_cost }} токенов
 </div>

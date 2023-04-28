@@ -210,6 +210,14 @@ function sendMsg(msg) {
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
                     msgerSendBtn.disabled = false
+                    params = {
+                        'id': document.querySelector('#chat_id').value,
+                        'txt': document.getElementById(uuid).innerHTML
+                    }
+                    console.log(params)
+                    fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
+                    $('.tokens').load("/get_tokens");
+                    $('.tokens_chat').load(`/messages-cost/get/${data}`);
                     stream.close();
                 } else {
                     let txt = JSON.parse(e.data).choices[0].delta.content
@@ -221,26 +229,6 @@ function sendMsg(msg) {
             stream.onerror = function (e) {
                 console.log(e)
             }
-            $('.tokens').load(`/get_tokens`);
-            $('.tokens_chat').load(`/messages-cost/get/${data}`);
-
-            // fetch(`/event-stream/${data}?message=${msg}`, {headers: {'Content-Type': 'charset=utf-8'}})
-            //     .then(response => {
-            //         if (response.ok) {
-            //             return response.text()
-            //         } else {
-            //             // Вот тут открывай любые попапы
-            //             $('#tokensLeft').click()
-            //             return Promise.reject('error 404')
-            //             msgerSendBtn.disabled = false;
-            //         }
-            //     })
-            //     .then(response => {
-            //         msgerSendBtn.disabled = false;
-            //         appendMessage(BOT_NAME, BOT_IMG, "left", response, uuid);
-            //         $('.tokens').load(`/get_tokens`);
-            //         $('.tokens_chat').load(`/messages-cost/get/${data}`);
-            //     })
         })
         .catch(error => console.error(error));
 }

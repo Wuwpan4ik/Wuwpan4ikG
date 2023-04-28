@@ -90,7 +90,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.msger-chat').addEventListener('scroll', function () {
-                if($(this).scrollTop() + 1000 > document.querySelector('.msger-chat').scrollHeight && document.querySelector('.msger-chat').scrollHeight === document.querySelector('.msger-chat').offsetHeight) {
+                if($(this).scrollTop() + 1000 > document.querySelector('.msger-chat').scrollHeight) {
                     $('#scrollBottomBtn').hide();
                 } else {
                     $('#scrollBottomBtn').show();
@@ -123,6 +123,7 @@
             })
             event.target.classList.add('active');
             $(".msger-chat").scrollTop($(".msger-chat")[0].scrollHeight);
+
             $('.sidebarMain.right').load(`/chat/role/${id}`)
             $('.tokens_chat').load(`/messages-cost/get/${id}`);
         }

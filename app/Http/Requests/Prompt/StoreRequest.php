@@ -22,9 +22,6 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'numeric|required|exists:users,id',
-            'folder_id' => 'numeric|required|exists:folders,id',
-            'description' => 'string|required|max:512'
         ];
     }
 }

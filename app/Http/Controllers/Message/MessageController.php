@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Message;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -28,7 +29,11 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message;
+        $message->message = $request->txt;
+        $message->chat_id = $request->id;
+        $message->is_bot = true;
+        $message->save();
     }
 
     /**
