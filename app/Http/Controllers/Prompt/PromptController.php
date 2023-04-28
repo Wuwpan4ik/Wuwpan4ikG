@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Prompt;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Prompt\StoreRequest;
 use App\Http\Requests\Prompt\UpdateRequest;
@@ -33,13 +32,13 @@ class PromptController extends Controller
         return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_id'));
     }
 
-    public function showMain($PromptFolder)
+    public function showMain($PromptFolder, $library)
     {
         $folder = PromptFolder::where('id', $PromptFolder)->first();
         $folder_id = $PromptFolder;
         $prompts = Prompt::where('folder_id', $folder_id)->get();
         $prompts_id = (int)$PromptFolder;
-        return view('components.library_prompts.main', compact('folder_id', 'folder', 'prompts_id', 'prompts'));
+        return view('components.library_prompts.main', compact('folder_id', 'folder', 'prompts_id', 'prompts', 'library'));
     }
 
     public function showAddForm($prompts_id)

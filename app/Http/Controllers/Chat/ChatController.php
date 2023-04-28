@@ -10,6 +10,7 @@ use App\Http\Requests\Chat\UpdateRoleRequest;
 use App\Models\Chat;
 use App\Models\Folder;
 use App\Models\Message;
+use App\Models\PromptFolder;
 use App\Models\UserModelSettings;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
@@ -73,7 +74,8 @@ class ChatController extends Controller
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get()->sortBy("id");
         $folders = Folder::with('children')->get();
         $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
-        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders'));
+        $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();
+        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category'));
     }
 
     public function ShowCost(Chat $chat)
