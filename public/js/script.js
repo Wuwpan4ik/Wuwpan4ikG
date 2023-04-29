@@ -1,3 +1,5 @@
+//const { send } = require("vite");
+
 if (document.getElementById("id")) {
         if (getCookie("id") == "") {
             uuid = uuidv4()
@@ -38,6 +40,11 @@ if (msgerForm) {
     msgerForm.addEventListener("submit", event => {
         sendMessage(event);
     });
+    msgerForm.addEventListener("keydown", evt => {
+        if (evt.keyCode == 13 && !evt.shiftKey) {
+            sendMessage(evt);
+        }
+    })
 }
 
 
@@ -602,14 +609,74 @@ copyMessagesBtns.forEach((item)=>{
     }
 })
 
-//Открытие попапа библиотеки подсказок
-
-document.getElementById('openPrompts').onclick = () =>{
-    document.getElementById('popup-library').classList.add('active');
+//Функция закрытия попапа при клике вне контейнера
+function closePopContainer(popid, containerid){
     $(document).mouseup(function (e) {
-        var container = $("#popup-library .popupContent");
+        var container = $(`${containerid}`);
         if (container.has(e.target).length === 0){
-            document.getElementById('popup-library').classList.remove('active');
+            document.getElementById(`${popid}`).classList.remove('active');
         }
     });
+}
+
+//Открытие попапа библиотеки подсказок
+document.getElementById('openPrompts').onclick = () =>{
+    document.getElementById('popup-library').classList.add('active');
+    closePopContainer('popup-library', '#popup-library .popupContent');
+}
+
+//Открытие попапа профиля
+document.getElementById('about-user').onclick = () =>{
+    document.getElementById('profile-popup').classList.add('active');
+    closePopContainer('profile-popup', '#profile-popup .popupContent');
+}
+
+//Откытие попапа о проекте
+document.querySelectorAll('a#aboutProject').forEach((item)=>{
+    item.onclick = () =>{
+        document.getElementById('about-popup').classList.add('active');
+        closePopContainer('about-popup', '#about-popup .popupContent');
+    }
+})
+
+//Открытие попапа в разработке
+document.getElementById('chat-with-base').onclick = () =>{
+    document.getElementById('popup-develop').classList.add('active');
+    closePopContainer('popup-develop', '#popup-develop .popupContent');
+}
+
+//Редактирование профиля
+let editProfile = document.querySelectorAll('.coolInput .hoverItems button.rename-profile'),
+editProfileInput = document.querySelectorAll('.coolInput .input-span input'),
+editProfileP = document.querySelectorAll('.coolInput .input-span p'),
+editProfileConfirm = document.querySelectorAll('.coolInput .hoverItems .rename-confirm'),
+editProfileHoverItems = document.querySelectorAll('.coolInput .hoverItems');
+
+for(let i = 0; editProfile.length > i; i++){
+    editProfile[i].onclick = () =>{
+        editProfile.forEach(item => item.classList.remove('nonActive'));
+        editProfileHoverItems.forEach(item=>item.classList.remove('active'));
+        editProfileConfirm.forEach(item=>item.classList.add('nonActive'));
+        editProfileInput.forEach(item=>item.classList.add('nonActive'));
+        editProfileP.forEach(item=>item.classList.remove('nonActive'));
+        //Скрипт
+        editProfile[i].classList.add('nonActive');
+        editProfileHoverItems[i].classList.add('active');
+        editProfileConfirm[i].classList.remove('nonActive');
+        editProfileInput[i].classList.remove('nonActive');
+        editProfileInput[i].value = String(editProfileP[i].innerText).trim();
+        editProfileP[i].classList.add('nonActive');
+        //да (вешаем обработчики)
+        editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
+
+        }
+        //Нет
+        editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
+            editProfile[i].classList.remove('nonActive');
+            editProfileHoverItems[i].classList.remove('active');
+            editProfileConfirm[i].classList.add('nonActive');
+            editProfileInput[i].classList.add('nonActive');
+            editProfileP[i].classList.remove('nonActive');
+        }
+    }
 }

@@ -467,6 +467,7 @@ body.light .msg-options button svg path {
 }
 #mainHeader .navbar ul {
   display: flex;
+  align-items: center;
   gap: 1.042vw;
 }
 #mainHeader .navbar ul li a {
@@ -474,6 +475,22 @@ body.light .msg-options button svg path {
   padding: 0.521vw;
   font-size: 0.781vw;
   font-weight: 400;
+}
+#mainHeader .navbar a#chat-with-base {
+  display: flex;
+  gap: 0.521vw;
+  font-size: 0.781vw;
+}
+#mainHeader .navbar a#chat-with-base .soon-plate {
+  background: #EF4444;
+  border-radius: 10px;
+  padding: 0.104vw 0.313vw;
+  color: white;
+  font-size: 0.521vw;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #mainHeader .navbar button {
   padding: 0.521vw;
@@ -1223,6 +1240,91 @@ button.promptBtn .promptText {
   cursor: pointer;
 }
 
+#about-popup {
+  z-index: 9999;
+  padding-top: 0px;
+}
+#about-popup .popupContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+#about-popup .popupContent .popup-inner {
+  background: #0F131B;
+  border-radius: 1.042vw;
+  padding: 2.083vw;
+}
+#about-popup .popupContent .popup-inner h2 {
+  padding-bottom: 2.083vw;
+}
+#about-popup .popupContent .popup-inner p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.833vw;
+  padding-bottom: 20px;
+  font-weight: 400;
+  line-height: 1.25vw;
+}
+
+#popup-develop {
+  z-index: 9999;
+  padding-top: 0px;
+}
+#popup-develop .popupContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+#popup-develop .popupContent .popup-inner {
+  background: #0F131B;
+  border-radius: 1.042vw;
+  padding: 2.083vw;
+}
+#popup-develop .popupContent .popup-inner h2 {
+  padding-bottom: 1.042vw;
+}
+#popup-develop .popupContent .popup-inner p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.833vw;
+  padding-bottom: 20px;
+  font-weight: 400;
+  line-height: 1.25vw;
+}
+#popup-develop .about-project-soc a.first button {
+  background: #13B8A6;
+}
+#popup-develop .about-project-soc a.sec button {
+  border: 0.104vw solid #13B8A6;
+  background: none;
+}
+
+.about-project-soc {
+  padding-top: 1.042vw;
+  display: flex;
+  align-items: center;
+  gap: 1.042vw;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.833vw;
+  width: 100%;
+}
+.about-project-soc a {
+  width: 100%;
+}
+.about-project-soc button {
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  gap: 0.521vw;
+  width: 100%;
+  font-size: 0.833vw;
+  background: #28ACE2;
+  border-radius: 0.417vw;
+  height: 3.333vw;
+  align-items: center;
+  border: none;
+}
+
 #profile-popup {
   z-index: 9999;
   padding-top: 0px;
@@ -1285,11 +1387,93 @@ button.promptBtn .promptText {
   z-index: -1;
   opacity: 0;
 }
+#profile-popup .popupContent .popup-inner .forgot-pass button {
+  height: 2.448vw;
+  background: #3F4249;
+  border-radius: 0.521vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: white;
+  border: none;
+}
+#profile-popup .popupContent .popup-inner .history-payments {
+  padding-top: 2.604vw;
+}
+#profile-popup .popupContent .popup-inner .history-payments h2 {
+  padding-bottom: 1.563vw;
+}
+#profile-popup .popupContent .popup-inner .history-payments .history-payments-inner {
+  background: #1D2129;
+  border-radius: 0.521vw;
+  padding: 0.833vw 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .history-payments .history-payments-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.521vw;
+  margin-bottom: 0.521vw;
+  border-bottom: 0.052vw dashed rgba(255, 255, 255, 0.2);
+}
+#profile-popup .popupContent .popup-inner .history-payments .history-payments-item:last-child {
+  padding-bottom: 0px;
+  border-bottom: none;
+  margin-bottom: 0px;
+}
+#profile-popup .popupContent .popup-inner .history-payments .history-payments-item .count {
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+}
+#profile-popup .popupContent .popup-inner .history-payments .history-payments-item .count .count-much {
+  font-size: 0.729vw;
+  color: #13B8A6;
+}
+#profile-popup .popupContent .popup-inner .history-payments .history-payments-item .count .count-tokens {
+  font-size: 0.521vw;
+  color: rgba(162, 162, 163, 0.4);
+}
+#profile-popup .popupContent .popup-inner .history-payments .history-payments-item .date-payment {
+  font-size: 0.729vw;
+  color: rgba(162, 162, 163, 0.4);
+}
 #profile-popup .popupContent .popup-inner .form-profile {
   padding-top: 1.042vw;
 }
 #profile-popup .popupContent .popup-inner .form-profile .coolInput {
+  position: relative;
   padding-bottom: 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems {
+  position: absolute;
+  right: 1.042vw;
+  opacity: 0;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems.active {
+  opacity: 1;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems button {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.313vw;
+  height: 1.146vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems button svg {
+  width: 0.521vw !important;
+  height: 0.521vw !important;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems .rename-confirm {
+  display: flex;
+  gap: 0.26vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput:hover .hoverItems {
+  opacity: 1;
 }
 #profile-popup .popupContent .popup-inner .form-profile .coolInput .input-label {
   font-size: 0.625vw;
@@ -1310,6 +1494,11 @@ button.promptBtn .promptText {
 }
 #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input input {
   width: 100%;
+  background: none;
+  color: #FFFFFF;
+  font-size: 0.625vw;
+  border: none;
+  outline: none;
 }
 
 #popup-library {

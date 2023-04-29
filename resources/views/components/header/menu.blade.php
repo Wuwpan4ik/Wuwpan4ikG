@@ -6,4 +6,12 @@
             </a>
         </li>
     @endforeach
+    <li>
+        <a id="chat-with-base">
+            Чат с базой данных
+            <div class="soon-plate">
+                {{__('soonPlate')}}
+            </div>
+        </a>
+    </li>
 </ul>
