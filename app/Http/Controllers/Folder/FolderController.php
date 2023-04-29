@@ -26,14 +26,10 @@
             $folder->update([
                 "title" => "{$data['title']}"
             ]);
-
-            return redirect()->route('main');
         }
 
         public function delete(Folder $folder)
         {
             $folder->delete();
-
-            return redirect('/');
         }
 	}

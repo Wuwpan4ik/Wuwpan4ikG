@@ -184,6 +184,68 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- Код для смены названия чата --}}
+    <script>
+    document.querySelectorAll('.chat__update-form').forEach(item => {
+        item.addEventListener('submit', function (e) {
+            e.preventDefault()
+            fetch(item.action, {
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    "X-CSRF-Token": $(item).find('input[name="_token"]').val()
+                }, method: "PATCH", body: JSON.stringify({'title': item.querySelector('input[name="title"]').value})
+            })
+            item.parentElement.parentElement.querySelector('.chat__name').innerHTML = item.querySelector('input[name="title"]').value
+            renameChat(item.parentElement.parentElement.querySelector("button.renameChat"))
+        })
+    })
+    </script>
+
+    {{-- Код для смены названия папки --}}
+    <script>
+        function renFolder(item) {
+            let form = item.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form');
+            fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": form.querySelector('input[name="_token"]').value}, method: "PATCH", body: JSON.stringify({'title': form.querySelector('#renameFolderInput').value})})
+            form.parentElement.querySelector('.folderName').innerHTML = form.querySelector('#renameFolderInput').value
+            renameFolder(item)
+        }
+    </script>
+
+    {{-- Код для удаления чата --}}
+    <script>
+        function delChat(item) {
+            fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": $(item).find('input[name="_token"]').val()}, method: "DELETE"})
+            item.parentElement.parentElement.parentElement.remove()
+            if (document.querySelector('.tablink')) {
+                document.querySelector('.tablink').click()
+            } else {
+                window.location.replace('/')
+            }
+        }
+    </script>
+
+    {{-- Код для удаления папки --}}
+    <script>
+        function delFolder(item) {
+            item.addEventListener('submit', function(e) {
+                e.preventDefault()
+                this.parentElement.parentElement.parentElement.parentElement.remove()
+                fetch(this.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": $(this).find('input[name="_token"]').val()}, method: "DELETE"})
+            })
+        }
+    </script>
+
+    {{-- Код для смены системной роли --}}
+    <script>
+        function changeRole(item) {
+            item.preventDefault()
+            let form = item.target
+            fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": form.querySelector('input[name="_token"]').value}, method: "POST", body: JSON.stringify({'role': form.querySelector('#systemRoleText').value})})
+            document.querySelector('.systemRole button.renameChat').click()
+            document.querySelector('.systemRole span').textContent = form.querySelector('#systemRoleText').value;
+        }
+    </script>
+
     <script>
         $('.prompts-category').slick({
           infinite: false,

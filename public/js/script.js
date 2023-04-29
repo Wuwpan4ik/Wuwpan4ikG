@@ -559,12 +559,6 @@ function renameFolder(item){
     }
 }
 
-document.querySelectorAll('.removeFolderYes').forEach(item => {
-    item.addEventListener('click', function () {
-        item.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form').submit();
-    })
-})
-
 function deleteFolder(item){
     let confirmDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('.deleteFolderConfirm'),
     buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),
