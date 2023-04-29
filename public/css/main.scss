@@ -534,6 +534,10 @@ body.light{
         }
     }
 }
+section.library-mob{
+    display: none;
+}
+
 //Header
 
 #mainHeader{
@@ -631,6 +635,7 @@ body.light{
     z-index: 200;
     display:none;
     background: #0F131B;
+    border-bottom: 1px solid #2A2F39;
     padding:20px;
     nav{
         display: flex;
@@ -1927,6 +1932,11 @@ button.promptBtn{
                     text-align:center;
                     margin-bottom: 0.833vw;
                 }
+                .payRange{
+                    img{
+                        width: 100%;
+                    }
+                }
             }
         }
     }
@@ -2607,9 +2617,43 @@ table{
         width: 20px;
         height: 20px;
     }
+    .tokens_chat{
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        padding-bottom: 10px;
+    }
+    .tokensSpent{
+        padding-bottom: 10px;
+    }
+    #openPrompts{
+        width: 100%;
+        height: 30px;
+        font-size: 10px;
+        border-radius: 8px;
+    }
     .msg-header{
         gap:5px;
         font-size: 12px;
+        padding-bottom: 10px;
+        .firstRow{
+            gap:5px;
+        }
+        .msg-options{
+            gap:5px;
+            button{
+                width: 20px;
+                height:20px;
+                svg{
+                    width: 10px !important;
+                    height: 10px !important;
+                }
+            }
+        }
+    }
+    .msg-text{
+        *{
+            line-height: 125%;
+        }
     }
     .msg-bubble .msg-text{
         font-size:12px;
@@ -2719,7 +2763,7 @@ table{
         }
         .popup-inner{
             max-width: 100%;
-            padding: 0px 40px 20px 40px;
+            padding: 40px 40px 20px 40px;
             .popup-title{
                 font-size: 22px;
                 margin-bottom: 30px;
@@ -2780,8 +2824,16 @@ table{
                     padding-top:0px;
                 }
             }
+            .popup-setting-content.ai_model{
+                .firstRow{
+                    gap:10px !important;
+                    padding:0px 20.006px !important;
+                    border-radius: 10.003px !important;
+                }
+            }
             .popup-setting-content select{
                 height: 50px;
+                font-size: 12px;
             }
             .popup-setting-content.withoutBorder input{
                 font-size: 12px;
@@ -2858,6 +2910,55 @@ table{
                         }
                     }
                 }
+            }
+        }
+    }
+    #pay-popup{
+        padding-top: 78px;
+        z-index: 1;
+        .popup-inner{
+            padding-top: 40px !important;
+        }
+    }
+    //Библиотека подсказок
+    section.library{
+        display: none;
+    }
+    section.library-mob{
+        padding-top: 10px;
+        width: 100%;
+        height: 100%;
+        background: #0F131B;
+        .library-mob-wrapper{
+            padding:0px 20px;
+            h2{
+                font-size: 22px;
+                font-weight: 600;
+                color: #A2A2A3;
+            }
+            .tablinks-container{
+                padding-top:40px;
+                .tablinks-library{
+                    flex-wrap: nowrap;
+                    gap: 20px;
+                    flex-direction: row;
+                    overflow-x: auto;
+                }
+                button{
+                    width: 100%;
+                    height: 50px;
+                    border-radius: 10px;
+                    gap:10px;
+                    font-size: 15px;
+                    padding: 12px 20px;
+                    svg{
+                        width:18px !important;
+                        height: 18px !important;
+                    }
+                }
+            }
+            .library-title{
+                display: none;
             }
         }
     }

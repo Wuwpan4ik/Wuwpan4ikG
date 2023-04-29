@@ -121,6 +121,18 @@
                 @endif
             </div>
         </section>
+        <section class="library-mob">
+            <div class="library-mob-wrapper">
+                <h2>{{__('libTitle')}}</h2>
+                    @include('components.library_prompts.main_prompts')
+                    @include('components.library_prompts.main', ['library' => 1])
+                <div class="add_prompt">
+                    @if($prompts_id > 6)
+                        @include('components.add_formPrompt')
+                    @endif
+                </div>
+            </div>
+        </section>
     </div>
     <div class="sidebarMain right">
     <div class="firstRow">
