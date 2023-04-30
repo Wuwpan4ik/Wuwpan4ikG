@@ -349,6 +349,7 @@
     <!--Slick Slider-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- Код для смены названия чата --}}
     <script>
@@ -419,6 +420,71 @@
           slidesToShow: 4,
           slidesToScroll: 1
         });
+    </script>
+    <script>
+        //Кнопка "Выбрать" в попапе библиотеки подсказок
+        let choosePrompts = document.querySelectorAll('button.choosePrompt');
+        choosePrompts.forEach((item)=>{
+            item.onclick = () =>{
+                document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('span').innerText).trim();
+                document.getElementById('popup-library').classList.remove('active');
+            }
+        })
+    </script>
+    <script>
+        //Закрытие попапов
+        let closeBtnBuy =  document.querySelectorAll('.closeBtnBuy button');
+
+        closeBtnBuy.forEach((item)=>{
+            let popups = document.querySelectorAll('.popup');
+            item.onclick = () =>{
+                popups.forEach(
+                    (item)=>{
+                        item.classList.remove('active');
+                        if(item.id == "pay-popup"){
+                            document.getElementById('tokensLeft').classList.remove('active');
+                        }
+                    }
+                );
+            }
+        })
+    </script>
+    <script>
+        //Редактирование профиля
+        let editProfile = document.querySelectorAll('.coolInput .hoverItems button.rename-profile'),
+        editProfileInput = document.querySelectorAll('.coolInput .input-span input'),
+        editProfileP = document.querySelectorAll('.coolInput .input-span p'),
+        editProfileConfirm = document.querySelectorAll('.coolInput .hoverItems .rename-confirm'),
+        editProfileHoverItems = document.querySelectorAll('.coolInput .hoverItems');
+
+        for(let i = 0; editProfile.length > i; i++){
+            editProfile[i].onclick = () =>{
+                editProfile.forEach(item => item.classList.remove('nonActive'));
+                editProfileHoverItems.forEach(item=>item.classList.remove('active'));
+                editProfileConfirm.forEach(item=>item.classList.add('nonActive'));
+                editProfileInput.forEach(item=>item.classList.add('nonActive'));
+                editProfileP.forEach(item=>item.classList.remove('nonActive'));
+                //Скрипт
+                editProfile[i].classList.add('nonActive');
+                editProfileHoverItems[i].classList.add('active');
+                editProfileConfirm[i].classList.remove('nonActive');
+                editProfileInput[i].classList.remove('nonActive');
+                editProfileInput[i].value = String(editProfileP[i].innerText).trim();
+                editProfileP[i].classList.add('nonActive');
+                //да (вешаем обработчики)
+                editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
+                
+                }
+                //Нет
+                editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
+                    editProfile[i].classList.remove('nonActive');
+                    editProfileHoverItems[i].classList.remove('active');
+                    editProfileConfirm[i].classList.add('nonActive');
+                    editProfileInput[i].classList.add('nonActive');
+                    editProfileP[i].classList.remove('nonActive');
+                }
+            }
+        }
     </script>
     <script>
         function hideButtonScroll(elem) {

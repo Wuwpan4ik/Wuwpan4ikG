@@ -46,35 +46,6 @@ if (msgerForm) {
     })
 }
 
-
-function typeText(element, text) {
-    let index = 0
-    let interval = setInterval(() => {
-        if (index < text.length) {
-            element.innerHTML += text.charAt(index)
-            index++;
-        } else {
-            var md = window.markdownit();
-            var result = md.render(String(text));
-            element.innerHTML = result;
-            copyBtnPre();
-            clearInterval(interval)
-        }
-    }, 20)
-}
-
-function renderAllMessages(){
-    let messageText = document.querySelectorAll('.msger-chat .msg-text'),
-    md = window.markdownit();
-    messageText.forEach(function(text){
-        var result = md.render(String(text.innerHTML));
-        text.innerHTML = result;
-        copyBtnPre();
-    })
-}
-
-window.addEventListener('DOMContentLoaded', renderAllMessages);
-
 // Copy to clipboard
 
 function copyCommand(target){
@@ -121,8 +92,6 @@ function copyBtnPre(){
 
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
-    var md = window.markdownit();
-    var result = md.render(String(text));
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
@@ -316,24 +285,6 @@ function countTokens(){
 
 document.querySelector('input#priceStealer').oninput = countTokens;
 
-let closeBtnBuy =  document.querySelectorAll('.closeBtnBuy button');
-
-console.log(closeBtnBuy.length);
-
-closeBtnBuy.forEach((item)=>{
-    let popups = document.querySelectorAll('.popup');
-    item.onclick = () =>{
-        popups.forEach(
-            (item)=>{
-                item.classList.remove('active');
-                if(item.id == "pay-popup"){
-                    document.getElementById('tokensLeft').classList.remove('active');
-                }
-            }
-        );
-    }
-})
-
 //Папки - открытие и закрытие
 
 let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen'),
@@ -384,6 +335,12 @@ function renameChat(item){
         btnDelete.classList.remove('nonActive');
         nameChat.classList.remove('nonActive');
     }else{
+        document.querySelectorAll('.addChatIcon .confirmRename').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameChatInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.addChatIcon p.chat__name').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.deleteChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.renameChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.addChatIcon .hoverItems').forEach(item=>item.classList.remove('active'));
         hoverItems.classList.add('active');
         input.classList.remove('nonActive');
         confirmRename.classList.remove('nonActive');
@@ -548,8 +505,8 @@ tokensLeftBtn.forEach((item)=>{
             disableAllPops();
             item.classList.add('active');
             document.querySelector('#pay-popup').classList.add('active');
+            closePopContainer('pay-popup', '#pay-popup .popupContent');
         }
-        closePopContainer('pay-popup', '#pay-popup .popupContent');
     }
 });
 
@@ -578,6 +535,12 @@ for(let i = 0; folderRenameBtns.length > i; i++){
 function renameFolder(item){
     let input = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderInput'),folderText = item.parentElement.parentElement.parentElement.parentElement.querySelector('p'),hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems'),buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),confirmRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('.renameFolderConfirm');
     if(input.classList.contains('nonActive')){
+        document.querySelectorAll('.renameFolderConfirm').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameFolderInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.buttonOpen p.folderName').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #deleteFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #renameFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems.folder').forEach(item=>item.classList.remove('showed'));
         buttonDelete.classList.add('nonActive');
         buttonRename.classList.add('nonActive');
         hoverItems.classList.add('showed');
@@ -601,8 +564,13 @@ function deleteFolder(item){
     buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),
     buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),
     hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems');
-
     if(confirmDelete.classList.contains('nonActive')){
+        document.querySelectorAll('.deleteFolderConfirm').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameFolderInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.buttonOpen p.folderName').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #deleteFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #renameFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems.folder').forEach(item=>item.classList.remove('showed'));
         buttonDelete.classList.add('nonActive');
         buttonRename.classList.add('nonActive');
         confirmDelete.classList.remove('nonActive');
@@ -680,50 +648,3 @@ document.getElementById('chat-with-base').onclick = () =>{
     document.getElementById('popup-develop').classList.add('active');
     closePopContainer('popup-develop', '#popup-develop .popupContent');
 }
-
-//Редактирование профиля
-let editProfile = document.querySelectorAll('.coolInput .hoverItems button.rename-profile'),
-editProfileInput = document.querySelectorAll('.coolInput .input-span input'),
-editProfileP = document.querySelectorAll('.coolInput .input-span p'),
-editProfileConfirm = document.querySelectorAll('.coolInput .hoverItems .rename-confirm'),
-editProfileHoverItems = document.querySelectorAll('.coolInput .hoverItems');
-
-for(let i = 0; editProfile.length > i; i++){
-    editProfile[i].onclick = () =>{
-        editProfile.forEach(item => item.classList.remove('nonActive'));
-        editProfileHoverItems.forEach(item=>item.classList.remove('active'));
-        editProfileConfirm.forEach(item=>item.classList.add('nonActive'));
-        editProfileInput.forEach(item=>item.classList.add('nonActive'));
-        editProfileP.forEach(item=>item.classList.remove('nonActive'));
-        //Скрипт
-        editProfile[i].classList.add('nonActive');
-        editProfileHoverItems[i].classList.add('active');
-        editProfileConfirm[i].classList.remove('nonActive');
-        editProfileInput[i].classList.remove('nonActive');
-        editProfileInput[i].value = String(editProfileP[i].innerText).trim();
-        editProfileP[i].classList.add('nonActive');
-        //да (вешаем обработчики)
-        editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
-
-        }
-        //Нет
-        editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
-            editProfile[i].classList.remove('nonActive');
-            editProfileHoverItems[i].classList.remove('active');
-            editProfileConfirm[i].classList.add('nonActive');
-            editProfileInput[i].classList.add('nonActive');
-            editProfileP[i].classList.remove('nonActive');
-        }
-    }
-}
-
-//Кнопка "Выбрать" в попапе библиотеки подсказок
-
-let choosePrompts = document.querySelectorAll('button.choosePrompt');
-console.log(choosePrompts.length)
-choosePrompts.forEach((item)=>{
-    item.onclick = () =>{
-        document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('span').innerText).trim();
-        document.getElementById('popup-library').classList.remove('active');
-    }
-})
