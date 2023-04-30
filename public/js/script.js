@@ -228,7 +228,7 @@ function sendMsg(msg) {
                     //console.log(params)
                     fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     $('.tokens').load("/get_tokens");
-                    $('.tokens_chat').load(`/messages-cost/get/${data}`);
+                    $('.tokensSpent').load(`/messages-cost/get/${data}`);
                     stream.close();
                 } else {
                     let txt = JSON.parse(e.data).choices[0].delta.content;
@@ -338,6 +338,15 @@ closeBtnBuy.forEach((item)=>{
 
 let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen'),
 folderInputBtn = document.querySelectorAll('div.folderBtn .buttonOpen input');
+
+// Открытие папок с target
+$('div.folderBtn .buttonOpen').each(function() {
+    $(this).click(function(evt) {
+        if (evt.currentTarget === evt.target) {
+            this.parentElement.classList.toggle('opened');
+        }
+    })
+})
 
 for(let i = 0; i < foldersBtn.length;i++){
     foldersBtn[i].onclick = () =>{
@@ -707,7 +716,6 @@ for(let i = 0; editProfile.length > i; i++){
         }
     }
 }
-
 
 //Кнопка "Выбрать" в попапе библиотеки подсказок
 

@@ -116,7 +116,7 @@
                 @endempty
             </div>
             <div class="add_prompt">
-                @if($prompts_id > 6)
+                @if(!$prompts_main)
                     @include('components.add_formPrompt')
                 @endif
             </div>
