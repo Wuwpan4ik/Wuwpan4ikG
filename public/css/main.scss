@@ -12,6 +12,10 @@ html {
     box-sizing: border-box;
 }
 
+.display-none {
+    display: none;
+}
+
 *,
 *:before,
 *:after {
@@ -563,7 +567,7 @@ section.library-mob{
                     padding:0.521vw;
                     font-size:0.781vw;
                     font-weight: 400;
-
+                    display: flex;
                 }
             }
         }
@@ -1459,7 +1463,7 @@ button.promptBtn{
 #profile-popup{
     z-index: 9999;
     padding-top: 0px;
-    .popupContent{  
+    .popupContent{
         background:none;
         display: flex;
         align-items: center;
@@ -1493,7 +1497,7 @@ button.promptBtn{
             .change-photo{
                 background: rgba(255, 255, 255, 0.2);
                 border-radius: 0.521vw;
-                height: 38px;
+                height: 1.979vw;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1521,6 +1525,7 @@ button.promptBtn{
                     border-radius: 0.521vw;
                     display: flex;
                     align-items: center;
+                    font-size: 0.625vw;
                     justify-content: center;
                     width: 100%;
                     color:white;
@@ -1699,7 +1704,7 @@ button.promptBtn{
                 .slick-next{
                     right:-1.502vw !important;
                 }
-                
+
                 .slick-prev{
                     left:-1.502vw !important;
                 }
@@ -1758,20 +1763,21 @@ button.promptBtn{
                     padding-top: 3.125vw;
                 }
             }
-            .closeBtnBuy{
-                position: absolute;
-                top: 2.083vw;
-                right: -1.927vw;
-                z-index: 0;
-                button{
-                    background: rgba(255, 255, 255, 0.1);
-                    border-radius: 0px 0.521vw 0.521vw 0px;
-                    border:none;
-                    width: 1.979vw;
-                    height: 1.979vw;
-                }
-            }
         }
+    }
+}
+
+.closeBtnBuy{
+    position: absolute;
+    top: 2.083vw;
+    right: -1.927vw;
+    z-index: 0;
+    button{
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 0px 0.521vw 0.521vw 0px;
+        border:none;
+        width: 1.979vw;
+        height: 1.979vw;
     }
 }
 
@@ -1933,8 +1939,14 @@ button.promptBtn{
                     margin-bottom: 0.833vw;
                 }
                 .payRange{
+                    position: relative;
+                    margin-bottom: 1.042vw;
                     img{
                         width: 100%;
+                        position: absolute;
+                        left: 0px;
+                        z-index: 2;
+                        bottom: -0.26vw;
                     }
                 }
             }
@@ -1954,6 +1966,7 @@ input[type=range].styled-slider {
     --range: calc(var(--max) - var(--min));
     --ratio: calc((var(--value) - var(--min)) / var(--range));
     --sx: calc(0.5 * 16px + var(--ratio) * (100% - 16px));
+    background: #13B8A6;
   }
 
   input[type=range].styled-slider:focus {
@@ -1968,7 +1981,7 @@ input[type=range].styled-slider {
     border-radius: 50%;
     background: #13B8A6;
     border: 0.208vw solid #FFFFFF;
-    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 0.104vw black;
     margin-top: calc(max((1em - 0.052vw - 0.052vw) * 0.5,0px) - max(16px * 0.5,4px));
   }
 
@@ -2027,7 +2040,11 @@ input[type=range].styled-slider {
     background: transparent;
     border-color: transparent;
   }
-
+  input[type=range].styled-slider::-moz-range-progress {
+    background: #13B8A6;
+    height: 0.625vw;
+    border-radius: 0.521vw;
+  }
   input[type=range].styled-slider::-ms-fill-lower {
     background: transparent;
     border-color: transparent;
@@ -2039,7 +2056,7 @@ input[type=range].styled-slider {
     border-radius: 50%;
     background: #13B8A6;
     border: 0.208vw solid #FFFFFF;
-    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 0.104vw black;
     margin-top: 0;
     box-sizing: border-box;
   }
@@ -2270,7 +2287,7 @@ input[type=range].styled-slider {
     }
     &.active{
         opacity: 1;
-    }   
+    }
     &:hover{
         opacity: 1;
     }
@@ -2378,7 +2395,7 @@ input[type=range].styled-slider {
         font-weight: 600;
         font-size: 0.625vw;
         color: #525459;
-        
+
     }
 }
 
@@ -2434,7 +2451,7 @@ pre{
             background-size: cover;
             width:1.5vw;
             height:1.5vw;
-        }   
+        }
     }
     p{
         font-size:0.7vw;
@@ -2489,7 +2506,7 @@ table{
         width: 22px;
         height: 22px;
     }
-    
+
     body{
         overflow: hidden !important;
     }
@@ -2514,7 +2531,37 @@ table{
         height: 100%;
         margin-top:0px;
         .folderBtn {
-           .buttonOpen{height: 50px;font-size: 15px;border-radius: 10px;padding:16px 20px;margin-bottom: 15px;}
+           .buttonOpen{
+                height: 50px;font-size: 15px;border-radius: 10px;padding:16px 20px;margin-bottom: 15px;
+                .firstRow{
+                    gap:10px;
+                    width: 100%;
+                }
+                input{
+                    height: 35px;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    padding:8px 6px;
+                    width: 100%;
+                }
+                .hoverItems{
+                    gap:10px;
+                    .hoverItems-folder{
+                        gap:10px;
+                        button{
+                            width: 22px;
+                            height: 22px;
+                            svg{
+                                width: unset !important;
+                                height: unset !important;
+                            }
+                        }
+                    }
+                    .confirmRename, .deleteFolderConfirm, .renameFolderConfirm{
+                        gap:10px;
+                    }
+                }
+           }
             button.add-chat{
                 height: 50px;
                 font-size: 15px;padding:16px 20px;margin-bottom: 15px;border-radius: 10px;gap:10px;
@@ -2564,6 +2611,7 @@ table{
                 height: 35px;border-radius: 10px;
                 padding:8px 6px;
                 width: 100%;
+                font-size: 15px;
             }
         }
     }
@@ -2579,6 +2627,7 @@ table{
         font-size: 12px;
         max-width: 100%;
         padding:0px 40px;
+        line-height: 125%;
     }
     //Message input
     .messageInput{
@@ -2874,6 +2923,7 @@ table{
                     .finalPrice{
                         font-size: 60px;
                     }
+                    
                     .howMuch{
                         flex-direction: column;
                         .howMuch-step{

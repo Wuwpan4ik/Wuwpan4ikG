@@ -112,9 +112,6 @@ class ChatController extends Controller
         $chat->update([
             "title" => "{$data['title']}"
         ]);
-        Debugbar::log($chat);
-
-        return redirect()->route('chats.show', $chat->id);
     }
 
     public function updateRole(UpdateRoleRequest $request, Chat $chat)

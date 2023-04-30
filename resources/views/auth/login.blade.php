@@ -63,6 +63,9 @@
                         -->
                         <!-- Рега-->
                         {{__("noAccount")}} <a href='{{ route("register") }}'>{{__("registerBtn")}}</a>
+                        <div class="forgot" style="margin-top:10px;">
+                             <a href='forgot-password'>{{__('forgotPass')}}</a>
+                        </div>
                     @endif
                 </div>
             </div>

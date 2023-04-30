@@ -68,6 +68,9 @@
                 </a>
                 -->
                 {{__("haveAccount")}} <a href='{{ route("login") }}'>{{__("logBtn")}}</a>
+                <div class="forgot" style="margin-top:10px;">
+                    <a href='forgot-password'>{{__('forgotPass')}}</a>
+                </div>
             </div>
     </form>
 </x-guest-layout>
