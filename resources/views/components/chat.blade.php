@@ -35,7 +35,7 @@
     </button>
     <!--Подтверждение удаления чата-->
     <div class="confirmDelete nonActive">
-        <form class="deleteChatForm" action="@empty($chat) {{ route('prompts_folder.destroy', $main->id) }} @else{{ route('chats.destroy', $main->id) }} @endempty" method="POST">
+        <form class="deleteChatForm" action="@empty($chat){{ route('prompts_folder.destroy', $main->id) }}@else{{ route('chats.destroy', $main->id) }}@endempty" method="POST">
             @csrf
             @method('DELETE')
             <button type="button" class="deleteChatYes buttonTool" onclick="delChat(this.parentElement)">

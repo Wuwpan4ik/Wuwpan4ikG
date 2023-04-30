@@ -381,13 +381,13 @@
     {{-- Код для удаления чата --}}
     <script>
         function delChat(item) {
-            fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": $(item).find('input[name="_token"]').val()}, method: "DELETE"})
             item.parentElement.parentElement.parentElement.remove()
             if (document.querySelector('.tablink')) {
                 document.querySelector('.tablink').click()
             } else {
                 window.location.replace('/')
             }
+            fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": $(item).find('input[name="_token"]').val()}, method: "DELETE"})
         }
     </script>
 
@@ -396,7 +396,12 @@
         function delFolder(item) {
             item.addEventListener('submit', function(e) {
                 e.preventDefault()
-                this.parentElement.parentElement.parentElement.parentElement.remove()
+                this.parentElement.parentElement.parentElement.parentElement.parentElement.remove()
+                if (document.querySelector('.tablink')) {
+                    document.querySelector('.tablink').click()
+                } else {
+                    window.location.replace('/')
+                }
                 fetch(this.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": $(this).find('input[name="_token"]').val()}, method: "DELETE"})
             })
         }

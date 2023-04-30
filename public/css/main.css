@@ -2402,8 +2402,8 @@ button.add-chat:hover {
 }
 
 pre {
-  color: var(--tw-prose-pre-code);
-  background-color: var(--tw-prose-pre-bg);
+  color: white;
+  background-color: black;
   overflow-x: auto;
   font-weight: 400;
   font-size: 0.875em;
@@ -2411,6 +2411,7 @@ pre {
   border-radius: 0.375rem;
   padding: 0;
   margin: 0;
+  padding: 0.26vw;
 }
 
 .loaderResponse {

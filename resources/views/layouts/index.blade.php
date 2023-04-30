@@ -282,7 +282,7 @@
         </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 <script src="{{asset('js/script.js')}}"></script>
 @yield('script')
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
