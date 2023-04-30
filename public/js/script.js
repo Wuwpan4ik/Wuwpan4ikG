@@ -384,6 +384,12 @@ deleteChatNo = document.querySelectorAll('.tablink button.deleteChatNo');
 
 function deleteChat(item){
     if(item.parentElement.parentElement.querySelector('.renameChat').classList.contains('nonActive')){
+        document.querySelectorAll('.addChatIcon .confirmRename').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameChatInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.addChatIcon p.chat__name').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.deleteChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.renameChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.addChatIcon .hoverItems').forEach(item=>item.classList.remove('active'));
         item.parentElement.parentElement.querySelector('.renameChat').classList.remove('nonActive');
         item.parentElement.parentElement.querySelector('.confirmDelete').classList.add('nonActive');
         item.parentElement.parentElement.querySelector('.hoverItems').classList.remove('active');
