@@ -58,12 +58,12 @@ class ChatController extends Controller
     public function storeInFolder(StoreInFolderRequest $request)
     {
         $data = $request->validated();
-        Chat::create([
+        $chat = Chat::create([
             'user_id' => Auth::id(),
             'folder_id' => $data['folder_id']
         ]);
 
-        return redirect('/');
+        return redirect()->route('chats.show', $chat->id);
     }
 
     /**

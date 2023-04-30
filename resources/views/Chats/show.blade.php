@@ -21,7 +21,12 @@
             <div class="messageInput">
                 <!--Токены, которые пользователь слил в определенном чате-->
                 <div class="tokens_chat">
-                    @include('components.tokens_in_chat')
+                    <button id="openPrompts">
+                        {{__("openPrompts")}}
+                    </button>
+                    <div class="tokensSpent">
+                        @include('components.tokens_in_chat')
+                    </div>
                 </div>
                 <form class="msger-inputarea">
                     @csrf
@@ -394,20 +399,28 @@
         });
     </script>
     <script>
+        function hideButtonScroll(elem) {
+            if($(elem).scrollTop() + 1000 > elem.scrollHeight) {
+                $('#scrollBottomBtn').hide();
+            } else {
+                $('#scrollBottomBtn').show();
+            }
+        }
         document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector('.msger-chat').addEventListener('scroll', function () {
-                if($(this).scrollTop() + 1000 > document.querySelector('.msger-chat').scrollHeight) {
-                    $('#scrollBottomBtn').hide();
-                } else {
-                    $('#scrollBottomBtn').show();
-                }
-            })
-            $('#scrollBottomBtn').click(function(){
-                $(".msger-chat").animate({
-                    scrollTop: $('.msger-chat')[0].scrollHeight
-                }, 800);
-                return false;
-            });
+            if (document.querySelector('.msger-chat').clientHeight < document.querySelector('.msger-chat').scrollHeight) {
+                hideButtonScroll(document.querySelector('.msger-chat'))
+                document.querySelector('.msger-chat').addEventListener('scroll', function () {
+                    hideButtonScroll(this)
+                })
+                $('#scrollBottomBtn').click(function(){
+                    $(".msger-chat").animate({
+                        scrollTop: $('.msger-chat')[0].scrollHeight
+                    }, 800);
+                    return false;
+                });
+            } else {
+                $('#scrollBottomBtn').hide();
+            }
         })
 
     </script>
@@ -434,7 +447,7 @@
             $(".msger-chat").scrollTop($(".msger-chat")[0].scrollHeight);
 
             $('.sidebarMain.right').load(`/chat/role/${id}`)
-            $('.tokens_chat').load(`/messages-cost/get/${id}`);
+            $('.tokensSpent').load(`/messages-cost/get/${id}`);
         }
     </script>
 @endsection

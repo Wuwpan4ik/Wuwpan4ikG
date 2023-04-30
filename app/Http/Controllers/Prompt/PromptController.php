@@ -28,8 +28,8 @@ class PromptController extends Controller
         $main_prompts = PromptFolder::where('is_main', 1)->get();
         $prompts_folder = PromptFolder::where('user_id', Auth::id())->get();
         $prompts = Prompt::where('folder_id', (int)$PromptFolder)->get();
-        $prompts_id = (int)$PromptFolder;
-        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_id'));
+        $prompts_main = $folder->is_main;
+        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_main'));
     }
 
     public function showMain($PromptFolder, $library)
@@ -53,9 +53,6 @@ class PromptController extends Controller
             'user_id' => Auth::id(),
             'folder_id' => $request->folder_id
         ]);
-
-
-
     }
 
     public function update(UpdateRequest $request, PromptFolder $promptFolder)
