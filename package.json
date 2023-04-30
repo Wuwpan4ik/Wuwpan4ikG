@@ -15,6 +15,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "dns": "^0.1.2"
+        "dns": "^0.1.2",
+        "highlight.js": "^11.8.0",
+        "markdown-it": "^13.0.1",
+        "showdown": "^2.1.0"
     }
 }

@@ -15,9 +15,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton('parsedown', function () {
-            return new \Parsedown();
-        });
     }
 
     /**
@@ -25,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share("ai_versions", AIModel::all());
+        if (AIModel::take(1)->get()) {
+            View::share("ai_versions", AIModel::all());
+        }
     }
 }

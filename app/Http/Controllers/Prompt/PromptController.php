@@ -29,7 +29,8 @@ class PromptController extends Controller
         $prompts_folder = PromptFolder::where('user_id', Auth::id())->get();
         $prompts = Prompt::where('folder_id', (int)$PromptFolder)->get();
         $prompts_main = $folder->is_main;
-        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_main'));
+        $prompts_id = (int)$PromptFolder;
+        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_main', 'prompts_id'));
     }
 
     public function showMain($PromptFolder, $library)
