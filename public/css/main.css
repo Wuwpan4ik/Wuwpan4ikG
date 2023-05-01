@@ -260,6 +260,7 @@ body {
   width: 1.979vw;
   height: 1.979vw;
   padding: 0.521vw;
+  display: none !important;
 }
 #about-user img {
   padding: 0.261vw;
