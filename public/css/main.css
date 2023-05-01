@@ -2220,7 +2220,8 @@ button.add-chat:hover {
   overflow: hidden !important;
 }
 .tablinks-container.sobsRazdeli {
-  margin-top: 30px;
+  display: none !important;
+  margin-top: 1.563vw;
   border-top: 0.052vw solid #2A2F39;
   max-height: 100%;
 }
