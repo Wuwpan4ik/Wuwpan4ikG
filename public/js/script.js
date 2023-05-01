@@ -224,7 +224,7 @@ function sendMsg(msg) {
                 }
             };
             stream.onerror = function (e) {
-                console.log(e);
+                msgerSendBtn.disabled = false
                 div.innerText = 'Произошла обишка!'
                 stream.close();
             }
@@ -305,32 +305,6 @@ function countTokens(){
 document.querySelector('input#priceStealer').oninput = countTokens;
 
 //Папки - открытие и закрытие
-let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen'),
-folderInputBtn = document.querySelectorAll('div.folderBtn .buttonOpen input');
-
-function openFoldersFunc(item){
-    $(item).click(function(evt) {
-        if (evt.currentTarget === evt.target) {
-            this.parentElement.classList.toggle('opened');
-        }
-    })
-}
-
-for(let i = 0; i < foldersBtn.length;i++){
-    foldersBtn[i].onclick = () =>{
-        if(foldersBtn[i].parentElement.classList.contains('opened')){
-            foldersBtn[i].parentElement.classList.remove('opened');
-        }else{
-            foldersBtn.forEach((item)=>{
-                item.parentElement.classList.remove('opened');
-            })
-            foldersBtn[i].parentElement.classList.add('opened');
-        }
-    }
-    folderInputBtn[i].onclick = () =>{
-        return false;
-    }
-}
 // Открытие папок с target
 function openFolder() {
     $('div.folderBtn .buttonOpen').each(function() {
@@ -692,7 +666,7 @@ document.getElementById('chat-with-base').onclick = () =>{
     closePopContainer('popup-develop', '#popup-develop .popupContent');
 }
 //Функция скролла вниз
-
+$("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
 $('#scrollBottomBtn').onclick = () =>{
     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
 }

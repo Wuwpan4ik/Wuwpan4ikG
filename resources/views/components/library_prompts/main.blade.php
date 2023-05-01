@@ -12,7 +12,7 @@
 <div class="library-items-container">
     @foreach($prompts as $prompt)
         <div class="library-item">
-            <span>Добавьте овсяные хлопья в тесто для панкейков, чтобы сделать его более питательным.</span>
+            <span>{{ $prompt->description }}</span>
             <div class="hoverItems">
                 <button class="copyRole">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
