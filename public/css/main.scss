@@ -128,9 +128,18 @@
     }
   }
 
-  //Main Wrapper
+p.folderName, p.chat__name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: horizontal;
+    max-width: 10vw;
+}
 
-  .mainWrapper{
+//Main Wrapper
+
+.mainWrapper{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1105,6 +1114,9 @@ section.library-mob{
     }
     *.nonActive{
         display:none;
+    }
+    p.chat__name{
+
     }
 }
 

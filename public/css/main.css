@@ -123,6 +123,15 @@
   color: white !important;
 }
 
+p.folderName, p.chat__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: horizontal;
+  max-width: 10vw;
+}
+
 .mainWrapper {
   display: flex;
   justify-content: center;
@@ -992,7 +1001,6 @@ section.library-mob {
 .addChatIcon *.nonActive {
   display: none;
 }
-
 .mainWrapper {
   position: fixed;
   padding: 0px 22.396vw;
