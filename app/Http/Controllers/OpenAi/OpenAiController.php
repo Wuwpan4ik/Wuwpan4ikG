@@ -93,7 +93,7 @@ class OpenAiController extends Controller
                 if ($obj = json_decode($data) and $obj->error->message != "") {
                     error_log(json_encode($obj->error->message));
                 } else {
-                    echo $data;
+                    echo $data . PHP_EOL;
                     $clean = str_replace("data: ", "", $data);
                     $arr = json_decode($clean, true);
                     if ($data != "data: [DONE]\n\n" and isset($arr["choices"][0]["delta"]["content"])) {
@@ -115,6 +115,7 @@ class OpenAiController extends Controller
         }, 200, [
             'Cache-Control' => 'no-cache',
             'Content-Type' => 'text/event-stream',
+            'Access-Control-Allow-Origin: *'
         ]);
 
     }
