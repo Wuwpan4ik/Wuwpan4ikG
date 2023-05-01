@@ -81,6 +81,7 @@ class PromptController extends Controller
 
     public function destroyFolder(PromptFolder $promptFolder)
     {
+        Debugbar::log($promptFolder);
         $promptFolder->delete();
     }
 }
