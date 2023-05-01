@@ -2464,13 +2464,86 @@ input[type=range].styled-slider {
     flex-wrap: wrap;
     gap:1.042vw;
 }
+//Highlihght js
 
+.hljs-comment {
+    color:#ffffff80
+   }
+.hljs-meta {
+color:#fff9
+}
+.hljs-built_in,
+.hljs-class .hljs-title {
+color:#e9950c
+}
+.hljs-doctag,
+.hljs-formula,
+.hljs-keyword,
+.hljs-literal {
+color:#2e95d3
+}
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string,
+.hljs-regexp,
+.hljs-string {
+color:#00a67d
+}
+.hljs-attr,
+.hljs-number,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-pseudo,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable {
+color:#df3079
+}
+.hljs-bullet,
+.hljs-link,
+.hljs-selector-id,
+.hljs-symbol,
+.hljs-title {
+color:#f22c3d
+}
+pre code.hljs{
+color:white;
+font-family: inherit !important;
+overflow-x: auto;
+padding: 1em;
+display: block;
+}
+
+.msg-text{
+    p{
+        code{
+            font-weight: 700;
+            &::before{
+                content:'`';
+            }
+            &::after{
+                content:"`";
+            }
+        }
+    }
+}
+
+.hljs{
+    background:black
+}
+
+section.library{
+    .library-item{
+        width: 16vw;
+    }
+}
 
 .library-item{
     background: #191F29;border: 1px solid #374151;
     border-radius: 0.417vw;
     padding:1.042vw;
-    width: 16.319vw;
+    width: 14.9vw;
+    text-align: start;
     height:auto;
     position: relative;
     color: #757D8A;

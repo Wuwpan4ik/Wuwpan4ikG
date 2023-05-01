@@ -8,10 +8,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"
+    />
 </head>
 
 <body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
 @include('components.header')
+<div class="hiddenContent" id="userNameProf" style="position:absolute;opacity:0;pointer-events:none;z-index:-9999">
+    {{ Auth::user()->name }}
+</div>
 <div class="sidebarMain left">
     <!--Новый чат и новая папка-->
     <div class="first-col">
@@ -191,6 +198,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 <script src="{{asset('js/script.js')}}"></script>
 @yield('script')
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>

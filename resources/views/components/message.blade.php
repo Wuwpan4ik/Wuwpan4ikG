@@ -4,7 +4,7 @@
             <div class="msg-header">
                 <div class="firstRow">
                     <div class="msg-img @if($message->is_bot) bot_img @else user_img @endif"></div>
-                    <div class="msg-info-name">@if($message->is_bot) MetaGPT @else User @endif</div>
+                    <div class="msg-info-name">@if($message->is_bot) MetaGPT @else {{ Auth::user()->name }} @endif</div>
                     <div class="msg-info-time">{{ $message->created_at->format('H:i') }}</div>
                 </div>
                 <div class="secondRow">

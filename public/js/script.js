@@ -17,12 +17,14 @@ const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
 
 
+let userName = document.getElementById('userNameProf');
+
 // Icons made by Freepik from www.flaticon.com
 const PERSON_IMG = "../assets/user.jpg";
 const BOT_IMG = "../assets/botlogo.jpg";
 const BOT_NAME = "Meta GPT";
 //Сюда вставляем имя пользователя
-const PERSON_NAME = "User";
+const PERSON_NAME = userName.innerText;
 
 async function sendMessage(event){
     event.preventDefault();
@@ -187,6 +189,7 @@ function sendMsg(msg) {
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
             const stream = new EventSource(`/event-stream/${data}?message=${msg}`);
             const div = document.getElementById(uuid);
+            var converter = new showdown.Converter();
             var isPaused = false;
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
@@ -195,10 +198,11 @@ function sendMsg(msg) {
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
 
                     // Вот сюда совать
-                    var converter = new showdown.Converter(),
                     txt = div.innerText;
                     div.innerHTML = converter.makeHtml(txt);
-
+                    document.querySelectorAll('.msg-text pre code').forEach((el) => {
+                        hljs.highlightElement(el);
+                    });
                     params = {
                         'id': document.querySelector('#chat_id').value,
                         'txt': document.getElementById(uuid).innerHTML
@@ -305,14 +309,13 @@ document.querySelector('input#priceStealer').oninput = countTokens;
 let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen'),
 folderInputBtn = document.querySelectorAll('div.folderBtn .buttonOpen input');
 
-// Открытие папок с target
-$('div.folderBtn .buttonOpen').each(function() {
-    $(this).click(function(evt) {
+function openFoldersFunc(item){
+    $(item).click(function(evt) {
         if (evt.currentTarget === evt.target) {
             this.parentElement.classList.toggle('opened');
         }
     })
-})
+}
 
 for(let i = 0; i < foldersBtn.length;i++){
     foldersBtn[i].onclick = () =>{
@@ -672,43 +675,6 @@ document.getElementById('chat-with-base').onclick = () =>{
     document.getElementById('popup-develop').classList.add('active');
     closePopContainer('popup-develop', '#popup-develop .popupContent');
 }
-
-//Редактирование профиля
-let editProfile = document.querySelectorAll('.coolInput .hoverItems button.rename-profile'),
-editProfileInput = document.querySelectorAll('.coolInput .input-span input'),
-editProfileP = document.querySelectorAll('.coolInput .input-span p'),
-editProfileConfirm = document.querySelectorAll('.coolInput .hoverItems .rename-confirm'),
-editProfileHoverItems = document.querySelectorAll('.coolInput .hoverItems');
-
-for(let i = 0; editProfile.length > i; i++){
-    editProfile[i].onclick = () =>{
-        editProfile.forEach(item => item.classList.remove('nonActive'));
-        editProfileHoverItems.forEach(item=>item.classList.remove('active'));
-        editProfileConfirm.forEach(item=>item.classList.add('nonActive'));
-        editProfileInput.forEach(item=>item.classList.add('nonActive'));
-        editProfileP.forEach(item=>item.classList.remove('nonActive'));
-        //Скрипт
-        editProfile[i].classList.add('nonActive');
-        editProfileHoverItems[i].classList.add('active');
-        editProfileConfirm[i].classList.remove('nonActive');
-        editProfileInput[i].classList.remove('nonActive');
-        editProfileInput[i].value = String(editProfileP[i].innerText).trim();
-        editProfileP[i].classList.add('nonActive');
-        //да (вешаем обработчики)
-        editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
-
-        }
-        //Нет
-        editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
-            editProfile[i].classList.remove('nonActive');
-            editProfileHoverItems[i].classList.remove('active');
-            editProfileConfirm[i].classList.add('nonActive');
-            editProfileInput[i].classList.add('nonActive');
-            editProfileP[i].classList.remove('nonActive');
-        }
-    }
-}
-
 //Функция скролла вниз
 
 $('#scrollBottomBtn').onclick = () =>{
