@@ -8,10 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"
-    />
 </head>
 
 <body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
