@@ -17,14 +17,14 @@ const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
 
 
-let userName = document.getElementById('userNameProf');
+let userName = 'lol';
 
 // Icons made by Freepik from www.flaticon.com
 const PERSON_IMG = "../assets/user.jpg";
 const BOT_IMG = "../assets/botlogo.jpg";
 const BOT_NAME = "Meta GPT";
 //Сюда вставляем имя пользователя
-const PERSON_NAME = userName.innerText;
+const PERSON_NAME = userName;
 
 async function sendMessage(event){
     event.preventDefault();
@@ -163,8 +163,10 @@ function sendMsg(msg) {
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
             const stream = new EventSource(`/event-stream/${data}?message=${msg}`);
             const div = document.getElementById(uuid);
-            var converter = new showdown.Converter();
+            var converter = window.markdownit();
             var isPaused = false;
+            var loader = document.getElementById('loaderResponse');
+            console.log(loader.innerHTML);
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
                     msgerSendBtn.disabled = false
@@ -173,7 +175,7 @@ function sendMsg(msg) {
 
                     // Вот сюда совать
                     txt = div.innerText;
-                    div.innerHTML = converter.makeHtml(txt);
+                    div.innerHTML = converter.render(txt);
                     document.querySelectorAll('.msg-text pre code').forEach((el) => {
                         hljs.highlightElement(el);
                     });
@@ -184,6 +186,7 @@ function sendMsg(msg) {
                     fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     isPaused = true;
                     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                    document.querySelector('div.loaderResponse').classList.remove('showed');
                     stream.close();
                 } else {
                     let txt = JSON.parse(e.data).choices[0].delta.content;
@@ -611,12 +614,6 @@ function closePopContainer(popid, containerid){
             }
         }
     });
-}
-
-//Открытие попапа библиотеки подсказок
-document.getElementById('openPrompts').onclick = () =>{
-    document.getElementById('popup-library').classList.add('active');
-    closePopContainer('popup-library', '#popup-library .popupContent');
 }
 
 //Открытие попапа профиля

@@ -6,7 +6,7 @@
             </a>
         </li>
     @endforeach
-    <li>
+    <li class="chat-with-base">
         <a id="chat-with-base">
             Чат с базой данных
             <div class="soon-plate">

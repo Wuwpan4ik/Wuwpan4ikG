@@ -1797,6 +1797,15 @@ button.promptBtn{
                 color: #A2A2A3;line-height: 2.031vw;
                 padding-bottom: 2.083vw;
             }
+            .library-item{
+                button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:0.521vw;
+                    color:white;
+                }
+            }
             .prompts-in-category{
                 margin-top: 1.563vw;
                 display: flex;
@@ -2653,6 +2662,7 @@ pre{
     bottom:1.042vw;
     right:1.042vw;
     display:flex;
+    transform: translateX(150%);
     border-radius: 0.521vw;
     background: #0F131B;
     padding:1.042vw;
@@ -2660,6 +2670,9 @@ pre{
     justify-content: space-between;
     width:20.625vw;
     align-items: center;
+    &.showed{
+        transform: translateX(0deg);
+    }
     .firstRow{
         display: flex;
         align-items: center;

@@ -136,6 +136,8 @@
     </div>
     @include('components.popups.popup-settings')
     @include('components.popups.popup-pay')
+    @include('components.popups.popup-about')
+    @include('components.popups.popup-develop')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
@@ -155,6 +157,24 @@
 
             $('body').toggleClass('dark light');
         });
+    </script>
+    <script>
+        //Закрытие попапов
+        let closeBtnBuy =  document.querySelectorAll('.closeBtnBuy button');
+
+        closeBtnBuy.forEach((item)=>{
+            let popups = document.querySelectorAll('.popup');
+            item.onclick = () =>{
+                popups.forEach(
+                    (item)=>{
+                        item.classList.remove('active');
+                        if(item.id == "pay-popup"){
+                            document.getElementById('tokensLeft').classList.remove('active');
+                        }
+                    }
+                );
+            }
+        })
     </script>
     <script>
         this.pay = function () {
