@@ -1,6 +1,6 @@
 @foreach($folders as $folder)
     <div class="folderBtn @empty($folder->children->firstWhere('id', $chat->id)->id) @else opened @endempty">
-        <div class="buttonOpen" onclick="openFoldersFunc(this)">
+        <div class="buttonOpen">
             <div class="firstRow">
                 <svg class="svgPath" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_47_509)">

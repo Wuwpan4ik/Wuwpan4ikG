@@ -260,6 +260,7 @@ body {
   width: 1.979vw;
   height: 1.979vw;
   padding: 0.521vw;
+  display: none !important;
 }
 #about-user img {
   padding: 0.261vw;
@@ -1666,6 +1667,13 @@ button.promptBtn .promptText {
   line-height: 2.031vw;
   padding-bottom: 2.083vw;
 }
+#popup-library .popupContent .popup-inner .library-item button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.521vw;
+  color: white;
+}
 #popup-library .popupContent .popup-inner .prompts-in-category {
   margin-top: 1.563vw;
   display: flex;
@@ -2219,7 +2227,8 @@ button.add-chat:hover {
   overflow: hidden !important;
 }
 .tablinks-container.sobsRazdeli {
-  margin-top: 30px;
+  display: none !important;
+  margin-top: 1.563vw;
   border-top: 0.052vw solid #2A2F39;
   max-height: 100%;
 }
@@ -2502,6 +2511,7 @@ pre {
   bottom: 1.042vw;
   right: 1.042vw;
   display: flex;
+  transform: translateX(150%);
   border-radius: 0.521vw;
   background: #0F131B;
   padding: 1.042vw;
@@ -2509,6 +2519,9 @@ pre {
   justify-content: space-between;
   width: 20.625vw;
   align-items: center;
+}
+.loaderResponse.showed {
+  transform: translateX(0deg);
 }
 .loaderResponse .firstRow {
   display: flex;
