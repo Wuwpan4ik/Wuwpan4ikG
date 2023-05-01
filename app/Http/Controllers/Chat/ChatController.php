@@ -70,7 +70,7 @@ class ChatController extends Controller
     public function show(Chat $chat)
     {
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get()->sortBy("id");
-        $folders = Folder::with('children')->get();
+        $folders = (new Folder())->getFolders();
         $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
         $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();
         return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category'));
