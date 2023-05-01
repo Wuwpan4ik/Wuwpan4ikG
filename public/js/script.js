@@ -221,6 +221,8 @@ function sendMsg(msg) {
             };
             stream.onerror = function (e) {
                 console.log(e);
+                div.innerText = 'Произошла обишка!'
+                stream.close();
             }
         })
         .catch(error => console.error(error));
@@ -392,8 +394,7 @@ for(let i =0; i < renameChats.length;i++){
 
 //Удаление чата
 
-let deleteChatBtns = document.querySelectorAll('.tablink button.deleteChat'),
-deleteChatNo = document.querySelectorAll('.tablink button.deleteChatNo');
+
 
 function deleteChat(item){
     if(item.parentElement.parentElement.querySelector('.renameChat').classList.contains('nonActive')){
@@ -414,15 +415,19 @@ function deleteChat(item){
         item.classList.add('nonActive');
     }
 }
-
-for(let i = 0; i < deleteChatBtns.length;i++){
-    deleteChatBtns[i].onclick = () =>{
-        deleteChat(deleteChatBtns[i]);
-    }
-    deleteChatNo[i].onclick = () =>{
-        deleteChat(deleteChatBtns[i]);
+function initDelete() {
+    let deleteChatBtns = document.querySelectorAll('.tablink button.deleteChat'),
+        deleteChatNo = document.querySelectorAll('.tablink button.deleteChatNo');
+    for(let i = 0; i < deleteChatBtns.length;i++){
+        deleteChatBtns[i].onclick = () =>{
+            deleteChat(deleteChatBtns[i]);
+        }
+        deleteChatNo[i].onclick = () =>{
+            deleteChat(deleteChatBtns[i]);
+        }
     }
 }
+initDelete()
 
 
 //Копирование подсказок

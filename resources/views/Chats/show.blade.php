@@ -211,7 +211,7 @@
                                     </div>
                                     <div class="input-span">
                                         <p>
-                                            Ваше имя
+                                            Ваше имя{{ Auth::user()->name }}
                                         </p>
                                         <input type="text" class="nonActive" name="user-name">
                                     </div>
@@ -240,7 +240,7 @@
                                     </div>
                                     <div class="input-span">
                                         <p>
-                                            saquiter@inbox.ru
+                                            {{ Auth::user()->email }}
                                         </p>
                                         <input type="text" class="nonActive" name="user-name">
                                     </div>
@@ -351,6 +351,16 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{--Код для добавления чата--}}
+    <script>
+        function add_new_chat(form) {
+            let key = form.querySelector('input[name=_token]').value;
+            fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: {}})
+            $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
+            initDelete();
+        }
+    </script>
+
     {{-- Код для смены названия чата --}}
     <script>
     document.querySelectorAll('.chat__update-form').forEach(item => {

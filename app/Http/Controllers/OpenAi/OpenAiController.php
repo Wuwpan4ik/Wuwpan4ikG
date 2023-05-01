@@ -44,7 +44,8 @@ class OpenAiController extends Controller
             } else {
                 $history[] = ["role" => 'user', "content" => $mess->message];
             }
-
+            Debugbar::log($mess->message);
+            Debugbar::log(count($this->gpt_encode($mess->message)));
         }
 
         Debugbar::log($history);
@@ -68,8 +69,8 @@ class OpenAiController extends Controller
         $total_tokens = min(Auth::user()->tokens, $total_tokens);
 
         if (Auth::user()->tokens <= 0) {
-        return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
-    }
+            return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
+        }
 
         global $opts;
 
@@ -83,6 +84,7 @@ class OpenAiController extends Controller
             'presence_penalty' => $presence_penalty,
             'stream' => true,
         ];
+        Debugbar::log($opts);
         $open_ai = new OpenAi(env('open_ai_key'));
 
         return response()->stream(function () use ($open_ai, $opts, $chat, $prompt_tokens, $id) {
@@ -91,7 +93,7 @@ class OpenAiController extends Controller
                 if ($obj = json_decode($data) and $obj->error->message != "") {
                     error_log(json_encode($obj->error->message));
                 } else {
-                    echo $data;
+                    echo $data . PHP_EOL;
                     $clean = str_replace("data: ", "", $data);
                     $arr = json_decode($clean, true);
                     if ($data != "data: [DONE]\n\n" and isset($arr["choices"][0]["delta"]["content"])) {
@@ -113,6 +115,7 @@ class OpenAiController extends Controller
         }, 200, [
             'Cache-Control' => 'no-cache',
             'Content-Type' => 'text/event-stream',
+            'Access-Control-Allow-Origin: *'
         ]);
 
     }

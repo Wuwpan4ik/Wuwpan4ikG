@@ -14,7 +14,6 @@ class PromptFolder extends Model
         'title',
         'user_id',
         'is_main',
-        'title'
     ];
 
     protected $guarded = false;

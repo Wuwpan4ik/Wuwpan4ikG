@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,9 +36,11 @@ class MainController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function showSidebar(Chat $chat)
     {
-        //
+        $folders = (new Folder())->getFolders();
+        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get()->sortBy("id");
+        return view('components.sidebar_index', compact('folders', 'chats', 'chat'));
     }
 
     /**

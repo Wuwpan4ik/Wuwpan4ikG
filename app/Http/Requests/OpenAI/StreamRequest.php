@@ -22,7 +22,7 @@ class StreamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'message' => 'string|max:512|required',
+            'message' => 'string|max:5120|required',
         ];
     }
 }

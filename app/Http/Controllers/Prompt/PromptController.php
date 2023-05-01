@@ -47,6 +47,12 @@ class PromptController extends Controller
         return view('components.add_formPrompt', compact('prompts_id'));
     }
 
+    public function showSideBar()
+    {
+        $prompts_folder = PromptFolder::where('user_id', Auth::id())->get();
+        return view('components.sidebar_library', compact('prompts_folder'));
+    }
+
     public function store(StoreRequest $request)
     {
 //        $data = $request->validated();
@@ -58,7 +64,10 @@ class PromptController extends Controller
 
     public function update(UpdateRequest $request, PromptFolder $promptFolder)
     {
-
+        $data = $request->validated();
+        $promptFolder->update([
+            'title' => "{$data['title']}"
+        ]);
     }
 
     public function storeFolder()
@@ -72,9 +81,6 @@ class PromptController extends Controller
 
     public function destroyFolder(PromptFolder $promptFolder)
     {
-        Debugbar::log($promptFolder);
         $promptFolder->delete();
-
-        return redirect()->route('prompts.index');
     }
 }

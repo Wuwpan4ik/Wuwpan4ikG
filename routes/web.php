@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function() {
     Route::patch('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'update'])->name('folder.update');
     Route::post('/folder', [\App\Http\Controllers\Folder\FolderController::class, 'store'])->name('folder.store');
     Route::delete('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'delete'])->name('folder.delete');
+    Route::get('/chat_sidebar/{chat}', [\App\Http\Controllers\MainController::class, 'showSidebar']);
 
     Route::resource('messages', \App\Http\Controllers\Message\MessageController::class);
     Route::get("/messages/get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'Reshow'])->name('messages.get');
@@ -33,10 +34,11 @@ Route::middleware('auth')->group(function() {
     Route::get("/prompts", [\App\Http\Controllers\Prompt\PromptController::class, 'index'])->name('prompts.index');
     Route::get("/prompts/{PromptFolder}", [\App\Http\Controllers\Prompt\PromptController::class, 'show'])->name('prompts.show');
     Route::get("/prompts/{PromptFolder}/main/{library}", [\App\Http\Controllers\Prompt\PromptController::class, 'showMain'])->name('prompts.getMain');
+    Route::get("/prompts_folder/sidebar_content", [\App\Http\Controllers\Prompt\PromptController::class, 'showSideBar']);
+    Route::delete("/prompts_folder/{PromptFolder}", [\App\Http\Controllers\Prompt\PromptController::class, 'destroyFolder'])->name('prompts_folder.destroy');
     Route::post("/prompts", [\App\Http\Controllers\Prompt\PromptController::class, 'store'])->name('prompts.store');
     Route::post("/prompts_folder", [\App\Http\Controllers\Prompt\PromptController::class, 'storeFolder'])->name('prompts_folder.store');
-    Route::post("/prompts_folder/{prompt_folders}", [\App\Http\Controllers\Prompt\PromptController::class, 'update'])->name('prompts_folder.update');
-    Route::delete("/prompts_folder/{prompt_folders}", [\App\Http\Controllers\Prompt\PromptController::class, 'destroyFolder'])->name('prompts_folder.destroy');
+    Route::patch("/prompts_folder/{PromptFolder}", [\App\Http\Controllers\Prompt\PromptController::class, 'update'])->name('prompts_folder.update');
 
     Route::get("/role", [\App\Http\Controllers\Role\RoleController::class, 'index'])->name('role.index');
     Route::post("/payer", [\App\Http\Controllers\Payer\PayerController::class, 'Buy'])->name('payer.buy');
