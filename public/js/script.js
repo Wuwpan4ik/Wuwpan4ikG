@@ -46,35 +46,6 @@ if (msgerForm) {
     })
 }
 
-
-function typeText(element, text) {
-    let index = 0
-    let interval = setInterval(() => {
-        if (index < text.length) {
-            element.innerHTML += text.charAt(index)
-            index++;
-        } else {
-            var md = window.markdownit();
-            var result = md.render(String(text));
-            element.innerHTML = result;
-            copyBtnPre();
-            clearInterval(interval)
-        }
-    }, 20)
-}
-
-
-function renderAllMessages(){
-    document.querySelectorAll('.msger-chat .msg-text').forEach(function(text){
-        var result = md.render(String(text.innerHTML));
-        console.log(result)
-        text.innerHTML = result;
-        copyBtnPre();
-    })
-}
-
-window.addEventListener('DOMContentLoaded', renderAllMessages);
-
 // Copy to clipboard
 
 function copyCommand(target){
@@ -121,8 +92,6 @@ function copyBtnPre(){
 
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
-    var md = window.markdownit();
-    var result = md.render(String(text));
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
@@ -150,7 +119,7 @@ function appendMessage(name, img, side, text, id) {
     </div>
   `;
     msgerChat.insertAdjacentHTML("beforeend", msgHTML);
-    msgerChat.scrollTop += 500;
+    $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
 }
 
 
@@ -218,6 +187,7 @@ function sendMsg(msg) {
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
             const stream = new EventSource(`/event-stream/${data}?message=${msg}`);
             const div = document.getElementById(uuid);
+            var isPaused = false;
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
                     msgerSendBtn.disabled = false
@@ -225,20 +195,27 @@ function sendMsg(msg) {
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
 
                     // Вот сюда совать
-                    var md = window.markdownit();
-                    let txt = div.innerText;
-                    div.innerHTML = md.render(txt);
+                    var converter = new showdown.Converter(),
+                    txt = div.innerText;
+                    div.innerHTML = converter.makeHtml(txt);
 
                     params = {
                         'id': document.querySelector('#chat_id').value,
                         'txt': document.getElementById(uuid).innerHTML
                     }
                     fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
+                    isPaused = true;
+                    $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                     stream.close();
                 } else {
                     let txt = JSON.parse(e.data).choices[0].delta.content;
                     if (txt !== undefined) {
                         div.innerHTML += txt.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                        window.setInterval(function(){          
+                            if(!isPaused){
+                                $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                            }
+                        }, 100);
                     }
                 }
             };
@@ -323,24 +300,6 @@ function countTokens(){
 
 document.querySelector('input#priceStealer').oninput = countTokens;
 
-let closeBtnBuy =  document.querySelectorAll('.closeBtnBuy button');
-
-console.log(closeBtnBuy.length);
-
-closeBtnBuy.forEach((item)=>{
-    let popups = document.querySelectorAll('.popup');
-    item.onclick = () =>{
-        popups.forEach(
-            (item)=>{
-                item.classList.remove('active');
-                if(item.id == "pay-popup"){
-                    document.getElementById('tokensLeft').classList.remove('active');
-                }
-            }
-        );
-    }
-})
-
 //Папки - открытие и закрытие
 
 let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen'),
@@ -391,6 +350,12 @@ function renameChat(item){
         btnDelete.classList.remove('nonActive');
         nameChat.classList.remove('nonActive');
     }else{
+        document.querySelectorAll('.addChatIcon .confirmRename').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameChatInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.addChatIcon p.chat__name').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.deleteChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.renameChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.addChatIcon .hoverItems').forEach(item=>item.classList.remove('active'));
         hoverItems.classList.add('active');
         input.classList.remove('nonActive');
         confirmRename.classList.remove('nonActive');
@@ -433,6 +398,12 @@ for(let i =0; i < renameChats.length;i++){
 
 function deleteChat(item){
     if(item.parentElement.parentElement.querySelector('.renameChat').classList.contains('nonActive')){
+        document.querySelectorAll('.addChatIcon .confirmRename').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameChatInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.addChatIcon p.chat__name').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.deleteChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems button.renameChat').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.addChatIcon .hoverItems').forEach(item=>item.classList.remove('active'));
         item.parentElement.parentElement.querySelector('.renameChat').classList.remove('nonActive');
         item.parentElement.parentElement.querySelector('.confirmDelete').classList.add('nonActive');
         item.parentElement.parentElement.querySelector('.hoverItems').classList.remove('active');
@@ -558,8 +529,8 @@ tokensLeftBtn.forEach((item)=>{
             disableAllPops();
             item.classList.add('active');
             document.querySelector('#pay-popup').classList.add('active');
+            closePopContainer('pay-popup', '#pay-popup .popupContent');
         }
-        closePopContainer('pay-popup', '#pay-popup .popupContent');
     }
 });
 
@@ -588,6 +559,12 @@ for(let i = 0; folderRenameBtns.length > i; i++){
 function renameFolder(item){
     let input = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderInput'),folderText = item.parentElement.parentElement.parentElement.parentElement.querySelector('p'),hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems'),buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),confirmRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('.renameFolderConfirm');
     if(input.classList.contains('nonActive')){
+        document.querySelectorAll('.renameFolderConfirm').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameFolderInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.buttonOpen p.folderName').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #deleteFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #renameFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems.folder').forEach(item=>item.classList.remove('showed'));
         buttonDelete.classList.add('nonActive');
         buttonRename.classList.add('nonActive');
         hoverItems.classList.add('showed');
@@ -611,8 +588,13 @@ function deleteFolder(item){
     buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),
     buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),
     hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems');
-
     if(confirmDelete.classList.contains('nonActive')){
+        document.querySelectorAll('.deleteFolderConfirm').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('form.chat__update-form #renameFolderInput').forEach((item)=>item.classList.add('nonActive'));
+        document.querySelectorAll('.buttonOpen p.folderName').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #deleteFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems-folder #renameFolderBtn').forEach(item=>item.classList.remove('nonActive'));
+        document.querySelectorAll('.hoverItems.folder').forEach(item=>item.classList.remove('showed'));
         buttonDelete.classList.add('nonActive');
         buttonRename.classList.add('nonActive');
         confirmDelete.classList.remove('nonActive');
@@ -727,13 +709,8 @@ for(let i = 0; editProfile.length > i; i++){
     }
 }
 
-//Кнопка "Выбрать" в попапе библиотеки подсказок
+//Функция скролла вниз
 
-let choosePrompts = document.querySelectorAll('button.choosePrompt');
-console.log(choosePrompts.length)
-choosePrompts.forEach((item)=>{
-    item.onclick = () =>{
-        document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('span').innerText).trim();
-        document.getElementById('popup-library').classList.remove('active');
-    }
-})
+$('#scrollBottomBtn').onclick = () =>{
+    $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+}

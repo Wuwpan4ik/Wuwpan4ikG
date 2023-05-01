@@ -8,6 +8,137 @@
     --right-msg-bg: #16171c;
 }
 
+//Form
+
+//Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap');
+
+//Alls
+* {
+    box-sizing: border-box;
+    font-family: "Inter";
+    transition: 0.3s all ease;
+}
+
+* a{
+    text-decoration: none !important;
+}
+
+* button{
+    cursor: pointer;
+}
+/* Styles for the tab content */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    height: 100%;
+}
+
+//Login 
+.loginForm{
+    width:100%;
+    height:100%;
+    position: fixed;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    top:0px;
+    left:0px;
+    background-image:url('../assets/background-dark.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    form{
+        max-width: 360px;
+      img{
+        border-radius: 20px 20px 0px 0px;
+      }
+      .desc-info{
+        font-size: 14px;font-weight: 500;
+        line-height: 125%;padding-top:10px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      display:flex;
+      flex-direction: column;
+      color:white;
+      background: #1D2129;
+      border-radius: 20px;
+      h2.title{
+        font-size: 20px;
+        margin:0px 0px 30px 0px;
+        padding:0px !important;
+        font-weight: 700;
+      }
+      .second-row{
+        padding:40px;
+        width:100%;
+        display:flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+      .input-form{
+        display:flex;
+        flex-direction: column;
+        padding-bottom: 20px;
+        label{
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 125%;
+          padding-bottom: 10px;
+        }
+        input{
+          padding:18px 16px;
+          color: white;
+          background: #272B34;
+          border: 1px solid #374151;
+          border-radius: 10px;
+          &::placeholder{
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+      }
+      .button-submit{
+        button{
+          background: #13B8A6;
+          border-radius: 10px;
+          color:white;
+          width:100%;
+          padding:17px 0px;
+        }
+      }
+      .buttonSubmit{
+        button{
+            width: 100%;
+            background: #13B8A6;
+            border-radius: 10px;
+            height: 54px;
+            border:none;
+            color:white;
+        }
+      }
+      .bottom-row{
+        text-align: center;
+        padding-top: 30px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        font-weight: 400;
+        a{
+          color:white !important;
+        }
+      }
+    }
+  }
+
+  //Main Wrapper
+
+  .mainWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--body-bg);
+    font-family: Helvetica, sans-serif;
+  }
+
 html {
     box-sizing: border-box;
 }
@@ -1957,7 +2088,7 @@ button.promptBtn{
 /*generated with Input range slider CSS style generator (version 20211225)
 https://toughengineer.github.io/demo/slider-styler*/
 input[type=range].styled-slider {
-    height: 16px;
+    height: 0.833vw;
     -webkit-appearance: none;
   }
 
@@ -1965,7 +2096,7 @@ input[type=range].styled-slider {
   input[type=range].styled-slider.slider-progress {
     --range: calc(var(--max) - var(--min));
     --ratio: calc((var(--value) - var(--min)) / var(--range));
-    --sx: calc(0.5 * 16px + var(--ratio) * (100% - 16px));
+    --sx: calc(0.5 * 0.833vw + var(--ratio) * (100% - 0.833vw));
     background: #13B8A6;
   }
 
@@ -1989,7 +2120,6 @@ input[type=range].styled-slider {
     height: 1em;
     border: 0.052vw solid #b2b2b2;
     border-radius: 0.5em;
-    background: #111419;
     box-shadow: none;
   }
 
@@ -2029,6 +2159,7 @@ input[type=range].styled-slider {
 
   input[type=range].styled-slider:active::-moz-range-track {
     border-color: #c1c1c1;
+    
   }
 
   input[type=range].styled-slider.slider-progress::-moz-range-track {
@@ -2415,8 +2546,8 @@ input[type=range].styled-slider {
 //code wrapper
 
 pre{
-    color: var(--tw-prose-pre-code);
-    background-color: var(--tw-prose-pre-bg);
+    color: white;
+    background-color: black;
     overflow-x: auto;
     font-weight: 400;
     font-size: .875em;
@@ -2424,6 +2555,7 @@ pre{
     border-radius: .375rem;
     padding: 0;
     margin: 0;
+    padding:0.26vw;
 }
 
 
