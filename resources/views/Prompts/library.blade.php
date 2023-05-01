@@ -206,7 +206,7 @@
             if (document.querySelector('.tablink')) {
                 document.querySelector('.tablink').click()
             } else {
-                window.location.replace('/')
+                window.location.replace('/prompts/1')
             }
             fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": $(item).find('input[name="_token"]').val()}, method: "DELETE"})
             $('.tablinks-mine-razdeli').load('/prompts_folder/sidebar_content');

@@ -61,14 +61,14 @@
         </div>
         <div class="folderItems">
             @foreach($folder->children as $children)
-                <div onclick="myFunction({{ $children->id }})" class=" @if($children->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
+                <div data-id="{{ $children->id }}" onclick="myFunction({{ $children->id }})" class=" @if($children->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
                     @include('components.chat', ['main' => $children])
                 </div>
             @endforeach
-            <form action="{{ route('chats.folder_store') }}" method="POST">
+            <form class="folder__chat" action="{{ route('chats.folder_store') }}" method="POST">
                 @csrf
-                <input type="hidden" name="folder_id" value="{{ $folder->id }}">
-                <button type="submit" class="add-chat">
+                <input type="hidden" class="folder_id" name="folder_id" value="{{ $folder->id }}">
+                <button type="button" class="add-chat" onclick="add_new_chat(this.parentElement)">
                     <svg class="svgPath" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_16_2289)">
                             <path d="M9.5 0C7.71997 0 5.97991 0.527841 4.49987 1.51677C3.01983 2.50571 1.86628 3.91131 1.18509 5.55585C0.5039 7.20038 0.32567 9.00998 0.672937 10.7558C1.0202 12.5016 1.87737 14.1053 3.13604 15.364C4.39472 16.6226 5.99836 17.4798 7.74419 17.8271C9.49002 18.1743 11.2996 17.9961 12.9442 17.3149C14.5887 16.6337 15.9943 15.4802 16.9832 14.0001C17.9722 12.5201 18.5 10.78 18.5 9C18.4974 6.61384 17.5484 4.32616 15.8611 2.63889C14.1738 0.951621 11.8862 0.00258081 9.5 0V0ZM9.5 16.5C8.01664 16.5 6.5666 16.0601 5.33323 15.236C4.09986 14.4119 3.13856 13.2406 2.57091 11.8701C2.00325 10.4997 1.85473 8.99168 2.14411 7.53682C2.4335 6.08197 3.14781 4.74559 4.1967 3.6967C5.2456 2.64781 6.58197 1.9335 8.03683 1.64411C9.49168 1.35472 10.9997 1.50325 12.3701 2.0709C13.7406 2.63856 14.9119 3.59985 15.736 4.83322C16.5601 6.06659 17 7.51664 17 9C16.9978 10.9885 16.2069 12.8948 14.8009 14.3009C13.3948 15.7069 11.4885 16.4978 9.5 16.5ZM10.25 8.25H13.25V9.75H10.25V12.75H8.75V9.75H5.75V8.25H8.75V5.25H10.25V8.25Z" fill="white" fill-opacity="0.3"/>
@@ -87,7 +87,7 @@
 @endforeach
 
 @foreach($chats as $chat_local)
-    <div onclick="myFunction({{ $chat_local->id }})" class=" @if($chat_local->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
+    <div data-id="{{ $chat_local->id }}" onclick="myFunction({{ $chat_local->id }})" class=" @if($chat_local->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
         @include('components.chat', ['main' => $chat_local] )
     </div>
 @endforeach

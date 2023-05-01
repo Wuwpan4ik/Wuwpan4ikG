@@ -215,7 +215,7 @@ function sendMsg(msg) {
                     let txt = JSON.parse(e.data).choices[0].delta.content;
                     if (txt !== undefined) {
                         div.innerHTML += txt.replace(/(?:\r\n|\r|\n)/g, '<br>');
-                        window.setInterval(function(){          
+                        window.setInterval(function(){
                             if(!isPaused){
                                 $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                             }
@@ -305,7 +305,6 @@ function countTokens(){
 document.querySelector('input#priceStealer').oninput = countTokens;
 
 //Папки - открытие и закрытие
-
 let foldersBtn = document.querySelectorAll('div.folderBtn .buttonOpen'),
 folderInputBtn = document.querySelectorAll('div.folderBtn .buttonOpen input');
 
@@ -332,7 +331,24 @@ for(let i = 0; i < foldersBtn.length;i++){
         return false;
     }
 }
-
+// Открытие папок с target
+function openFolder() {
+    $('div.folderBtn .buttonOpen').each(function() {
+        $(this).click(function(evt) {
+            if (!evt.currentTarget.parentElement.classList.contains('opened')) {
+                $('div.folderBtn').each(function() {
+                    this.classList.remove('opened')
+                })
+                if (evt.currentTarget === evt.target || evt.target.classList.contains('folderName')) {
+                    this.parentElement.classList.toggle('opened');
+                }
+            } else {
+                this.parentElement.classList.remove('opened');
+            }
+        })
+    })
+}
+openFolder();
 
 //Переименовывание чата
 
