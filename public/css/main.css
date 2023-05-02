@@ -2521,7 +2521,7 @@ pre {
   align-items: center;
 }
 .loaderResponse.showed {
-  transform: translateX(0deg);
+  transform: translateX(0%);
 }
 .loaderResponse .firstRow {
   display: flex;

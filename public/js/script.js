@@ -166,7 +166,7 @@ function sendMsg(msg) {
             var converter = window.markdownit();
             var isPaused = false;
             var loader = document.getElementById('loaderResponse');
-            console.log(loader.innerHTML);
+            loader.classList.add('showed');
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
                     msgerSendBtn.disabled = false
