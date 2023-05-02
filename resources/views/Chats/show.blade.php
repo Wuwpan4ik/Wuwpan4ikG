@@ -125,16 +125,18 @@
                     'folder_id': form.querySelector('.folder_id').value
                 }
             }
+            console.log(form.action)
             fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(dataInput)}).then(
                 response => response.text(),
             ).then(async data => {
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
                 initDelete();
-                setTimeout(function () {
-                    console.log()
-                    openFolder()
-                    document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).click()
-                }, 500)
+                openFolder()
+                if (!form.classList.contains('folder__chat')) {
+                    setTimeout(function () {
+                        document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).click()
+                    }, 500)
+                }
             })
 
         }
