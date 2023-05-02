@@ -131,8 +131,9 @@
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
                 initDelete();
                 setTimeout(function () {
+                    console.log()
                     openFolder()
-                    document.querySelector(`.tablink[data-id="${JSON.parse(data)['id']}"]`).click()
+                    document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).click()
                 }, 500)
             })
 
