@@ -191,6 +191,8 @@ function sendMsg(msg) {
             const div = document.getElementById(uuid);
             var converter = new showdown.Converter();
             var isPaused = false;
+            var loader = document.getElementById('loaderResponse');
+            loader.classList.add('showed');
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
                     msgerSendBtn.disabled = false
@@ -209,6 +211,7 @@ function sendMsg(msg) {
                     }
                     fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     isPaused = true;
+                    loader.classList.remove('showed');
                     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                     stream.close();
                 } else {
