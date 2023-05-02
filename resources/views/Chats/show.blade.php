@@ -333,16 +333,15 @@
             }, 300)
         }
 
-        function myFunction(id) {
+        function myFunction(id, uuid) {
             $.each($('.tablink'), function (index, val) {
                 val.classList.remove('active')
             })
-            document.querySelector(`.tablink[data-id="${id}"]`).classList.add('active');
             $('.msger-chat').load(`/messages/get/${id}`);
 
             let stateObj = { id: "100" };
             window.history.replaceState(stateObj,
-                "Page 3", `/chats/${id}`);
+                "Page 3", `/chats/${uuid}`);
             $('#chat_id').val(id);
             $.each($('.tablink'), function (index, val) {
                 val.classList.remove('active')
@@ -351,7 +350,7 @@
 
             $('.sidebarMain.right').load(`/chat/role/${id}`)
             $('.tokensSpent').load(`/messages-cost/get/${id}`);
-
+            document.querySelector(`.tablink[data-uuid="${uuid}"]`).classList.add('active');
             scrollInit();
             setTimeout(function() {
                 $(".msger-chat").scrollTop($(".msger-chat")[0].scrollHeight);
