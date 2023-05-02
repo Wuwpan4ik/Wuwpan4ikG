@@ -36,7 +36,7 @@ class OpenAiController extends Controller
             $history[] = array("role" => "system", "content" => $chat->role);
         }
 
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(3)->get()->sortBy('id');
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy('id');
 
         foreach ($message as $mess) {
             if ($mess->is_bot) {

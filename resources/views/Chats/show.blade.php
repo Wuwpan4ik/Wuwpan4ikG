@@ -139,6 +139,7 @@
 
         }
     </script>
+
     <script>
         function add_new_folder(form) {
             let key = form.querySelector('input[name=_token]').value;
