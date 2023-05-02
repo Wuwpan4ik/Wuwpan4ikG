@@ -86,7 +86,7 @@
                     </div>
                     <!--Выводим кол-во подсказок-->
                     <div class="library-item-count">
-                        3 {{__('rolesCount')}}
+                        {{ count($roles) }} {{__('rolesCount')}}
                     </div>
                 </div>
                 <div class="library-items-container">

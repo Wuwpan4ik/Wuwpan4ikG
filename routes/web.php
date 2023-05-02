@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function() {
     Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
     Route::post('/chats/folder_store', [\App\Http\Controllers\Chat\ChatController::class, 'storeInFolder'])->name('chats.folder_store');
-    Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class);
+    Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class)->middleware('check_user_chat');
     Route::post("/chats/{chat}/updateRole", [\App\Http\Controllers\Chat\ChatController::class, 'updateRole'])->name("chat.updateRole");
     Route::patch('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'update'])->name('folder.update');
     Route::post('/folder', [\App\Http\Controllers\Folder\FolderController::class, 'store'])->name('folder.store');

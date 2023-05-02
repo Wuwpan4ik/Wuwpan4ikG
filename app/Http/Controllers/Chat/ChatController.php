@@ -55,13 +55,10 @@ class ChatController extends Controller
 
     public function storeInFolder(Request $request)
     {
-        Debugbar::log($request);
-        Debugbar::log($request->folder_id);
         $chat = Chat::create([
             'user_id' => Auth::id(),
             'folder_id' => $request->folder_id
         ]);
-        Debugbar::log($chat);
 
         return json_decode($chat);
     }

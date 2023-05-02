@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Folder extends Model
 {
@@ -25,6 +26,6 @@ class Folder extends Model
 
     public function getFolders()
     {
-        return Folder::with('children')->get();
+        return Folder::where('user_id', Auth::id())->with('children')->get();
     }
 }
