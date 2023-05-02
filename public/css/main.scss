@@ -1445,6 +1445,7 @@ button.promptBtn{
     border-radius: 0.417vw;
     max-height: 4.375vw;
     max-width: 100%;
+    padding: 0.521vw 2.521vw 0.521vw 0.521vw;
     width:100%;
     min-height: 4.375vw;
 }
@@ -2523,6 +2524,12 @@ font-family: inherit !important;
 overflow-x: auto;
 padding: 1em;
 display: block;
+}
+
+.msg.right-msg{
+    .msg-text{
+        word-break: break-all;
+    }
 }
 
 .msg-text{
