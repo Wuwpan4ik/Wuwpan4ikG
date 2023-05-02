@@ -18,17 +18,22 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function() {
     Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
     Route::post('/chats/folder_store', [\App\Http\Controllers\Chat\ChatController::class, 'storeInFolder'])->name('chats.folder_store');
-    Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class)->middleware('check_user_chat');
-    Route::post("/chats/{chat}/updateRole", [\App\Http\Controllers\Chat\ChatController::class, 'updateRole'])->name("chat.updateRole");
+    Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class);
+    Route::middleware('check_user_chat')->group(function() {
+        Route::get('chats/{chat:uuid}', [\App\Http\Controllers\Chat\ChatController::class, 'show'])->name('chats.show');
+        Route::patch('chats/{chat}', [\App\Http\Controllers\Chat\ChatController::class, 'update'])->name('chats.update');
+        Route::delete('chats/{chat}', [\App\Http\Controllers\Chat\ChatController::class, 'destroy'])->name('chats.destroy');
+    });
+    Route::post("/chats/{chat}/updateRole", [\App\Http\Controllers\Chat\ChatController::class, 'updateRole'])->middleware('check_user_chat')->name("chat.updateRole");
     Route::patch('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'update'])->name('folder.update');
     Route::post('/folder', [\App\Http\Controllers\Folder\FolderController::class, 'store'])->name('folder.store');
     Route::delete('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'delete'])->name('folder.delete');
-    Route::get('/chat_sidebar/{chat}', [\App\Http\Controllers\MainController::class, 'showSidebar']);
+    Route::get('/chat_sidebar/{chat}', [\App\Http\Controllers\MainController::class, 'showSidebar'])->middleware('check_user_chat');
 
     Route::resource('messages', \App\Http\Controllers\Message\MessageController::class);
-    Route::get("/messages/get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'Reshow'])->name('messages.get');
-    Route::get("/messages-cost/get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'ShowCost'])->name('messages-cost.get');
-    Route::get("/chat/role/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'ShowRole'])->name('role.get');
+    Route::get("/messages/get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'Reshow'])->middleware('check_user_chat')->name('messages.get');
+    Route::get("/messages-cost/get/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'ShowCost'])->middleware('check_user_chat')->name('messages-cost.get');
+    Route::get("/chat/role/{chat}", [\App\Http\Controllers\Chat\ChatController::class, 'ShowRole'])->middleware('check_user_chat')->name('role.get');
     Route::post("/settings/store", [\App\Http\Controllers\Settings\SettingsController::class, "store"])->name("settingsSave");
 
     Route::delete("/prompts_folder/{prompt_folder}", [\App\Http\Controllers\Prompt\PromptController::class, 'destroyFolder'])->name('prompts_folder.destroy');
@@ -48,7 +53,7 @@ Route::middleware('auth')->group(function() {
     Route::get("/add_formPrompt/{prompts_id}", [\App\Http\Controllers\Prompt\PromptController::class, 'showAddForm']);
 
     Route::post('/sendMessage', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'send__message'])->name('sendMessage');
-    Route::get('/event-stream/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream']);
+    Route::get('/event-stream/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream'])->middleware('check_user_chat');
 
     Route::get("/settings/langChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeLanguage"])->name("changeLanguage");
     Route::get("/settings/themeChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeTheme"])->name("changeTheme");

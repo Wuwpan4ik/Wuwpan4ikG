@@ -345,7 +345,6 @@
             $.each($('.tablink'), function (index, val) {
                 val.classList.remove('active')
             })
-            event.target.classList.add('active');
             $(".msger-chat").scrollTop($(".msger-chat")[0].scrollHeight);
 
             $('.sidebarMain.right').load(`/chat/role/${id}`)
