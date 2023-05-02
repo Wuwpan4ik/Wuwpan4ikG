@@ -16,8 +16,11 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
 
+let userName = 'User'
 
-let userName = 'lol';
+if(document.querySelector('#userNameProf')){
+    userName = document.getElementById('userNameProf').textContent;
+}
 
 // Icons made by Freepik from www.flaticon.com
 const PERSON_IMG = "../assets/user.jpg";
@@ -668,13 +671,13 @@ function closePopContainer(popid, containerid){
         }
     });
 }
-
+/*
 //Открытие попапа библиотеки подсказок
 document.getElementById('openPrompts').onclick = () =>{
     document.getElementById('popup-library').classList.add('active');
     closePopContainer('popup-library', '#popup-library .popupContent');
 }
-
+*/
 //Открытие попапа профиля
 document.getElementById('about-user').onclick = () =>{
     document.getElementById('profile-popup').classList.add('active');
