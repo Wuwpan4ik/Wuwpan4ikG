@@ -14,7 +14,8 @@ class Folder extends Model
 
     protected $fillable = [
         'id',
-        'title'
+        'title',
+        'user_id'
     ];
 
     protected $primaryKey = 'id';

@@ -117,7 +117,6 @@
     {{--Код для добавления чата--}}
     <script>
         function add_new_chat(form) {
-            console.log(form)
             let key = form.querySelector('input[name=_token]').value;
             let dataInput = {}
             if (form.classList.contains('folder__chat')) {
@@ -125,7 +124,6 @@
                     'folder_id': form.querySelector('.folder_id').value
                 }
             }
-            console.log(form.action)
             fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(dataInput)}).then(
                 response => response.text(),
             ).then(async data => {
@@ -139,6 +137,18 @@
                 }
             })
 
+        }
+    </script>
+    <script>
+        function add_new_folder(form) {
+            let key = form.querySelector('input[name=_token]').value;
+            fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: {}}).then(
+                response => response.text(),
+            ).then(async data => {
+                $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
+                initDelete();
+                openFolder()
+            })
         }
     </script>
 

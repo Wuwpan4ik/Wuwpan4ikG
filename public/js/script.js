@@ -228,7 +228,7 @@ function sendMsg(msg) {
             };
             stream.onerror = function (e) {
                 console.log(e);
-                div.innerText = 'Произошла обишка!'
+                div.innerText = 'Произошла ошибка!'
                 stream.close();
             }
         })
