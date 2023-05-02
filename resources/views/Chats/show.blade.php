@@ -129,12 +129,11 @@
             ).then(async data => {
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
                 initDelete();
-                openFolder()
-                if (!form.classList.contains('folder__chat')) {
-                    setTimeout(function () {
-                        document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).click()
-                    }, 500)
-                }
+                setTimeout(function () {
+                    openFolder()
+                    document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).click()
+                    document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).parentElement.parentElement.classList.add('opened')
+                }, 500)
             })
 
         }
