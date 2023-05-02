@@ -187,6 +187,7 @@ html {
 * textarea {
   font-size: 0.781vw !important;
   outline: none;
+  resize: none;
   transition: 0.6s all ease;
 }
 * textarea:focus {
@@ -2309,6 +2310,7 @@ button.add-chat:hover {
 }
 
 .library-items {
+  height: 100%;
   padding: 2.083vw;
 }
 
@@ -2332,7 +2334,10 @@ button.add-chat:hover {
 .library-items-container {
   display: flex;
   flex-wrap: wrap;
+  overflow-y: auto;
   gap: 1.042vw;
+  padding-bottom: 2.083vw;
+  max-height: 100%;
 }
 
 .hljs-comment {
@@ -2409,7 +2414,10 @@ pre code.hljs {
 }
 
 section.library .library-item {
-  width: 16vw;
+  width: 15.7vw;
+}
+section.library .library-item h2 {
+  line-height: 1.25vw;
 }
 
 .library-item {
@@ -2575,6 +2583,35 @@ table th {
 }
 
 @media (max-width: 768px) {
+  #menu-mob .popup-inner {
+    width: 100%;
+  }
+  .msg-bubble .msg-text {
+    line-height: 125%;
+  }
+  .msg:last-of-type {
+    padding-bottom: 20px;
+  }
+  .loaderResponse {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+  }
+  .loaderResponse .firstRow {
+    gap: 10px;
+  }
+  .loaderResponse .firstRow .loaderGif {
+    width: 30px;
+    height: 30px;
+  }
+  .loaderResponse .firstRow .responseStat p {
+    font-size: 12px;
+  }
+  .loaderResponse .firstRow .responseStat span {
+    font-size: 10px;
+  }
   * svg {
     width: unset !important;
     height: unset !important;

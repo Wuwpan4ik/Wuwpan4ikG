@@ -106,8 +106,12 @@
         </div>
         -->
     </div>
+    <div class="clipboard">
+        lil
+    </div>
     <!--Slick Slider-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <!--ShowDown
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -141,7 +145,15 @@
 
         }
     </script>
-
+    {{-- Код для textarea}}
+    <script>
+        $("textarea").each(function () {
+            this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+        }).on("input", function () {
+          this.style.height = 0;
+          this.style.height = (this.scrollHeight) + "px";
+        });
+    </script>
     {{-- Код для смены названия чата --}}
     <script>
     document.querySelectorAll('.chat__update-form').forEach(item => {
