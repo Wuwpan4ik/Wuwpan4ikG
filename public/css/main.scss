@@ -1263,7 +1263,9 @@ button.promptBtn{
     flex-direction: column;
     padding:0.782vw 2.083vw;
 }
-
+.msg:first-of-type{
+    padding-top:2.083vw;
+}
 .msg:last-of-type {
     margin: 0;
     padding-bottom: 2.083vw;

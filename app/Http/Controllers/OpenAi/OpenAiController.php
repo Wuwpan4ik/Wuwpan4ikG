@@ -36,7 +36,7 @@ class OpenAiController extends Controller
             $history[] = array("role" => "system", "content" => $chat->role);
         }
 
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(3)->get()->sortBy('id');
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy('id');
 
         foreach ($message as $mess) {
             if ($mess->is_bot) {
@@ -44,11 +44,8 @@ class OpenAiController extends Controller
             } else {
                 $history[] = ["role" => 'user', "content" => $mess->message];
             }
-            Debugbar::log($mess->message);
-            Debugbar::log(count($this->gpt_encode($mess->message)));
         }
 
-        Debugbar::log($history);
 
         $prompt_tokens = count($this->gpt_encode($msg));
 
@@ -78,7 +75,7 @@ class OpenAiController extends Controller
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
             'temperature' => $temperature,
-            "max_tokens" => $total_tokens - $prompt_tokens,
+            "max_tokens" => $total_tokens,
             'top_p' => $top_p,
             'frequency_penalty' => $frequency_penalty,
             'presence_penalty' => $presence_penalty,

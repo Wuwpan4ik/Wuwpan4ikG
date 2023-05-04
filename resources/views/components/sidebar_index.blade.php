@@ -61,7 +61,7 @@
         </div>
         <div class="folderItems">
             @foreach($folder->children as $children)
-                <div data-id="{{ $children->uuid }}" onclick="myFunction('{{ $children->uuid }}')" class=" @if($children->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
+                <div data-uuid="{{ $children->uuid }}" onclick="myFunction({{ $children->id }}, '{{ $children->uuid }}')" class=" @if($children->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
                     @include('components.chat', ['main' => $children])
                 </div>
             @endforeach

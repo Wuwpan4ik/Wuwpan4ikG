@@ -6,6 +6,7 @@
     use App\Http\Requests\Folder\StoreRequest;
     use App\Http\Requests\Folder\UpdateRequest;
     use App\Models\Folder;
+    use Barryvdh\Debugbar\Facades\Debugbar;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +14,10 @@
 	{
         public function store(StoreRequest $request)
         {
-            Folder::create([
+            $folder = Folder::create([
                 'user_id' => Auth::id()
             ]);
-
-            return redirect('/');
+            Debugbar::log($folder);
         }
 
         public function update(UpdateRequest $request, Folder $folder)
