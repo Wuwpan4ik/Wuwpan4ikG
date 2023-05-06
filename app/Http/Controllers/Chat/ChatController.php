@@ -24,12 +24,15 @@ class ChatController extends Controller
      */
     public function index()
     {
-        if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->uuid);
-        $chat = Chat::create([
-            'user_id' => Auth::id()
-        ]);
+        if (Auth::user()) {
+            if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->uuid);
+            $chat = Chat::create([
+                'user_id' => Auth::id()
+            ]);
 
-        return redirect()->route('chats.show', $chat->uuid);
+            return redirect()->route('chats.show', $chat->uuid);
+        }
+        return \view('welcome');
     }
 
     /**
