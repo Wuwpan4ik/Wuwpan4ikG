@@ -195,6 +195,7 @@ html {
 * textarea{
     font-size:0.781vw !important;
     outline: none;
+    resize: none;
     transition: .6s all ease;
     &:focus{
         border:0.052vw solid rgba(255, 255, 255, 0.4);
@@ -1262,7 +1263,9 @@ button.promptBtn{
     flex-direction: column;
     padding:0.782vw 2.083vw;
 }
-
+.msg:first-of-type{
+    padding-top:2.083vw;
+}
 .msg:last-of-type {
     margin: 0;
     padding-bottom: 2.083vw;
@@ -1350,8 +1353,74 @@ button.promptBtn{
         list-style: circle;
         padding:0.26vw 0.521vw;
     }
+    table{
+        --tw-border-spacing-x: 0px;
+        --tw-border-spacing-y: 0px;
+        border-collapse: separate;
+        border-spacing:0px;
+        table-layout: auto;
+        text-align: left;
+        margin-top: 0.521vw;
+        thead{
+            border-bottom-width: 0.052vw;
+            border-color:#d9d9e3;
+            border-style: solid;
+        }
+        th{
+            background-color: #ececf133;
+            border-bottom-width: 0.052vw;
+            border-left-width: 0.052vw;
+            border-right-width: 0.052vw;
+            border-top-width: 0.052vw;
+            padding: 0.208vw 0.625vw;
+            border-color:#d9d9e3;
+            border-style: solid;
+            &:first-child{
+                border-top-left-radius: 0.313vw;
+            }
+            &:last-child{
+                border-right-width: 0.052vw;
+                border-top-right-radius: 0.313vw;
+            }
+        }
+        td{
+            border-bottom-width: 0.052vw;
+            border-left-width: 0.052vw;
+            padding: 0.208vw 0.625vw;
+        }
+        tr{
+            border:#d9d9e3 solid 0.052vw;
+            border-bottom-width: 0.052vw;
+            td{
+                border:#d9d9e3 solid 0.052vw;
+                border-bottom: none;
+            }
+            &:first-child{
+                td{
+                    border-top: none;
+                }
+            }
+            &:last-child{
+                td{
+                    border-bottom: #d9d9e3 solid 0.052vw;
+                    &:first-child{
+                        border-bottom-left-radius: 0.313vw;
+                    }
+                    &:last-child{
+                        border-bottom-right-radius: 0.313vw;
+                        border-right-width: 0.052vw;
+                    }
+                }
+            }
+        }
+    }
     ol{
-        padding:0.521vw 0.521vw;
+        padding:0.521vw 0.521vw 0.521vw 1vw;
+        li{
+            &::marker{
+                color: #9ca3af;
+            }
+        }
     }
 }
 
@@ -1443,11 +1512,13 @@ button.promptBtn{
     color: #757D8A;
     border: 0.052vw solid #374151;
     border-radius: 0.417vw;
-    max-height: 4.375vw;
+    max-height: 10vw;
     max-width: 100%;
-    padding: 0.521vw 2.521vw 0.521vw 0.521vw;
+    padding: 1vw 3.521vw 1vw 1vw;
     width:100%;
-    min-height: 4.375vw;
+    min-height: 4.2vw;
+    overflow:hidden;
+    transition: none !important;
 }
 
 .msger-send-btn {
@@ -2454,6 +2525,7 @@ input[type=range].styled-slider {
     background: #0F131B;
 }
 .library-items{
+    height: 100%;
     padding:2.083vw;
 }
 .library-title{
@@ -2474,7 +2546,10 @@ input[type=range].styled-slider {
 .library-items-container{
     display:flex;
     flex-wrap: wrap;
+    overflow-y: auto;
     gap:1.042vw;
+    padding-bottom: 2.083vw;
+    max-height: 100%;
 }
 //Highlihght js
 
@@ -2552,7 +2627,10 @@ display: block;
 
 section.library{
     .library-item{
-        width: 16vw;
+        width: 15.7vw;
+        h2{
+            line-height: 1.25vw;
+        }
     }
 }
 
@@ -2685,9 +2763,6 @@ pre{
         align-items: center;
         gap:1.042vw;
         .loaderGif{
-            background-image:url('https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif');
-            background-repeat: no-repeat;
-            background-size: cover;
             width:1.5vw;
             height:1.5vw;
         }
@@ -2712,7 +2787,7 @@ pre{
 //Beautify markdown
 
 table{
-    width:auto;
+    width:100%;
     overflow: auto;
     th{
         text-align: start;
@@ -2733,6 +2808,37 @@ table{
 
 //Adaptive
 @media(max-width:768px){
+    #menu-mob .popup-inner{
+        width: 100%;
+    }
+    .msg-bubble .msg-text{
+        line-height: 125%;
+    }
+    .msg:last-of-type{
+        padding-bottom: 20px;
+    }
+    .loaderResponse{
+        bottom: 20px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        width: 300px;
+        .firstRow{
+            gap:10px;
+            .loaderGif{
+                width: 30px;
+                height: 30px;
+            }
+            .responseStat{
+                p{
+                    font-size: 12px;
+                }
+                span{
+                    font-size: 10px;
+                }
+            }
+        }
+    }
     * svg{
         width:unset!important;
         height:unset !important;

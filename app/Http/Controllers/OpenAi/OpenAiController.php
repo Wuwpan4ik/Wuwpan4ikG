@@ -27,6 +27,8 @@ class OpenAiController extends Controller
 
     public function event__stream(StreamRequest $request, Chat $chat)
     {
+        session_start();
+
         $data = $request->validated();
         $msg = $data['message'];
         $id = $chat->id;
@@ -35,9 +37,9 @@ class OpenAiController extends Controller
         } else {
             $history[] = array("role" => "system", "content" => $chat->role);
         }
-
         $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy('id');
 
+        /* Скрыл так как выдает постоянно ошибку
         foreach ($message as $mess) {
             if ($mess->is_bot) {
                 $history[] = ["role" => 'assistant', "content" => strip_tags($mess->message)];
@@ -45,7 +47,9 @@ class OpenAiController extends Controller
                 $history[] = ["role" => 'user', "content" => strip_tags($mess->message)];
             }
         }
+        */
 
+        $history[] = ["role" => 'user', "content" => $msg];
 
         $prompt_tokens = count($this->gpt_encode($msg));
 
@@ -81,7 +85,7 @@ class OpenAiController extends Controller
             'presence_penalty' => $presence_penalty,
             'stream' => true,
         ];
-        Debugbar::log($opts);
+
         $open_ai = new OpenAi(env('open_ai_key'));
 
         return response()->stream(function () use ($open_ai, $opts, $chat, $prompt_tokens, $id) {
@@ -102,20 +106,15 @@ class OpenAiController extends Controller
                 sleep(0.1);
                 return strlen($data);
             });
-
-
             $cost_tokens = count($this->gpt_encode($txt)) + $prompt_tokens;
-
             Auth::user()->tokens -= $cost_tokens;
             Auth::user()->save();
-
             $chat->increment('token_cost', $cost_tokens);
         }, 200, [
             'Cache-Control' => 'no-cache',
             'Content-Type' => 'text/event-stream',
             'Access-Control-Allow-Origin: *'
         ]);
-
     }
 
     private function gpt_utf8_encode(string $str): string

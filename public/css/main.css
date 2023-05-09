@@ -187,6 +187,7 @@ html {
 * textarea {
   font-size: 0.781vw !important;
   outline: none;
+  resize: none;
   transition: 0.6s all ease;
 }
 * textarea:focus {
@@ -1138,6 +1139,10 @@ button.promptBtn .promptText {
   padding: 0.782vw 2.083vw;
 }
 
+.msg:first-of-type {
+  padding-top: 2.083vw;
+}
+
 .msg:last-of-type {
   margin: 0;
   padding-bottom: 2.083vw;
@@ -1222,8 +1227,68 @@ button.promptBtn .promptText {
   list-style: circle;
   padding: 0.26vw 0.521vw;
 }
+.msg-bubble table {
+  --tw-border-spacing-x: 0px;
+  --tw-border-spacing-y: 0px;
+  border-collapse: separate;
+  border-spacing: 0px;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 0.521vw;
+}
+.msg-bubble table thead {
+  border-bottom-width: 0.052vw;
+  border-color: #d9d9e3;
+  border-style: solid;
+}
+.msg-bubble table th {
+  background-color: rgba(236, 236, 241, 0.2);
+  border-bottom-width: 0.052vw;
+  border-left-width: 0.052vw;
+  border-right-width: 0.052vw;
+  border-top-width: 0.052vw;
+  padding: 0.208vw 0.625vw;
+  border-color: #d9d9e3;
+  border-style: solid;
+}
+.msg-bubble table th:first-child {
+  border-top-left-radius: 0.313vw;
+}
+.msg-bubble table th:last-child {
+  border-right-width: 0.052vw;
+  border-top-right-radius: 0.313vw;
+}
+.msg-bubble table td {
+  border-bottom-width: 0.052vw;
+  border-left-width: 0.052vw;
+  padding: 0.208vw 0.625vw;
+}
+.msg-bubble table tr {
+  border: #d9d9e3 solid 0.052vw;
+  border-bottom-width: 0.052vw;
+}
+.msg-bubble table tr td {
+  border: #d9d9e3 solid 0.052vw;
+  border-bottom: none;
+}
+.msg-bubble table tr:first-child td {
+  border-top: none;
+}
+.msg-bubble table tr:last-child td {
+  border-bottom: #d9d9e3 solid 0.052vw;
+}
+.msg-bubble table tr:last-child td:first-child {
+  border-bottom-left-radius: 0.313vw;
+}
+.msg-bubble table tr:last-child td:last-child {
+  border-bottom-right-radius: 0.313vw;
+  border-right-width: 0.052vw;
+}
 .msg-bubble ol {
-  padding: 0.521vw 0.521vw;
+  padding: 0.521vw 0.521vw 0.521vw 1vw;
+}
+.msg-bubble ol li::marker {
+  color: #9ca3af;
 }
 
 .msg-info {
@@ -1309,11 +1374,13 @@ button.promptBtn .promptText {
   color: #757D8A;
   border: 0.052vw solid #374151;
   border-radius: 0.417vw;
-  max-height: 4.375vw;
+  max-height: 10vw;
   max-width: 100%;
-  padding: 0.521vw 2.521vw 0.521vw 0.521vw;
+  padding: 1vw 3.521vw 1vw 1vw;
   width: 100%;
-  min-height: 4.375vw;
+  min-height: 4.2vw;
+  overflow: hidden;
+  transition: none !important;
 }
 
 .msger-send-btn {
@@ -2309,6 +2376,7 @@ button.add-chat:hover {
 }
 
 .library-items {
+  height: 100%;
   padding: 2.083vw;
 }
 
@@ -2332,7 +2400,10 @@ button.add-chat:hover {
 .library-items-container {
   display: flex;
   flex-wrap: wrap;
+  overflow-y: auto;
   gap: 1.042vw;
+  padding-bottom: 2.083vw;
+  max-height: 100%;
 }
 
 .hljs-comment {
@@ -2409,7 +2480,10 @@ pre code.hljs {
 }
 
 section.library .library-item {
-  width: 16vw;
+  width: 15.7vw;
+}
+section.library .library-item h2 {
+  line-height: 1.25vw;
 }
 
 .library-item {
@@ -2534,9 +2608,6 @@ pre {
   gap: 1.042vw;
 }
 .loaderResponse .firstRow .loaderGif {
-  background-image: url("https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 1.5vw;
   height: 1.5vw;
 }
@@ -2557,7 +2628,7 @@ pre {
 }
 
 table {
-  width: auto;
+  width: 100%;
   overflow: auto;
 }
 table th {
@@ -2575,6 +2646,35 @@ table th {
 }
 
 @media (max-width: 768px) {
+  #menu-mob .popup-inner {
+    width: 100%;
+  }
+  .msg-bubble .msg-text {
+    line-height: 125%;
+  }
+  .msg:last-of-type {
+    padding-bottom: 20px;
+  }
+  .loaderResponse {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+  }
+  .loaderResponse .firstRow {
+    gap: 10px;
+  }
+  .loaderResponse .firstRow .loaderGif {
+    width: 30px;
+    height: 30px;
+  }
+  .loaderResponse .firstRow .responseStat p {
+    font-size: 12px;
+  }
+  .loaderResponse .firstRow .responseStat span {
+    font-size: 10px;
+  }
   * svg {
     width: unset !important;
     height: unset !important;

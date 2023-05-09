@@ -96,6 +96,7 @@
                                 <h2 class="library-item-title">{{ $role->title }}</h2>
                             @endif
                             <span>{{ $role->description }}</span>
+                            <p style="display:none;">{{ $role->role }}</p>
                             <div class="hoverItems">
                                 <button class="copyRole">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -226,7 +227,7 @@
                 var copyTextarea = document.createElement("textarea");
                 copyTextarea.style.position = "fixed";
                 copyTextarea.style.opacity = "0";
-                copyTextarea.textContent = String(btnCopies[i].parentElement.parentElement.querySelector('span').innerHTML).trim();
+                copyTextarea.textContent = String(btnCopies[i].parentElement.parentElement.querySelector('p').innerHTML).trim();
                 document.body.appendChild(copyTextarea);
                 copyTextarea.select();
                 document.execCommand("copy");
