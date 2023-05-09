@@ -27,8 +27,6 @@ class OpenAiController extends Controller
 
     public function event__stream(StreamRequest $request, Chat $chat)
     {
-        session_start();
-
         $data = $request->validated();
         $msg = $data['message'];
         $id = $chat->id;

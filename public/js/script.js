@@ -168,6 +168,18 @@ if (document.querySelector('.settings_form')) {
     })
 }
 
+//Функция копирования кода
+
+function copyToClipboard(item){
+    let text = item.parentElement.parentElement.querySelector('code');
+    copyCommand(text);
+    let lastSvg = item.innerHTML;
+    item.innerHTML = `<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+    setTimeout(()=>{
+        item.innerHTML = lastSvg;
+    }, 1000)
+}
+
 function sendMsg(msg) {
     msgerSendBtn.disabled = true
     let key = document.querySelector('input[name=_token]').value;
@@ -184,8 +196,6 @@ function sendMsg(msg) {
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
             const stream = new EventSource(`/event-stream/${data}?message=${String(msg).trim()}`);
-            console.log(stream);
-            console.log(`Message: ${msg}, Data: ${data}`);
             const div = document.getElementById(uuid);
             var isPaused = false;
             var loader = document.getElementById('loaderResponse');
@@ -199,18 +209,26 @@ function sendMsg(msg) {
                     msgerSendBtn.disabled = false
                     $('.tokens').load("/get_tokens");
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
-                    params = {
-                        'id': document.querySelector('#chat_id').value,
-                        'txt': document.getElementById(uuid).innerHTML
-                    }
-                    fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     isPaused = true;
                     if(div.querySelector('.msg-text pre code')){
                         let el = div.querySelectorAll('.msg-text pre code');
                         el.forEach(function(item){
                             hljs.highlightElement(item);
+                            let lastLang = String(item.className).replace('language-', ''),
+                            lang = lastLang.replace('hljs', '');
+                            lastIndex = lang.lastIndexOf("-"),
+                            lastWord = lang.substring(lastIndex + 1);
+                            let blockInfo = document.createElement('div');
+                            blockInfo.className = "block-info";
+                            blockInfo.innerHTML = `<span>${lastWord}</span><button class="copy-code" onclick="copyToClipboard(this);"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></button>`;
+                            item.parentElement.insertBefore(blockInfo, item);
                         })
                     }
+                    params = {
+                        'id': document.querySelector('#chat_id').value,
+                        'txt': document.getElementById(uuid).innerHTML
+                    }
+                    fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     loader.classList.remove('showed');
                     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                     stream.close();
@@ -308,7 +326,6 @@ document.querySelector('input#priceStealer').oninput = countTokens;
 function openFolder() {
     $('div.folderBtn .buttonOpen').each(function() {
         $(this).click(function(evt) {
-            console.log(1)
             if (!evt.currentTarget.parentElement.classList.contains('opened')) {
                 $('div.folderBtn').each(function() {
                     this.classList.remove('opened')
@@ -684,9 +701,8 @@ function autoResize(item) {
     if(window.innerWidth > 768){
         if(item.value === ""){
             item.style.height = 4.2 + 'vw';
-        }
-        if(itemVw > 4 && itemVw != 20){
-            item.style.height = pxToVw(item.scrollHeight) + 'vw';
+        }else{
+            item.style.height = itemVw + 'vw';
         }
     }
 }
