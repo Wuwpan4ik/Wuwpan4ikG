@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
 Route::middleware('auth')->group(function() {
-
     Route::post('/chats_create/folder_store', [\App\Http\Controllers\Chat\ChatController::class, 'storeInFolder'])->name('chats.folder_store');
     Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class);
     Route::middleware('check_user_chat')->group(function() {

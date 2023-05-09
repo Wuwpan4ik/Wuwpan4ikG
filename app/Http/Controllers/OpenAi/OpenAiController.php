@@ -40,9 +40,9 @@ class OpenAiController extends Controller
 
         foreach ($message as $mess) {
             if ($mess->is_bot) {
-                $history[] = ["role" => 'assistant', "content" => $mess->message];
+                $history[] = ["role" => 'assistant', "content" => strip_tags($mess->message)];
             } else {
-                $history[] = ["role" => 'user', "content" => $mess->message];
+                $history[] = ["role" => 'user', "content" => strip_tags($mess->message)];
             }
         }
 
