@@ -1227,8 +1227,68 @@ button.promptBtn .promptText {
   list-style: circle;
   padding: 0.26vw 0.521vw;
 }
+.msg-bubble table {
+  --tw-border-spacing-x: 0px;
+  --tw-border-spacing-y: 0px;
+  border-collapse: separate;
+  border-spacing: 0px;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 0.521vw;
+}
+.msg-bubble table thead {
+  border-bottom-width: 0.052vw;
+  border-color: #d9d9e3;
+  border-style: solid;
+}
+.msg-bubble table th {
+  background-color: rgba(236, 236, 241, 0.2);
+  border-bottom-width: 0.052vw;
+  border-left-width: 0.052vw;
+  border-right-width: 0.052vw;
+  border-top-width: 0.052vw;
+  padding: 0.208vw 0.625vw;
+  border-color: #d9d9e3;
+  border-style: solid;
+}
+.msg-bubble table th:first-child {
+  border-top-left-radius: 0.313vw;
+}
+.msg-bubble table th:last-child {
+  border-right-width: 0.052vw;
+  border-top-right-radius: 0.313vw;
+}
+.msg-bubble table td {
+  border-bottom-width: 0.052vw;
+  border-left-width: 0.052vw;
+  padding: 0.208vw 0.625vw;
+}
+.msg-bubble table tr {
+  border: #d9d9e3 solid 0.052vw;
+  border-bottom-width: 0.052vw;
+}
+.msg-bubble table tr td {
+  border: #d9d9e3 solid 0.052vw;
+  border-bottom: none;
+}
+.msg-bubble table tr:first-child td {
+  border-top: none;
+}
+.msg-bubble table tr:last-child td {
+  border-bottom: #d9d9e3 solid 0.052vw;
+}
+.msg-bubble table tr:last-child td:first-child {
+  border-bottom-left-radius: 0.313vw;
+}
+.msg-bubble table tr:last-child td:last-child {
+  border-bottom-right-radius: 0.313vw;
+  border-right-width: 0.052vw;
+}
 .msg-bubble ol {
-  padding: 0.521vw 0.521vw;
+  padding: 0.521vw 0.521vw 0.521vw 1vw;
+}
+.msg-bubble ol li::marker {
+  color: #9ca3af;
 }
 
 .msg-info {
@@ -1314,11 +1374,13 @@ button.promptBtn .promptText {
   color: #757D8A;
   border: 0.052vw solid #374151;
   border-radius: 0.417vw;
-  max-height: 4.375vw;
+  max-height: 10vw;
   max-width: 100%;
-  padding: 0.521vw 2.521vw 0.521vw 0.521vw;
+  padding: 1vw 3.521vw 1vw 1vw;
   width: 100%;
-  min-height: 4.375vw;
+  min-height: 4.2vw;
+  overflow: hidden;
+  transition: none !important;
 }
 
 .msger-send-btn {
@@ -2546,9 +2608,6 @@ pre {
   gap: 1.042vw;
 }
 .loaderResponse .firstRow .loaderGif {
-  background-image: url("https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 1.5vw;
   height: 1.5vw;
 }
@@ -2569,7 +2628,7 @@ pre {
 }
 
 table {
-  width: auto;
+  width: 100%;
   overflow: auto;
 }
 table th {
