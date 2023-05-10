@@ -38,9 +38,6 @@
 pre{
     position: relative;
 }
-button.copy-code{
-    //position: absolute;
-}
 
 .block-info{
     padding:0.26vw 0.5vw;
@@ -127,6 +124,13 @@ button.copy-code{
             color: rgba(255, 255, 255, 0.7);
           }
         }
+        .error-bag{
+            li{
+                padding-top: 20px;
+                font-size: 14px;
+                color: #970c0c;
+            }
+        }
       }
       .button-submit{
         button{
@@ -167,6 +171,7 @@ p.folderName, p.chat__name{
     -webkit-line-clamp: 1;
     -webkit-box-orient: horizontal;
     max-width: 10vw;
+    font-size: 0.721vw;
 }
 
 //Main Wrapper
@@ -369,6 +374,14 @@ body.dark{
     .menu-items{
         a{
             color: #525459;
+            &:hover{
+                color:white;
+            }
+        }
+        button{
+            &:hover{
+                color:White;
+            }
         }
     }
     .welcome-chat{
@@ -1121,6 +1134,7 @@ section.library-mob{
         color:white;
         padding:0.417vw 0.313vw;
         outline: none;
+        font-size:0.721vw;
         border:none;
     }
     .hoverItems{
@@ -1275,6 +1289,7 @@ button.promptBtn{
     max-width: 100%;
     overflow-x: hidden;
     background:#0F131B;
+    position: relative;
 }
 
 .msger-chat::-webkit-scrollbar {
@@ -1392,10 +1407,10 @@ button.promptBtn{
         border-spacing:0px;
         table-layout: auto;
         text-align: left;
-        margin-top: 0.521vw;
+        margin: 0.521vw 0px;
         thead{
             border-bottom-width: 0.052vw;
-            border-color:#d9d9e3;
+            border-color:#5c606a;
             border-style: solid;
         }
         th{
@@ -1405,7 +1420,7 @@ button.promptBtn{
             border-right-width: 0.052vw;
             border-top-width: 0.052vw;
             padding: 0.208vw 0.625vw;
-            border-color:#d9d9e3;
+            border-color:#5c606a;
             border-style: solid;
             &:first-child{
                 border-top-left-radius: 0.313vw;
@@ -1421,10 +1436,10 @@ button.promptBtn{
             padding: 0.208vw 0.625vw;
         }
         tr{
-            border:#d9d9e3 solid 0.052vw;
+            border:#5c606a solid 0.052vw;
             border-bottom-width: 0.052vw;
             td{
-                border:#d9d9e3 solid 0.052vw;
+                border:#5c606a solid 0.052vw;
                 border-bottom: none;
             }
             &:first-child{
@@ -1434,7 +1449,7 @@ button.promptBtn{
             }
             &:last-child{
                 td{
-                    border-bottom: #d9d9e3 solid 0.052vw;
+                    border-bottom: #5c606a solid 0.052vw;
                     &:first-child{
                         border-bottom-left-radius: 0.313vw;
                     }
@@ -1493,6 +1508,7 @@ button.promptBtn{
 }
 
 .messageInput{
+    position: relative;
     background: #0F131B;
     padding:1.458vw 2.083vw 1.042vw 2.083vw;
     border-top:0.052vw solid #2A2F39;
@@ -1515,7 +1531,7 @@ button.promptBtn{
 }
 
 .tokensSpent{
-    color: #CFCFCF;
+    color: #757d8a;
     font-weight: 500;
     font-size: 0.729vw;
 }
@@ -1668,6 +1684,11 @@ button.promptBtn{
         }
     }
     .about-project-soc{
+        a{
+            &:hover{
+                opacity: 0.8;
+            }
+        }
         a.first{
             button{
                 background: #13B8A6;
@@ -1692,6 +1713,9 @@ button.promptBtn{
     width: 100%;
     a{
         width: 100%;
+        &:hover{
+            opacity: 0.8;
+        }
     }
     button{
         color: #FFFFFF;
@@ -1894,6 +1918,15 @@ button.promptBtn{
         align-items: center;
         text-align: center;
         .popup-inner{
+            width: 60%;
+            .prompts-category{
+                display: grid;
+                grid-gap:0.521vw;
+                grid-template-columns: repeat(3, 33.333%);
+                button{
+                    width: auto;
+                }
+            }
             background: #0F131B;border-radius: 20px;
             padding:2.083vw;
             h2{
@@ -1902,13 +1935,19 @@ button.promptBtn{
                 padding-bottom: 2.083vw;
             }
             .library-item{
+                width: 14.35vw;
                 button{
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     gap:0.521vw;
                     color:white;
+                    font-size:0.781vw;
                 }
+            }
+            .library-items-container{
+                overflow: auto;
+                max-height: 40vh;
             }
             .prompts-in-category{
                 margin-top: 1.563vw;
@@ -2447,7 +2486,7 @@ input[type=range].styled-slider {
     input{
         width: 100%;
         border:none;
-        font-size: 0.781vw;
+        font-size: 0.721vw;
         color:white;
         padding:0.417vw 0.313vw;
         border-radius: 0.521vw;
@@ -2625,11 +2664,17 @@ color:#df3079
 .hljs-title {
 color:#f22c3d
 }
+pre{
+    padding: 0.521vw;
+}
+pre.after-code{
+    padding:0px;
+}
 pre code.hljs{
 color:white;
 font-family: inherit !important;
 overflow-x: auto;
-padding: 1em;
+padding: 1em !important;
 display: block;
 }
 
@@ -2828,13 +2873,14 @@ table{
 //Scroll bottom btn
 
 #scrollBottomBtn{
-    position: fixed;
-    bottom: 12.021vw;
+    position: absolute;
     border-radius: 50%;
     width:1.563vw;
     height:1.563vw;
     border:none;
-    right: 25.042vw;
+    z-index: 10;
+    bottom: 12vw;
+    right: 2.5vw;
 }
 
 //Adaptive

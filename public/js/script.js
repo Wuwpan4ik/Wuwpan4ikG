@@ -174,7 +174,7 @@ function copyToClipboard(item){
     let text = item.parentElement.parentElement.querySelector('code');
     copyCommand(text);
     let lastSvg = item.innerHTML;
-    item.innerHTML = `<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+    item.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.4" d="M22 11.1V6.9C22 3.4 20.6 2 17.1 2H12.9C9.4 2 8 3.4 8 6.9V8H11.1C14.6 8 16 9.4 16 12.9V16H17.1C20.6 16 22 14.6 22 11.1Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16 17.1V12.9C16 9.4 14.6 8 11.1 8H6.9C3.4 8 2 9.4 2 12.9V17.1C2 20.6 3.4 22 6.9 22H11.1C14.6 22 16 20.6 16 17.1Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6.08008 14.9998L8.03008 16.9498L11.9201 13.0498" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>`
     setTimeout(()=>{
         item.innerHTML = lastSvg;
     }, 1000)
@@ -203,27 +203,16 @@ function sendMsg(msg) {
             let text = "",
             mdBuffer = "",
             html = "",
-            showdownConverter = window.markdownit();
+            showdownConverter = window.markdownit({
+                html: true,
+                linkify: true,
+            })
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
                     msgerSendBtn.disabled = false
                     $('.tokens').load("/get_tokens");
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
                     isPaused = true;
-                    if(div.querySelector('.msg-text pre code')){
-                        let el = div.querySelectorAll('.msg-text pre code');
-                        el.forEach(function(item){
-                            hljs.highlightElement(item);
-                            let lastLang = String(item.className).replace('language-', ''),
-                            lang = lastLang.replace('hljs', '');
-                            lastIndex = lang.lastIndexOf("-"),
-                            lastWord = lang.substring(lastIndex + 1);
-                            let blockInfo = document.createElement('div');
-                            blockInfo.className = "block-info";
-                            blockInfo.innerHTML = `<span>${lastWord}</span><button class="copy-code" onclick="copyToClipboard(this);"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></button>`;
-                            item.parentElement.insertBefore(blockInfo, item);
-                        })
-                    }
                     params = {
                         'id': document.querySelector('#chat_id').value,
                         'txt': document.getElementById(uuid).innerHTML
@@ -238,6 +227,21 @@ function sendMsg(msg) {
                         mdBuffer += text;
                         html = showdownConverter.render(mdBuffer);
                         div.innerHTML = html;
+                        if(div.querySelector('.msg-text pre code')){
+                            let el = div.querySelectorAll('.msg-text pre code');
+                            el.forEach(function(item){
+                                hljs.highlightElement(item);
+                                item.parentElement.className = 'after-code';
+                                let lastLang = String(item.className).replace('language-', ''),
+                                lang = lastLang.replace('hljs', '');
+                                lastIndex = lang.lastIndexOf("-"),
+                                lastWord = lang.substring(lastIndex + 1);
+                                let blockInfo = document.createElement('div');
+                                blockInfo.className = "block-info";
+                                blockInfo.innerHTML = `<span>${lastWord}</span><button class="copy-code" onclick="copyToClipboard(this);"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.4" d="M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>`;
+                                item.parentElement.insertBefore(blockInfo, item);
+                            });
+                        }
                         window.setInterval(function(){
                             if(!isPaused){
                                 $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
@@ -697,13 +701,9 @@ function pxToVw(px){
 }
 
 function autoResize(item) {
-    let itemVw = pxToVw(item.scrollHeight);
     if(window.innerWidth > 768){
-        if(item.value === ""){
-            item.style.height = 4.2 + 'vw';
-        }else{
-            item.style.height = itemVw + 'vw';
-        }
+        item.style.height = 1 + "vw";
+        item.style.height = pxToVw(item.scrollHeight) + "vw";
     }
 }
 

@@ -23,6 +23,10 @@
                 <!--Кнопка скролла вниз-->
             </main>
             <div class="messageInput">
+                <!--Кнопка скролла вверх-->
+                <button id="scrollBottomBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.7099 12.71C17.617 12.6162 17.5064 12.5418 17.3845 12.4911C17.2627 12.4403 17.1319 12.4142 16.9999 12.4142C16.8679 12.4142 16.7372 12.4403 16.6154 12.4911C16.4935 12.5418 16.3829 12.6162 16.2899 12.71L12.9999 16V5.99997C12.9999 5.73475 12.8946 5.4804 12.707 5.29286C12.5195 5.10533 12.2652 4.99997 11.9999 4.99997C11.7347 4.99997 11.4804 5.10533 11.2928 5.29286C11.1053 5.4804 10.9999 5.73475 10.9999 5.99997V16L7.70994 12.71C7.61697 12.6162 7.50637 12.5418 7.38451 12.4911C7.26266 12.4403 7.13195 12.4142 6.99994 12.4142C6.86793 12.4142 6.73722 12.4403 6.61536 12.4911C6.4935 12.5418 6.3829 12.6162 6.28994 12.71C6.10369 12.8973 5.99915 13.1508 5.99915 13.415C5.99915 13.6792 6.10369 13.9326 6.28994 14.12L10.5899 18.41C10.9633 18.7856 11.4704 18.9977 11.9999 19C12.526 18.9951 13.029 18.7831 13.3999 18.41L17.6999 14.12C17.8875 13.9339 17.9939 13.6812 17.9957 13.417C17.9976 13.1528 17.8949 12.8987 17.7099 12.71Z" fill="#374957"/></svg>
+                </button>
                 <!--Токены, которые пользователь слил в определенном чате-->
                 <div class="tokens_chat">
                     <button id="openPrompts">
@@ -115,11 +119,8 @@
     </div>
     <!--Slick Slider-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="{{ asset('js/markdown-it.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{--Код для добавления чата--}}
     <script>
         function add_new_chat(form) {
@@ -237,13 +238,6 @@
 
     <script src="{{ asset('js/script.js') }}"></script>
     <script>
-        $('.prompts-category').slick({
-          infinite: false,
-          slidesToShow: 4,
-          slidesToScroll: 1
-        });
-    </script>
-    <script>
         //Кнопка "Выбрать" в попапе библиотеки подсказок
         let choosePrompts = document.querySelectorAll('button.choosePrompt');
         choosePrompts.forEach((item)=>{
@@ -347,6 +341,7 @@
                     `
                     item.onclick = () =>{
                         document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('span').innerText).trim();
+                        autoResize(document.querySelector('textarea.msger-input'));
                         document.getElementById('popup-library').classList.remove('active');
                     }
                 })

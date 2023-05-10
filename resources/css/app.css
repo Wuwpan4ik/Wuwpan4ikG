@@ -300,6 +300,15 @@
   color: white !important;
 }
 
+.eror-bag {
+  padding-top: 20px;
+}
+.eror-bag li {
+  padding-top: 20px;
+  font-size: 14px;
+  color: #970c0c;
+}
+
 .mainWrapper {
   display: flex;
   justify-content: center;
