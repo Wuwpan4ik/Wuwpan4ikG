@@ -123,6 +123,7 @@
     <script>
         function add_new_chat(form) {
             let key = form.querySelector('input[name=_token]').value;
+            console.log(key)
             let dataInput = {}
             if (form.classList.contains('folder__chat')) {
                 dataInput = {
@@ -131,48 +132,48 @@
             }
             fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(dataInput)}).then(
                 response => response.text(),
-            ).then(async data => {
+            ).then(data => {
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
-                initDelete();
                 setTimeout(function () {
+                    initDelete();
                     openFolder()
-                    document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).click()
-                    document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).parentElement.parentElement.classList.add('opened')
                 }, 500)
             })
 
         }
     </script>
-    
+
     {{--Код для добавления папок--}}
     <script>
         function add_new_folder(form) {
             let key = form.querySelector('input[name=_token]').value;
             fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: {}}).then(
                 response => response.text(),
-            ).then(async data => {
+            ).then(data => {
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
-                initDelete();
-                openFolder()
+                setTimeout(function () {
+                    initDelete();
+                    openFolder()
+                }, 500)
             })
         }
     </script>
 
     {{-- Код для смены названия чата --}}
     <script>
-    document.querySelectorAll('.chat__update-form').forEach(item => {
-        item.addEventListener('submit', function (e) {
-            e.preventDefault()
-            fetch(item.action, {
+        function renChat(item) {
+            form = item.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form')
+            fetch(form.action, {
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8',
-                    "X-CSRF-Token": $(item).find('input[name="_token"]').val()
-                }, method: "PATCH", body: JSON.stringify({'title': item.querySelector('input[name="title"]').value})
+                    "X-CSRF-Token": $(form).find('input[name="_token"]').val()
+                },
+                method: "PATCH",
+                body: JSON.stringify({'title': form.querySelector('input[name="title"]').value})
             })
-            item.parentElement.parentElement.querySelector('.chat__name').innerHTML = item.querySelector('input[name="title"]').value
+            form.parentElement.querySelector('.chat__name').innerHTML = form.querySelector('input[name="title"]').value
             renameChat(item.parentElement.parentElement.querySelector("button.renameChat"))
-        })
-    })
+        }
     </script>
 
     {{-- Код для смены названия папки --}}
@@ -188,13 +189,15 @@
     {{-- Код для удаления чата --}}
     <script>
         function delChat(item) {
-            item.parentElement.parentElement.parentElement.remove()
-            if (document.querySelector('.tablink')) {
-                document.querySelector('.tablink').click()
-            } else {
-                window.location.replace('/')
-            }
             fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": $(item).find('input[name="_token"]').val()}, method: "DELETE"})
+            item.parentElement.parentElement.parentElement.remove()
+            setTimeout(function () {
+                if (document.querySelector('.tablink')) {
+                    document.querySelector('.tablink').click()
+                } else {
+                    window.location.replace('/')
+                }
+            }, 300)
         }
     </script>
 
@@ -223,6 +226,9 @@
             document.querySelector('.systemRole button.renameChat').click()
             document.querySelector('.systemRole span').textContent = form.querySelector('#systemRoleText').value;
             document.querySelector('.systemRole span').classList.remove('display-none');
+            setTimeout(function () {
+                $('.msger-chat').load(`/messages/get/${id}`);
+            }, 300)
         }
     </script>
 
