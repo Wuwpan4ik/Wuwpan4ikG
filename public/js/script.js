@@ -237,6 +237,10 @@ function sendMsg(msg) {
                                 lang = lastLang.replace('hljs', '');
                                 lastIndex = lang.lastIndexOf("-"),
                                 lastWord = lang.substring(lastIndex + 1);
+                                console.log(lastWord);
+                                if(lastWord == undefined){
+                                    lastWord = 'text';
+                                }
                                 let blockInfo = document.createElement('div');
                                 blockInfo.className = "block-info";
                                 blockInfo.innerHTML = `<span>${lastWord}</span><button class="copy-code" onclick="copyToClipboard(this);"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.4" d="M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>`;
@@ -640,6 +644,11 @@ function closePopContainer(popid, containerid){
                 });
                 document.getElementById('popup-library').classList.remove('active');
             }
+            if(popid == 'popup-develop'){
+                if(document.getElementById('popup-zapic').classList.contains('active') || document.getElementById('popup-zapic2').classList.contains('active')){
+                    return;
+                }
+            }
         }
     });
 }
@@ -699,3 +708,16 @@ window.addEventListener('DOMContentLoaded', ()=>{
     autoResize(document.querySelector('textarea.msger-input'));
     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
 })
+
+
+//Открытие попапа
+
+function openPopUpZayavka(item){
+    document.getElementById('popup-zapic2').classList.add('active');
+    closePopContainer('popup-zapic2', '#popup-zapic2 .popupContent');
+}
+
+function openPopUpZayavka2(item){
+    document.getElementById('popup-zapic').classList.add('active');
+    closePopContainer('popup-zapic', '#popup-zapic .popupContent');
+}
