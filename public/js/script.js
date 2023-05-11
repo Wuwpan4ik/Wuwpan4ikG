@@ -195,7 +195,8 @@ function sendMsg(msg) {
         .then(data => {
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
-            const stream = new EventSource(`/event-stream/${data}?message=${String(msg).trim()}`);
+            let role = document.querySelector('.systemRole-span').innerHTML;
+            const stream = new EventSource(`/event-stream/${data}?role=${role}`);
             const div = document.getElementById(uuid);
             var isPaused = false;
             var loader = document.getElementById('loaderResponse');

@@ -120,9 +120,6 @@ class ChatController extends Controller
         $chat->update([
             "role" => "{$data['role']}"
         ]);
-        Debugbar::log($chat);
-
-        Message::where(['chat_id' => $chat->id])->delete();
 
         return redirect()->route('chats.show', $chat->uuid);
     }

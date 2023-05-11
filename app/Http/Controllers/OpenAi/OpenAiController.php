@@ -27,13 +27,11 @@ class OpenAiController extends Controller
 
     public function event__stream(StreamRequest $request, Chat $chat)
     {
-        $data = $request->validated();
-        $msg = $data['message'];
         $id = $chat->id;
         if (empty($chat->role)) {
             $history[] = array("role" => "system", "content" => "You are a helpful assistant.");
         } else {
-            $history[] = array("role" => "system", "content" => $chat->role);
+            $history[] = array("role" => "system", "content" => $request->role);
         }
         $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(1)->get()->sortBy('id');
 
