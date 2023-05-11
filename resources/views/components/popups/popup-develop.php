@@ -12,12 +12,12 @@
                 </p>
                 <div class="about-project-soc">
                     <a class="first">
-                        <button>
+                        <button onclick="openPopUpZayavka2(this);">
                             Записаться на тестирование
                         </button>
                     </a>
                     <a class="sec">
-                        <button>
+                        <button onclick="openPopUpZayavka(this);">
                             Оставить заявку на внедрение в бизнес
                         </button>
                     </a>
