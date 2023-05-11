@@ -27,8 +27,6 @@ class OpenAiController extends Controller
 
     public function event__stream(StreamRequest $request, Chat $chat)
     {
-        session_start();
-
         $data = $request->validated();
         $msg = $data['message'];
         $id = $chat->id;
@@ -41,7 +39,7 @@ class OpenAiController extends Controller
 
         $prompt_tokens = 0;
 
-//      Скрыл так как выдает постоянно ошибку
+        //*
         foreach ($message as $mess) {
             if ($mess->is_bot) {
                 $history[] = ["role" => 'assistant', "content" => substr($mess->message, 0, 100)];

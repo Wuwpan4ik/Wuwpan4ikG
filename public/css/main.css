@@ -29,6 +29,34 @@
   height: 100%;
 }
 
+pre {
+  position: relative;
+}
+
+.block-info {
+  padding: 0.26vw 0.5vw;
+  background: #343541;
+  border-top-right-radius: 0.3vw;
+  border-top-left-radius: 0.3vw;
+  display: flex;
+  height: 2vw;
+  align-items: center;
+  justify-content: space-between;
+}
+.block-info button {
+  width: 1.25vw;
+  height: 1.25vw;
+  background: none;
+  border: none;
+}
+.block-info button svg {
+  width: 1.25vw;
+  height: 1.25vw;
+}
+.block-info span {
+  text-transform: capitalize;
+}
+
 .loginForm {
   width: 100%;
   height: 100%;
@@ -97,6 +125,11 @@
 .loginForm form .input-form input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
+.loginForm form .input-form .error-bag li {
+  padding-top: 20px;
+  font-size: 14px;
+  color: #970c0c;
+}
 .loginForm form .button-submit button {
   background: #13B8A6;
   border-radius: 10px;
@@ -130,6 +163,7 @@ p.folderName, p.chat__name {
   -webkit-line-clamp: 1;
   -webkit-box-orient: horizontal;
   max-width: 10vw;
+  font-size: 0.721vw;
 }
 
 .mainWrapper {
@@ -317,6 +351,12 @@ body.dark button.buttonTool {
 }
 body.dark .menu-items a {
   color: #525459;
+}
+body.dark .menu-items a:hover {
+  color: white;
+}
+body.dark .menu-items button:hover {
+  color: White;
 }
 body.dark .welcome-chat h2 {
   color: white;
@@ -975,6 +1015,7 @@ section.library-mob {
   color: white;
   padding: 0.417vw 0.313vw;
   outline: none;
+  font-size: 0.721vw;
   border: none;
 }
 .addChatIcon .hoverItems {
@@ -1118,6 +1159,7 @@ button.promptBtn .promptText {
   max-width: 100%;
   overflow-x: hidden;
   background: #0F131B;
+  position: relative;
 }
 
 .msger-chat::-webkit-scrollbar {
@@ -1234,11 +1276,11 @@ button.promptBtn .promptText {
   border-spacing: 0px;
   table-layout: auto;
   text-align: left;
-  margin-top: 0.521vw;
+  margin: 0.521vw 0px;
 }
 .msg-bubble table thead {
   border-bottom-width: 0.052vw;
-  border-color: #d9d9e3;
+  border-color: #5c606a;
   border-style: solid;
 }
 .msg-bubble table th {
@@ -1248,7 +1290,7 @@ button.promptBtn .promptText {
   border-right-width: 0.052vw;
   border-top-width: 0.052vw;
   padding: 0.208vw 0.625vw;
-  border-color: #d9d9e3;
+  border-color: #5c606a;
   border-style: solid;
 }
 .msg-bubble table th:first-child {
@@ -1264,18 +1306,18 @@ button.promptBtn .promptText {
   padding: 0.208vw 0.625vw;
 }
 .msg-bubble table tr {
-  border: #d9d9e3 solid 0.052vw;
+  border: #5c606a solid 0.052vw;
   border-bottom-width: 0.052vw;
 }
 .msg-bubble table tr td {
-  border: #d9d9e3 solid 0.052vw;
+  border: #5c606a solid 0.052vw;
   border-bottom: none;
 }
 .msg-bubble table tr:first-child td {
   border-top: none;
 }
 .msg-bubble table tr:last-child td {
-  border-bottom: #d9d9e3 solid 0.052vw;
+  border-bottom: #5c606a solid 0.052vw;
 }
 .msg-bubble table tr:last-child td:first-child {
   border-bottom-left-radius: 0.313vw;
@@ -1322,6 +1364,7 @@ button.promptBtn .promptText {
 }
 
 .messageInput {
+  position: relative;
   background: #0F131B;
   padding: 1.458vw 2.083vw 1.042vw 2.083vw;
   border-top: 0.052vw solid #2A2F39;
@@ -1345,7 +1388,7 @@ button.promptBtn .promptText {
 }
 
 .tokensSpent {
-  color: #CFCFCF;
+  color: #757d8a;
   font-weight: 500;
   font-size: 0.729vw;
 }
@@ -1501,6 +1544,9 @@ button.promptBtn .promptText {
   font-weight: 400;
   line-height: 1.25vw;
 }
+#popup-develop .about-project-soc a:hover {
+  opacity: 0.8;
+}
 #popup-develop .about-project-soc a.first button {
   background: #13B8A6;
 }
@@ -1520,6 +1566,9 @@ button.promptBtn .promptText {
 }
 .about-project-soc a {
   width: 100%;
+}
+.about-project-soc a:hover {
+  opacity: 0.8;
 }
 .about-project-soc button {
   color: #FFFFFF;
@@ -1724,9 +1773,18 @@ button.promptBtn .promptText {
   text-align: center;
 }
 #popup-library .popupContent .popup-inner {
+  width: 60%;
   background: #0F131B;
   border-radius: 20px;
   padding: 2.083vw;
+}
+#popup-library .popupContent .popup-inner .prompts-category {
+  display: grid;
+  grid-gap: 0.521vw;
+  grid-template-columns: repeat(3, 33.333%);
+}
+#popup-library .popupContent .popup-inner .prompts-category button {
+  width: auto;
 }
 #popup-library .popupContent .popup-inner h2 {
   font-size: 1.667vw;
@@ -1735,12 +1793,20 @@ button.promptBtn .promptText {
   line-height: 2.031vw;
   padding-bottom: 2.083vw;
 }
+#popup-library .popupContent .popup-inner .library-item {
+  width: 14.35vw;
+}
 #popup-library .popupContent .popup-inner .library-item button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.521vw;
   color: white;
+  font-size: 0.781vw;
+}
+#popup-library .popupContent .popup-inner .library-items-container {
+  overflow: auto;
+  max-height: 40vh;
 }
 #popup-library .popupContent .popup-inner .prompts-in-category {
   margin-top: 1.563vw;
@@ -2265,7 +2331,7 @@ button.add-chat:hover {
 .buttonOpen input {
   width: 100%;
   border: none;
-  font-size: 0.781vw;
+  font-size: 0.721vw;
   color: white;
   padding: 0.417vw 0.313vw;
   border-radius: 0.521vw;
@@ -2453,11 +2519,19 @@ button.add-chat:hover {
   color: #f22c3d;
 }
 
+pre {
+  padding: 0.521vw;
+}
+
+pre.after-code {
+  padding: 0px;
+}
+
 pre code.hljs {
   color: white;
   font-family: inherit !important;
   overflow-x: auto;
-  padding: 1em;
+  padding: 1em !important;
   display: block;
 }
 
@@ -2578,10 +2652,9 @@ pre {
   font-weight: 400;
   font-size: 0.875em;
   line-height: 1.7142857;
-  border-radius: 0.375rem;
+  border-radius: 0.3vw;
   padding: 0;
-  margin: 0;
-  padding: 0.26vw;
+  margin: 0.521vw 0vw;
 }
 
 .loaderResponse {
@@ -2636,13 +2709,14 @@ table th {
 }
 
 #scrollBottomBtn {
-  position: fixed;
-  bottom: 12.021vw;
+  position: absolute;
   border-radius: 50%;
   width: 1.563vw;
   height: 1.563vw;
   border: none;
-  right: 25.042vw;
+  z-index: 10;
+  bottom: 12vw;
+  right: 2.5vw;
 }
 
 @media (max-width: 768px) {
