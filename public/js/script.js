@@ -206,7 +206,22 @@ function sendMsg(msg) {
             showdownConverter = window.markdownit({
                 html: true,
                 linkify: true,
-            })
+            });
+            //Кнопка остановки генерации ответа от гпт
+            document.getElementById('responseStop').onclick = () =>{
+                msgerSendBtn.disabled = false
+                $('.tokens').load("/get_tokens");
+                $('.tokensSpent').load(`/messages-cost/get/${data}`);
+                isPaused = true;
+                params = {
+                    'id': document.querySelector('#chat_id').value,
+                    'txt': document.getElementById(uuid).innerHTML
+                }
+                fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
+                loader.classList.remove('showed');
+                $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                stream.close();
+            }
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
                     msgerSendBtn.disabled = false
@@ -237,7 +252,7 @@ function sendMsg(msg) {
                                 lastIndex = lang.lastIndexOf("-"),
                                 lastWord = lang.substring(lastIndex + 1);
                                 console.log(lastWord);
-                                if(lastWord == undefined){
+                                if(lastWord === "undefined"){
                                     lastWord = 'text';
                                 }
                                 let blockInfo = document.createElement('div');
@@ -246,24 +261,27 @@ function sendMsg(msg) {
                                 item.parentElement.insertBefore(blockInfo, item);
                             });
                         }
-                        window.setInterval(function(){
-                            if(!isPaused){
-                                $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-                            }
-                        }, 100);
+                        /* Прокрутка вниз
+                        if(isPaused == false){
+                            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                        }
+                        document.querySelector('.msger-chat').addEventListener('scroll', function(e){
+                            isPaused = true;
+                        });
+                        */
                     }
                 }
             };
             stream.onerror = function (e) {
                 loader.classList.remove('showed');
+                document.getElementById('loaderResponseError').classList.add('showed');
+                setTimeout(() => {
+                    document.getElementById('loaderResponseError').classList.remove('showed');
+                }, 2500);
                 stream.close();
             }
         })
         .catch(error => console.error(error));
-}
-
-function stopStream() {
-    stream.close();
 }
 
 // Utils
@@ -681,7 +699,6 @@ document.querySelectorAll('a#aboutProject').forEach((item)=>{
 //Открытие попапа в разработке
 document.getElementById('chat-with-base').onclick = () =>{
     document.getElementById('popup-develop').classList.add('active');
-    closePopContainer('popup-develop', '#popup-develop .popupContent');
 }
 //Функция скролла вниз
 
@@ -705,9 +722,9 @@ function autoResize(item) {
 
 //Resize || load
 
-window.addEventListener('resize', ()=>{
+window.onresize = ()=>{
     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-});
+}
 
 window.addEventListener('DOMContentLoaded', ()=>{
     autoResize(document.querySelector('textarea.msger-input'));

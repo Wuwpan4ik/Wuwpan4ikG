@@ -28,7 +28,7 @@ class OpenAiController extends Controller
     public function event__stream(Chat $chat)
     {
         $prompt_tokens = 0;
-        $count_messages = 2;
+        $count_messages = 5;
 
         $id = $chat->id;
         if (empty($chat->role)) {
@@ -43,9 +43,11 @@ class OpenAiController extends Controller
         //*
         foreach ($message as $mess) {
             if ($mess->is_bot) {
-                $history[] = ["role" => 'assistant', "content" => $mess->message];
+                $assistant_mesage = $mess->message;
+                $history[] = ["role" => 'assistant', "content" => trim(strip_tags($assistant_mesage))];
             } else {
-                $history[] = ["role" => 'user', "content" => $mess->message];
+                $user_message = $mess->message;
+                $history[] = ["role" => 'user', "content" => trim(strip_tags($user_message))];
             }
             $prompt_tokens += count($this->gpt_encode($mess));
         }

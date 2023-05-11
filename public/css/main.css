@@ -8,6 +8,10 @@
   --right-msg-bg: #16171c;
 }
 
+html, body {
+  overflow: hidden;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Inter";
@@ -795,6 +799,38 @@ section.library-mob {
   right: 0px;
 }
 
+.colorSheme {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.781vw 1.042vw;
+  align-items: center;
+}
+.colorSheme .firstCol {
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+  color: #525459;
+  font-size: 0.781vw;
+}
+.colorSheme .secondCol {
+  border: 0.052vw solid #2A2F39;
+  border-radius: 0.521vw;
+  padding: 0.313vw;
+}
+.colorSheme .secondCol button {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.521vw;
+  height: 1.667vw;
+  width: 2.813vw;
+  border: none;
+}
+.colorSheme .secondCol button.active {
+  background: #393D42;
+}
+.colorSheme:hover .firstCol {
+  color: #A2A2A3;
+}
+
 .menu-items {
   display: flex;
   flex-direction: column;
@@ -811,7 +847,7 @@ section.library-mob {
   font-size: 0.781vw;
   color: #525459;
   align-items: center;
-  margin-top: 0.521vw;
+  margin-bottom: 0.521vw;
 }
 .menu-items form button:hover, .menu-items a:hover {
   background: #1D2129;
@@ -886,6 +922,9 @@ section.library-mob {
 }
 .systemRole:hover .hoverItems {
   opacity: 1;
+}
+.systemRole p {
+  white-space: pre-wrap;
 }
 .systemRole .formSystemRole textarea {
   width: 100%;
@@ -1171,15 +1210,15 @@ button.promptBtn .promptText {
   position: relative;
 }
 
-.msger-chat::-webkit-scrollbar {
-  width: 6px;
+::-webkit-scrollbar {
+  width: 0.313vw;
 }
 
-.msger-chat::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #2b2c34;
 }
 
-.msger-chat::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #444654;
 }
 
@@ -1273,6 +1312,10 @@ button.promptBtn .promptText {
 .msg-bubble .msg-text p {
   padding: 0.26vw 0px;
   white-space: pre-wrap;
+}
+.msg-bubble a {
+  color: white;
+  text-decoration: underline !important;
 }
 .msg-bubble ul {
   list-style: circle;
@@ -2768,7 +2811,7 @@ pre {
   border-radius: 0.521vw;
   background: #0F131B;
   padding: 1.042vw;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0vw 0.208vw 0.208vw rgba(0, 0, 0, 0.25);
   justify-content: space-between;
   width: 20.625vw;
   align-items: center;
@@ -2800,7 +2843,36 @@ pre {
   justify-content: center;
   border: none;
 }
+.loaderResponse.error {
+  padding: 1.042vw 1.042vw 1.042vw 0.5vw;
+}
+.loaderResponse.error .firstRow {
+  gap: 0.26vw;
+}
+.loaderResponse.error .loaderGif {
+  width: 2.5vw;
+  height: 2.5vw;
+}
+.loaderResponse.error .under-loader {
+  background-color: white;
+  left: 0px;
+  height: 0.208vw;
+  bottom: 0px;
+  position: absolute;
+  animation: underLoader 3s linear;
+  border-bottom-left-radius: 0.521vw;
+  border-bottom-right-radius: 0.521vw;
+  width: 100%;
+}
 
+@keyframes underLoader {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
 table {
   width: 100%;
   overflow: auto;

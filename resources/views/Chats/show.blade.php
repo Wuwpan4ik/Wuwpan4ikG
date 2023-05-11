@@ -6,17 +6,17 @@
 </head>
     <div class="mainWrapper">
         <section class="msger">
+            <!--
             <header class="msger-header">
                 <div class="msger-header-title">
                     <i class="fas fa-comment-alt"></i> ChatGPT
                     &nbsp;| ID: <input type="text" id="id" hidden> <span class="id_session"></span>
                 </div>
-                <!--Удаление истории чата-->
                 <div class="msger-header-options" style="display:none;">
                     <button id="delete-button">Delete History</button>
                 </div>
             </header>
-
+            -->
             <main class="msger-chat">
                 <!--Плашка в начале чата-->
                 @include('components.message')
@@ -98,13 +98,28 @@
                 <span>Дождитесь ответа</span>
             </div>
         </div>
-        <!-- Остановка запроса
         <div class="secondRow">
             <button id="responseStop">
                 <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_17_1429)"><path d="M9.87819 0.622361C9.80006 0.544248 9.6941 0.500366 9.58361 0.500366C9.47313 0.500366 9.36716 0.544248 9.28903 0.622361L5.00028 4.91111L0.711527 0.622361C0.633391 0.544248 0.527429 0.500366 0.416944 0.500366C0.306459 0.500366 0.200497 0.544248 0.122361 0.622361C0.0442476 0.700497 0.000366211 0.806459 0.000366211 0.916944C0.000366211 1.02743 0.0442476 1.13339 0.122361 1.21153L4.41111 5.50028L0.122361 9.78903C0.0442476 9.86716 0.000366211 9.97313 0.000366211 10.0836C0.000366211 10.1941 0.0442476 10.3001 0.122361 10.3782C0.200497 10.4563 0.306459 10.5002 0.416944 10.5002C0.527429 10.5002 0.633391 10.4563 0.711527 10.3782L5.00028 6.08944L9.28903 10.3782C9.36716 10.4563 9.47313 10.5002 9.58361 10.5002C9.6941 10.5002 9.80006 10.4563 9.87819 10.3782C9.95631 10.3001 10.0002 10.1941 10.0002 10.0836C10.0002 9.97313 9.95631 9.86716 9.87819 9.78903L5.58944 5.50028L9.87819 1.21153C9.95631 1.13339 10.0002 1.02743 10.0002 0.916944C10.0002 0.806459 9.95631 0.700497 9.87819 0.622361Z" fill="white"/></g><defs><clipPath id="clip0_17_1429"><rect width="10" height="10" fill="white" transform="translate(0 0.5)"/></clipPath></defs></svg>
             </button>
         </div>
-        -->
+    </div>
+    <div class="loaderResponse error" id="loaderResponseError">
+        <div class="firstRow">
+            <div class="loaderGif">
+                <lottie-player src="https://assets2.lottiefiles.com/temp/lf20_QYm9j9.json"  background="transparent" speed="1" loop autoplay></lottie-player>
+            </div>
+            <div class="responseStat">
+                <p>Непредвиденная ошибка!</p>
+                <span>Попробуйте отправить запрос еще раз.</span>
+            </div>
+        </div>
+        <div class="secondRow">
+            <button id="responseStop">
+                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_17_1429)"><path d="M9.87819 0.622361C9.80006 0.544248 9.6941 0.500366 9.58361 0.500366C9.47313 0.500366 9.36716 0.544248 9.28903 0.622361L5.00028 4.91111L0.711527 0.622361C0.633391 0.544248 0.527429 0.500366 0.416944 0.500366C0.306459 0.500366 0.200497 0.544248 0.122361 0.622361C0.0442476 0.700497 0.000366211 0.806459 0.000366211 0.916944C0.000366211 1.02743 0.0442476 1.13339 0.122361 1.21153L4.41111 5.50028L0.122361 9.78903C0.0442476 9.86716 0.000366211 9.97313 0.000366211 10.0836C0.000366211 10.1941 0.0442476 10.3001 0.122361 10.3782C0.200497 10.4563 0.306459 10.5002 0.416944 10.5002C0.527429 10.5002 0.633391 10.4563 0.711527 10.3782L5.00028 6.08944L9.28903 10.3782C9.36716 10.4563 9.47313 10.5002 9.58361 10.5002C9.6941 10.5002 9.80006 10.4563 9.87819 10.3782C9.95631 10.3001 10.0002 10.1941 10.0002 10.0836C10.0002 9.97313 9.95631 9.86716 9.87819 9.78903L5.58944 5.50028L9.87819 1.21153C9.95631 1.13339 10.0002 1.02743 10.0002 0.916944C10.0002 0.806459 9.95631 0.700497 9.87819 0.622361Z" fill="white"/></g><defs><clipPath id="clip0_17_1429"><rect width="10" height="10" fill="white" transform="translate(0 0.5)"/></clipPath></defs></svg>
+            </button>
+        </div>
+        <div class="under-loader"></div>
     </div>
     <!--Скрипты-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -216,9 +231,10 @@
             item.preventDefault()
             let form = item.target
             fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": form.querySelector('input[name="_token"]').value}, method: "POST", body: JSON.stringify({'role': form.querySelector('#systemRoleText').value})})
-            document.querySelector('.systemRole button.renameChat').click()
-            document.querySelector('.systemRole span').textContent = form.querySelector('#systemRoleText').value;
-            document.querySelector('.systemRole span').classList.remove('display-none');
+            document.querySelector('.systemRole button.renameChat').click();
+            let formText = form.querySelector('#systemRoleText').value;
+            document.querySelector('.systemRole p').textContent = String(formText).trim();
+            document.querySelector('.systemRole p').classList.remove('display-none');
             setTimeout(function () {
                 $('.msger-chat').load(`/messages/get/${id}`);
             }, 300)

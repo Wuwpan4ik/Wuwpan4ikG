@@ -5,7 +5,8 @@
             {{ __("systemRole") }}
         </h2>
         <div class="systemRole" id="systemRole">
-            <span>@if($chat->role) {{ $chat->role }} @else Пользователь @endif</span>
+            <p class="systemRoleP">@if($chat->role) {{ $chat->role }} @elseВы — ChatGPT, большая языковая модель, обученная OpenAI. Внимательно следуйте инструкциям пользователя. Отвечайте, используя Markdown. @endif
+            </p>
             <div class="hoverItems prompts">
                 <button class="copyBtn">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +59,7 @@
         var copyTextarea = document.createElement("textarea");
         copyTextarea.style.position = "fixed";
         copyTextarea.style.opacity = "0";
-        copyTextarea.textContent = String(document.querySelector("#systemRole span").textContent).trim();
+        copyTextarea.textContent = String(document.querySelector("#systemRole p").textContent).trim();
         document.body.appendChild(copyTextarea);
         copyTextarea.select();
         document.execCommand("copy");
@@ -84,14 +85,14 @@
     document.querySelector('.systemRole button.renameChat').onclick = () =>{
         document.querySelector('.formSystemRole').classList.toggle('nonActive');
         document.querySelector('.systemRole .hoverItems').classList.toggle('nonActive');
-        document.getElementById('systemRoleText').innerText = document.querySelector('.systemRole span').textContent;
-        document.querySelector('.systemRole span').classList.add('display-none');
+        document.getElementById('systemRoleText').innerText = String(document.querySelector('.systemRole p').textContent).trim();
+        document.querySelector('.systemRole p').classList.add('display-none');
     }
 
     //Кнопка отменить в системной роли
     document.getElementById('dismissRole').onclick = () =>{
         document.querySelector('.formSystemRole').classList.add('nonActive');
         document.querySelector('.systemRole .hoverItems').classList.remove('nonActive');
-        document.querySelector('.systemRole span').classList.remove('display-none');
+        document.querySelector('.systemRole p').classList.remove('display-none');
     }
 </script>
