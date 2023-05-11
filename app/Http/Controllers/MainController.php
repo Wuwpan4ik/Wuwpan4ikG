@@ -39,7 +39,7 @@ class MainController extends Controller
     public function showSidebar(Chat $chat)
     {
         $folders = (new Folder())->getFolders();
-        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get()->sortBy("id");
+        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
         return view('components.sidebar_index', compact('folders', 'chats', 'chat'));
     }
 

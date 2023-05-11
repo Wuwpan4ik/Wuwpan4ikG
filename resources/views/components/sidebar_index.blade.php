@@ -85,9 +85,8 @@
         </div>
     </div>
 @endforeach
-
 @foreach($chats as $chat_local)
-    @php $first_id = $chats[0]->id; @endphp
+    @php $first_id = $chats[count($chats) - 1]->id; @endphp
     <div data-uuid="{{ $chat_local->uuid }}" onclick="myFunction({{ $chat_local->id }}, '{{ $chat_local->uuid }}')" class=" @if($chat_local->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
         @include('components.chat', ['main' => $chat_local] )
     </div>

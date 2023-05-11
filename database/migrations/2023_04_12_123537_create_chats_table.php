@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->default('Новый чат');
+            $table->string('title');
             $table->foreignId('user_id')->nullable()->index()->constrained('users')->onDelete("CASCADE");
             $table->foreignId('folder_id')->nullable()->index()->constrained('folders')->onDelete("CASCADE");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

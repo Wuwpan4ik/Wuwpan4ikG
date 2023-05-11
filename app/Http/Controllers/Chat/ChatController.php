@@ -26,8 +26,11 @@ class ChatController extends Controller
     {
         if (Auth::user()) {
             if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->uuid);
+            $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
             $chat = Chat::create([
-                'user_id' => Auth::id()
+                'title' => "Новый чат №" . $chat_id,
+                'user_id' => Auth::id(),
+                'role' => env('default_role')
             ]);
 
             return redirect()->route('chats.show', $chat->uuid);
@@ -48,7 +51,9 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
+        $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
         $chat = Chat::create([
+            'title' => "Новый чат №" . $chat_id,
             'user_id' => Auth::id(),
             'role' => env('default_role')
         ]);
@@ -71,7 +76,7 @@ class ChatController extends Controller
      */
     public function show(Chat $chat)
     {
-        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->get()->sortBy("id");
+        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
         $folders = (new Folder())->getFolders();
         $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
         $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();

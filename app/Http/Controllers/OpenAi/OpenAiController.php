@@ -25,7 +25,7 @@ class OpenAiController extends Controller
         return response()->json($message->chat_id);
     }
 
-    public function event__stream(StreamRequest $request, Chat $chat)
+    public function event__stream(Chat $chat)
     {
         $prompt_tokens = 0;
         $count_messages = 2;
@@ -50,18 +50,22 @@ class OpenAiController extends Controller
             $prompt_tokens += count($this->gpt_encode($mess));
         }
 
+
         if (empty(session()->get('settings'))) {
+            $total_tokens = 4000;
             $temperature = 1;
             $top_p = 1;
             $frequency_penalty = 0;
             $presence_penalty = 0;
         } else {
+            $total_tokens = session()->get('settings')['max_tokens'];
             $temperature = (integer)session()->get('settings')['temperature'];
             $top_p = (integer)session()->get('settings')['top_p'];
             $frequency_penalty = (integer)session()->get('settings')['frequency'];
             $presence_penalty = (integer)session()->get('settings')['presence'];
         }
 
+        $total_tokens = min(Auth::user()->tokens, $total_tokens);
 
         if (Auth::user()->tokens <= 0) {
             return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);

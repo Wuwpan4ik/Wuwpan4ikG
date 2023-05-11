@@ -179,7 +179,7 @@ function copyToClipboard(item){
         item.innerHTML = lastSvg;
     }, 1000)
 }
-
+let stream;
 function sendMsg(msg) {
     msgerSendBtn.disabled = true
     let key = document.querySelector('input[name=_token]').value;
@@ -195,7 +195,7 @@ function sendMsg(msg) {
         .then(data => {
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
-            const stream = new EventSource(`/event-stream/${data}`);
+            stream = new EventSource(`/event-stream/${data}`);
             const div = document.getElementById(uuid);
             var isPaused = false;
             var loader = document.getElementById('loaderResponse');
@@ -255,13 +255,15 @@ function sendMsg(msg) {
                 }
             };
             stream.onerror = function (e) {
-                console.log(e)
-                div.innerText = 'Произошла ошибка!';
                 loader.classList.remove('showed');
                 stream.close();
             }
         })
         .catch(error => console.error(error));
+}
+
+function stopStream() {
+    stream.close();
 }
 
 // Utils
@@ -366,7 +368,7 @@ function renameChat(item){
         input.classList.add('nonActive');
         confirmRename.classList.add('nonActive');
         item.classList.remove('nonActive');
-        btnDelete.classList.remove('nonActive');
+        if (btnDelete) btnDelete.classList.remove('nonActive');
         nameChat.classList.remove('nonActive');
     }else{
         document.querySelectorAll('.addChatIcon .confirmRename').forEach((item)=>item.classList.add('nonActive'));
@@ -379,7 +381,8 @@ function renameChat(item){
         input.classList.remove('nonActive');
         confirmRename.classList.remove('nonActive');
         item.classList.add('nonActive');
-        btnDelete.classList.add('nonActive');
+
+        if (btnDelete) btnDelete.classList.add('nonActive');
         input.value = nameChat.innerHTML;
         nameChat.classList.add('nonActive');
     }
@@ -422,8 +425,11 @@ function initDelete() {
         deleteChatBtns[i].onclick = () =>{
             deleteChat(deleteChatBtns[i]);
         }
+    }
+
+    for(let i = 0; i < deleteChatNo.length;i++){
         deleteChatNo[i].onclick = () =>{
-            deleteChat(deleteChatBtns[i]);
+            deleteChat(deleteChatNo[i].parentElement.parentElement.parentElement.querySelector('.deleteChat'));
         }
     }
 }
