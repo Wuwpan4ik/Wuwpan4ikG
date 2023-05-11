@@ -50,7 +50,6 @@ class OpenAiController extends Controller
             $prompt_tokens += count($this->gpt_encode($mess));
         }
 
-
         if (empty(session()->get('settings'))) {
             $temperature = 1;
             $top_p = 1;
@@ -112,6 +111,7 @@ class OpenAiController extends Controller
             }
             ob_flush();
             flush();
+            sleep(0.1);
             return strlen($data);
         });
     }
