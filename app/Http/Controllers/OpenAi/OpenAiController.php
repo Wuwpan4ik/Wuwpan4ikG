@@ -35,7 +35,7 @@ class OpenAiController extends Controller
         } else {
             $history[] = array("role" => "system", "content" => $chat->role);
         }
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy('id');
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(1)->get()->sortBy('id');
 
         $prompt_tokens = 0;
 
@@ -66,9 +66,9 @@ class OpenAiController extends Controller
 
         $total_tokens = min(Auth::user()->tokens, $total_tokens);
 
-//        if (Auth::user()->tokens <= 0) {
-//            return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
-//        }
+        if (Auth::user()->tokens <= 0) {
+            return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
+        }
 
         global $opts;
 

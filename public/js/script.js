@@ -384,22 +384,6 @@ function renameChat(item){
         nameChat.classList.add('nonActive');
     }
 }
-document.querySelectorAll('.renameChatYes').forEach(item => {
-    item.addEventListener('click', function () {
-        item.parentElement.parentElement.parentElement.parentElement.querySelector('#submit_rename').click()
-    })
-})
-
-document.querySelectorAll('.chat__update-form').forEach(item => {
-    item.addEventListener('submit', function (event) {
-        // event.preventDefault();
-        // let key = document.querySelector('input[name="_token"]').value
-        // let params = {
-        //     'title': document.querySelector('#renameChatInput').value
-        // }
-        // fetch(item.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'PATCH', body: JSON.stringify(params)})
-    })
-})
 
 for(let i =0; i < renameChats.length;i++){
     renameChats[i].onclick = () =>{
@@ -412,9 +396,6 @@ for(let i =0; i < renameChats.length;i++){
 
 
 //Удаление чата
-
-
-
 function deleteChat(item){
     if(item.parentElement.parentElement.querySelector('.renameChat').classList.contains('nonActive')){
         document.querySelectorAll('.addChatIcon .confirmRename').forEach((item)=>item.classList.add('nonActive'));
@@ -726,6 +707,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     autoResize(document.querySelector('textarea.msger-input'));
     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
 })
+
 
 //Открытие попапа
 
