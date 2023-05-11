@@ -3,7 +3,8 @@
         <div class="popupContent">
             <div class="popup-inner">
                 <div class="form-popup">
-                    <form action="" method="post">
+                    <form action="{{ route('store_test') }}" method="post">
+                        @csrf
                         <div class="form-inner">
                             <div class="form-image">
                                 <img src="../assets/asset-zapic.jpg" alt="Запись">

@@ -14,6 +14,7 @@ class Chat extends Model
     protected $guarded = false;
 
     protected $fillable = [
+        'id',
         'title',
         'role',
         'folder_id',

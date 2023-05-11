@@ -18,4 +18,9 @@ class PayerController extends Controller
 
         User::where('id', $user_id)->increment('tokens', 1450 * $amount);
     }
+
+    public function store_test(Request $request)
+    {
+
+    }
 }

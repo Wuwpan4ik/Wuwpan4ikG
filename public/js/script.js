@@ -195,8 +195,7 @@ function sendMsg(msg) {
         .then(data => {
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
-            let role = document.querySelector('.systemRole-span').innerHTML;
-            const stream = new EventSource(`/event-stream/${data}?role=${role}`);
+            const stream = new EventSource(`/event-stream/${data}`);
             const div = document.getElementById(uuid);
             var isPaused = false;
             var loader = document.getElementById('loaderResponse');
@@ -256,7 +255,7 @@ function sendMsg(msg) {
                 }
             };
             stream.onerror = function (e) {
-                console.log(e);
+                console.log(e)
                 div.innerText = 'Произошла ошибка!';
                 loader.classList.remove('showed');
                 stream.close();

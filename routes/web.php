@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function() {
     Route::get("/settings/langChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeLanguage"])->name("changeLanguage");
     Route::get("/settings/themeChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeTheme"])->name("changeTheme");
     Route::get("/theme/get", function() { return view("components.get_theme"); });
+
+    Route::post("/store_test", [\App\Http\Controllers\Payer\PayerController::class, 'store_test'])->name('store_test');
 });
 
 require __DIR__.'/auth.php';
