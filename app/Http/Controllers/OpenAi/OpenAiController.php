@@ -30,25 +30,25 @@ class OpenAiController extends Controller
         $data = $request->validated();
         $msg = $data['message'];
         $id = $chat->id;
+        $chat_role = $chat->role;
         if (empty($chat->role)) {
             $history[] = array("role" => "system", "content" => "You are a helpful assistant.");
         } else {
             $history[] = array("role" => "system", "content" => $chat->role);
         }
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(1)->get()->sortBy('id');
+
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy('id');
 
         $prompt_tokens = 0;
 
-        //*
         foreach ($message as $mess) {
             if ($mess->is_bot) {
-                $history[] = ["role" => 'assistant', "content" => substr($mess->message, 0, 100)];
+                $history[] = ["role" => 'assistant', "content" => $mess->message];
             } else {
-                $history[] = ["role" => 'user', "content" => substr(strip_tags($mess->message) , 0, 100)];
+                $history[] = ["role" => 'user', "content" => $mess->message];
             }
             $prompt_tokens += count($this->gpt_encode($mess));
         }
-
 
         if (empty(session()->get('settings'))) {
             $total_tokens = 4000;
@@ -76,7 +76,6 @@ class OpenAiController extends Controller
             'model' => 'gpt-3.5-turbo',
             'messages' => $history,
             'temperature' => $temperature,
-            "max_tokens" => $total_tokens,
             'top_p' => $top_p,
             'frequency_penalty' => $frequency_penalty,
             'presence_penalty' => $presence_penalty,
@@ -115,7 +114,6 @@ class OpenAiController extends Controller
             }
             ob_flush();
             flush();
-            sleep(0.1);
             return strlen($data);
         });
     }
