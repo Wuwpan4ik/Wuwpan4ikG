@@ -797,6 +797,7 @@ section.library-mob {
 }
 .sidebarMain.right {
   right: 0px;
+  overflow: auto;
 }
 
 .colorSheme {
@@ -820,12 +821,16 @@ section.library-mob {
 .colorSheme .secondCol button {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 0.521vw;
-  height: 1.667vw;
-  width: 2.813vw;
+  width: auto;
+  padding: 0.313vw 0.781vw;
   border: none;
 }
 .colorSheme .secondCol button.active {
   background: #393D42;
+}
+.colorSheme .secondCol button svg {
+  width: 0.729vw !important;
+  height: 0.729vw !important;
 }
 .colorSheme:hover .firstCol {
   color: #A2A2A3;
@@ -958,6 +963,70 @@ section.library-mob {
 }
 .systemRole .formSystemRole .buttons #dismissRole {
   background: #525459;
+}
+
+.chooseRoleFrom button {
+  display: flex;
+  padding: 0.833vw 1.042vw;
+  height: 2.604vw;
+  align-items: center;
+  gap: 0.521vw;
+  border: 0.052vw solid #1D2129;
+  border-radius: 0.521vw;
+  background: none;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 0.938vw;
+  font-size: 0.781vw;
+  margin: 1.042vw 0px;
+  width: 100%;
+}
+
+.chatSettings h2 {
+  line-height: 1.406vw;
+  font-size: 1.146vw;
+  font-weight: 600;
+  color: #A2A2A3;
+  padding-top: 0.521vw;
+  padding-bottom: 0.521vw;
+  margin-bottom: 1.042vw;
+}
+.chatSettings .popup-setting {
+  max-width: 100%;
+  margin-bottom: 1.042vw;
+}
+
+#showFeatures {
+  display: flex;
+  padding: 0.833vw 1.042vw;
+  height: 2.604vw;
+  align-items: center;
+  border: 0.052vw solid #1D2129;
+  border-radius: 0.521vw;
+  background: none;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 0.938vw;
+  font-size: 0.781vw;
+  margin: 1.042vw 0px;
+  width: 100%;
+  justify-content: space-between;
+}
+#showFeatures .firstRow {
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+}
+#showFeatures.active {
+  background: #1D2129;
+}
+#showFeatures.active .secondRow svg {
+  transform: rotate(90deg);
+}
+
+.hiddenSettings {
+  display: none;
+}
+.hiddenSettings.opened {
+  display: block;
 }
 
 .confirmRename, .deleteFolderConfirm, .renameFolderConfirm {

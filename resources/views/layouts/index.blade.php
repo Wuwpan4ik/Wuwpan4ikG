@@ -129,7 +129,6 @@
 </div>
 <div class="theme" style="display: none;"></div>
 <!--Попапы-->
-@include('components.popups.popup-settings')
 @include('components.popups.popup-pay')
 <div class="popup" id="menu-mob">
     <div class="popupContent">

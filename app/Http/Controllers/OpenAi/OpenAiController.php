@@ -28,7 +28,7 @@ class OpenAiController extends Controller
     public function event__stream(Chat $chat)
     {
         $prompt_tokens = 0;
-        $count_messages = 5;
+        $count_messages = 2;
 
         $id = $chat->id;
         if (empty($chat->role)) {
@@ -40,7 +40,7 @@ class OpenAiController extends Controller
 
         $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($count_messages)->get()->sortBy('id');
 
-        //*
+        
         foreach ($message as $mess) {
             if ($mess->is_bot) {
                 $assistant_mesage = $mess->message;
@@ -117,7 +117,6 @@ class OpenAiController extends Controller
             }
             ob_flush();
             flush();
-            sleep(0.1);
             return strlen($data);
         });
     }

@@ -904,6 +904,7 @@ section.library-mob{
     }
     &.right{
         right:0px;
+        overflow: auto;
     }
 }
 
@@ -929,9 +930,13 @@ section.library-mob{
             }
             background: rgba(255, 255, 255, 0.1);
             border-radius: 0.521vw;
-            height: 1.667vw;
-            width: 2.813vw;
+            width: auto;
+            padding:0.313vw 0.781vw;
             border:none;
+            svg{
+                width: 0.729vw !important;
+                height:0.729vw !important;
+            }
         }
     }
     &:hover{    
@@ -1072,6 +1077,76 @@ section.library-mob{
                 background:#525459;
             }
         }
+    }
+}
+
+.chooseRoleFrom{
+    button{
+        display: flex;
+        padding:0.833vw 1.042vw;
+        height: 2.604vw;
+        align-items: center;
+        gap:0.521vw;
+        border: 0.052vw solid #1D2129;
+        border-radius: 0.521vw;
+        background:none;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 0.938vw;
+        font-size: 0.781vw;
+        margin:1.042vw 0px;
+        width: 100%;
+    }
+}
+
+.chatSettings{
+    h2{
+        line-height: 1.406vw;
+        font-size: 1.146vw;
+        font-weight: 600;
+        color: #A2A2A3;
+        padding-top: 0.521vw;
+        padding-bottom: 0.521vw;
+        margin-bottom: 1.042vw;
+    }
+    .popup-setting{
+        max-width: 100%;
+        margin-bottom: 1.042vw;
+    }
+}
+
+#showFeatures{
+    display: flex;
+    padding:0.833vw 1.042vw;
+    height: 2.604vw;
+    align-items: center;
+    border: 0.052vw solid #1D2129;
+    border-radius: 0.521vw;
+    background:none;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 0.938vw;
+    font-size: 0.781vw;
+    margin:1.042vw 0px;
+    width: 100%;
+    justify-content: space-between;
+    .firstRow{
+        display: flex;
+        align-items: center;
+        gap:0.521vw;
+    }
+    &.active{
+        background: #1D2129;
+        .secondRow{
+            svg{
+                transform: rotate(90deg);
+            }
+        }
+    }
+}
+
+.hiddenSettings{
+    display: none;
+    &.opened{
+        display: block;
     }
 }
 

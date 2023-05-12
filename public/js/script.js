@@ -186,7 +186,7 @@ function sendMsg(msg) {
     let user_id = document.querySelector("#user_id").value;
     let params = {
         chat_id: document.querySelector('#chat_id').value,
-        message: msg
+        message: msg,
     }
     const res = fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
         .then(
@@ -479,9 +479,6 @@ function disableAllPops(){
     if(document.getElementById('openChats').classList.contains('active')){
         document.getElementById('openChats').classList.remove('active');
     }
-    if(document.getElementById('settings').classList.contains('active')){
-        document.getElementById('settings').classList.remove('active');
-    }
     tokensLeftBtn.forEach((item)=>{
         if(item.classList.contains('active')){
             item.classList.remove('active');
@@ -493,18 +490,6 @@ function disableAllPops(){
     sidebar.forEach((item)=>{
         item.classList.remove('active');
     })
-}
-//Открытие настроек на пк
-
-document.getElementById('settings').onclick = () =>{
-    if(document.getElementById('settings').classList.contains('active')){
-        document.getElementById('settings').classList.remove('active');
-        document.getElementById('settingsTab').classList.remove('active');
-    }else{
-        disableAllPops();
-        document.getElementById('settings').classList.add('active');
-        document.getElementById('settingsTab').classList.add('active');
-    }
 }
 
 
