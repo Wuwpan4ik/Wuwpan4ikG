@@ -74,7 +74,7 @@
                     @endforeach
                 </div>
                 <div class="prompts-in-category">
-                    
+
                 </div>
                 <div class="closeBtnBuy">
                     <button>
@@ -144,10 +144,8 @@
                 response => response.text(),
             ).then(data => {
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
-                setTimeout(function () {
-                    initDelete();
-                    openFolder()
-                }, 500)
+                initDelete();
+                openFolder()
             })
         }
     </script>

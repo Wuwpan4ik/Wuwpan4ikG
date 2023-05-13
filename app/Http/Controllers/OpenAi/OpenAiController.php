@@ -65,8 +65,6 @@ class OpenAiController extends Controller
             $presence_penalty = (integer)session()->get('settings')['presence'];
         }
 
-        $total_tokens = min(Auth::user()->tokens, $total_tokens);
-
         if (Auth::user()->tokens <= 0) {
             return response()->json(['error' => 'У вас нет достаточного количества токенов'], 404);
         }
