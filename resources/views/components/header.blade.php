@@ -59,13 +59,13 @@
                         </svg>
                     </button>
                     <div class="dropdownLang">
-                        <button data-lang="EN">
+                        <button data-lang="EN" style="display:none;">
                             EN
                         </button>
                         <button data-lang="RU" class="active">
                             RU
                         </button>
-                        <button data-lang="UA">
+                        <button data-lang="UA" style="display:none;">
                             UA
                         </button>
                     </div>
@@ -87,7 +87,6 @@
         </ul>
     </nav>
 </header>
-
 
 <header id="mobileHeader">
     <nav>

@@ -134,23 +134,8 @@
     <div class="popupContent">
         <div class="popup-inner">
             <div class="menu-header">
-                <ul>
-                    <li>
-                        <a href="#" class="active">
-                            Чат
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="">
-                            Библиотека подсказок
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="">
-                            Каталог ролей
-                        </a>
-                    </li>
-                </ul>
+                <x-menu>
+                </x-menu>
             </div>
             <div class="menu-items footer__menu-items">
                     <a class="menu-item" id="aboutProject">

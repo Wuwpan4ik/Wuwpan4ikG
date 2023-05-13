@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_promocodes', function (Blueprint $table) {
             $table->id();
-            $table->id('user_id');
-            $table->id('promocode_id');
+            $table->integer('user_id');
+            $table->integer('promocode_id');
             $table->timestamps();
         });
     }

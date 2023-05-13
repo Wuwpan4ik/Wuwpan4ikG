@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('author_id');
             $table->string('key-code');
-            $table->int('amount');
-            $table->int('amount-left');
+            $table->integer('amount');
+            $table->integer('amount-left');
             $table->timestamps();
         });
     }

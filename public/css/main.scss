@@ -23,6 +23,7 @@ html, body{
     box-sizing: border-box;
     font-family: "Inter";
     transition: 0.3s all ease;
+    scrollbar-width: thin;
 }
 
 * a{
@@ -349,9 +350,6 @@ body{
         flex-direction: column;
         padding:0.417vw 0.521vw;
         display:none;
-        &.opened{
-            display: flex;
-        }
         button{
             background:none !important;
             padding: 0.313vw;
@@ -366,6 +364,11 @@ body{
             &:hover{
                 background: #484D59 !important;
             }
+        }
+    }
+    &.active{
+        .dropdownLang{
+            display: flex;
         }
     }
 }
@@ -460,6 +463,51 @@ body.light{
             select{
                 color: #626262;
             }
+        }
+    }
+    #openPrompts{
+        background: #DFDFDF;
+        color: #000000;
+    }
+    .msger-send-btn{
+        svg{
+            path{
+                fill:white;
+            }
+        }
+    }
+    #switchLang{
+        color: black;
+    }
+    #chooseRole{
+        color: #626262;
+        border: 0.052vw solid #D1D1D1;
+    }
+    .modelSettings{
+        background: #DFDFDF !important;
+        color: #626262 !important;
+        * svg{
+            path{
+                fill:#8E8E8F !important;
+            }
+        }
+        input{
+            color: #626262 !important;
+        }
+        button{
+            background: #CDCDCD;
+        }
+    }
+    #saveSettingsRoles{
+        border: 0.052vw solid #D1D1D1;
+        color: #626262;
+        background:#DFDFDF;
+    }
+    #showFeatures{
+        color: #626262;
+        border: 0.052vw solid #D1D1D1;
+        &.active{
+            background:#DFDFDF;
         }
     }
     .welcome-chat{
@@ -611,12 +659,45 @@ body.light{
     #tokensLeft{
         svg{
             path{
-                fill: unset !important;
+                &:nth-child(1){
+                    fill:#FFB703;
+                }
+                &:nth-child(2){
+                    fill:#FCD227;
+                }
+                &:nth-child(3){
+                    fill:#FFB703;
+                }
+                &:nth-child(4){
+                    fill:#FF9831;
+                }
+                &:nth-child(5){
+                    fill:#FFB703;
+                }
+                &:nth-child(6){
+                    fill:#FF9831;
+                }
+                &:nth-child(7){
+                    fill:#FFB703;
+                }
+                &:nth-child(8){
+                    fill:#FF9831;
+                }
+                &:nth-child(8){
+                    fill:#FFB703;
+                }
+                &:nth-child(9){
+                    fill:#FF9831;
+                }
+                &:nth-child(10){
+                    fill:#FB8500;
+                }
             }
         }
     }
     p.aboutRazdel{
-        color:#9b9b9b;
+        color: #484D55;
+        opacity: 0.7;
     }
     form.menu-item{
         button{
@@ -3038,9 +3119,9 @@ section.library{
     height:auto;
     position: relative;
     color: #757D8A;
-    span{
+    p{
         font-size: 0.781vw;
-        line-height: 100%;
+        line-height: 1.25vw;
     }
     .library-item-title{
         font-size: 1.042vw;
@@ -3244,6 +3325,10 @@ table{
 
 //Adaptive
 @media(max-width:768px){
+    p.folderName, p.chat__name{
+        font-size:13.843px;
+        max-width: 100%;
+    }
     #menu-mob .popup-inner{
         width: 100%;
     }
@@ -3360,6 +3445,7 @@ table{
         .folderRow{
             gap:20px;
             padding-bottom: 20px;
+            border-bottom: 1px solid #2A2F39;
             margin-bottom: 20px;
             button{
                 font-size:15px;

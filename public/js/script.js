@@ -127,7 +127,7 @@ function appendMessage(name, img, side, text, id) {
         </div>
       <div class="msg-bubble">
         <div class="msg-text" id=${id}>
-            ${side == "right" ? `<p>${escapeHtml(text)}</p>` : ``}
+            ${side == "right" ? `<p>${escapeHtml(text.trim())}</p>` : ``}
         </div>
       </div>
     </div>
@@ -729,4 +729,10 @@ function openPopUpZayavka(item){
 function openPopUpZayavka2(item){
     document.getElementById('popup-zapic').classList.add('active');
     closePopContainer('popup-zapic', '#popup-zapic .popupContent');
+}
+
+
+//Смена языка
+document.getElementById('switchLang').onclick = () =>{
+    document.getElementById('switchLang').parentElement.classList.toggle('active');
 }

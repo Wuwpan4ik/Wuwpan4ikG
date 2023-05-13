@@ -32,7 +32,7 @@ class OpenAiController extends Controller
 
         $id = $chat->id;
         if (empty($chat->role)) {
-            $history[] = array("role" => "system", "content" => "You are a helpful assistant.");
+            $history[] = array("role" => "system", "content" => "Вы — ChatGPT, большая языковая модель, обученная OpenAI. Внимательно следуйте инструкциям пользователя. Отвечайте, используя Markdown.");
         } else {
             $history[] = array("role" => "system", "content" => $chat->role);
             $prompt_tokens += count($this->gpt_encode($chat->role));

@@ -298,16 +298,6 @@
 
     <script src="{{ asset('js/script.js') }}"></script>
     <script>
-        //Кнопка "Выбрать" в попапе библиотеки подсказок
-        let choosePrompts = document.querySelectorAll('button.choosePrompt');
-        choosePrompts.forEach((item)=>{
-            item.onclick = () =>{
-                document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('span').innerText).trim();
-                document.getElementById('popup-library').classList.remove('active');
-            }
-        })
-    </script>
-    <script>
         //Закрытие попапов
         let closeBtnBuy =  document.querySelectorAll('.closeBtnBuy button');
 
@@ -334,7 +324,7 @@
         editProfileHoverItems = document.querySelectorAll('.coolInput .hoverItems');
 
         for(let i = 0; editProfile.length > i; i++){
-            editProfile[i].onclick = () =>{
+                editProfile[i].onclick = () =>{
                 editProfile.forEach(item => item.classList.remove('nonActive'));
                 editProfileHoverItems.forEach(item=>item.classList.remove('active'));
                 editProfileConfirm.forEach(item=>item.classList.add('nonActive'));
@@ -349,7 +339,7 @@
                 editProfileP[i].classList.add('nonActive');
                 //да (вешаем обработчики)
                 editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
-
+                    
                 }
                 //Нет
                 editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
@@ -400,7 +390,7 @@
                     Выбрать
                     `
                     item.onclick = () =>{
-                        document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('span').innerText).trim();
+                        document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('p').innerText).trim();
                         autoResize(document.querySelector('textarea.msger-input'));
                         document.getElementById('popup-library').classList.remove('active');
                     }
