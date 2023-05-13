@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\OpenAI;
+namespace App\Http\Requests\Chat;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SendRequest extends FormRequest
+class updateChatSettingsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,13 +17,12 @@ class SendRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'message' => 'string|max:5120|required',
-            'chat_id' => 'numeric|exists:chats,id'
+            //
         ];
     }
 }

@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function() {
         Route::patch('chats/{chat}', [\App\Http\Controllers\Chat\ChatController::class, 'update'])->name('chats.update');
         Route::delete('chats/{chat}', [\App\Http\Controllers\Chat\ChatController::class, 'destroy'])->name('chats.destroy');
     });
+    Route::patch('chats-settings/{chat}', [\App\Http\Controllers\Chat\ChatController::class, 'updateSettings'])->name('chats_settings.update');
+
     Route::post("/chats/{chat}/updateRole", [\App\Http\Controllers\Chat\ChatController::class, 'updateRole'])->middleware('check_user_chat')->name("chat.updateRole");
     Route::patch('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'update'])->name('folder.update');
     Route::post('/folder', [\App\Http\Controllers\Folder\FolderController::class, 'store'])->name('folder.store');

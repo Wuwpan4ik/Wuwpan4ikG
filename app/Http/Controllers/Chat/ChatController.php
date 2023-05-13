@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Chat;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Chat\StoreInFolderRequest;
 use App\Http\Requests\Chat\StoreRequest;
+use App\Http\Requests\Chat\updateChatSettingsRequest;
 use App\Http\Requests\Chat\UpdateRequest;
 use App\Http\Requests\Chat\UpdateRoleRequest;
 use App\Models\Chat;
@@ -38,12 +39,22 @@ class ChatController extends Controller
         return \view('welcome');
     }
 
+    public function show(Chat $chat)
+    {
+        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
+        $folders = (new Folder())->getFolders();
+        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
+        $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();
+        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function updateSettings(Request $request, Chat $chat)
     {
-
+        $chat->update($request->except(['_token', '_method']));
+        return true;
     }
 
     /**
@@ -69,18 +80,6 @@ class ChatController extends Controller
         ]);
 
         return json_decode($chat);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Chat $chat)
-    {
-        $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
-        $folders = (new Folder())->getFolders();
-        $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
-        $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();
-        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category'));
     }
 
     public function ShowCost(Chat $chat)

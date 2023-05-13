@@ -565,27 +565,7 @@ tokensLeftBtn.forEach((item)=>{
     }
 });
 
-//Функции для папок
-
-let folderRenameBtns = document.querySelectorAll('button#renameFolderBtn'),
-folderRenameBtnsNo = document.querySelectorAll('button.renameFolderNo'),
-folderDeleteBtns = document.querySelectorAll('button#deleteFolderBtn'),
-folderDeleteBtnsNo = document.querySelectorAll('button.deleteFolderNo');
-
-for(let i = 0; folderRenameBtns.length > i; i++){
-    folderRenameBtns[i].onclick = () =>{
-        renameFolder(folderRenameBtns[i]);
-    }
-    folderRenameBtnsNo[i].onclick = () =>{
-        renameFolder(folderRenameBtnsNo[i]);
-    }
-    folderDeleteBtns[i].onclick = () =>{
-        deleteFolder(folderDeleteBtns[i]);
-    }
-    folderDeleteBtnsNo[i].onclick = () =>{
-        deleteFolder(folderDeleteBtnsNo[i]);
-    }
-}
+//Функции для папо
 
 function renameFolder(item){
     let input = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderInput'),folderText = item.parentElement.parentElement.parentElement.parentElement.querySelector('p'),hoverItems = item.parentElement.parentElement.parentElement.parentElement.querySelector('.hoverItems'),buttonDelete = item.parentElement.parentElement.parentElement.parentElement.querySelector('#deleteFolderBtn'),buttonRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('#renameFolderBtn'),confirmRename = item.parentElement.parentElement.parentElement.parentElement.querySelector('.renameFolderConfirm');

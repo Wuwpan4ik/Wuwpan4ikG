@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             AIModelSeeder::class,
             PromptsFolderSeeder::class,
             RoleSeeder::class,
-            LanguageSeeder::class
+            LanguageSeeder::class,
+            PromptsSeeder::class
         ]);
     }
 }
