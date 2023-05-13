@@ -1,0 +1,156 @@
+
+
+.box {
+  gap: 30px;
+  display: flex;
+  padding: 50px;
+  width: 40%;
+  height: auto;
+  background: #1d1e22;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fade-in 2s forwards;
+}
+
+.boxtext {
+  gap: 10px;
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fade-in 2s forwards;
+}
+
+.title{
+  font-family: "Inter", sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0;
+  animation: fade-in 2s forwards;
+  animation-delay: 1s;
+}
+
+.text{
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #6f7072;
+  opacity: 0;
+  animation: fade-in 2s forwards;
+  animation-delay: 1.5s;
+}
+
+.btn {
+  padding: 20px 40px;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Inter',Arial,sans-serif;
+  line-height: 1.55;
+  border: 0px !important;
+  border-radius: 10px;
+  background: radial-gradient(100% 100% at 50% 0%, #19C1AF 0%, #0F9A8B 100%);
+  box-shadow: 0px 10px 30px rgb(19 184 166 / 42%), 0px 1px 0px #0e7267;
+  background-position: 100% 0 !important;
+  background-size: 200% 200%;
+  transition: all 0.5s ease-in-out !important;
+  }
+
+.btn:hover {
+background: radial-gradient(100% 100% at 50% 0%, #14B5A3 0%, #0B887A 100%);
+  box-shadow: 0px 10px 30px rgb(19 184 166 / 20%);
+  border-radius: 10px;
+  background-position: 100% 0 !important;
+  background-size: 200% 200%;
+  background-position: 0 0 !important;
+}
+
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.wrapper {
+position: relative;
+width: 100px;
+height: 100px;
+}
+
+.circle-blue {
+position: absolute;
+width: 100px;
+height: 100px;
+border-radius: 50%;
+background: #18ab9b;
+animation: expand 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.circle-white {
+position: absolute;
+top: 4px;
+left: 4px;
+width: 92px;
+height: 92px;
+transform: scale(0);
+border-radius: 50%;
+background: #1d1e22;
+animation: expand 1s 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes expand {
+0% {
+  transform: scale(0);
+}
+100% {
+  transform: scale(1);
+}
+}
+
+.check-svg {
+position: absolute;
+width: 140px;
+height: 140px;
+top: -18px;
+left: -20px;
+transform-origin: center;
+animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0.7s 1 both scaleCheck;
+}
+
+.check-poly {
+fill: transparent;
+stroke-width: 2;
+stroke-dasharray: 36px;
+stroke: #18aa9a;
+animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0.7s 1 both drawCheck;
+}
+
+@keyframes scaleCheck {
+0% {
+  opacity: 0;
+}
+1% {
+  opacity: 1;
+}
+100% {
+  transform: scale(1);
+}
+}
+
+@keyframes drawCheck {
+0% {
+  stroke-dashoffset: 36px;
+}
+100% {
+  stroke-dashoffset: 0;
+}
+}

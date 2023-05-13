@@ -323,13 +323,50 @@ body{
     width: 1.979vw;
     height: 1.979vw;
     padding:0.521vw;
-    display: none !important;
     img{
         padding:0.261vw;
         border-radius: 50%;
         height: 1.979vw;
         object-fit: cover;
         height: 1.979vw;
+    }
+}
+.switchLangContainer{
+    position: relative;
+    #switchLang{
+        background:none !important;
+        gap:0.313vw;
+        font-size: 0.625vw;
+        color: white;
+    }
+    .dropdownLang{
+        position: absolute;
+        right: 0.521vw;
+        background: #272B34;
+        border: 0.052vw solid #374151;
+        border-radius: 0.521vw;
+        justify-content: center;
+        flex-direction: column;
+        padding:0.417vw 0.521vw;
+        display:none;
+        &.opened{
+            display: flex;
+        }
+        button{
+            background:none !important;
+            padding: 0.313vw;
+            font-size: 0.625vw;
+            color: #FFFFFF;
+            line-height: 0.781vw;
+            border-radius: 0.521vw;
+            margin-bottom: 0.417vw;
+            &.active{
+                background: #484D59 !important;
+            }
+            &:hover{
+                background: #484D59 !important;
+            }
+        }
     }
 }
 
@@ -496,6 +533,9 @@ body.light{
         background: #E8F8F7;
     }
     a.menu-item{
+        &.active{
+            background: #DFDFDF;
+        }
         &:hover{
             background: #DFDFDF;
         }
@@ -563,6 +603,21 @@ body.light{
             }
         }
     }
+    * svg{
+        path{
+            fill:#8E8E8F;
+        }
+    }
+    #tokensLeft{
+        svg{
+            path{
+                fill: unset !important;
+            }
+        }
+    }
+    p.aboutRazdel{
+        color:#9b9b9b;
+    }
     form.menu-item{
         button{
             svg{
@@ -626,7 +681,16 @@ body.light{
             }
         }
     }
-
+    .folderBtn.opened{
+        .buttonOpen{
+            background: #DFDFDF;
+        }
+    }
+    button.switchTheme{
+        &.active{
+            background: #DFDFDF;
+        }
+    }
     //Системная роль
     #systemRole{
         background:#E3E3E3;
@@ -1078,6 +1142,20 @@ section.library-mob{
             }
         }
     }
+}
+
+#saveSettingsRoles{
+    width: 100%;
+    height: 2.604vw;
+    font-size: 0.625vw;
+    color: #DADADA;
+    display: flex;
+    justify-content: center;
+    gap:0.521vw;
+    align-items: center;
+    background: #111419;
+    border: 0.052vw solid #2C3139;
+    border-radius: 0.521vw;
 }
 
 .chooseRoleFrom{
@@ -2277,6 +2355,28 @@ button.promptBtn{
     }
 }
 
+#responseStop{
+    display: flex;
+    justify-content: center;
+    gap:0.521vw;
+    padding:0.625vw 1.042vw;
+    background: #272B34;
+    border: 0.052vw solid #374151;
+    font-size: 0.781vw;
+    color: rgba($color: white, $alpha: 0.8);
+    svg{
+        opacity: 0.8;
+    }
+    border-radius: 0.521vw;
+    &:hover{
+        background: #4A4F5C;
+        color:white;
+        svg{
+            opacity: 1;
+        }
+    }
+}
+
 .closeBtnBuy{
     position: absolute;
     top: 2.083vw;
@@ -3055,10 +3155,15 @@ pre{
     .firstRow{
         display: flex;
         align-items: center;
-        gap:1.042vw;
+        gap:0.523vw;
         .loaderGif{
-            width:1.5vw;
-            height:1.5vw;
+            width:2vw;
+            height:2vw;
+        }
+        .responseStat{
+            display: flex;
+            flex-direction: column;
+            gap:0.312vw;
         }
     }
     p{
@@ -3066,7 +3171,8 @@ pre{
         color:white;
     }
     span{
-        font-size:0.5vw;
+        font-size:0.55vw;
+        opacity: 0.6;
         color:white;
     }
     button{
@@ -3094,8 +3200,13 @@ pre{
             animation: underLoader 3s linear;
             border-bottom-left-radius: 0.521vw;
             border-bottom-right-radius: 0.521vw;
-            width: 100%;
         }
+    }
+}
+
+#loaderResponseSuccess{
+    .under-loader{
+        display: none;
     }
 }
 
