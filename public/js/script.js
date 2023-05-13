@@ -29,13 +29,29 @@ const BOT_NAME = "Meta GPT";
 //Сюда вставляем имя пользователя
 const PERSON_NAME = userName;
 
+var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+};
+
+function escapeHtml(string) {
+    return String(string).replace(/[&<>"'/]/g, function (s) {
+      return entityMap[s];
+    });
+}
+
 async function sendMessage(event){
     event.preventDefault();
-    const msgText = msgerInput.value;
-    if (!msgText) return;
+    let textar = String(msgerInput.value).trim();
+    console.log(textar);
+    if (!textar) return;
     if (document.querySelector('.welcome-chat')) document.querySelector('.welcome-chat').remove()
-    await appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
-    sendMsg(msgText)
+    await appendMessage(PERSON_NAME, PERSON_IMG, "right", textar);
+    sendMsg(textar)
     msgerInput.value = "";
     autoResize(msgerInput);
 }
@@ -111,7 +127,7 @@ function appendMessage(name, img, side, text, id) {
         </div>
       <div class="msg-bubble">
         <div class="msg-text" id=${id}>
-            ${side == "right" ? `<p>${String(text).trim()}</p>` : ``}
+            ${side == "right" ? `<p>${escapeHtml(text)}</p>` : ``}
         </div>
       </div>
     </div>
@@ -180,22 +196,28 @@ function copyToClipboard(item){
     }, 1000)
 }
 let stream;
+
 function sendMsg(msg) {
     msgerSendBtn.disabled = true
     let key = document.querySelector('input[name=_token]').value;
     let user_id = document.querySelector("#user_id").value;
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = msg;
+    let messagetext = String(newDiv.innerText).replace(/(?:\r\n|\r|\n)/g, '').trim();
     let params = {
         chat_id: document.querySelector('#chat_id').value,
-        message: msg,
+        message: String(newDiv.innerText).replace(/(?:\r\n|\r|\n)/g, '').trim(),
     }
+    console.log(params);
     const res = fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
         .then(
             response => response.json(),
         )
         .then(data => {
+            console.log(data);
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
-            stream = new EventSource(`/event-stream/${data}`);
+            stream = new EventSource(`/event-stream/${data}?message=${messagetext}`);
             const div = document.getElementById(uuid);
             var isPaused = false;
             var loader = document.getElementById('loaderResponse');

@@ -47,7 +47,7 @@ class OpenAiController extends Controller
                 $history[] = ["role" => 'assistant', "content" => trim(strip_tags($assistant_mesage))];
             } else {
                 $user_message = $mess->message;
-                $history[] = ["role" => 'user', "content" => trim(strip_tags($user_message))];
+                $history[] = ["role" => 'user', "content" => trim(($user_message))];
             }
             $prompt_tokens += count($this->gpt_encode($mess));
         }
