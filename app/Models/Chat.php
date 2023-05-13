@@ -22,7 +22,12 @@ class Chat extends Model
         'role',
         'folder_id',
         'user_id',
-        'created_at'
+        'created_at',
+        'model_id',
+        'temperature',
+        'frequency',
+        'presence',
+        'top_p'
     ];
 
     protected $casts = [
