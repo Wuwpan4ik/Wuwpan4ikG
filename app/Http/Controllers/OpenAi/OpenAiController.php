@@ -40,12 +40,14 @@ class OpenAiController extends Controller
 
         $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($count_messages)->get()->sortBy('id');
 
-        //*
+        
         foreach ($message as $mess) {
             if ($mess->is_bot) {
-                $history[] = ["role" => 'assistant', "content" => $mess->message];
+                $assistant_mesage = $mess->message;
+                $history[] = ["role" => 'assistant', "content" => trim(strip_tags($assistant_mesage))];
             } else {
-                $history[] = ["role" => 'user', "content" => $mess->message];
+                $user_message = $mess->message;
+                $history[] = ["role" => 'user', "content" => trim(strip_tags($user_message))];
             }
             $prompt_tokens += count($this->gpt_encode($mess));
         }
@@ -113,7 +115,6 @@ class OpenAiController extends Controller
             }
             ob_flush();
             flush();
-            sleep(0.1);
             return strlen($data);
         });
     }
