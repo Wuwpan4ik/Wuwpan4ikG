@@ -57,7 +57,7 @@
 @endsection
 @section('script')
     <!--Попап библиотеки подсказок-->
-    <div class="popup popup-show" id="popup-library">
+    <div class="popup popup-show popup-library" id="popup-library">
         <div class="popupWrapper"></div>
         <div class="popupContent">
             <div class="popup-inner">

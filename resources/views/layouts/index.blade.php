@@ -12,8 +12,11 @@
 
 <body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
 @include('components.header')
-<div class="hiddenContent" id="userNameProf" style="position:absolute;opacity:0;pointer-events:none;z-index:-9999">
+<div class="hiddenContent" id="userNameProf">
     {{ Auth::user()->name }}
+</div>
+<div class="hiddenContent" id="userImageProf">
+    <img src="{{ Storage::url(Auth::user()->avatar) }}">
 </div>
 <div class="sidebarMain left">
     <!--Новый чат и новая папка-->

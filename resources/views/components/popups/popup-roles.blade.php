@@ -1,5 +1,5 @@
 <!--Попап библиотеки подсказок-->
-<div class="popup popup-show" id="popup-catalog">
+<div class="popup popup-show popup-library pop-catalog" id="popup-catalog">
     <div class="popupWrapper"></div>
     <div class="popupContent">
         <div class="popup-inner">

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_promocodes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index()->constrained('users')->onDelete('CASCADE');
-            $table->string('promocode')->unsigned()->index()->nullable();
+            $table->string('promocode')->index()->nullable();
             $table->foreign('promocode')->references('code')->on('promocodes');
             $table->timestamps();
         });

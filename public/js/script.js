@@ -16,14 +16,18 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
 
-let userName = 'User'
-
+let userName = 'User';
+let userImg = '../assets/user.jpg';
 if(document.querySelector('#userNameProf')){
     userName = document.getElementById('userNameProf').textContent;
 }
 
+if(document.querySelector('#userImageProf')){
+    userImg = document.querySelector('#userImageProf img').src;
+}
+
 // Icons made by Freepik from www.flaticon.com
-const PERSON_IMG = "../assets/user.jpg";
+const PERSON_IMG = userImg;
 const BOT_IMG = "../assets/botlogo.jpg";
 const BOT_NAME = "Meta GPT";
 //Сюда вставляем имя пользователя
@@ -110,7 +114,7 @@ function appendMessage(name, img, side, text, id) {
     <div class="msg ${side}-msg">
         <div class="msg-header">
             <div class="firstRow">
-                <div class="msg-img" style="background-image: url(${img})"></div>
+                <div class="msg-img"><img src="${img}"></div>
                 <div class="msg-info-name">${name}</div>
                 <div class="msg-info-time">${formatDate(new Date())}</div>
             </div>

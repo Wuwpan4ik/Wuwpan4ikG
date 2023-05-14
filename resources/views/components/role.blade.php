@@ -89,6 +89,22 @@
                 </div>
                 <div class="popup-setting">
                     <div class="popup-setting-title">
+                        Экономный режим
+                    </div>
+                    <div class="popup-setting-btns">
+                        <button type="button" class="active">
+                            Включить
+                        </button>
+                        <button type="button">
+                            Выключить
+                        </button>
+                    </div>
+                    <div class="popup-setting-desc">
+                        Если выключить этот режим история чата не будет передаваться боту с каждым сообщением, то есть контекст пропадёт.
+                    </div>
+                </div>
+                <div class="popup-setting">
+                    <div class="popup-setting-title">
                         Температура. Точность ответов
                     </div>
                     <div class="popup-setting-content withoutBorder">

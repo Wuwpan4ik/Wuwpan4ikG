@@ -26,6 +26,10 @@ html, body{
     scrollbar-width: thin;
 }
 
+* .hiddenContent{
+    position:absolute;opacity:0;pointer-events:none;z-index:-9999
+}
+
 * a{
     text-decoration: none !important;
 }
@@ -1270,6 +1274,31 @@ section.library-mob{
     .popup-setting{
         max-width: 100%;
         margin-bottom: 1.042vw;
+        .popup-setting-btns{
+            display: flex;
+            gap:0.521vw;
+            border: 0.052vw solid #2A2F39;
+            border-radius: 0.521vw;
+            padding:0.313vw;
+            button{
+                border-radius: 0.521vw;
+                height: 1.615vw;
+                font-size: 0.625vw;
+                color: #A2A2A3;
+                background: rgba(255, 255, 255, 0.1);
+                width: 100%;
+                border:none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &.active{
+                    background: #393D42;
+                }
+                &:hover{
+                    background: #393D42;
+                }
+            }
+        }
     }
 }
 
@@ -1604,10 +1633,13 @@ button.promptBtn{
 .msg-img {
     width: 1.563vw;
     height: 1.563vw;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     border-radius: 50%;
+    img{
+        width: 1.563vw;
+        height: 1.563vw;
+        object-fit: cover;
+        border-radius: 50%;
+    }
 }
 
 .msg:hover{
@@ -1782,15 +1814,6 @@ button.promptBtn{
         .msg-info-name{
             color: #13B8A6;
         }
-    }
-}
-
-.msg{
-    .msg-img.user_img{
-        background-image:url('../assets/user.jpg');
-    }
-    .msg-img.bot_img{
-        background-image:url('../assets/botlogo.jpg');
     }
 }
 
@@ -2041,16 +2064,18 @@ button.promptBtn{
             }
             .profile-photo{
                 border-radius: 0.521vw;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 padding:0.521vw;
                 border: 0.052vw dashed rgba(255, 255, 255, 0.2);
-                img{
-                    border-radius: 50%;
-                    width: 2.083vw;
-                    height: 2.083vw;
-                    object-fit: cover;
+                form{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    img{
+                        border-radius: 50%;
+                        width: 2.083vw;
+                        height: 2.083vw;
+                        object-fit: cover;
+                    }
                 }
             }
             .change-photo{
@@ -2281,11 +2306,35 @@ button.promptBtn{
     }
 }
 
-#popup-library{
+
+.popup-library{
     z-index: 9999;
-    padding-top: 0px;
+    padding-top: 0px !important;
+    &.pop-catalog{
+        .popupContent{
+            .popup-inner{
+                max-height: 70%;
+                .prompts-category{
+                    overflow-y: auto;
+                    grid-template-columns: repeat(3, auto);
+                    grid-gap:1.042vw;
+                    overflow-x: hidden;
+                    max-height: 70%;
+                    h2{
+                        font-size: 1.042vw;
+                        line-height: 1.25vw;
+                        padding-bottom: 0.521vw;
+                        word-break: break-all;
+                    }
+                    .library-item{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
     .popupContent{
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.8) !important;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -2480,6 +2529,7 @@ button.promptBtn{
 .popup-setting{
     width: 100%;
     max-width: 15.972vw;
+
     &-title{
         color: #A2A2A3;
         font-size: 0.625vw;
