@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
 Route::middleware('auth')->group(function() {
+    Route::patch('/user/{user}', [\App\Http\Controllers\User\UserController::class, 'update'])->name('user.update');
+    Route::patch('/user_avatar/{user}', [\App\Http\Controllers\User\UserController::class, 'updateAvatar'])->name('user.avatar');
+
     Route::post('/chats_create/folder_store', [\App\Http\Controllers\Chat\ChatController::class, 'storeInFolder'])->name('chats.folder_store');
     Route::resource('chats', \App\Http\Controllers\Chat\ChatController::class);
     Route::middleware('check_user_chat')->group(function() {
@@ -24,6 +27,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('chats/{chat}', [\App\Http\Controllers\Chat\ChatController::class, 'destroy'])->name('chats.destroy');
     });
     Route::patch('chats-settings/{chat}', [\App\Http\Controllers\Chat\ChatController::class, 'updateSettings'])->name('chats_settings.update');
+    Route::get('/message/getCostMessage/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'stopEventListener']);
 
     Route::post("/chats/{chat}/updateRole", [\App\Http\Controllers\Chat\ChatController::class, 'updateRole'])->middleware('check_user_chat')->name("chat.updateRole");
     Route::patch('/folder/{folder}', [\App\Http\Controllers\Folder\FolderController::class, 'update'])->name('folder.update');

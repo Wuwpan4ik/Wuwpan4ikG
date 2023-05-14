@@ -25,10 +25,23 @@ class OpenAiController extends Controller
         return response()->json($message->chat_id);
     }
 
+    public function stopEventListener(Chat $chat)
+    {
+        $id = $chat->id;
+        $prompt_tokens = 0;
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take((int)env('count_message'))->get()->sortBy('id');
+        foreach ($message as $mess) {
+            $prompt_tokens += count($this->gpt_encode($mess));
+        }
+        Debugbar::log($prompt_tokens);
+        Auth::user()->tokens -= $prompt_tokens;
+        Auth::user()->save();
+        $chat->increment('token_cost', $prompt_tokens);
+    }
+
     public function event__stream(Chat $chat)
     {
         $prompt_tokens = 0;
-        $count_messages = 2;
 
         $id = $chat->id;
         if (empty($chat->role)) {
@@ -38,7 +51,7 @@ class OpenAiController extends Controller
             $prompt_tokens += count($this->gpt_encode($chat->role));
         }
 
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($count_messages)->get()->sortBy('id');
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy('id');
 
 
         foreach ($message as $mess) {
@@ -93,8 +106,12 @@ class OpenAiController extends Controller
     }
 
     protected function chat($open_ai, $opts, $chat, $prompt_tokens, $txt) {
-        $open_ai->chat($opts, function ($curl_info, $data) use (&$txt) {
+        $open_ai->chat($opts, function ($curl_info, $data) use (&$txt, &$chat, &$prompt_tokens) {
             if ($obj = json_decode($data) and $obj->error->message != "") {
+                $cost_tokens = count($this->gpt_encode($txt)) + $prompt_tokens;
+                Auth::user()->tokens -= $cost_tokens;
+                Auth::user()->save();
+                $chat->increment('token_cost', $cost_tokens);
                 error_log(json_encode($obj->error->message));
             } else {
                 echo $data;

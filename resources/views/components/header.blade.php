@@ -81,7 +81,7 @@
             </li>
             <li>
                 <button id="about-user">
-                    <img src="{{ asset('assets/user.jpg') }}">
+                    <img src="{{ Storage::url(Auth::user()->avatar) }}">
                 </button>
             </li>
         </ul>

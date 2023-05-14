@@ -2111,42 +2111,54 @@ button.promptBtn .promptText {
   align-items: center;
 }
 
-#popup-library {
-  z-index: 9999;
-  padding-top: 0px;
+.popup-show {
+    z-index: 9999;
+    padding-top: 0px;
 }
-#popup-library .popupContent {
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+.popup-show .popupContent {
+    background: rgba(0, 0, 0, 0.8) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-#popup-library .popupContent .popup-inner {
-  width: 60%;
-  background: #0F131B;
-  border-radius: 20px;
-  padding: 2.083vw;
+
+#popup-catalog .prompts-category{
+    max-height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden !important;
 }
-#popup-library .popupContent .popup-inner .prompts-category {
-  display: grid;
-  grid-gap: 0.521vw;
-  grid-template-columns: repeat(3, 33.333%);
+
+.popup-show .popupContent .popup-inner {
+    width: 60%;
+    background: #0F131B;
+    border-radius: 20px;
+    padding: 2.083vw;
 }
-#popup-library .popupContent .popup-inner .prompts-category button {
+
+.popup-show .popupContent .popup-inner .prompts-category {
+    display: grid;
+    grid-gap: 0.521vw;
+    grid-template-columns: repeat(3, 33.333%);
+}
+
+.popup-show .popupContent .popup-inner .prompts-category button {
   width: auto;
 }
-#popup-library .popupContent .popup-inner h2 {
+.popup-show .popupContent .popup-inner h2 {
   font-size: 1.667vw;
   font-weight: 600;
   color: #A2A2A3;
   line-height: 2.031vw;
   padding-bottom: 2.083vw;
 }
-#popup-library .popupContent .popup-inner .library-item {
-  width: 14.35vw;
+
+.popup-show .library-item-title {
+    font-size: 1.2vw !important;
 }
-#popup-library .popupContent .popup-inner .library-item button {
+
+.popup-show .popupContent .popup-inner .library-item button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2154,16 +2166,16 @@ button.promptBtn .promptText {
   color: white;
   font-size: 0.781vw;
 }
-#popup-library .popupContent .popup-inner .library-items-container {
+.popup-show .popupContent .popup-inner .library-items-container {
   overflow: auto;
   max-height: 40vh;
 }
-#popup-library .popupContent .popup-inner .prompts-in-category {
+.popup-show .popupContent .popup-inner .prompts-in-category {
   margin-top: 1.563vw;
   display: flex;
   flex-wrap: wrap;
 }
-#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category {
+.popup-show .popupContent .popup-inner .prompts-in-category .prompt-category {
   width: 16.311vw;
   background: #191F29;
   border: 0.052vw solid #374151;
@@ -2175,10 +2187,10 @@ button.promptBtn .promptText {
   text-align: start;
   position: relative;
 }
-#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category:hover .hoverItems {
+.popup-show .popupContent .popup-inner .prompts-in-category .prompt-category:hover .hoverItems {
   opacity: 1;
 }
-#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category .hoverItems button {
+.popup-show .popupContent .popup-inner .prompts-in-category .prompt-category .hoverItems button {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -2187,27 +2199,27 @@ button.promptBtn .promptText {
   font-size: 0.625vw;
   font-weight: 600;
 }
-#popup-library .popupContent .popup-inner .prompts-in-category .prompt-category .hoverItems.active {
+.popup-show .popupContent .popup-inner .prompts-in-category .prompt-category .hoverItems.active {
   opacity: 1;
 }
-#popup-library .popupContent .popup-inner .prompts-category .slick-track {
+.popup-show .popupContent .popup-inner .prompts-category .slick-track {
   display: flex;
   gap: 1.042vw;
 }
-#popup-library .popupContent .popup-inner .prompts-category button {
+.popup-show .popupContent .popup-inner .prompts-category button {
   height: 2.604vw;
   display: flex;
   padding: 0px 0.26vw;
   align-items: center;
   gap: 0.521vw;
 }
-#popup-library .popupContent .popup-inner .prompts-category .slick-next {
+.popup-show .popupContent .popup-inner .prompts-category .slick-next {
   right: -1.502vw !important;
 }
-#popup-library .popupContent .popup-inner .prompts-category .slick-prev {
+.popup-show .popupContent .popup-inner .prompts-category .slick-prev {
   left: -1.502vw !important;
 }
-#popup-library .popupContent .popup-inner .prompts-category .slick-track::after, #popup-library .popupContent .popup-inner .prompts-category .slick-track::before {
+.popup-show .popupContent .popup-inner .prompts-category .slick-track::after, .popup-show .popupContent .popup-inner .prompts-category .slick-track::before {
   display: none !important;
 }
 

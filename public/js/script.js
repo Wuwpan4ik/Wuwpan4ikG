@@ -231,6 +231,7 @@ function sendMsg(msg) {
             });
             //Кнопка остановки генерации ответа от гпт
             document.getElementById('responseStop').onclick = () =>{
+                fetch(`/message/getCostMessage/${data}`)
                 msgerSendBtn.disabled = false
                 $('.tokens').load("/get_tokens");
                 $('.tokensSpent').load(`/messages-cost/get/${data}`);

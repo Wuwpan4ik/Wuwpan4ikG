@@ -12,6 +12,8 @@ use App\Models\Chat;
 use App\Models\Folder;
 use App\Models\Message;
 use App\Models\PromptFolder;
+use App\Models\Purchace;
+use App\Models\Role;
 use App\Models\UserModelSettings;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
@@ -41,11 +43,13 @@ class ChatController extends Controller
 
     public function show(Chat $chat)
     {
+        $purchases = Purchace::all();
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
         $folders = (new Folder())->getFolders();
         $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
         $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();
-        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category'));
+        $roles = Role::all();
+        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category', 'roles', 'purchases'));
     }
 
     /**

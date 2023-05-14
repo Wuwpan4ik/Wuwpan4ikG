@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'telegram_url',
+        'avatar',
         'email',
         'password',
         'tokens'

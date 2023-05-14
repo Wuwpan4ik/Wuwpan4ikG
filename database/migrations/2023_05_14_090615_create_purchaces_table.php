@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_promocodes', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->index()->constrained('users')->onDelete('CASCADE');
-            $table->foreignId('promocode_id')->index()->constrained('promocodes')->onDelete('CASCADE');
+            $table->integer('price');
+            $table->integer('tokens');
+            $table->foreignId('user_id')->nullable()->index()->constrained('users')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_promocodes');
+        Schema::dropIfExists('purchases');
     }
 };

@@ -57,7 +57,7 @@
 @endsection
 @section('script')
     <!--Попап библиотеки подсказок-->
-    <div class="popup" id="popup-library">
+    <div class="popup popup-show" id="popup-library">
         <div class="popupWrapper"></div>
         <div class="popupContent">
             <div class="popup-inner">
@@ -83,6 +83,7 @@
             </div>
         </div>
     </div>
+    @include('components.popups.popup-roles')
     @include('components.popups.popup-about')
     @include('components.popups.popup-develop')
     @include('components.popups.popup-zapic')
@@ -131,7 +132,7 @@
             </div>
         </div>
         <div class="secondRow">
-            
+
         </div>
         <div class="under-loader"></div>
     </div>
@@ -140,6 +141,23 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="{{ asset('js/markdown-it.min.js') }}"></script>
     {{--Код для добавления чата--}}
+    <script>
+        function updateProfile(elem) {
+            let form = $('.form__profile');
+            $.ajax({
+                type: "PATCH",    // Метод отправки данных (POST, GET и т.д.)
+                url: form.attr('action'),     // URL-адрес, куда отправляются данные формы
+                data: form.serialize(),      // Сериализуем данные формы в строку
+                success: function(response) { // Callback-функция, которая вызывается при успешной отправке формы
+                    console.log(response);      // Выводим в консоль ответ сервера
+                },
+                error: function(xhr, ajaxOptions, thrownError) { // Callback-функция, которая вызывается при ошибке отправки формы
+                    console.log(xhr.status);    // Выводим в консоль код ошибки
+                    console.log(thrownError);   // Выводим в консоль сообщение об ошибке
+                }
+            });
+        }
+    </script>
     <script>
         function add_new_chat(form) {
             let key = form.querySelector('input[name=_token]').value;
@@ -296,6 +314,13 @@
         }
     </script>
 
+    <script>
+        //Открытие попапа каталога ролей
+        function open_catalog() {
+            document.getElementById('popup-catalog').classList.add('active');
+        }
+    </script>
+
     <script src="{{ asset('js/script.js') }}"></script>
     <script>
         //Закрытие попапов
@@ -337,10 +362,6 @@
                 editProfileInput[i].classList.remove('nonActive');
                 editProfileInput[i].value = String(editProfileP[i].innerText).trim();
                 editProfileP[i].classList.add('nonActive');
-                //да (вешаем обработчики)
-                editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
-                    
-                }
                 //Нет
                 editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
                     editProfile[i].classList.remove('nonActive');
