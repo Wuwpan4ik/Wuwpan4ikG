@@ -12,11 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('promocodes', function (Blueprint $table) {
-            $table->id();
-            $table->string('author_id');
-            $table->string('key-code');
+            $table->string('code')->unique();
+            $table->foreignId('author_id')->index()->constrained('users')->onDelete('CASCADE');
             $table->integer('amount');
-            $table->integer('amount-left');
             $table->timestamps();
         });
     }

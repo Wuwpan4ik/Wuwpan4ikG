@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_promocodes', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('promocode_id');
+            $table->foreignId('user_id')->index()->constrained('users')->onDelete('CASCADE');
+            $table->foreignId('promocode_id')->index()->constrained('promocodes')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
