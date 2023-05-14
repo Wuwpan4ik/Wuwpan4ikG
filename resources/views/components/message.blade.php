@@ -11,7 +11,7 @@
                         @endif
                     </div>
                     <div class="msg-info-name">@if($message->is_bot) MetaGPT @else {{ Auth::user()->name }} @endif</div>
-                    <div class="msg-info-time">{{ $message->created_at->format('H:i') }}</div>
+                    <div class="msg-info-time">{{ $message->created_at->format('H:i d.m.y') }}</div>
                 </div>
                 <div class="secondRow">
                     <div class="msg-options">

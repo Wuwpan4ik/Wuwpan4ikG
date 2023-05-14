@@ -1073,13 +1073,19 @@ section.library-mob{
         border: 0.052vw solid #2A2F39;
         border-radius: 0.521vw;
         padding:0.313vw;
+        display: flex;
+        gap:0.521vw;
         button{
+            height: 1.667vw;
             &.active{
                 background: #393D42;
             }
             background: rgba(255, 255, 255, 0.1);
             border-radius: 0.521vw;
             width: auto;
+            display:flex;
+            align-items: center;
+            justify-content: center;
             padding:0.313vw 0.781vw;
             border:none;
             svg{
@@ -2199,10 +2205,16 @@ button.promptBtn{
                     }
                     .inner-input{
                         display: flex;
+                        height: 2.396vw;
                         gap:0.521vw;
                         align-items: center;
                         background: #1D2129;border-radius: 0.521vw;
                         padding:0.625vw 1.042vw;
+                        .icon-input{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
                         p{
                             font-size: 0.625vw;
                             color: rgba(255, 255, 255, 0.6);
@@ -3064,10 +3076,10 @@ input[type=range].styled-slider {
     }
 }
 .library-items-container{
-    display:flex;
-    flex-wrap: wrap;
+    display:grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap:1.042vw;
     overflow-y: auto;
-    gap:1.042vw;
     padding-bottom: 2.083vw;
     max-height: 100%;
 }
@@ -3153,7 +3165,7 @@ display: block;
 
 section.library{
     .library-item{
-        width: 15.7vw;
+        width: 100%;
         h2{
             line-height: 1.25vw;
         }
@@ -3267,6 +3279,11 @@ pre{
 
 //Loader response
 
+#profileSuccess{
+    z-index: 9999;
+    padding:0.521vw;
+}
+
 .loaderResponse{
     position: fixed;z-index: 222;
     bottom:1.042vw;
@@ -3375,6 +3392,18 @@ table{
 
 //Adaptive
 @media(max-width:768px){
+    .msg-img{
+        img{
+            width: 20px;
+            height: 20px;
+        }
+    }
+    .msg:first-of-type{
+        padding-top: 20px;
+    }
+    #chat-with-base{
+        display: none;
+    }
     p.folderName, p.chat__name{
         font-size:13.843px;
         max-width: 100%;

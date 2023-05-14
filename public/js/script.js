@@ -497,9 +497,6 @@ let tokensLeftBtn = document.querySelectorAll("#tokensLeft");
 function disableAllPops(){
     let popups = document.querySelectorAll('.popup');
     let sidebar = document.querySelectorAll('.sidebarMain');
-    if(document.getElementById('openSettings').classList.contains('active')){
-        document.getElementById('openSettings').classList.remove('active');
-    }
     if(document.getElementById('openMenu').classList.contains('active')){
         document.getElementById('openMenu').classList.remove('active');
     }
@@ -540,17 +537,6 @@ document.getElementById('openMenu').onclick = () =>{
         disableAllPops();
         document.getElementById('menu-mob').classList.add('active');
         document.getElementById('openMenu').classList.add('active');
-    }
-}
-//Открытие настроек
-document.getElementById('openSettings').onclick = () =>{
-    if(document.getElementById('settingsTab').classList.contains('active')){
-        document.getElementById('openSettings').classList.remove('active');
-        document.getElementById('settingsTab').classList.remove('active');
-    }else{
-        disableAllPops();
-        document.getElementById('openSettings').classList.add('active');
-        document.getElementById('settingsTab').classList.add('active');
     }
 }
 
@@ -714,15 +700,16 @@ function autoResize(item) {
 
 //Resize || load
 
-window.onresize = ()=>{
-    $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+if(document.querySelector('main.msger-chat')){
+    window.onresize = ()=>{
+        $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+    }
+    
+    window.addEventListener('DOMContentLoaded', ()=>{
+        autoResize(document.querySelector('textarea.msger-input'));
+        $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+    })
 }
-
-window.addEventListener('DOMContentLoaded', ()=>{
-    autoResize(document.querySelector('textarea.msger-input'));
-    $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-})
-
 
 //Открытие попапа
 

@@ -136,6 +136,20 @@
         </div>
         <div class="under-loader"></div>
     </div>
+    <div class="loaderResponse error" id="profileSuccess">
+        <div class="firstRow">
+            <div class="loaderGif">
+                <lottie-player src="{{ asset('assets/success.json') }}"  background="transparent" speed="1" loop autoplay></lottie-player>
+            </div>
+            <div class="responseStat">
+                <p>Данные успешно обновлены!</p>
+            </div>
+        </div>
+        <div class="secondRow">
+
+        </div>
+        <div class="under-loader"></div>
+    </div>
     <!--Скрипты-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -362,6 +376,22 @@
                 editProfileInput[i].classList.remove('nonActive');
                 editProfileInput[i].value = String(editProfileP[i].innerText).trim();
                 editProfileP[i].classList.add('nonActive');
+                let lastText = String(editProfileP[i].innerText).trim();
+                //Да
+                editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
+                    editProfile[i].classList.remove('nonActive');
+                    editProfileHoverItems[i].classList.remove('active');
+                    editProfileConfirm[i].classList.add('nonActive');
+                    editProfileInput[i].classList.add('nonActive');
+                    editProfileP[i].classList.remove('nonActive');
+                    editProfileP[i].innerText = editProfileInput[i].value;
+                    if(lastText != editProfileP[i].innerText){
+                        document.getElementById('profileSuccess').classList.add('showed');
+                        setTimeout(()=>{
+                            document.getElementById('profileSuccess').classList.remove('showed');
+                        }, 2000)
+                    }
+                }
                 //Нет
                 editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
                     editProfile[i].classList.remove('nonActive');

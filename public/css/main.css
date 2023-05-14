@@ -951,11 +951,17 @@ section.library-mob {
   border: 0.052vw solid #2A2F39;
   border-radius: 0.521vw;
   padding: 0.313vw;
+  display: flex;
+  gap: 0.521vw;
 }
 .colorSheme .secondCol button {
+  height: 1.667vw;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 0.521vw;
   width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.313vw 0.781vw;
   border: none;
 }
@@ -2035,11 +2041,17 @@ button.promptBtn .promptText {
 }
 #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input {
   display: flex;
+  height: 2.396vw;
   gap: 0.521vw;
   align-items: center;
   background: #1D2129;
   border-radius: 0.521vw;
   padding: 0.625vw 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .icon-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input p {
   font-size: 0.625vw;
@@ -2890,10 +2902,10 @@ button.add-chat:hover {
 }
 
 .library-items-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 1.042vw;
   overflow-y: auto;
-  gap: 1.042vw;
   padding-bottom: 2.083vw;
   max-height: 100%;
 }
@@ -2980,7 +2992,7 @@ pre code.hljs {
 }
 
 section.library .library-item {
-  width: 15.7vw;
+  width: 100%;
 }
 section.library .library-item h2 {
   line-height: 1.25vw;
@@ -3081,6 +3093,11 @@ pre {
   border-radius: 0.3vw;
   padding: 0;
   margin: 0.521vw 0vw;
+}
+
+#profileSuccess {
+  z-index: 9999;
+  padding: 0.521vw;
 }
 
 .loaderResponse {
@@ -3184,6 +3201,16 @@ table th {
 }
 
 @media (max-width: 768px) {
+  .msg-img img {
+    width: 20px;
+    height: 20px;
+  }
+  .msg:first-of-type {
+    padding-top: 20px;
+  }
+  #chat-with-base {
+    display: none;
+  }
   p.folderName, p.chat__name {
     font-size: 13.843px;
     max-width: 100%;
