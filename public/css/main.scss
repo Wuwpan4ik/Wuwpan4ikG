@@ -886,9 +886,6 @@ body.light{
         }
     }
 }
-section.library-mob{
-    display: none;
-}
 
 //Header
 
@@ -1054,6 +1051,17 @@ section.library-mob{
     &.right{
         right:0px;
         overflow: auto;
+        &.switched{
+            width: 3.854vw;
+            padding:2.083vw 1.042vw;
+            .firstRow{
+                display: none;
+            }
+            #sidebarSwitchRight{
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
     }
 }
 
@@ -1180,6 +1188,32 @@ section.library-mob{
 }
 
 //System role
+div.switchMenu{
+    padding-bottom: 1.042vw;
+}
+#sidebarSwitchRight{
+    position: absolute;
+    width: 1.771vw;
+    height: 1.771vw;
+    background: #191F29;
+    border-radius: 0.521vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    opacity: 0;
+    pointer-events: none;
+}
+#switchMenu{
+    display: flex;
+    align-items: center;
+    background:none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.521vw;
+    border:none;
+    gap:0.521vw;
+}
+
 .systemRole{
     margin-top:1.042vw;
     background: #191F29;
@@ -1490,9 +1524,8 @@ section.library-mob{
 
 .mainWrapper {
     position: fixed;
-    padding:0px 22.396vw;
+    padding:4.063vw 22.396vw 0px 22.396vw;
     top:0px;
-    padding-top:4.063vw;
     z-index: 1;
     width: 100%;
     display: flex;
@@ -1501,6 +1534,9 @@ section.library-mob{
     height: 100vh;
     background-color: var(--body-bg);
     font-family: Helvetica, sans-serif;
+    &.switchedSidebar{
+        padding: 4.063vw 3.2vw 0px 22.396vw;
+    }
 }
 
 //Chat
@@ -1876,7 +1912,6 @@ button.promptBtn{
     color: #757D8A;
     border: 0.052vw solid #374151;
     border-radius: 0.417vw;
-    max-height: 10vw;
     max-width: 100%;
     padding: 1vw 3.521vw 1vw 1vw;
     width:100%;
@@ -3164,6 +3199,12 @@ display: block;
 }
 
 section.library{
+    .library-items-mob{
+        display: none;
+    }
+    h2{
+        display:none;
+    }
     .library-item{
         width: 100%;
         h2{
@@ -3371,7 +3412,8 @@ pre{
 
 table{
     width:100%;
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
     th{
         text-align: start;
     }
@@ -3918,44 +3960,14 @@ table{
     }
     //Библиотека подсказок
     section.library{
-        display: none;
-    }
-    section.library-mob{
-        padding-top: 10px;
-        width: 100%;
-        height: 100%;
-        background: #0F131B;
-        .library-mob-wrapper{
-            padding:0px 20px;
-            h2{
-                font-size: 22px;
-                font-weight: 600;
-                color: #A2A2A3;
-            }
-            .tablinks-container{
-                padding-top:40px;
-                .tablinks-library{
-                    flex-wrap: nowrap;
-                    gap: 20px;
-                    flex-direction: row;
-                    overflow-x: auto;
-                }
-                button{
-                    width: 100%;
-                    height: 50px;
-                    border-radius: 10px;
-                    gap:10px;
-                    font-size: 15px;
-                    padding: 12px 20px;
-                    svg{
-                        width:18px !important;
-                        height: 18px !important;
-                    }
-                }
-            }
-            .library-title{
-                display: none;
-            }
+        h2{
+            display: block;
+        }
+        .library-items-mob{
+            display: flex;
+        }
+        .library-title{
+            display: none;
         }
     }
 }

@@ -728,3 +728,19 @@ function openPopUpZayavka2(item){
 document.getElementById('switchLang').onclick = () =>{
     document.getElementById('switchLang').parentElement.classList.toggle('active');
 }
+
+//Кнопка скрытия меню
+
+if(document.getElementById('switchMenu')){
+    document.getElementById('switchMenu').onclick = () =>{
+        document.querySelector('.sidebarMain.right').classList.add('switched');
+        document.querySelector('.mainWrapper').classList.add('switchedSidebar');
+    }
+}
+
+if(document.getElementById('sidebarSwitchRight')){
+    document.getElementById('sidebarSwitchRight').onclick = () =>{
+        document.querySelector('.sidebarMain.right').classList.remove('switched');
+        document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
+    }
+}
