@@ -18,6 +18,14 @@ class LanguageMiddleware
     {
         if (session()->has('locale')) {
             App::setLocale(session()->get('locale'));
+        } else {
+            $locale = $request->getPreferredLanguage([
+                'en',
+                'ru',
+                'ua'
+            ]);
+
+            App::setLocale($locale);
         }
 
         return $next($request);
