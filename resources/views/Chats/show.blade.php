@@ -117,7 +117,6 @@
     </script>
     {{-- Восстановление пароля в профиле --}}
     <script>
-        //Функции на кнопки в профиле
         function forgotPass(item){
             document.getElementById('resetPasswordLoader').classList.add('showed');
             setTimeout(()=>{
@@ -125,11 +124,39 @@
             }, 2500)
         }
     </script>
+    {{-- Активация промокода в профиле --}}
+    <script>
+        function activatePromo(item){
+            document.getElementById('resetPasswordLoader').classList.add('showed');
+            setTimeout(()=>{
+                document.getElementById('resetPasswordLoader').classList.remove('showed');
+            }, 2500)
+        }
+    </script>
+    {{-- Открытие попапа настроек в мобильной версии --}}
+    <script>
+        document.getElementById('settingsMob').onclick = () =>{
+            document.querySelector('.sidebarMain.right').classList.add('opened');
+        }
+    </script>
+    {{-- Ресайз инпута сообщения --}}
+    <script>
+        window.onresize = ()=>{
+            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+            autoResize(document.querySelector('textarea.msger-input'));
+        }
+        window.addEventListener('DOMContentLoaded', ()=>{
+            autoResize(document.querySelector('textarea.msger-input'));
+            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+        });
+    </script>
     <script>
         function add_new_chat(form) {
             let key = form.querySelector('input[name=_token]').value;
-            console.log(key)
             let dataInput = {}
+            if(document.querySelector('.sidebarMain.left').classList.contains('active')){
+                document.querySelector('.sidebarMain.left').classList.remove('active');
+            }
             if (form.classList.contains('folder__chat')) {
                 dataInput = {
                     'folder_id': form.querySelector('.folder_id').value

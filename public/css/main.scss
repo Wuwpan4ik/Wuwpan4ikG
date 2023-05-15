@@ -1541,7 +1541,7 @@ div.switchMenu{
     background-color: var(--body-bg);
     font-family: Helvetica, sans-serif;
     &.switchedSidebar{
-        padding: 4.063vw 3.2vw 0px 22.396vw;
+        padding: 4.063vw 3.7vw 0px 22.396vw;
     }
 }
 
@@ -2106,7 +2106,7 @@ button.promptBtn{
 }
 
 #profile-popup{
-    z-index: 9999;
+    z-index: 800;
     padding-top: 0px;
     .popupContent{
         background:none;
@@ -2447,7 +2447,7 @@ button.promptBtn{
                 padding-bottom: 2.083vw;
             }
             .library-item{
-                width: 14.35vw;
+                width: 100%;
                 button{
                     display: flex;
                     justify-content: center;
@@ -2458,7 +2458,8 @@ button.promptBtn{
                 }
             }
             .library-items-container{
-                overflow: auto;
+                overflow-y: auto;
+                overflow-x:hidden;
                 max-height: 40vh;
             }
             .prompts-in-category{
@@ -3160,6 +3161,9 @@ input[type=range].styled-slider {
     overflow-y: auto;
     padding-bottom: 2.083vw;
     max-height: 100%;
+    .library-item{
+        width: 100%;
+    }
 }
 //Highlihght js
 
@@ -3363,7 +3367,7 @@ pre{
 
 //Loader response
 
-#profileSuccess{
+#profileSuccess, #resetPasswordLoader, #promocodeActivate, #promocodeActivateBad, #promocodeActivateUsed{
     z-index: 9999;
     padding:0.521vw;
 }
@@ -3699,12 +3703,11 @@ table{
         font-size: 10px;
     }
     .msger-input{
-        max-height: 84px;
         min-height: 84px;
         border: 1px solid #374151;
         border-radius: 8px;
         font-size: 15px !important;
-        padding:20px
+        padding:20px 40px 20px 20px;
     }
     .msger-send-btn{
         width: 44px;
@@ -3761,14 +3764,17 @@ table{
     }
     .msg-text{
         *{
-            line-height: 125%;
+            line-height: 150%;
         }
+    }
+    .msg-bubble ol{
+        padding: 8px 0px 8px 15px;
     }
     .msg-bubble .msg-text{
         font-size:12px;
     }
     .msg{
-        padding: 5px 20px 5px 20px;
+        padding: 10px 20px 10px 20px;
     }
     //Mobile menu btns
     #openChats.active{
@@ -3797,7 +3803,7 @@ table{
     }
     //Scroll bottom btn
     #scrollBottomBtn{
-        bottom: 230px;
+        top: -50px;
         right: 20px;
         width: 30px;
         height: 30px;
@@ -4046,6 +4052,166 @@ table{
         padding:10px 13px;
         background: #191F29;
     }
+
+    //Сайдбар настроек
+    .sidebarMain.right{
+        transform: translateY(-100%);
+        pointer-events: none;
+        padding:20px 40px;
+        &.opened{
+            transform: translateY(0%);
+            pointer-events: all;
+        }
+        .switchMenu{
+            display: none;
+        }
+        #systemRole{
+            .hoverItems{
+                button{
+                    height: 38px;
+                    border: 1px solid #374151;
+                    border-radius: 10px;
+                }
+            }
+            form{
+                .buttons{
+                    gap:10px;
+                    button{
+                        height: 38px;
+                        font-size:14px;
+                    }
+                }
+            }
+        }
+        #systemRoleText{
+            font-size:14px !important;
+            margin-bottom: 10px;
+        }
+        #sidebarSwitchRight{
+            display: none;
+        }
+        #switchMenu{
+            font-size: 10px;
+            gap:5px;
+            svg{
+                width:16px !important;
+                height:16px !important;
+            }
+        }
+        #chooseRole, #showFeatures, #saveSettingsRoles{
+            justify-content: center;
+            height: 50px;
+            font-size: 15px;
+            gap:10px;
+            margin:20px 0px;
+            padding:0px;
+            border-radius: 10px;
+            border: 1px solid #1D2129;
+        }
+        .chatSettings{
+            form{
+                padding-bottom: 50px;
+                h2{
+                    display:none;
+                }
+                .popup-setting{
+                    margin-bottom: 20px;
+                    .popup-setting-content{
+                        height: 50px;
+                        &.ai_model{
+                            .firstRow{
+                                gap:10px !important;
+                                border-radius: 10px !important;
+                                padding:0px 20px !important;
+                            }
+                        }
+                    }
+                    .popup-setting-title{
+                        font-size: 12px;
+                        padding-bottom: 10px;
+                        line-height: 15px;
+                    }
+                    .firstRow{
+                        gap:10px;
+                        border-radius: 10px;
+                        svg{
+                            width: 18px !important;
+                            height: 18px !important;
+                        }
+                        select, input{
+                            height: 50px;
+                            font-size: 12px;
+                        }
+                    }
+                    .secondRow{
+                        button{
+                            width: 18px;
+                            height: 18px;
+                        }
+                    }
+                    .popup-setting-btns{
+                        gap:10px;
+                        padding:6px;
+                        border-radius: 10px;
+                        button{
+                            height: 36px;
+                            font-size:12px;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+                .popup-setting-desc{
+                    padding-top: 10px;
+                    font-size: 10px;
+                    line-height: 12px;
+                }
+            }
+            .popup-setting-content.withoutBorder .modelSettings{
+                height:50px;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    //Попапы
+
+    #popup-library{
+        .popup-inner{
+            width: 100%;
+            padding:40px;
+            max-width: 100%;
+            h2{
+                font-size: 24px;
+                padding-bottom: 30px;
+            }
+            .prompts-category{
+                grid-gap:10px;
+            }
+            button.tablink-library{
+                height: 38px;
+                width: 100%;
+                font-size: 15px;
+                gap:10px;
+            }
+            .prompts-in-category{
+                margin-top: 30px;
+                .library-item{
+                    padding:20px;
+                    p{
+                        font-size: 15px;
+                        line-height: 24px;
+                    }
+                    .hoverItems{
+                        button{
+                            height: 39px;font-size: 12px;border: 1px solid #374151;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     //Библиотека подсказок
     section.library{
         h2{

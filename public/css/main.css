@@ -1393,7 +1393,7 @@ div.switchMenu {
   font-family: Helvetica, sans-serif;
 }
 .mainWrapper.switchedSidebar {
-  padding: 4.063vw 3.2vw 0px 22.396vw;
+  padding: 4.063vw 3.7vw 0px 22.396vw;
 }
 
 button.promptBtn {
@@ -1936,7 +1936,7 @@ button.promptBtn .promptText {
 }
 
 #profile-popup {
-  z-index: 9999;
+  z-index: 800;
   padding-top: 0px;
 }
 #profile-popup .popupContent {
@@ -2281,7 +2281,7 @@ button.promptBtn .promptText {
   padding-bottom: 2.083vw;
 }
 .popup-library .popupContent .popup-inner .library-item {
-  width: 14.35vw;
+  width: 100%;
 }
 .popup-library .popupContent .popup-inner .library-item button {
   display: flex;
@@ -2292,7 +2292,8 @@ button.promptBtn .promptText {
   font-size: 0.781vw;
 }
 .popup-library .popupContent .popup-inner .library-items-container {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 40vh;
 }
 .popup-library .popupContent .popup-inner .prompts-in-category {
@@ -2984,6 +2985,9 @@ button.add-chat:hover {
   padding-bottom: 2.083vw;
   max-height: 100%;
 }
+.library-items-container .library-item {
+  width: 100%;
+}
 
 .hljs-comment {
   color: rgba(255, 255, 255, 0.5019607843);
@@ -3176,7 +3180,7 @@ pre {
   margin: 0.521vw 0vw;
 }
 
-#profileSuccess {
+#profileSuccess, #resetPasswordLoader, #promocodeActivate, #promocodeActivateBad, #promocodeActivateUsed {
   z-index: 9999;
   padding: 0.521vw;
 }
@@ -3504,12 +3508,11 @@ table th {
     font-size: 10px;
   }
   .msger-input {
-    max-height: 84px;
     min-height: 84px;
     border: 1px solid #374151;
     border-radius: 8px;
     font-size: 15px !important;
-    padding: 20px;
+    padding: 20px 40px 20px 20px;
   }
   .msger-send-btn {
     width: 44px;
@@ -3565,13 +3568,16 @@ table th {
     height: 10px !important;
   }
   .msg-text * {
-    line-height: 125%;
+    line-height: 150%;
+  }
+  .msg-bubble ol {
+    padding: 8px 0px 8px 15px;
   }
   .msg-bubble .msg-text {
     font-size: 12px;
   }
   .msg {
-    padding: 5px 20px 5px 20px;
+    padding: 10px 20px 10px 20px;
   }
   #openChats.active {
     background: #13B8A6;
@@ -3592,7 +3598,7 @@ table th {
     fill: white;
   }
   #scrollBottomBtn {
-    bottom: 230px;
+    top: -50px;
     right: 20px;
     width: 30px;
     height: 30px;
@@ -3834,6 +3840,146 @@ table th {
     border-radius: 10px;
     padding: 10px 13px;
     background: #191F29;
+  }
+  .sidebarMain.right {
+    transform: translateY(-100%);
+    pointer-events: none;
+    padding: 20px 40px;
+  }
+  .sidebarMain.right.opened {
+    transform: translateY(0%);
+    pointer-events: all;
+  }
+  .sidebarMain.right .switchMenu {
+    display: none;
+  }
+  .sidebarMain.right #systemRole .hoverItems button {
+    height: 38px;
+    border: 1px solid #374151;
+    border-radius: 10px;
+  }
+  .sidebarMain.right #systemRole form .buttons {
+    gap: 10px;
+  }
+  .sidebarMain.right #systemRole form .buttons button {
+    height: 38px;
+    font-size: 14px;
+  }
+  .sidebarMain.right #systemRoleText {
+    font-size: 14px !important;
+    margin-bottom: 10px;
+  }
+  .sidebarMain.right #sidebarSwitchRight {
+    display: none;
+  }
+  .sidebarMain.right #switchMenu {
+    font-size: 10px;
+    gap: 5px;
+  }
+  .sidebarMain.right #switchMenu svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .sidebarMain.right #chooseRole, .sidebarMain.right #showFeatures, .sidebarMain.right #saveSettingsRoles {
+    justify-content: center;
+    height: 50px;
+    font-size: 15px;
+    gap: 10px;
+    margin: 20px 0px;
+    padding: 0px;
+    border-radius: 10px;
+    border: 1px solid #1D2129;
+  }
+  .sidebarMain.right .chatSettings form {
+    padding-bottom: 50px;
+  }
+  .sidebarMain.right .chatSettings form h2 {
+    display: none;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting {
+    margin-bottom: 20px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .popup-setting-content {
+    height: 50px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .popup-setting-content.ai_model .firstRow {
+    gap: 10px !important;
+    border-radius: 10px !important;
+    padding: 0px 20px !important;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .popup-setting-title {
+    font-size: 12px;
+    padding-bottom: 10px;
+    line-height: 15px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .firstRow {
+    gap: 10px;
+    border-radius: 10px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .firstRow svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .firstRow select, .sidebarMain.right .chatSettings form .popup-setting .firstRow input {
+    height: 50px;
+    font-size: 12px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .secondRow button {
+    width: 18px;
+    height: 18px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .popup-setting-btns {
+    gap: 10px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting .popup-setting-btns button {
+    height: 36px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  .sidebarMain.right .chatSettings form .popup-setting-desc {
+    padding-top: 10px;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .sidebarMain.right .chatSettings .popup-setting-content.withoutBorder .modelSettings {
+    height: 50px;
+    border-radius: 10px;
+  }
+  #popup-library .popup-inner {
+    width: 100%;
+    padding: 40px;
+    max-width: 100%;
+  }
+  #popup-library .popup-inner h2 {
+    font-size: 24px;
+    padding-bottom: 30px;
+  }
+  #popup-library .popup-inner .prompts-category {
+    grid-gap: 10px;
+  }
+  #popup-library .popup-inner button.tablink-library {
+    height: 38px;
+    width: 100%;
+    font-size: 15px;
+    gap: 10px;
+  }
+  #popup-library .popup-inner .prompts-in-category {
+    margin-top: 30px;
+  }
+  #popup-library .popup-inner .prompts-in-category .library-item {
+    padding: 20px;
+  }
+  #popup-library .popup-inner .prompts-in-category .library-item p {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  #popup-library .popup-inner .prompts-in-category .library-item .hoverItems button {
+    height: 39px;
+    font-size: 12px;
+    border: 1px solid #374151;
+    border-radius: 10px;
   }
   section.library h2 {
     display: block;

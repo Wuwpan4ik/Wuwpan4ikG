@@ -491,6 +491,9 @@ function disableAllPops(){
     if(document.getElementById('openChats').classList.contains('active')){
         document.getElementById('openChats').classList.remove('active');
     }
+    if(document.querySelector('.sidebarMain.right').classList.contains('opened')){
+        document.querySelector('.sidebarMain.right').classList.remove('opened');
+    }
     tokensLeftBtn.forEach((item)=>{
         if(item.classList.contains('active')){
             item.classList.remove('active');
@@ -534,12 +537,11 @@ tokensLeftBtn.forEach((item)=>{
     item.onclick = () =>{
         if(item.classList.contains('active')){
             item.classList.remove('active');
-            document.querySelector('#pay-popup').classList.remove('active');
+            document.getElementById('pay-popup').classList.remove('active');
         }else{
             disableAllPops();
             item.classList.add('active');
             document.querySelector('#pay-popup').classList.add('active');
-            closePopContainer('pay-popup', '#pay-popup .popupContent');
         }
     }
 });
@@ -681,23 +683,13 @@ function pxToVw(px){
 }
 
 function autoResize(item) {
-    if(window.innerWidth > 768){
+    if(window.innerWidth > 1000){
         item.style.height = 1 + "vw";
         item.style.height = pxToVw(item.scrollHeight) + "vw";
+    }else{
+        item.style.height = 88 + "px";
+        item.style.height = item.scrollHeight + "px";
     }
-}
-
-//Resize || load
-
-if(document.querySelector('main.msger-chat')){
-    window.onresize = ()=>{
-        $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-    }
-    
-    window.addEventListener('DOMContentLoaded', ()=>{
-        autoResize(document.querySelector('textarea.msger-input'));
-        $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-    })
 }
 
 //Открытие попапа
