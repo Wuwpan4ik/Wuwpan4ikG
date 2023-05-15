@@ -51,7 +51,6 @@ function escapeHtml(string) {
 async function sendMessage(event){
     event.preventDefault();
     let textar = String(msgerInput.value).trim();
-    console.log(textar);
     if (!textar) return;
     if (document.querySelector('.welcome-chat')) document.querySelector('.welcome-chat').remove()
     await appendMessage(PERSON_NAME, PERSON_IMG, "right", textar);
@@ -212,13 +211,11 @@ function sendMsg(msg) {
         chat_id: document.querySelector('#chat_id').value,
         message: String(newDiv.innerText).replace(/(?:\r\n|\r|\n)/g, '').trim(),
     }
-    console.log(params);
     const res = fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
         .then(
             response => response.json(),
         )
         .then(data => {
-            console.log(data);
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
             stream = new EventSource(`/event-stream/${data}?message=${messagetext}`);
@@ -278,7 +275,6 @@ function sendMsg(msg) {
                                 lang = lastLang.replace('hljs', '');
                                 lastIndex = lang.lastIndexOf("-"),
                                 lastWord = lang.substring(lastIndex + 1);
-                                console.log(lastWord);
                                 if(lastWord === "undefined"){
                                     lastWord = 'text';
                                 }
@@ -288,14 +284,6 @@ function sendMsg(msg) {
                                 item.parentElement.insertBefore(blockInfo, item);
                             });
                         }
-                        /* Прокрутка вниз
-                        if(isPaused == false){
-                            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-                        }
-                        document.querySelector('.msger-chat').addEventListener('scroll', function(e){
-                            isPaused = true;
-                        });
-                        */
                     }
                 }
             };
@@ -678,6 +666,7 @@ document.querySelectorAll('a#aboutProject').forEach((item)=>{
 document.getElementById('chat-with-base').onclick = () =>{
     document.getElementById('popup-develop').classList.add('active');
 }
+
 //Функция скролла вниз
 
 $('#scrollBottomBtn').onclick = () =>{
@@ -753,8 +742,3 @@ window.addEventListener('resize', function(){
         document.querySelector('.mainWrapper').classList.add('switchedSidebar');
     }
 })
-
-//Кнопка восстановить пароль в профиле
-document.getElementById('forgotPassBtn').onclick = () =>{
-    
-}

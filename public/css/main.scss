@@ -2282,6 +2282,9 @@ button.promptBtn{
                             border:none;
                             outline: none;
                         }
+                        .input-span{
+                            display: flex;
+                        }
                     }
                     .about-input{
                         padding-top: 0.521vw;
@@ -3468,7 +3471,7 @@ table{
     height:1.563vw;
     border:none;
     z-index: 10;
-    bottom: 12vw;
+    top: -3vw;
     right: 2.5vw;
 }
 
@@ -3551,6 +3554,19 @@ table{
         }
         h2.title{
             font-size: 22px;
+            color: #A2A2A3;
+            padding-bottom: 20px;
+        }
+        .systemRole{
+            margin-top: 0px;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding:13px 20px;
+            line-height: 24px;
+            p{
+                font-size: 15px;
+                line-height: 24px;
+            }
         }
     }
     .mainWrapper{

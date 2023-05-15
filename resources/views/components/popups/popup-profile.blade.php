@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="forgot-pass">
-                                <button type="button" id="forgotPassBtn">
+                                <button type="button" id="forgotPassBtn" onclick="forgotPass(this)">
                                     Восстановить пароль
                                 </button>
                             </div>

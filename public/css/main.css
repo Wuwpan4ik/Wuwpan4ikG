@@ -2119,6 +2119,9 @@ button.promptBtn .promptText {
   border: none;
   outline: none;
 }
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .input-span {
+  display: flex;
+}
 #profile-popup .popupContent .popup-inner .form-profile .coolInput .about-input {
   padding-top: 0.521vw;
   font-size: 0.521vw;
@@ -3275,7 +3278,7 @@ table th {
   height: 1.563vw;
   border: none;
   z-index: 10;
-  bottom: 12vw;
+  top: -3vw;
   right: 2.5vw;
 }
 
@@ -3350,6 +3353,19 @@ table th {
   }
   .sidebarMain.right h2.title {
     font-size: 22px;
+    color: #A2A2A3;
+    padding-bottom: 20px;
+  }
+  .sidebarMain.right .systemRole {
+    margin-top: 0px;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 13px 20px;
+    line-height: 24px;
+  }
+  .sidebarMain.right .systemRole p {
+    font-size: 15px;
+    line-height: 24px;
   }
   .mainWrapper {
     position: absolute;
