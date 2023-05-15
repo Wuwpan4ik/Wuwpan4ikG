@@ -30,7 +30,8 @@
                 <!--Токены, которые пользователь потратил в определенном чате-->
                 <div class="tokens_chat">
                     <button id="openPrompts">
-                        {{__("openPrompts")}}
+                        <p class="openPromptsPc">{{__("openPrompts")}}</p>
+                        <p class="openPromptsMob">Подсказки</p>
                     </button>
                     <div class="tokensSpent">
                         @include('components.tokens_in_chat')
@@ -89,6 +90,7 @@
     @include('components.popups.popup-zapic')
     @include('components.popups.popup-zapic2')
     @include('components.popups.popup-profile')
+    <!--При отправке сообщения-->
     <div class="loaderResponse" id="loaderResponse">
         <div class="firstRow">
             <div class="loaderGif">
@@ -106,6 +108,7 @@
             </button>
         </div>
     </div>
+    <!--Ошибка при обработке сообщения-->
     <div class="loaderResponse error" id="loaderResponseError">
         <div class="firstRow">
             <div class="loaderGif">
@@ -121,6 +124,7 @@
         </div>
         <div class="under-loader"></div>
     </div>
+    <!--Сохранение настроек-->
     <div class="loaderResponse error" id="loaderResponseSuccess">
         <div class="firstRow">
             <div class="loaderGif">
@@ -136,6 +140,7 @@
         </div>
         <div class="under-loader"></div>
     </div>
+    <!--Для профиля(при сохранении)-->
     <div class="loaderResponse error" id="profileSuccess">
         <div class="firstRow">
             <div class="loaderGif">
@@ -143,6 +148,51 @@
             </div>
             <div class="responseStat">
                 <p>Данные успешно обновлены!</p>
+            </div>
+        </div>
+        <div class="secondRow">
+
+        </div>
+        <div class="under-loader"></div>
+    </div>
+    <!--Для активации промокода(успех)-->
+    <div class="loaderResponse error" id="promocodeActivate">
+        <div class="firstRow">
+            <div class="loaderGif">
+                🥳
+            </div>
+            <div class="responseStat">
+                <p>Промокод успешно активирован!</p>
+            </div>
+        </div>
+        <div class="secondRow">
+
+        </div>
+        <div class="under-loader"></div>
+    </div>
+    <!--Для активации промокода(неуспех)-->
+    <div class="loaderResponse error" id="promocodeActivateBad">
+        <div class="firstRow">
+            <div class="loaderGif">
+                <lottie-player src="https://assets2.lottiefiles.com/temp/lf20_QYm9j9.json"  background="transparent" speed="1" loop autoplay></lottie-player>
+            </div>
+            <div class="responseStat">
+                <p>Такого промокода не существует!</p>
+            </div>
+        </div>
+        <div class="secondRow">
+
+        </div>
+        <div class="under-loader"></div>
+    </div>
+        <!--Для активации промокода(уже использован)-->
+        <div class="loaderResponse error" id="promocodeActivateUsed">
+        <div class="firstRow">
+            <div class="loaderGif">
+                <lottie-player src="https://assets2.lottiefiles.com/temp/lf20_QYm9j9.json"  background="transparent" speed="1" loop autoplay></lottie-player>
+            </div>
+            <div class="responseStat">
+                <p>Такого промокода не существует!</p>
             </div>
         </div>
         <div class="secondRow">

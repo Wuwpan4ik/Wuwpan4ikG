@@ -744,3 +744,17 @@ if(document.getElementById('sidebarSwitchRight')){
         document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
     }
 }
+
+window.addEventListener('resize', function(){
+    if(window.innerWidth < 1000){
+        document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
+    }
+    if(window.innerWidth > 1000 && document.querySelector('.sidebarMain.right').classList.contains('.switched')){
+        document.querySelector('.mainWrapper').classList.add('switchedSidebar');
+    }
+})
+
+//Кнопка восстановить пароль в профиле
+document.getElementById('forgotPassBtn').onclick = () =>{
+    
+}

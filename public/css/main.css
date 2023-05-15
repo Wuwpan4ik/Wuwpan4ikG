@@ -775,6 +775,10 @@ body.light .msg-options button svg path {
   fill: #49494A;
 }
 
+#openPrompts p.openPromptsMob {
+  display: none;
+}
+
 #mainHeader {
   height: 4.063vw;
   position: fixed;
@@ -1523,6 +1527,10 @@ button.promptBtn .promptText {
   padding-bottom: 2.083vw;
 }
 
+#settingsMob {
+  display: none;
+}
+
 .msg-img {
   width: 1.563vw;
   height: 1.563vw;
@@ -1586,6 +1594,16 @@ button.promptBtn .promptText {
 }
 .msg-options button svg path {
   fill: white;
+}
+
+#promocodeActivate, #promocodeActivateBad {
+  padding: 0.521vw;
+  z-index: 9999;
+}
+#promocodeActivate .loaderGif, #promocodeActivateBad .loaderGif {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .msg-bubble {
@@ -2100,6 +2118,24 @@ button.promptBtn .promptText {
   font-size: 0.625vw;
   border: none;
   outline: none;
+}
+#profile-popup .popupContent .popup-inner .form-profile .coolInput .about-input {
+  padding-top: 0.521vw;
+  font-size: 0.521vw;
+  color: rgba(162, 162, 163, 0.4);
+  line-height: 0.625vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .promocode-container {
+  padding-top: 1.042vw;
+}
+#profile-popup .popupContent .popup-inner .form-profile .promocode-container button {
+  width: 100%;
+  height: 2.448vw;
+  background: #3F4249;
+  border-radius: 0.521vw;
+  border: none;
+  font-size: 0.625vw;
+  color: #FFFFFF;
 }
 
 #popup-zapic, #popup-zapic2 {
@@ -3243,7 +3279,7 @@ table th {
   right: 2.5vw;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .msg-img img {
     width: 20px;
     height: 20px;
@@ -3309,7 +3345,11 @@ table th {
     display: block;
   }
   .sidebarMain.right {
-    display: none;
+    width: 100%;
+    margin-top: 0px;
+  }
+  .sidebarMain.right h2.title {
+    font-size: 22px;
   }
   .mainWrapper {
     position: absolute;
@@ -3467,9 +3507,18 @@ table th {
     height: 20px;
   }
   .tokens_chat {
-    flex-direction: column-reverse;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     padding-bottom: 10px;
+  }
+  .tokens_chat #openPrompts {
+    width: 102px;
+  }
+  .tokens_chat .tokensSpent {
+    padding-bottom: 0px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
   }
   .tokensSpent {
     padding-bottom: 10px;
@@ -3755,6 +3804,20 @@ table th {
   }
   #pay-popup .popup-inner {
     padding-top: 40px !important;
+  }
+  #openPrompts p.openPromptsPc {
+    display: none;
+  }
+  #openPrompts p.openPromptsMob {
+    display: block;
+  }
+  #settingsMob {
+    display: flex;
+    width: 40px;
+    height: 36px;
+    border-radius: 10px;
+    padding: 10px 13px;
+    background: #191F29;
   }
   section.library h2 {
     display: block;
