@@ -199,8 +199,17 @@
 
     {{-- Код для смены названия чата --}}
     <script>
+        $('form').on('submit', function(e) {
+            e.preventDefault(); // прерываем отправку на сервер
+            $(this).submit()
+        });
         function renChat(item) {
-            form = item.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form')
+            let form;
+            if (item.classList.contains('chat__update-form')) {
+                form = item;
+            } else {
+                form = item.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form')
+            }
             fetch(form.action, {
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8',
@@ -217,7 +226,12 @@
     {{-- Код для смены названия папки --}}
     <script>
         function renFolder(item) {
-            let form = item.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form');
+            let form;
+            if (item.classList.contains('chat__update-form')) {
+                form = item;
+            } else {
+                form = item.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form')
+            }
             fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": form.querySelector('input[name="_token"]').value}, method: "PATCH", body: JSON.stringify({'title': form.querySelector('#renameFolderInput').value})})
             form.parentElement.querySelector('.folderName').innerHTML = form.querySelector('#renameFolderInput').value
             renameFolder(item)

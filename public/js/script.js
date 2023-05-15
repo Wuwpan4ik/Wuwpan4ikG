@@ -296,6 +296,7 @@ function sendMsg(msg) {
                 }
             };
             stream.onerror = function (e) {
+                fetch(`/message/getCostMessage/${data}`)
                 loader.classList.remove('showed');
                 document.getElementById('loaderResponseError').classList.add('showed');
                 setTimeout(() => {
