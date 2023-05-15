@@ -22,7 +22,7 @@ class UseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'promocode' => 'string|exists:promocodes,code'
+            'promocode' => 'string'
         ];
     }
 }

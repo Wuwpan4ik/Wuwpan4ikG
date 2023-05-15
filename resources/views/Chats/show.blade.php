@@ -191,10 +191,10 @@
 
     {{-- Код для смены названия чата --}}
     <script>
-        $('form').on('submit', function(e) {
-            e.preventDefault(); // прерываем отправку на сервер
-            $(this).submit()
-        });
+        // $('form').on('submit', function(e) {
+        //     e.preventDefault(); // прерываем отправку на сервер
+        //     $(this).submit()
+        // });
         function renChat(item) {
             let form;
             if (item.classList.contains('chat__update-form')) {

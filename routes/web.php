@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function() {
     Route::get("/theme/get", function() { return view("components.get_theme"); });
 
     Route::post("/store_test", [\App\Http\Controllers\Payer\PayerController::class, 'store_test'])->name('store_test');
+
+    Route::post("/promocode", [\App\Http\Controllers\Promocode\PromocodeController::class, 'use'])->name('promocode.use');
 });
 
 require __DIR__.'/auth.php';

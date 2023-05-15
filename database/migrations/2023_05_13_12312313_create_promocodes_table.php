@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('promocodes', function (Blueprint $table) {
             $table->string('code')->unique();
-            $table->foreignId('author_id')->index()->constrained('users')->onDelete('CASCADE');
+            $table->foreignId('user_id')->nullable()->index()->constrained('users')->onDelete('CASCADE');
             $table->integer('amount');
             $table->timestamps();
         });
