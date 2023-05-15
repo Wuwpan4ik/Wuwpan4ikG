@@ -1,6 +1,12 @@
 @empty($show)
 @else
     <div class="firstRow">
+        <div class="switchMenu">
+            <button id="switchMenu" type="button" class="switchMenuBtn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.04166 6.99969C9.04193 7.15288 9.01192 7.30461 8.95336 7.44617C8.89479 7.58772 8.80883 7.7163 8.70041 7.82453L5.61225 10.9121L4.78741 10.0873L7.875 6.99969L4.78741 3.91211L5.61225 3.08727L8.69983 6.17486C8.80835 6.28303 8.89442 6.4116 8.95309 6.55315C9.01175 6.69471 9.04185 6.84646 9.04166 6.99969Z" fill="white" fill-opacity="0.3"/></svg>
+                Свернуть
+            </button>
+        </div>
         <h2 class="title">
             {{ __("systemRole") }}
         </h2>
@@ -85,6 +91,22 @@
                     </div>
                     <div class="popup-setting-desc">
                         Разные модели могут иметь разный объем данных и точность, что приводит к разным результатам.
+                    </div>
+                </div>
+                <div class="popup-setting">
+                    <div class="popup-setting-title">
+                        Экономный режим
+                    </div>
+                    <div class="popup-setting-btns">
+                        <button type="button" class="active">
+                            Включить
+                        </button>
+                        <button type="button">
+                            Выключить
+                        </button>
+                    </div>
+                    <div class="popup-setting-desc">
+                        Если выключить этот режим история чата не будет передаваться боту с каждым сообщением, то есть контекст пропадёт.
                     </div>
                 </div>
                 <div class="popup-setting">

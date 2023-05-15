@@ -30,7 +30,8 @@
                 <!--Токены, которые пользователь потратил в определенном чате-->
                 <div class="tokens_chat">
                     <button id="openPrompts">
-                        {{__("openPrompts")}}
+                        <p class="openPromptsPc">{{__("openPrompts")}}</p>
+                        <p class="openPromptsMob">Подсказки</p>
                     </button>
                     <div class="tokensSpent">
                         @include('components.tokens_in_chat')
@@ -57,7 +58,7 @@
 @endsection
 @section('script')
     <!--Попап библиотеки подсказок-->
-    <div class="popup popup-show" id="popup-library">
+    <div class="popup popup-show popup-library" id="popup-library">
         <div class="popupWrapper"></div>
         <div class="popupContent">
             <div class="popup-inner">
@@ -83,59 +84,15 @@
             </div>
         </div>
     </div>
+    @include('components.loaders.loader-message')
+    @include('components.loaders.loader-profile')
+    @include('components.loaders.loader-settings')
     @include('components.popups.popup-roles')
     @include('components.popups.popup-about')
     @include('components.popups.popup-develop')
     @include('components.popups.popup-zapic')
     @include('components.popups.popup-zapic2')
     @include('components.popups.popup-profile')
-    <div class="loaderResponse" id="loaderResponse">
-        <div class="firstRow">
-            <div class="loaderGif">
-                <lottie-player src="{{asset('assets/bot-thinks.json')}}"  background="transparent" speed="1" loop autoplay></lottie-player>
-            </div>
-            <div class="responseStat">
-                <p>Meta GPT</p>
-                <span>обрабатывает ваш запрос</span>
-            </div>
-        </div>
-        <div class="secondRow">
-            <button id="responseStop">
-                <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_814_3187)"><path d="M9.24991 2.24472C9.25174 2.36073 9.28745 2.47367 9.35264 2.56964C9.41783 2.66561 9.50966 2.74043 9.61682 2.78489C10.5748 3.2064 11.3849 3.9046 11.9432 4.78987C12.5014 5.67513 12.7824 6.70705 12.7499 7.75314C12.7273 9.14553 12.1525 10.4719 11.152 11.4405C10.1515 12.4091 8.80713 12.9406 7.41474 12.918C6.02235 12.8954 4.69597 12.3206 3.72737 11.3201C2.75878 10.3195 2.22732 8.97519 2.24991 7.58281C2.25125 6.56561 2.54808 5.5707 3.10429 4.71904C3.6605 3.86737 4.45215 3.19563 5.38299 2.78547C5.4902 2.74075 5.58203 2.6657 5.6472 2.56954C5.71238 2.47338 5.74807 2.36029 5.74991 2.24414C5.75006 2.1486 5.72674 2.05448 5.68199 1.97006C5.63725 1.88564 5.57246 1.8135 5.49331 1.75998C5.41416 1.70647 5.32307 1.67321 5.22806 1.66314C5.13305 1.65307 5.03702 1.66649 4.94841 1.70222C3.59466 2.28914 2.48454 3.32467 1.80504 4.6344C1.12554 5.94413 0.918174 7.44803 1.21788 8.89277C1.51758 10.3375 2.30604 11.6348 3.45045 12.5662C4.59485 13.4976 6.02528 14.0061 7.50078 14.0061C8.97629 14.0061 10.4067 13.4976 11.5511 12.5662C12.6955 11.6348 13.484 10.3375 13.7837 8.89277C14.0834 7.44803 13.876 5.94413 13.1965 4.6344C12.517 3.32467 11.4069 2.28914 10.0532 1.70222C9.96441 1.6661 9.86814 1.65239 9.77284 1.66231C9.67754 1.67224 9.58615 1.70548 9.50675 1.7591C9.42735 1.81273 9.36238 1.88509 9.31758 1.96979C9.27279 2.05448 9.24954 2.14891 9.24991 2.24472Z" fill="white"/><path d="M8.08342 0.583333C8.08342 0.261167 7.82225 0 7.50008 0C7.17792 0 6.91675 0.261167 6.91675 0.583333V4.08333C6.91675 4.4055 7.17792 4.66667 7.50008 4.66667C7.82225 4.66667 8.08342 4.4055 8.08342 4.08333V0.583333Z" fill="white"/></g><defs><clipPath id="clip0_814_3187"><rect width="14" height="14" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>
-                Остановить
-            </button>
-        </div>
-    </div>
-    <div class="loaderResponse error" id="loaderResponseError">
-        <div class="firstRow">
-            <div class="loaderGif">
-                <lottie-player src="https://assets2.lottiefiles.com/temp/lf20_QYm9j9.json"  background="transparent" speed="1" loop autoplay></lottie-player>
-            </div>
-            <div class="responseStat">
-                <p>Непредвиденная ошибка!</p>
-                <span>Попробуйте отправить запрос еще раз.</span>
-            </div>
-        </div>
-        <div class="secondRow">
-
-        </div>
-        <div class="under-loader"></div>
-    </div>
-    <div class="loaderResponse error" id="loaderResponseSuccess">
-        <div class="firstRow">
-            <div class="loaderGif">
-                <lottie-player src="{{ asset('assets/success.json') }}"  background="transparent" speed="1" loop autoplay></lottie-player>
-            </div>
-            <div class="responseStat">
-                <p>Настройки применены!</p>
-                <span>Ваши настройки успешно применились.</span>
-            </div>
-        </div>
-        <div class="secondRow">
-
-        </div>
-        <div class="under-loader"></div>
-    </div>
     <!--Скрипты-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -155,11 +112,48 @@
             });
         }
     </script>
+    {{-- Восстановление пароля в профиле --}}
+    <script>
+        function forgotPass(item){
+            document.getElementById('resetPasswordLoader').classList.add('showed');
+            setTimeout(()=>{
+                document.getElementById('resetPasswordLoader').classList.remove('showed');
+            }, 2500)
+        }
+    </script>
+    {{-- Активация промокода в профиле --}}
+    <script>
+        function activatePromo(item){
+            document.getElementById('resetPasswordLoader').classList.add('showed');
+            setTimeout(()=>{
+                document.getElementById('resetPasswordLoader').classList.remove('showed');
+            }, 2500)
+        }
+    </script>
+    {{-- Открытие попапа настроек в мобильной версии --}}
+    <script>
+        document.getElementById('settingsMob').onclick = () =>{
+            document.querySelector('.sidebarMain.right').classList.add('opened');
+        }
+    </script>
+    {{-- Ресайз инпута сообщения --}}
+    <script>
+        window.onresize = ()=>{
+            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+            autoResize(document.querySelector('textarea.msger-input'));
+        }
+        window.addEventListener('DOMContentLoaded', ()=>{
+            autoResize(document.querySelector('textarea.msger-input'));
+            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+        });
+    </script>
     <script>
         function add_new_chat(form) {
             let key = form.querySelector('input[name=_token]').value;
-            console.log(key)
             let dataInput = {}
+            if(document.querySelector('.sidebarMain.left').classList.contains('active')){
+                document.querySelector('.sidebarMain.left').classList.remove('active');
+            }
             if (form.classList.contains('folder__chat')) {
                 dataInput = {
                     'folder_id': form.querySelector('.folder_id').value
@@ -374,6 +368,22 @@
                 editProfileInput[i].classList.remove('nonActive');
                 editProfileInput[i].value = String(editProfileP[i].innerText).trim();
                 editProfileP[i].classList.add('nonActive');
+                let lastText = String(editProfileP[i].innerText).trim();
+                //Да
+                editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
+                    editProfile[i].classList.remove('nonActive');
+                    editProfileHoverItems[i].classList.remove('active');
+                    editProfileConfirm[i].classList.add('nonActive');
+                    editProfileInput[i].classList.add('nonActive');
+                    editProfileP[i].classList.remove('nonActive');
+                    editProfileP[i].innerText = editProfileInput[i].value;
+                    if(lastText != editProfileP[i].innerText){
+                        document.getElementById('profileSuccess').classList.add('showed');
+                        setTimeout(()=>{
+                            document.getElementById('profileSuccess').classList.remove('showed');
+                        }, 2000)
+                    }
+                }
                 //Нет
                 editProfileConfirm[i].querySelector('button.renameProfileNo').onclick = () =>{
                     editProfile[i].classList.remove('nonActive');

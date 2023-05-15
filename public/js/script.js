@@ -16,14 +16,18 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
 
-let userName = 'User'
-
+let userName = 'User';
+let userImg = '../assets/user.jpg';
 if(document.querySelector('#userNameProf')){
     userName = document.getElementById('userNameProf').textContent;
 }
 
+if(document.querySelector('#userImageProf')){
+    userImg = document.querySelector('#userImageProf img').src;
+}
+
 // Icons made by Freepik from www.flaticon.com
-const PERSON_IMG = "../assets/user.jpg";
+const PERSON_IMG = userImg;
 const BOT_IMG = "../assets/botlogo.jpg";
 const BOT_NAME = "Meta GPT";
 //Сюда вставляем имя пользователя
@@ -47,7 +51,6 @@ function escapeHtml(string) {
 async function sendMessage(event){
     event.preventDefault();
     let textar = String(msgerInput.value).trim();
-    console.log(textar);
     if (!textar) return;
     if (document.querySelector('.welcome-chat')) document.querySelector('.welcome-chat').remove()
     await appendMessage(PERSON_NAME, PERSON_IMG, "right", textar);
@@ -110,7 +113,7 @@ function appendMessage(name, img, side, text, id) {
     <div class="msg ${side}-msg">
         <div class="msg-header">
             <div class="firstRow">
-                <div class="msg-img" style="background-image: url(${img})"></div>
+                <div class="msg-img"><img src="${img}"></div>
                 <div class="msg-info-name">${name}</div>
                 <div class="msg-info-time">${formatDate(new Date())}</div>
             </div>
@@ -208,13 +211,11 @@ function sendMsg(msg) {
         chat_id: document.querySelector('#chat_id').value,
         message: String(newDiv.innerText).replace(/(?:\r\n|\r|\n)/g, '').trim(),
     }
-    console.log(params);
     const res = fetch('/sendMessage', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
         .then(
             response => response.json(),
         )
         .then(data => {
-            console.log(data);
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
             stream = new EventSource(`/event-stream/${data}?message=${messagetext}`);
@@ -274,7 +275,6 @@ function sendMsg(msg) {
                                 lang = lastLang.replace('hljs', '');
                                 lastIndex = lang.lastIndexOf("-"),
                                 lastWord = lang.substring(lastIndex + 1);
-                                console.log(lastWord);
                                 if(lastWord === "undefined"){
                                     lastWord = 'text';
                                 }
@@ -284,14 +284,6 @@ function sendMsg(msg) {
                                 item.parentElement.insertBefore(blockInfo, item);
                             });
                         }
-                        /* Прокрутка вниз
-                        if(isPaused == false){
-                            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-                        }
-                        document.querySelector('.msger-chat').addEventListener('scroll', function(e){
-                            isPaused = true;
-                        });
-                        */
                     }
                 }
             };
@@ -492,14 +484,14 @@ let tokensLeftBtn = document.querySelectorAll("#tokensLeft");
 function disableAllPops(){
     let popups = document.querySelectorAll('.popup');
     let sidebar = document.querySelectorAll('.sidebarMain');
-    if(document.getElementById('openSettings').classList.contains('active')){
-        document.getElementById('openSettings').classList.remove('active');
-    }
     if(document.getElementById('openMenu').classList.contains('active')){
         document.getElementById('openMenu').classList.remove('active');
     }
     if(document.getElementById('openChats').classList.contains('active')){
         document.getElementById('openChats').classList.remove('active');
+    }
+    if(document.querySelector('.sidebarMain.right').classList.contains('opened')){
+        document.querySelector('.sidebarMain.right').classList.remove('opened');
     }
     tokensLeftBtn.forEach((item)=>{
         if(item.classList.contains('active')){
@@ -537,17 +529,6 @@ document.getElementById('openMenu').onclick = () =>{
         document.getElementById('openMenu').classList.add('active');
     }
 }
-//Открытие настроек
-document.getElementById('openSettings').onclick = () =>{
-    if(document.getElementById('settingsTab').classList.contains('active')){
-        document.getElementById('openSettings').classList.remove('active');
-        document.getElementById('settingsTab').classList.remove('active');
-    }else{
-        disableAllPops();
-        document.getElementById('openSettings').classList.add('active');
-        document.getElementById('settingsTab').classList.add('active');
-    }
-}
 
 //Закрытие / открытие попапа оплаты
 
@@ -555,12 +536,11 @@ tokensLeftBtn.forEach((item)=>{
     item.onclick = () =>{
         if(item.classList.contains('active')){
             item.classList.remove('active');
-            document.querySelector('#pay-popup').classList.remove('active');
+            document.getElementById('pay-popup').classList.remove('active');
         }else{
             disableAllPops();
             item.classList.add('active');
             document.querySelector('#pay-popup').classList.add('active');
-            closePopContainer('pay-popup', '#pay-popup .popupContent');
         }
     }
 });
@@ -687,6 +667,7 @@ document.querySelectorAll('a#aboutProject').forEach((item)=>{
 document.getElementById('chat-with-base').onclick = () =>{
     document.getElementById('popup-develop').classList.add('active');
 }
+
 //Функция скролла вниз
 
 $('#scrollBottomBtn').onclick = () =>{
@@ -701,23 +682,14 @@ function pxToVw(px){
 }
 
 function autoResize(item) {
-    if(window.innerWidth > 768){
+    if(window.innerWidth > 1000){
         item.style.height = 1 + "vw";
         item.style.height = pxToVw(item.scrollHeight) + "vw";
+    }else{
+        item.style.height = 88 + "px";
+        item.style.height = item.scrollHeight + "px";
     }
 }
-
-//Resize || load
-
-window.onresize = ()=>{
-    $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-}
-
-window.addEventListener('DOMContentLoaded', ()=>{
-    autoResize(document.querySelector('textarea.msger-input'));
-    $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-})
-
 
 //Открытие попапа
 
@@ -736,3 +708,28 @@ function openPopUpZayavka2(item){
 document.getElementById('switchLang').onclick = () =>{
     document.getElementById('switchLang').parentElement.classList.toggle('active');
 }
+
+//Кнопка скрытия меню
+
+if(document.getElementById('switchMenu')){
+    document.getElementById('switchMenu').onclick = () =>{
+        document.querySelector('.sidebarMain.right').classList.add('switched');
+        document.querySelector('.mainWrapper').classList.add('switchedSidebar');
+    }
+}
+
+if(document.getElementById('sidebarSwitchRight')){
+    document.getElementById('sidebarSwitchRight').onclick = () =>{
+        document.querySelector('.sidebarMain.right').classList.remove('switched');
+        document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
+    }
+}
+
+window.addEventListener('resize', function(){
+    if(window.innerWidth < 1000){
+        document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
+    }
+    if(window.innerWidth > 1000 && document.querySelector('.sidebarMain.right').classList.contains('.switched')){
+        document.querySelector('.mainWrapper').classList.add('switchedSidebar');
+    }
+})
