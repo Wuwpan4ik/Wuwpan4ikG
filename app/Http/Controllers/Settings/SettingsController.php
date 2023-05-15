@@ -32,6 +32,13 @@ class SettingsController extends Controller
         return redirect()->back();
     }
 
+    public function changeSidebar(Request $request)
+    {
+        session()->put('show_sidebar', $request->show_sidebar);
+
+        return redirect()->back();
+    }
+
     public function store(StoreRequest $request)
     {
         $validated  = $request->except(['_token']);

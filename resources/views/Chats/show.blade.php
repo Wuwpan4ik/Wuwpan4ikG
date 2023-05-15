@@ -4,7 +4,7 @@
     <!--Lottie-->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
-    <div class="mainWrapper">
+    <div class="mainWrapper @if(session()->get('show_sidebar')) switchedSidebar @endif">
         <section class="msger">
             <!--
             <header class="msger-header">
@@ -274,6 +274,8 @@
             setTimeout(function () {
                 $('.msger-chat').load(`/messages/get/${id}`);
             }, 300)
+            document.querySelector('#popup-catalog').classList.remove('active');
+            document.querySelector('.formSystemRole').classList.add('nonActive');
         }
     </script>
 

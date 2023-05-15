@@ -3,6 +3,7 @@
     @empty($settings)
         {{ $settings }}
     @endempty
+    {{ session() }}
     <div class="mainWrapper">
         <section class="msger">
             <header class="msger-header">

@@ -716,6 +716,7 @@ if(document.getElementById('switchMenu')){
         document.querySelector('.sidebarMain.right').classList.add('switched');
         document.querySelector('.mainWrapper').classList.add('switchedSidebar');
     }
+    setTimeout(fetch(`/settings/sidebarChange?show_sidebar=1`), 500)
 }
 
 if(document.getElementById('sidebarSwitchRight')){
@@ -723,6 +724,7 @@ if(document.getElementById('sidebarSwitchRight')){
         document.querySelector('.sidebarMain.right').classList.remove('switched');
         document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
     }
+    setTimeout(fetch(`/settings/sidebarChange?show_sidebar=0`), 500)
 }
 
 window.addEventListener('resize', function(){
