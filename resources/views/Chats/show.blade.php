@@ -149,11 +149,8 @@
                 url: form.attr('action'),     // URL-адрес, куда отправляются данные формы
                 data: form.serialize(),      // Сериализуем данные формы в строку
                 success: function(response) { // Callback-функция, которая вызывается при успешной отправке формы
-                    console.log(response);      // Выводим в консоль ответ сервера
                 },
                 error: function(xhr, ajaxOptions, thrownError) { // Callback-функция, которая вызывается при ошибке отправки формы
-                    console.log(xhr.status);    // Выводим в консоль код ошибки
-                    console.log(thrownError);   // Выводим в консоль сообщение об ошибке
                 }
             });
         }
@@ -174,7 +171,6 @@
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
                 setTimeout(function () {
                     initDelete();
-                    openFolder()
                     document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).click()
                     document.querySelector(`.tablink[data-uuid="${JSON.parse(data)['uuid']}"]`).parentElement.parentElement.classList.add('opened')
                 }, 500)
@@ -191,8 +187,10 @@
                 response => response.text(),
             ).then(data => {
                 $('.tablinks-container').load('/chat_sidebar/' + {{ $chat->id }});
-                initDelete();
-                openFolder()
+                setTimeout(function() {
+                    initDelete();
+                }, 300)
+
             })
         }
     </script>

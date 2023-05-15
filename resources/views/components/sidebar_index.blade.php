@@ -91,3 +91,19 @@
         @include('components.chat', ['main' => $chat_local] )
     </div>
 @endforeach
+<script>
+    //Папки - открытие и закрытие
+    $('div.folderBtn .buttonOpen').click(function (evt) {
+        console.log(1)
+        if (!evt.currentTarget.parentElement.classList.contains('opened')) {
+            $('div.folderBtn').each(function () {
+                this.classList.remove('opened')
+            })
+            if (evt.currentTarget === evt.target || evt.target.classList.contains('folderName')) {
+                this.parentElement.classList.toggle('opened');
+            }
+        } else {
+            this.parentElement.classList.remove('opened');
+        }
+    })
+</script>
