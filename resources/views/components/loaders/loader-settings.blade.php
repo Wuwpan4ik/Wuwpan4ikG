@@ -1,0 +1,16 @@
+<!--Сохранение настроек-->
+<div class="loaderResponse error" id="loaderResponseSuccess">
+    <div class="firstRow">
+        <div class="loaderGif">
+            <lottie-player src="{{ asset('assets/success.json') }}"  background="transparent" speed="1" loop autoplay></lottie-player>
+        </div>
+        <div class="responseStat">
+            <p>Настройки применены!</p>
+            <span>Ваши настройки успешно применились.</span>
+        </div>
+    </div>
+    <div class="secondRow">
+
+    </div>
+    <div class="under-loader"></div>
+</div>
