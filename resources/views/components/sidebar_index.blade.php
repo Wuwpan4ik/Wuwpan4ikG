@@ -16,7 +16,7 @@
                 <form class="chat__update-form" onsubmit="renFolder(this)" action="{{ route('folder.update', $folder->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <input type="text" name="title" class="nonActive" id="renameFolderInput">
+                    <input onkeydown="if(event.keyCode==13) {event.preventDefault();renChat(this.parentElement)}" type="text" name="title" class="nonActive" id="renameFolderInput">
                 </form>
             </div>
             <div class="hoverItems folder">

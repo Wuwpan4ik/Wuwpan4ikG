@@ -98,10 +98,10 @@
                         Экономный режим
                     </div>
                     <div class="popup-setting-btns">
-                        <button type="button" class="active">
+                        <button type="button" onclick="onEconom()" class="@if(session()->get('econom')) active @endif">
                             Включить
                         </button>
-                        <button type="button">
+                        <button type="button" onclick="offEconom()" class="@if(!session()->get('econom')) active @endif">
                             Выключить
                         </button>
                     </div>

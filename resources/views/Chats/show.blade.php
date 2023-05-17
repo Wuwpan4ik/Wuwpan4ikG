@@ -97,21 +97,6 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="{{ asset('js/markdown-it.min.js') }}"></script>
-    {{--Код для добавления чата--}}
-    <script>
-        function updateProfile(elem) {
-            let form = $('.form__profile');
-            $.ajax({
-                type: "PATCH",    // Метод отправки данных (POST, GET и т.д.)
-                url: form.attr('action'),     // URL-адрес, куда отправляются данные формы
-                data: form.serialize(),      // Сериализуем данные формы в строку
-                success: function(response) { // Callback-функция, которая вызывается при успешной отправке формы
-                },
-                error: function(xhr, ajaxOptions, thrownError) { // Callback-функция, которая вызывается при ошибке отправки формы
-                }
-            });
-        }
-    </script>
     {{-- Восстановление пароля в профиле --}}
     <script>
         function forgotPass(item){

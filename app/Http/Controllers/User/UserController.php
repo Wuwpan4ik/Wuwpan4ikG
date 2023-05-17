@@ -9,6 +9,7 @@ use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Kaoken\LinkifyIt\Re;
 
 class UserController extends Controller
 {
@@ -55,12 +56,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         $data = $request->except('_token', '_method');
-        Debugbar::log($data);
         $user->update($data);
-        Debugbar::log($user);
     }
 
     public function updateAvatar(UpdateAvatarRequest $request, User $user)

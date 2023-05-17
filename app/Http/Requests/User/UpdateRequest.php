@@ -22,9 +22,9 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string',
-            'email' => 'email',
-            'telegram_url' => 'string'
+            'name' => 'string|nullable',
+            'email' => 'email|nullable',
+            'telegram_url' => 'string|nullable'
         ];
     }
 }

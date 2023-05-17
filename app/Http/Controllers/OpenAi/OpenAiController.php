@@ -50,8 +50,9 @@ class OpenAiController extends Controller
             $history[] = array("role" => "system", "content" => $chat->role);
             $prompt_tokens += count($this->gpt_encode($chat->role));
         }
-
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(2)->get()->sortBy('id');
+        $count_message = env('count_message');
+        if (session()->get('econom')) $count_message = 1;
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($count_message)->get()->sortBy('id');
 
 
         foreach ($message as $mess) {

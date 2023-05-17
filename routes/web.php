@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
+
 Route::middleware('auth')->group(function() {
+    Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
+    Route::post("/promocode", [\App\Http\Controllers\Promocode\PromocodeController::class, 'use'])->name('promocode.use');
     Route::patch('/user/{user}', [\App\Http\Controllers\User\UserController::class, 'update'])->name('user.update');
     Route::patch('/user_avatar/{user}', [\App\Http\Controllers\User\UserController::class, 'updateAvatar'])->name('user.avatar');
 
@@ -63,11 +65,11 @@ Route::middleware('auth')->group(function() {
     Route::get("/settings/langChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeLanguage"])->name("changeLanguage");
     Route::get("/settings/themeChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeTheme"])->name("changeTheme");
     Route::get("/settings/sidebarChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeSidebar"])->name("changeSidebar");
+    Route::get("/settings/changeEconom", [\App\Http\Controllers\Settings\SettingsController::class, "changeEconom"])->name("changeEconom");
     Route::get("/theme/get", function() { return view("components.get_theme"); });
 
     Route::post("/store_test", [\App\Http\Controllers\Payer\PayerController::class, 'store_test'])->name('store_test');
 
-    Route::post("/promocode", [\App\Http\Controllers\Promocode\PromocodeController::class, 'use'])->name('promocode.use');
 });
 
 require __DIR__.'/auth.php';

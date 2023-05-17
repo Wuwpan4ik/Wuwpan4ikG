@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Promocode\UseRequest;
 use App\Models\Promocode;
 use App\Models\UserPromocodes;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,8 @@ class PromocodeController extends Controller
 
     public function use(UseRequest $request)
     {
-        $data = $request->validated();
+        Debugbar::log($request);
+        $data = $request->except('_method');
         $code = $data['promocode'];
         $count = count(UserPromocodes::where('user_id', Auth::id())->where('promocode', $code)->get());
         if ($count === 0) {
@@ -40,6 +42,6 @@ class PromocodeController extends Controller
         } else {
             return response()->json(['error' => '2'], 404);
         }
-        return response()->json(['error' => '3'], 404);
+        return true;
     }
 }

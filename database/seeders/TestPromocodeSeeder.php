@@ -15,9 +15,9 @@ class TestPromocodeSeeder extends Seeder
     public function run(): void
     {
         DB::table('promocodes')->insert([
-            'code' => "1234",
+            'code' => "1232422",
             'user_id' => Auth::id(),
-            'count' => 1,
+            'count' => 5,
             'amount' => 50000
         ]);
     }

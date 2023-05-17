@@ -709,8 +709,17 @@ document.getElementById('switchLang').onclick = () =>{
     document.getElementById('switchLang').parentElement.classList.toggle('active');
 }
 
-//Кнопка скрытия меню
+// Экономный режим
+function onEconom() {
+    fetch(`/settings/changeEconom?econom=1`)
+    window.location.reload()
+}
 
+function offEconom() {
+    fetch(`/settings/changeEconom?econom=0`)
+    window.location.reload()
+}
+//Кнопка скрытия меню
 if(document.getElementById('switchMenu')){
     document.getElementById('switchMenu').onclick = () =>{
         document.querySelector('.sidebarMain.right').classList.add('switched');

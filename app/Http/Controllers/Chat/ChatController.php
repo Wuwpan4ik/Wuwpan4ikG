@@ -78,7 +78,10 @@ class ChatController extends Controller
 
     public function storeInFolder(Request $request)
     {
+        $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
+        Debugbar::log($request);
         $chat = Chat::create([
+            'title' => "Новый чат №" . $chat_id,
             'user_id' => Auth::id(),
             'folder_id' => $request->folder_id
         ]);

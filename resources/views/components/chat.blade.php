@@ -27,7 +27,7 @@
     <form class="chat__update-form" onsubmit="renChat(this)" action="@empty($chat) {{ route('prompts_folder.update', $main->id) }} @else{{ route('chats.update', $main->id) }} @endempty" method="POST">
         @csrf
         @method('PATCH')
-        <input type="text" name="title" class="nonActive" id="renameChatInput">
+        <input type="text" name="title" onkeydown="if(event.keyCode==13) {event.preventDefault();renChat(this.parentElement)}" class="nonActive" id="renameChatInput">
         <button type="button" id="submit_rename" style="display: none;"></button>
     </form>
 </div>

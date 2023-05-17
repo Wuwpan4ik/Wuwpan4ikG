@@ -218,6 +218,21 @@
 @yield('script')
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
 <script>
+    // Отправка промокода
+    $('#activatePromoBtn').on('click', function (e) {
+        e.preventDefault()
+        let form = $('.promocode-form');
+        $.ajax({
+            type: "POST",    // Метод отправки данных (POST, GET и т.д.)
+            url: $(form).attr('action'),     // URL-адрес, куда отправляются данные формы
+            data: form.serialize(),      // Сериализуем данные формы в строку
+            success: function(data, textStatus, jqXHR) {
+                window.location.reload()
+            }
+        })
+    })
+</script>
+<script>
     $(".switchTheme").click(function(){
         $.each($(".switchTheme"), function (num, item) {
             item.classList.remove('active')
