@@ -327,13 +327,13 @@ body{
     background:none !important;
     width: 1.979vw;
     height: 1.979vw;
-    padding:0.521vw;
+    padding:0px !important;
     img{
         padding:0.261vw;
         border-radius: 50%;
         height: 1.979vw;
+        width: 1.979vw;
         object-fit: cover;
-        height: 1.979vw;
     }
 }
 .switchLangContainer{
@@ -476,6 +476,34 @@ body.dark{
 
 body.light{
     background:white;
+    form.folder__chat{
+        .add-chat{
+            &:hover{
+                background: #DFDFDF;
+                color: #626262;
+            }
+        }
+    }
+    .hoverItems.prompts{
+        .renameChat{
+            svg{
+                path{
+                    fill:white;
+                }
+            }
+        }
+    }
+    #sidebarSwitchRight{
+        svg{
+            path{
+                fill:rgba($color: black, $alpha: 0.8)
+            }
+        }
+    }
+    #renameChatInput, #renameFolderInput{
+        background: none;
+        color:black;
+    }
     .about-project-soc{
         color:black;
     }
@@ -666,6 +694,7 @@ body.light{
             }
             input, textarea{
                 background: #E3E3E3 !important; 
+                color:black !important;
                 border: 1px solid #D1D1D1 !important;
                 &::placeholder{
                     color: rgba(0, 0, 0, 0.7) !important;
@@ -3097,8 +3126,6 @@ button.promptBtn{
     }
 }
 
-/*generated with Input range slider CSS style generator (version 20211225)
-https://toughengineer.github.io/demo/slider-styler*/
 input[type=range].styled-slider {
     height: 0.833vw;
     -webkit-appearance: none;
@@ -3802,6 +3829,65 @@ table{
 
 //Adaptive
 @media(max-width:1000px){
+    //Input range
+    input[type=range].styled-slider {
+        height: 15.994px;
+        -webkit-appearance: none;
+      }
+    
+      /*progress support*/
+      input[type=range].styled-slider.slider-progress {
+        --sx: calc(0.5 * 15.994px + var(--ratio) * (100% - 15.994px));
+      }
+      /*webkit*/
+      input[type=range].styled-slider::-webkit-slider-thumb {
+        width: 15.994px;
+        height: 15.994px;
+        border: 3.994px solid #FFFFFF;
+        box-shadow: 0 0 1.997px black;
+        margin-top: calc(max((1em - 0.998px - 0.998px) * 0.5,0px) - max(16px * 0.5,4px));
+      }
+    
+      input[type=range].styled-slider::-webkit-slider-runnable-track {
+        border: 0.998px solid #b2b2b2;
+      }
+    
+      /*mozilla*/
+      input[type=range].styled-slider::-moz-range-thumb {
+        width: max(calc(15.994px - 3.994px - 3.994px),0vw);
+        height: max(calc(15.994px - 3.994px - 3.994px),0vw);
+        border: 3.994px solid #FFFFFF;
+        box-shadow: 0 0 2px black;
+      }
+    
+      input[type=range].styled-slider::-moz-range-track {
+        height: max(calc(1em - 0.998px - 0.998px),0vw);
+        border: 0.998px solid #b2b2b2;
+      }
+    
+      input[type=range].styled-slider::-moz-range-progress {
+        height: 12px;
+        border-radius: 10.003px;
+      }
+    
+      input[type=range].styled-slider::-ms-thumb {
+        width: 15.994px;
+        height: 15.994px;
+        border: 3.994px solid #FFFFFF;
+        box-shadow: 0 0 1.997px black;
+      }
+    
+      input[type=range].styled-slider::-ms-track {
+        border: 0.998px solid #b2b2b2;
+      }
+    
+      input[type=range].styled-slider.slider-progress::-ms-fill-lower {
+        height: max(calc(1em - 0.998px - 0.998px),0px);
+        margin: -0.998px 0 -0.998px -0.998px;
+        background: #13B8A6;
+        border: 0.998px solid #b2b2b2;
+      }
+    
     .msg-img{
         img{
             width: 20px;
@@ -4277,6 +4363,8 @@ table{
         }
     }
     #pay-popup{
+        overflow: auto;
+        overflow-x: hidden;
         .popupContent{
             background: #0F131B;
             justify-content: flex-start;
@@ -4287,6 +4375,7 @@ table{
                 max-width: 100%;
                 background:none;
                 max-height: auto;
+                padding:20px;
                 .buyBtn{
                     padding-top:20px;
                     button{
@@ -4353,9 +4442,9 @@ table{
     #pay-popup{
         padding-top: 78px;
         z-index: 1;
-        .popup-inner{
-            padding-top: 40px !important;
-        }
+    }
+    .howMuch{
+        padding-top: 10px;
     }
     #openPrompts{
         p.openPromptsPc{
@@ -4685,5 +4774,13 @@ table{
     .linear-container{
         width: 100%;
         position: relative;
+    }
+    //Попапы
+    body.light{
+        #pay-popup{
+            .popupContent{
+                background:white !important;
+            }
+        }
     }
 }
