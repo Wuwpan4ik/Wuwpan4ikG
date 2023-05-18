@@ -222,7 +222,6 @@
             url: $(form).attr('action'),     // URL-адрес, куда отправляются данные формы
             data: form.serialize(),      // Сериализуем данные формы в строку
             success: function(data, textStatus, jqXHR) {
-                window.location.reload()
                 $('.tokens').load("/get_tokens");
             },
             error: function (data, textStatus, jqXHR) {
