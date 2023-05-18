@@ -225,7 +225,7 @@
                 window.location.reload()
             },
             error: function (jqXHR, exception) {
-
+                console.log(exception);
             }
         })
     })
