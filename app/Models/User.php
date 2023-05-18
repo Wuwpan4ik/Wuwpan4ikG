@@ -24,7 +24,9 @@ class User extends Authenticatable
         'avatar',
         'email',
         'password',
-        'tokens'
+        'tokens',
+        'code',
+        'is_verified'
     ];
 
     /**
@@ -48,5 +50,10 @@ class User extends Authenticatable
 
     public function have_default_avatar() {
         return Auth::user()->avatar == env('default_avatar');
+    }
+
+    public function isVerified()
+    {
+        return (int)Auth::user()->is_verified === 1;
     }
 }

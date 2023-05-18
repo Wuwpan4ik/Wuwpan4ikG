@@ -45,6 +45,8 @@
     "enterPass": "Придумайте пароль",
     "confirmPassword": "Повторите пароль",
     "minPass": "минимум 8 знаков",
+    "code": "Введите код",
+    "enterCode": "Введите код",
     "enterAgain": "введите пароль повторно",
     "chatTitle": "Чат",
     "libraryTitle": "Библиотека подсказок",
