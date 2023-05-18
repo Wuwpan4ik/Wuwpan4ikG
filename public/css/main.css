@@ -73,6 +73,7 @@ pre {
   width: 100%;
   height: 100%;
   position: fixed;
+  overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -518,6 +519,9 @@ body.light .popup .popupContent {
 }
 body.light .popup .popupContent .popup-inner {
   background: #FFFFFF !important;
+}
+body.light #profile-popup {
+  overflow-y: auto;
 }
 body.light #profile-popup .popupContent .popup-inner .profile-info .profile-photo {
   border: 0.052vw dashed rgba(0, 0, 0, 0.2);
@@ -2619,6 +2623,7 @@ button.promptBtn .promptText {
   height: 100%;
   padding-top: 4.063vw;
   top: 0px;
+  overflow-y: auto;
   left: 0px;
   background: rgba(0, 0, 0, 0.7);
   z-index: 100;
