@@ -370,6 +370,16 @@
                     editProfileInput[i].classList.add('nonActive');
                     editProfileP[i].classList.remove('nonActive');
                     editProfileP[i].innerText = editProfileInput[i].value;
+                    let form = $('.form__profile');
+                    $.ajax({
+                        type: "PATCH",    // Метод отправки данных (POST, GET и т.д.)
+                        url: form.attr('action'),     // URL-адрес, куда отправляются данные формы
+                        data: form.serialize(),      // Сериализуем данные формы в строку
+                        success: function(response) { // Callback-функция, которая вызывается при успешной отправке формы
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) { // Callback-функция, которая вызывается при ошибке отправки формы
+                        }
+                    });
                     if(lastText != editProfileP[i].innerText){
                         document.getElementById('profileSuccess').classList.add('showed');
                         setTimeout(()=>{
