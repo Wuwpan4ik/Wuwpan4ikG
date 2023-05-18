@@ -34,8 +34,6 @@
 <div class="hoverItems">
     <!--Удаление чата !!!!НАВЕСИТЬ ФОРМУ!!!!-->
 
-    @isset($first_id)
-        @if($main->id != $first_id)
         <button class="deleteChat buttonTool" onclick="deleteChat(this)">
             <svg class="svgPath" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_16_2304)">
@@ -50,8 +48,6 @@
                 </defs>
             </svg>
         </button>
-        @endif
-    @endisset
         <!--Подтверждение удаления чата-->
         <div class="confirmDelete nonActive">
             <form class="deleteChatForm" onsubmit="delChat(this)" action="@empty($chat){{ route('prompts_folder.destroy', $main->id) }}@else{{ route('chats.destroy', $main->id) }}@endempty" method="POST">
