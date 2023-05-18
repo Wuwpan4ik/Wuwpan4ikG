@@ -93,6 +93,7 @@
     @include('components.popups.popup-zapic')
     @include('components.popups.popup-zapic2')
     @include('components.popups.popup-profile')
+    @include('components.popups.popup-mob')
     <!--Скрипты-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -423,7 +424,7 @@
     </script>
     <script>
         function promptsBlock(id) {
-            $('.prompts-in-category').load(`/prompts/${id}/main/0`);
+            $('#popup-library .prompts-in-category').load(`/prompts/${id}/main/0`);
         }
 
         function copyPrompts(item){

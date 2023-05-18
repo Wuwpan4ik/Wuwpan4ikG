@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 </head>
 <body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
+    <style>
+        #openChats{
+            display:none !important;
+        }
+    </style>
     @include('components.header')
     <div class="sidebarMain left">
         <!--Новый чат и новая папка-->
@@ -93,6 +98,11 @@
     </div>
     <div class="mainWrapper">
         <section class="library prompts">
+            <div class="library-items-mob">
+                <h2>
+                    {{__('Catalog')}}
+                </h2>
+            </div>
             <div class="library-items">
                 <div class="library-title">
                     <div class="library-item-titles">
@@ -153,6 +163,7 @@
     @include('components.popups.popup-about')
     @include('components.popups.popup-develop')
     @include('components.popups.popup-profile')
+    @include('components.popups.popup-mob')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
