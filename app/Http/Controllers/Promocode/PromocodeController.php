@@ -22,11 +22,14 @@ class PromocodeController extends Controller
     {
         Debugbar::log($request);
         $data = $request->except('_method');
+
         $code = $data['promocode'];
-        $count = count(UserPromocodes::where('user_id', Auth::id())->where('promocode', $code)->get());
-        if ($count === 0) {
+        $promocedes = empty(UserPromocodes::where('user_id', Auth::id())->where('promocode', $code)->get());
+
+        if ($promocedes) {
             $promocode = Promocode::where('code', $code)->first();
-            if ($promocode->count <= 0) {
+
+            if ($promocode->count <= 0 || is_null($promocode->count)) {
                 return response()->json(['error' => '1'], 404);
             } else {
                 $promocode->update([

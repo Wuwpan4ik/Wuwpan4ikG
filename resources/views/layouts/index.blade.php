@@ -224,8 +224,8 @@
             success: function(data, textStatus, jqXHR) {
                 window.location.reload()
             },
-            error: function (jqXHR, exception) {
-                console.log(exception);
+            error: function (data, textStatus, jqXHR) {
+                console.log(data)
             }
         })
     })
