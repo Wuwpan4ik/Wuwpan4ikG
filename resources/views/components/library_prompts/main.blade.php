@@ -25,6 +25,7 @@
                             </clipPath>
                         </defs>
                     </svg>
+                    {{__('copyRole')}}
                 </button>
             </div>
         </div>

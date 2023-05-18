@@ -430,6 +430,9 @@ body.dark h2.aboutRs {
 body.light {
   background: white;
 }
+body.light #switchMenu {
+  color: black;
+}
 body.light select {
   background: #DFDFDF;
 }
@@ -438,6 +441,131 @@ body.light .popup-setting-content.ai_model .firstRow {
 }
 body.light .popup-setting-content.ai_model .firstRow select {
   color: #626262;
+}
+body.light #sidebarSwitchRight {
+  background: #DFDFDF !important;
+}
+body.light .switchLangContainer.active .dropdownLang {
+  background: #DFDFDF !important;
+}
+body.light .switchLangContainer.active .dropdownLang button {
+  color: #626262 !important;
+  border: 0.052vw solid #D1D1D1 !important;
+  background: none;
+}
+body.light .popup-setting .popup-setting-btns button {
+  color: #312f2f;
+  background: rgba(255, 255, 255, 0.1);
+}
+body.light .popup-setting .popup-setting-btns button.active {
+  background: #DFDFDF;
+}
+body.light .popup-setting .popup-setting-btns button:hover {
+  background: #DFDFDF;
+}
+body.light #mobileHeader {
+  background: #FFFFFF;
+  border-bottom: 0.052vw solid rgba(42, 47, 57, 0.1);
+}
+body.light #mobileHeader button {
+  background: rgba(19, 184, 166, 0.1);
+  color: black;
+}
+body.light #settingsMob {
+  background: #DFDFDF;
+}
+body.light .popup {
+  background: rgba(255, 255, 255, 0.5);
+}
+body.light .popup .popupContent {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+body.light .popup .popupContent .popup-inner {
+  background: #FFFFFF !important;
+}
+body.light #popup-develop p {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+body.light #popup-develop h2 {
+  color: black !important;
+}
+body.light #popup-develop .about-project-soc .sec button {
+  color: black;
+}
+body.light #about-popup p {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+body.light #about-popup h2 {
+  color: black !important;
+}
+body.light #about-popup svg path {
+  fill: white !important;
+}
+body.light #popup-zapic2 h2, body.light #popup-zapic h2 {
+  color: black !important;
+}
+body.light #popup-zapic2 .popup-inner, body.light #popup-zapic .popup-inner {
+  background: unset !important;
+}
+body.light #popup-zapic2 .form-text, body.light #popup-zapic .form-text {
+  background: white !important;
+}
+body.light #popup-zapic2 .form-input label, body.light #popup-zapic .form-input label {
+  color: black !important;
+}
+body.light #popup-zapic2 .form-input input, body.light #popup-zapic2 .form-input textarea, body.light #popup-zapic .form-input input, body.light #popup-zapic .form-input textarea {
+  background: #E3E3E3 !important;
+  border: 1px solid #D1D1D1 !important;
+}
+body.light #popup-zapic2 .form-input input::-moz-placeholder, body.light #popup-zapic2 .form-input textarea::-moz-placeholder, body.light #popup-zapic .form-input input::-moz-placeholder, body.light #popup-zapic .form-input textarea::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+body.light #popup-zapic2 .form-input input::placeholder, body.light #popup-zapic2 .form-input textarea::placeholder, body.light #popup-zapic .form-input input::placeholder, body.light #popup-zapic .form-input textarea::placeholder {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+body.light .closeBtnBuy button svg path {
+  fill: white !important;
+}
+body.light #pay-popup .popup-title {
+  color: rgba(0, 0, 0, 0.8);
+}
+body.light #pay-popup .pay-popup-wrapper {
+  background: #E3E3E3 !important;
+}
+body.light #pay-popup .pay-popup-wrapper .finalPrice {
+  color: black !important;
+}
+body.light #pay-popup .pay-popup-wrapper .howMuchTokens {
+  color: black !important;
+}
+body.light #pay-popup .pay-popup-wrapper .howMuch-step.first .howMuchInner {
+  background: none !important;
+}
+body.light #pay-popup .pay-popup-wrapper .howMuch-step .howMuchInner {
+  background: #CACACA !important;
+}
+body.light #pay-popup .pay-popup-wrapper .howMuch-step .howMuchInner span {
+  color: rgba(0, 0, 0, 0.3) !important;
+}
+body.light #pay-popup .pay-popup-wrapper .howMuch-step .howMuchInner .words, body.light #pay-popup .pay-popup-wrapper .howMuch-step .howMuchInner .papers {
+  color: black !important;
+}
+body.light #pay-popup .pay-popup-wrapper .howMuch-step .howMuchInner .words span, body.light #pay-popup .pay-popup-wrapper .howMuch-step .howMuchInner .papers span {
+  color: black !important;
+}
+body.light #checkout {
+  background: #5D6474 !important;
+  border: 0.052vw solid #2C3139 !important;
+  color: #DADADA !important;
+}
+body.light #checkout svg path {
+  fill: #DADADA !important;
+}
+body.light #menu-mob ul li a {
+  color: #525459;
+}
+body.light .linear-container {
+  background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #FAFAFA 100%);
 }
 body.light #openPrompts {
   background: #DFDFDF;
@@ -450,7 +578,7 @@ body.light #switchLang {
   color: black;
 }
 body.light #chooseRole {
-  color: #626262;
+  color: #312f2f;
   border: 0.052vw solid #D1D1D1;
 }
 body.light .modelSettings {
@@ -604,7 +732,7 @@ body.light #settingsTab .popupContent .button-save svg path {
 body.light #settingsTab .popupContent .popup-setting-content.withoutBorder .modelSettings .secondRow button {
   background: #CDCDCD;
 }
-body.light * svg path {
+body.light * svg.canbegray path {
   fill: #8E8E8F;
 }
 body.light #tokensLeft svg path:nth-child(1) {
@@ -1156,6 +1284,24 @@ div.switchMenu {
   background: #111419;
   border: 0.052vw solid #2C3139;
   border-radius: 0.521vw;
+  pointer-events: all;
+}
+
+.linear-container {
+  width: 17.916vw;
+  position: fixed;
+  background: linear-gradient(180deg, rgba(8, 12, 19, 0) 0%, rgba(8, 12, 19, 0.402673) 22.92%, rgba(8, 12, 19, 0.560584) 41.67%, rgba(8, 12, 19, 0.717026) 61.46%, rgba(8, 12, 19, 0.848958) 81.25%, #080C13 100%);
+  padding: 0px;
+  bottom: 0px;
+  height: 5.209vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.chatSettings {
+  padding-bottom: 2.656vw;
 }
 
 .chooseRoleFrom button {
@@ -1844,6 +1990,21 @@ button.promptBtn .promptText {
   cursor: pointer;
 }
 
+#popup-catalog .popup-inner {
+  padding: 2.083vw 0px;
+}
+#popup-catalog .popup-inner .prompts-category {
+  padding: 0px 2.083vw;
+}
+#popup-catalog .popup-inner .prompts-category .library-item h2 {
+  word-break: keep-all;
+}
+#popup-catalog .popup-inner .prompts-category .library-item .hoverItems button {
+  width: 100%;
+  align-items: center;
+  font-weight: 600;
+}
+
 #about-popup {
   z-index: 9999;
   padding-top: 0px;
@@ -2260,6 +2421,7 @@ button.promptBtn .promptText {
   text-align: center;
 }
 .popup-library .popupContent .popup-inner {
+  padding: 2.083vw 0px !important;
   width: 60%;
   background: #0F131B;
   border-radius: 20px;
@@ -2267,11 +2429,12 @@ button.promptBtn .promptText {
 }
 .popup-library .popupContent .popup-inner .prompts-category {
   display: grid;
+  padding: 0px 2.083vw;
   grid-gap: 0.521vw;
-  grid-template-columns: repeat(3, 33.333%);
+  grid-template-columns: repeat(3, auto);
 }
 .popup-library .popupContent .popup-inner .prompts-category button {
-  width: auto;
+  width: 100%;
 }
 .popup-library .popupContent .popup-inner h2 {
   font-size: 1.667vw;
@@ -2294,7 +2457,8 @@ button.promptBtn .promptText {
 .popup-library .popupContent .popup-inner .library-items-container {
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 40vh;
+  max-height: 50vh;
+  padding: 0px 2.083vw;
 }
 .popup-library .popupContent .popup-inner .prompts-in-category {
   margin-top: 1.563vw;
@@ -2749,6 +2913,7 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
 .howMuch {
   display: flex;
   gap: 1.563vw;
+  padding-top: 0.521vw;
 }
 .howMuch .howMuch-step {
   width: 100%;
@@ -2957,14 +3122,14 @@ button.add-chat:hover {
 
 .library-items {
   height: 100%;
-  padding: 2.083vw;
+  padding: 2.083vw 0vw;
 }
 
 .library-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 1.563vw;
+  padding: 0px 2.083vw 1.563vw 2.083vw;
 }
 .library-title .library-item-titles {
   font-weight: 600;
@@ -2982,6 +3147,7 @@ button.add-chat:hover {
   grid-template-columns: repeat(3, auto);
   grid-gap: 1.042vw;
   overflow-y: auto;
+  padding: 0px 2.083vw;
   padding-bottom: 2.083vw;
   max-height: 100%;
 }
@@ -3073,6 +3239,9 @@ pre code.hljs {
 section.library .library-items-mob {
   display: none;
 }
+section.library.prompts h2 {
+  display: block;
+}
 section.library h2 {
   display: none;
 }
@@ -3122,6 +3291,13 @@ section.library .library-item h2 {
 .library-item .hoverItems button {
   width: 100%;
   height: 1.979vw;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.521vw;
+  font-size: 0.781vw;
+  font-weight: 600;
   background: #272B34;
   border: 0.052vw solid #374151;
   border-radius: 0.521vw;
@@ -3924,9 +4100,13 @@ table th {
     height: 50px;
     font-size: 12px;
   }
+  .sidebarMain.right .chatSettings form .popup-setting .secondRow {
+    align-items: center;
+  }
   .sidebarMain.right .chatSettings form .popup-setting .secondRow button {
     width: 18px;
     height: 18px;
+    border-radius: 50%;
   }
   .sidebarMain.right .chatSettings form .popup-setting .popup-setting-btns {
     gap: 10px;
@@ -3981,13 +4161,139 @@ table th {
     border: 1px solid #374151;
     border-radius: 10px;
   }
+  .colorSheme {
+    padding: 14px 20px;
+    border-radius: 10px;
+  }
+  .colorSheme .firstCol {
+    font-size: 15px;
+    gap: 10px;
+  }
+  .colorSheme .secondCol button {
+    height: 26px;
+    width: 50px;
+  }
+  .colorSheme .secondCol button svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
   section.library h2 {
     display: block;
+    font-size: 26px;
+    padding-bottom: 30px;
   }
   section.library .library-items-mob {
+    flex-direction: column;
     display: flex;
+    padding: 40px 40px 0px 40px;
+    margin-bottom: 30px;
+  }
+  section.library .library-items-mob .tablinks-library {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    overflow-x: scroll;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: nowrap;
+    padding: 0px 60px 5px 0px;
+  }
+  section.library .library-items-mob .tablinks-library button {
+    padding: 14px 20px;
+    width: auto;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+    gap: 10px;
+  }
+  section.library .library-items-mob .tablinks-library button svg {
+    width: 18px !important;
+    height: 18px !important;
   }
   section.library .library-title {
     display: none;
+  }
+  section.library .library-items {
+    padding: 0px 40px;
+    margin-top: 70px;
+  }
+  section.library .library-items .library-items-container {
+    grid-gap: 20px;
+    padding-right: 5px;
+    grid-template-columns: repeat(2, auto);
+  }
+  section.library .library-items .library-item {
+    border-radius: 8px;
+    border: 1px solid #374151;
+    padding: 20px;
+  }
+  section.library .library-items .library-item:last-of-type {
+    margin-bottom: 180px;
+  }
+  section.library .library-items .library-item p {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  section.library .library-items .library-item h2 {
+    font-size: 20.006px;
+    line-height: 24px;
+  }
+  section.library .library-items .library-item .hoverItems button {
+    height: 39px;
+    border-radius: 10px;
+    border: 1px solid #374151;
+  }
+  section.library .library-items .library-item .hoverItems button svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  section.library.catalog .library-items-mob button {
+    height: 50px;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  section.library.catalog .library-items {
+    margin-top: 20px;
+  }
+  section.library.catalog .library-item:last-of-type {
+    margin-bottom: 180px;
+  }
+  section.library button.about-razdel-btn {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid #1D2129;
+    color: white;
+    font-size: 14px !important;
+  }
+  section.library button.about-razdel-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  section.library .about-razdel.opened .about-razdel-hidden {
+    margin-top: 10px;
+    height: auto;
+    opacity: 1;
+    pointer-events: all;
+  }
+  section.library .about-razdel-hidden {
+    height: 0px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  section.library .about-razdel-hidden p {
+    padding-top: 0px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .linear-container {
+    width: 100%;
+    position: relative;
   }
 }/*# sourceMappingURL=main.css.map */
