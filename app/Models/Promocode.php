@@ -17,7 +17,8 @@ class Promocode extends Model
     protected $fillable = [
         'author_id',
         'code',
-        'amount'
+        'amount',
+        'count'
     ];
 
 }
