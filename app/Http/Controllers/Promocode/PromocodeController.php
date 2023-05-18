@@ -20,11 +20,9 @@ class PromocodeController extends Controller
 
     public function use(UseRequest $request)
     {
-        Debugbar::log($request);
         $data = $request->except('_method');
         $code = $data['promocode'];
-
-        if (!is_null(UserPromocodes::where('user_id', Auth::id())->where('promocode', $code)->get())) {
+        if (count(UserPromocodes::where('user_id', Auth::id())->where('promocode', $code)->get()) === 0) {
             $promocode = Promocode::where('code', $code)->first();
             if (is_null($promocode)) {
                 return response()->json(['error' => '1'], 404);
