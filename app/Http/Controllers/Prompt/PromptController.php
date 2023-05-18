@@ -6,6 +6,7 @@ use App\Http\Requests\Prompt\StoreRequest;
 use App\Http\Requests\Prompt\UpdateRequest;
 use App\Models\Prompt;
 use App\Models\PromptFolder;
+use App\Models\Purchace;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,13 +25,14 @@ class PromptController extends Controller
 
     public function show($PromptFolder)
     {
+        $purchases = Purchace::all();
         $folder = PromptFolder::where('id', $PromptFolder)->first();
         $main_prompts = PromptFolder::where('is_main', 1)->get();
         $prompts_folder = PromptFolder::where('user_id', Auth::id())->get();
         $prompts = Prompt::where('folder_id', (int)$PromptFolder)->get();
         $prompts_main = $folder->is_main;
         $prompts_id = (int)$PromptFolder;
-        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_main', 'prompts_id'));
+        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_main', 'prompts_id', 'purchases'));
     }
 
     public function showMain($PromptFolder, $library)

@@ -129,9 +129,6 @@
 @yield('content')
 </div>
 <div class="sidebarMain right @if(session()->get('show_sidebar')) switched @endif">
-    <button id="sidebarSwitchRight">
-        <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.958274 3.99969C0.958008 4.15288 0.988018 4.30461 1.04658 4.44617C1.10514 4.58772 1.19111 4.7163 1.29952 4.82453L4.38769 7.91211L5.21252 7.08728L2.12494 3.99969L5.21252 0.912109L4.38769 0.0872746L1.30011 3.17486C1.19158 3.28303 1.10552 3.4116 1.04685 3.55315C0.988187 3.69471 0.958084 3.84646 0.958274 3.99969Z" fill="white" fill-opacity="0.3"/></svg>
-    </button>
     @include('components.role')
 </div>
 <div class="theme" style="display: none;"></div>
@@ -228,6 +225,9 @@
             data: form.serialize(),      // Сериализуем данные формы в строку
             success: function(data, textStatus, jqXHR) {
                 window.location.reload()
+            },
+            error: function (jqXHR, exception) {
+
             }
         })
     })

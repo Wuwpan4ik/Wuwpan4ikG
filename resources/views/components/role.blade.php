@@ -1,8 +1,11 @@
 @empty($show)
 @else
+    <button id="sidebarSwitchRight" onclick="useSidebar()">
+        <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.958274 3.99969C0.958008 4.15288 0.988018 4.30461 1.04658 4.44617C1.10514 4.58772 1.19111 4.7163 1.29952 4.82453L4.38769 7.91211L5.21252 7.08728L2.12494 3.99969L5.21252 0.912109L4.38769 0.0872746L1.30011 3.17486C1.19158 3.28303 1.10552 3.4116 1.04685 3.55315C0.988187 3.69471 0.958084 3.84646 0.958274 3.99969Z" fill="white" fill-opacity="0.3"/></svg>
+    </button>
     <div class="firstRow">
         <div class="switchMenu">
-            <button id="switchMenu" type="button" class="switchMenuBtn">
+            <button id="switchMenu" type="button" class="switchMenuBtn" onclick="useSidebar()">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.04166 6.99969C9.04193 7.15288 9.01192 7.30461 8.95336 7.44617C8.89479 7.58772 8.80883 7.7163 8.70041 7.82453L5.61225 10.9121L4.78741 10.0873L7.875 6.99969L4.78741 3.91211L5.61225 3.08727L8.69983 6.17486C8.80835 6.28303 8.89442 6.4116 8.95309 6.55315C9.01175 6.69471 9.04185 6.84646 9.04166 6.99969Z" fill="white" fill-opacity="0.3"/></svg>
                 Свернуть
             </button>
