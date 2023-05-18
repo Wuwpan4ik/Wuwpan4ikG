@@ -97,6 +97,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="{{ asset('js/markdown-it.min.js') }}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
     {{-- Восстановление пароля в профиле --}}
     <script>
         function forgotPass(item){
@@ -261,6 +262,7 @@
             }, 300)
             document.querySelector('#popup-catalog').classList.remove('active');
             document.querySelector('.formSystemRole').classList.add('nonActive');
+            document.querySelector('#systemRole .hoverItems').classList.remove('nonActive');
         }
     </script>
 
@@ -346,7 +348,11 @@
                 editProfile.forEach(item => item.classList.remove('nonActive'));
                 editProfileHoverItems.forEach(item=>item.classList.remove('active'));
                 editProfileConfirm.forEach(item=>item.classList.add('nonActive'));
-                editProfileInput.forEach(item=>item.classList.add('nonActive'));
+                editProfileInput.forEach((item) => {
+                    if(item.getAttribute('name') != 'promocode'){
+                        item.classList.add('nonActive')
+                    }
+                });
                 editProfileP.forEach(item=>item.classList.remove('nonActive'));
                 //Скрипт
                 editProfile[i].classList.add('nonActive');
@@ -413,19 +419,12 @@
     <script>
         function promptsBlock(id) {
             $('.prompts-in-category').load(`/prompts/${id}/main/0`);
-            setTimeout(()=>{
-                document.querySelectorAll('.prompts-in-category button.copyRole').forEach((item)=>{
-                    item.innerHTML = `
-                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_16_2165)"><path d="M6.29239 10.4166C6.139 10.4167 5.98709 10.3866 5.84535 10.3279C5.70362 10.2693 5.57484 10.1833 5.46639 10.0748L3.25906 7.91703C3.14844 7.80873 3.08537 7.66093 3.08373 7.50613C3.08209 7.35134 3.14201 7.20223 3.25031 7.09161C3.3586 6.98099 3.50641 6.91793 3.6612 6.91629C3.816 6.91465 3.96511 6.97456 4.07572 7.08286L6.28831 9.24528L10.2585 5.33694C10.3704 5.23843 10.5159 5.18654 10.6649 5.19193C10.8139 5.19732 10.9552 5.25959 11.0598 5.36593C11.1643 5.47227 11.2242 5.61461 11.227 5.76371C11.2299 5.91281 11.1755 6.05734 11.0751 6.16761L7.11256 10.08C7.0047 10.1873 6.87673 10.2723 6.736 10.33C6.59526 10.3878 6.44452 10.4172 6.29239 10.4166ZM14.1674 11.5833V7.69828C14.1891 5.90012 13.5299 4.1603 12.3219 2.82813C11.114 1.49596 9.44676 0.670065 7.65506 0.516277C6.65502 0.44631 5.65162 0.591958 4.71274 0.943366C3.77387 1.29477 2.92143 1.84374 2.21309 2.55313C1.50475 3.26252 0.957048 4.11577 0.607033 5.05517C0.257018 5.99456 0.112857 6.99818 0.184306 7.99811C0.442139 11.7046 3.71522 14.4999 7.79914 14.4999H11.2507C12.024 14.499 12.7653 14.1914 13.3121 13.6446C13.8589 13.0979 14.1665 12.3565 14.1674 11.5833ZM7.57572 1.68061C9.07282 1.81305 10.4643 2.50714 11.4707 3.62343C12.477 4.73973 13.0237 6.19551 13.0007 7.69828V11.5833C13.0007 12.0474 12.8163 12.4925 12.4882 12.8207C12.16 13.1489 11.7149 13.3333 11.2507 13.3333H7.79914C4.27931 13.3333 1.56739 11.0583 1.34864 7.91761C1.29121 7.11762 1.39937 6.31437 1.66637 5.55807C1.93337 4.80176 2.35346 4.10864 2.90041 3.522C3.44735 2.93537 4.1094 2.46783 4.84518 2.14859C5.58096 1.82935 6.37467 1.66527 7.17672 1.66661C7.30914 1.66661 7.44272 1.67186 7.57572 1.68061Z" fill="white"/></g><defs><clipPath id="clip0_16_2165"><rect width="14" height="14" fill="white" transform="translate(0.16748 0.5)"/></clipPath></defs></svg>
-                    Выбрать
-                    `
-                    item.onclick = () =>{
-                        document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('p').innerText).trim();
-                        autoResize(document.querySelector('textarea.msger-input'));
-                        document.getElementById('popup-library').classList.remove('active');
-                    }
-                })
-            }, 300)
+        }
+
+        function copyPrompts(item){
+            document.querySelector('textarea.msger-input').value = String(item.parentElement.parentElement.querySelector('p').innerText).trim();
+            autoResize(document.querySelector('textarea.msger-input'));
+            document.getElementById('popup-library').classList.remove('active');
         }
 
         function myFunction(id, uuid) {
