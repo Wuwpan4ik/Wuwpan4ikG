@@ -232,10 +232,7 @@ function sendMsg(msg) {
             });
             //Кнопка остановки генерации ответа от гпт
             document.getElementById('responseStop').onclick = () =>{
-                fetch(`/message/getCostMessage/${data}`)
                 msgerSendBtn.disabled = false
-                $('.tokens').load("/get_tokens");
-                $('.tokensSpent').load(`/messages-cost/get/${data}`);
                 isPaused = true;
                 params = {
                     'id': document.querySelector('#chat_id').value,
@@ -244,6 +241,9 @@ function sendMsg(msg) {
                 fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                 loader.classList.remove('showed');
                 $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                fetch(`/message/getCostMessage/${data}`)
+                $('.tokens').load("/get_tokens");
+                $('.tokensSpent').load(`/messages-cost/get/${data}`);
                 stream.close();
             }
             stream.onmessage = function (e) {
@@ -719,21 +719,16 @@ function offEconom() {
     fetch(`/settings/changeEconom?econom=0`)
     window.location.reload()
 }
-//Кнопка скрытия меню
-if(document.getElementById('switchMenu')){
-    document.getElementById('switchMenu').onclick = () =>{
-        document.querySelector('.sidebarMain.right').classList.add('switched');
-        document.querySelector('.mainWrapper').classList.add('switchedSidebar');
-    }
-    setTimeout(fetch(`/settings/sidebarChange?show_sidebar=1`), 500)
-}
 
-if(document.getElementById('sidebarSwitchRight')){
-    document.getElementById('sidebarSwitchRight').onclick = () =>{
-        document.querySelector('.sidebarMain.right').classList.remove('switched');
-        document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
+//Кнопка скрытия меню
+function useSidebar() {
+    let count = 0;
+    if (!document.querySelector('.sidebarMain.right').classList.contains('switched')) {
+        count = 1;
     }
-    setTimeout(fetch(`/settings/sidebarChange?show_sidebar=0`), 500)
+    document.querySelector('.sidebarMain.right').classList.toggle('switched');
+    document.querySelector('.mainWrapper').classList.toggle('switchedSidebar');
+    fetch(`/settings/sidebarChange?show_sidebar=${count}`)
 }
 
 window.addEventListener('resize', function(){
