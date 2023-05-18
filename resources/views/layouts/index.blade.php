@@ -224,7 +224,6 @@
             success: function(data, textStatus, jqXHR) {
                 window.location.reload()
                 $('.tokens').load("/get_tokens");
-                $('.tokensSpent').load(`/messages-cost/get/${data}`);
             },
             error: function (data, textStatus, jqXHR) {
                 console.log(data)
