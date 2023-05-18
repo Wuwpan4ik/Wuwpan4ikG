@@ -322,16 +322,11 @@
         let closeBtnBuy =  document.querySelectorAll('.closeBtnBuy button');
 
         closeBtnBuy.forEach((item)=>{
-            let popups = document.querySelectorAll('.popup');
             item.onclick = () =>{
-                popups.forEach(
-                    (item)=>{
-                        item.classList.remove('active');
-                        if(item.id == "pay-popup"){
-                            document.getElementById('tokensLeft').classList.remove('active');
-                        }
-                    }
-                );
+                item.parentElement.parentElement.parentElement.parentElement.classList.remove('active');
+                if(item.parentElement.parentElement.parentElement.parentElement.id == "pay-popup"){
+                    document.getElementById('tokensLeft').classList.remove('active');
+                }
             }
         })
     </script>

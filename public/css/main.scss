@@ -78,6 +78,7 @@ pre{
     width:100%;
     height:100%;
     position: fixed;
+    overflow-y: auto;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -569,6 +570,7 @@ body.light{
         }
     }
     #profile-popup{
+        overflow-y: auto;
        .popupContent{
         .popup-inner{
             .profile-info{
@@ -2876,6 +2878,7 @@ button.promptBtn{
     height:100%;
     padding-top:4.063vw;
     top:0px;
+    overflow-y:auto;
     left:0px;
     background: rgba(0, 0, 0, 0.7);
     z-index: 100;
