@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $data = $request->except('_token', '_method');
 
-        if ($user->avatar) {
+        if ($user->avatar && !$user->have_default_avatar()) {
             Storage::delete('/public/' . $user->avatar);
         }
 
