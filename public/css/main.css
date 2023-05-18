@@ -427,8 +427,30 @@ body.dark h2.aboutRs {
   color: #A2A2A3;
 }
 
+#popupPayBtnProf {
+  margin-top: 1.042vw;
+  height: 2.031vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.521vw;
+  background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+  border-radius: 0.521vw;
+  width: 100%;
+  color: white;
+  font-weight: 600;
+  border: none;
+  font-size: 0.625vw;
+}
+#popupPayBtnProf:hover {
+  filter: drop-shadow(0px 0.521vw 1.563vw rgba(19, 184, 166, 0.3));
+}
+
 body.light {
   background: white;
+}
+body.light .about-project-soc {
+  color: black;
 }
 body.light #switchMenu {
   color: black;
@@ -482,6 +504,60 @@ body.light .popup .popupContent {
 }
 body.light .popup .popupContent .popup-inner {
   background: #FFFFFF !important;
+}
+body.light #profile-popup .popupContent .popup-inner .profile-info .profile-photo {
+  border: 0.052vw dashed rgba(0, 0, 0, 0.2);
+}
+body.light #profile-popup .popupContent .popup-inner .profile-info .profile-photo .change-photo {
+  background: rgba(0, 0, 0, 0.2);
+}
+body.light #profile-popup .popupContent .popup-inner .profile-info .profile-photo .change-photo svg path {
+  fill: rgba(0, 0, 0, 0.6);
+}
+body.light #profile-popup .popupContent .popup-inner .profile-info .profile-photo .change-photo label {
+  color: black;
+}
+body.light #profile-popup .popupContent .popup-inner h2 {
+  color: black;
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems button {
+  background: rgba(0, 0, 0, 0.1);
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems button svg path {
+  fill: black;
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems #renameProfileYes {
+  background: rgba(19, 184, 166, 0.3);
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input {
+  background: #E3E3E3;
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .icon-input svg path {
+  fill: rgba(0, 0, 0, 0.6);
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .input-span p {
+  color: rgba(0, 0, 0, 0.6);
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .input-span input {
+  color: black;
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile .coolInput .about-input {
+  color: rgba(0, 0, 0, 0.4);
+}
+body.light #profile-popup .popupContent .popup-inner .form-profile #forgotPassBtn, body.light #profile-popup .popupContent .popup-inner .form-profile #activatePromoBtn {
+  background: #5D6474;
+}
+body.light #profile-popup .popupContent .popup-inner .history-payments-inner {
+  background: #F4F4F4;
+}
+body.light #profile-popup .popupContent .popup-inner .history-payments-inner .history-payments-item .count .count-much {
+  color: #13B8A6;
+}
+body.light #profile-popup .popupContent .popup-inner .history-payments-inner .history-payments-item .count .count-tokens {
+  color: rgba(0, 0, 0, 0.4);
+}
+body.light #profile-popup .popupContent .popup-inner .history-payments-inner .history-payments-item .date-payment {
+  color: rgba(0, 0, 0, 0.4);
 }
 body.light #popup-develop p {
   color: rgba(0, 0, 0, 0.6) !important;
@@ -1602,7 +1678,7 @@ button.promptBtn .promptText {
   color: #A4A4A4;
   max-width: 35.938vw;
   font-size: 0.729vw;
-  line-height: 0.885vw;
+  line-height: 1.25vw;
 }
 .welcome-chat svg {
   width: 2.604vw !important;
@@ -2173,7 +2249,7 @@ button.promptBtn .promptText {
   border: none;
 }
 #profile-popup .popupContent .popup-inner .history-payments {
-  padding-top: 2.604vw;
+  padding-top: 1.562vw;
 }
 #profile-popup .popupContent .popup-inner .history-payments h2 {
   padding-bottom: 1.563vw;

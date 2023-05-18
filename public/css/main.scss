@@ -455,9 +455,30 @@ body.dark{
     }
 }
 
+#popupPayBtnProf{
+    margin-top: 1.042vw;
+    height: 2.031vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:0.521vw;
+    background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+    border-radius: 0.521vw;
+    width:100%;
+    color:white;
+    font-weight: 600;
+    border:none;
+    font-size: 0.625vw;
+    &:hover{
+        filter: drop-shadow(0px 0.521vw 1.563vw rgba(19, 184, 166, 0.3));
+    }
+}
 
 body.light{
     background:white;
+    .about-project-soc{
+        color:black;
+    }
     #switchMenu{
         color:black;
     }
@@ -520,7 +541,86 @@ body.light{
         }
     }
     #profile-popup{
-        
+       .popupContent{
+        .popup-inner{
+            .profile-info{
+                .profile-photo{
+                    border: 0.052vw dashed rgba(0, 0, 0, 0.2);
+                    .change-photo{
+                        background: rgba(0, 0, 0, 0.2);
+                        svg{
+                            path{
+                                fill:rgba(0, 0, 0, 0.6);
+                            }
+                        }
+                        label{
+                            color:black;
+                        }
+                    }
+                }
+            }
+            h2{
+                color:black;
+            }
+            .form-profile{
+                .coolInput{
+                    .hoverItems{
+                        button{
+                            background: rgba(0, 0, 0, 0.1);
+                            svg{
+                                path{
+                                    fill:black;
+                                }
+                            }
+                        }
+                        #renameProfileYes{
+                            background: rgba(19, 184, 166, 0.3);
+                        }
+                    }
+                    .inner-input{
+                        background: #E3E3E3;
+                        .icon-input{
+                            svg{
+                                path{
+                                    fill:rgba(0, 0, 0, 0.6);
+                                }
+                            }
+                        }
+                    }
+                    .input-span{
+                        p{
+                            color: rgba(0, 0, 0, 0.6);
+                        }
+                        input{
+                            color:black;
+                        }
+                    }
+                    .about-input{
+                        color: rgba(0, 0, 0, 0.4);
+                    }
+                }
+                #forgotPassBtn, #activatePromoBtn{
+                    background: #5D6474;
+                }
+            }
+            .history-payments-inner{
+                background: #F4F4F4;
+                .history-payments-item{
+                    .count{
+                        .count-much{
+                            color: #13B8A6;
+                        }
+                        .count-tokens{
+                            color: rgba(0, 0, 0, 0.4);
+                        }
+                    }
+                    .date-payment{
+                        color: rgba(0, 0, 0, 0.4);
+                    }
+                }
+            }
+        }
+       } 
     }
     #popup-develop{
         p{
@@ -1789,7 +1889,7 @@ button.promptBtn{
         color: #A4A4A4;
         max-width: 35.938vw;
         font-size:0.729vw;
-        line-height: 0.885vw;
+        line-height: 1.25vw;
     }
     svg{
         width:2.604vw !important;
@@ -2384,7 +2484,7 @@ button.promptBtn{
                 }
             }
             .history-payments{
-                padding-top:2.604vw;
+                padding-top:1.562vw;
                 h2{
                     padding-bottom:1.563vw;
                 }

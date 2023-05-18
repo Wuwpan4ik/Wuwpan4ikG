@@ -743,4 +743,8 @@ window.addEventListener('resize', function(){
     if(window.innerWidth > 1000 && document.querySelector('.sidebarMain.right').classList.contains('.switched')){
         document.querySelector('.mainWrapper').classList.add('switchedSidebar');
     }
-})
+});
+
+document.getElementById('popupPayBtnProf').onclick = () =>{
+    document.getElementById('pay-popup').classList.add('active');
+}
