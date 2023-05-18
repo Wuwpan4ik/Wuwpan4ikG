@@ -19,7 +19,7 @@
                                         Заменить
                                     </div>
                                 </label>
-                                <input onchange="this.parentElement.parentElement.submit()" type="file" name="avatar" id="upload-photo">
+                                <input onchange="this.parentElement.parentElement.submit()" type="file" accept="image/png, image/jpg, image/gif" name="avatar" id="upload-photo">
                             </div>
                         </form>
                     </div>

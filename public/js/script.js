@@ -742,4 +742,5 @@ window.addEventListener('resize', function(){
 
 document.getElementById('popupPayBtnProf').onclick = () =>{
     document.getElementById('pay-popup').classList.add('active');
+    document.getElementById('profile-popup').classList.remove('active');
 }
