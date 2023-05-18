@@ -744,3 +744,9 @@ document.getElementById('popupPayBtnProf').onclick = () =>{
     document.getElementById('pay-popup').classList.add('active');
     document.getElementById('profile-popup').classList.remove('active');
 }
+
+if(document.getElementById('closeSettingsMob')){
+    document.getElementById('closeSettingsMob').onclick = () =>{
+        document.querySelector('.sidebarMain.right').classList.remove('opened');
+    }
+}

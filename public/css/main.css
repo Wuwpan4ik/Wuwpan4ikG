@@ -69,6 +69,10 @@ pre {
   text-transform: capitalize;
 }
 
+.mob-item {
+  display: none;
+}
+
 .loginForm {
   width: 100%;
   height: 100%;
@@ -450,6 +454,15 @@ body.dark h2.aboutRs {
 body.light {
   background: white;
 }
+body.light #mobileHeader button.active svg path {
+  fill: rgba(0, 0, 0, 0.4) !important;
+}
+body.light #menu-mob .menu-header li a.active {
+  background: rgba(19, 184, 166, 0.1) !important;
+}
+body.light #settingsMob svg path {
+  fill: rgba(0, 0, 0, 0.8) !important;
+}
 body.light form.folder__chat .add-chat:hover {
   background: #DFDFDF;
   color: #626262;
@@ -829,39 +842,6 @@ body.light #settingsTab .popupContent .popup-setting-content.withoutBorder .mode
 }
 body.light * svg.canbegray path {
   fill: #8E8E8F;
-}
-body.light #tokensLeft svg path:nth-child(1) {
-  fill: #FFB703;
-}
-body.light #tokensLeft svg path:nth-child(2) {
-  fill: #FCD227;
-}
-body.light #tokensLeft svg path:nth-child(3) {
-  fill: #FFB703;
-}
-body.light #tokensLeft svg path:nth-child(4) {
-  fill: #FF9831;
-}
-body.light #tokensLeft svg path:nth-child(5) {
-  fill: #FFB703;
-}
-body.light #tokensLeft svg path:nth-child(6) {
-  fill: #FF9831;
-}
-body.light #tokensLeft svg path:nth-child(7) {
-  fill: #FFB703;
-}
-body.light #tokensLeft svg path:nth-child(8) {
-  fill: #FF9831;
-}
-body.light #tokensLeft svg path:nth-child(8) {
-  fill: #FFB703;
-}
-body.light #tokensLeft svg path:nth-child(9) {
-  fill: #FF9831;
-}
-body.light #tokensLeft svg path:nth-child(10) {
-  fill: #FB8500;
 }
 body.light p.aboutRazdel {
   color: #484D55;
@@ -2624,6 +2604,7 @@ button.promptBtn .promptText {
   padding-top: 4.063vw;
   top: 0px;
   overflow-y: auto;
+  overflow-x: hidden !important;
   left: 0px;
   background: rgba(0, 0, 0, 0.7);
   z-index: 100;
@@ -4166,6 +4147,8 @@ table th {
     background: #191F29;
   }
   .sidebarMain.right {
+    overflow-x: hidden;
+    overflow-y: auto;
     transform: translateY(-100%);
     pointer-events: none;
     padding: 20px 40px;
@@ -4274,40 +4257,65 @@ table th {
   .sidebarMain.right .chatSettings .popup-setting-content.withoutBorder .modelSettings {
     height: 50px;
     border-radius: 10px;
+    padding: 20px;
   }
-  #popup-library .popup-inner {
+  #popup-library .popup-inner, #popup-catalog .popup-inner {
     width: 100%;
     padding: 40px;
     max-width: 100%;
   }
-  #popup-library .popup-inner h2 {
+  #popup-library .popup-inner h2, #popup-catalog .popup-inner h2 {
     font-size: 24px;
     padding-bottom: 30px;
+    line-height: 30px;
   }
-  #popup-library .popup-inner .prompts-category {
+  #popup-library .popup-inner .prompts-category, #popup-catalog .popup-inner .prompts-category {
     grid-gap: 10px;
   }
-  #popup-library .popup-inner button.tablink-library {
-    height: 38px;
+  #popup-library .popup-inner button.tablink-library, #popup-catalog .popup-inner button.tablink-library {
+    height: 45px;
     width: 100%;
     font-size: 15px;
     gap: 10px;
   }
-  #popup-library .popup-inner .prompts-in-category {
+  #popup-library .popup-inner .prompts-in-category, #popup-catalog .popup-inner .prompts-in-category {
     margin-top: 30px;
   }
-  #popup-library .popup-inner .prompts-in-category .library-item {
+  #popup-library .popup-inner .prompts-in-category .library-item, #popup-catalog .popup-inner .prompts-in-category .library-item {
     padding: 20px;
   }
-  #popup-library .popup-inner .prompts-in-category .library-item p {
+  #popup-library .popup-inner .prompts-in-category .library-item p, #popup-catalog .popup-inner .prompts-in-category .library-item p {
     font-size: 15px;
     line-height: 24px;
   }
-  #popup-library .popup-inner .prompts-in-category .library-item .hoverItems button {
+  #popup-library .popup-inner .prompts-in-category .library-item .hoverItems button, #popup-catalog .popup-inner .prompts-in-category .library-item .hoverItems button {
     height: 39px;
     font-size: 12px;
     border: 1px solid #374151;
     border-radius: 10px;
+  }
+  #popup-catalog h2 {
+    font-size: 16px;
+    word-break: normal;
+  }
+  #popup-catalog p.role__description {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  #popup-catalog .prompts-category {
+    padding: 0px 20px !important;
+    grid-template-columns: repeat(2, auto) !important;
+  }
+  #popup-catalog .library-item {
+    padding: 20px;
+  }
+  #popup-catalog .library-item h2 {
+    padding-bottom: 10px;
+  }
+  #popup-catalog .library-item .hoverItems button {
+    height: 38px;
+    font-size: 14px;
+    gap: 10px;
   }
   .colorSheme {
     padding: 14px 20px;
@@ -4325,6 +4333,21 @@ table th {
     width: 12px !important;
     height: 12px !important;
   }
+  .closeBtnBuy {
+    top: 39.994px;
+    right: -25.998px;
+  }
+  .closeBtnBuy button {
+    border-radius: 0px 10.003px 10.003px 0px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .popup .popupContent {
+    padding: 0px 40px;
+  }
   section.library h2 {
     display: block;
     font-size: 26px;
@@ -4333,6 +4356,10 @@ table th {
   section.library .library-items-mob {
     flex-direction: column;
     display: flex;
+    position: absolute;
+    background: white;
+    z-index: 2;
+    width: 100%;
     padding: 40px 40px 0px 40px;
     margin-bottom: 30px;
   }
@@ -4340,6 +4367,8 @@ table th {
     width: 100%;
     position: absolute;
     display: flex;
+    background: white;
+    padding-bottom: 10px;
     overflow-x: scroll;
     flex-direction: row;
     gap: 20px;
@@ -4363,20 +4392,17 @@ table th {
   }
   section.library .library-items {
     padding: 0px 40px;
-    margin-top: 70px;
+    padding-top: 180px !important;
   }
   section.library .library-items .library-items-container {
     grid-gap: 20px;
-    padding-right: 5px;
     grid-template-columns: repeat(2, auto);
+    padding-bottom: 40px;
   }
   section.library .library-items .library-item {
     border-radius: 8px;
     border: 1px solid #374151;
     padding: 20px;
-  }
-  section.library .library-items .library-item:last-of-type {
-    margin-bottom: 180px;
   }
   section.library .library-items .library-item p {
     font-size: 15px;
@@ -4395,17 +4421,14 @@ table th {
     width: 18px !important;
     height: 18px !important;
   }
-  section.library.catalog .library-items-mob button {
+  section.library.prompts .library-items-mob button {
     height: 50px;
     font-size: 15px;
     width: 100%;
     border-radius: 10px;
   }
-  section.library.catalog .library-items {
-    margin-top: 20px;
-  }
-  section.library.catalog .library-item:last-of-type {
-    margin-bottom: 180px;
+  section.library.prompts .library-items {
+    padding-top: 110px !important;
   }
   section.library button.about-razdel-btn {
     margin-top: 20px;
@@ -4443,8 +4466,81 @@ table th {
   .linear-container {
     width: 100%;
     position: relative;
+    height: auto;
+  }
+  .linear-container button {
+    margin: 0px 0px 20px 0px !important;
+  }
+  .popup-library .popupContent .popup-inner {
+    padding: 40px 0px !important;
+  }
+  .popup-library .popupContent .popup-inner .prompts-category, .popup-library .popupContent .popup-inner .library-items-container {
+    padding: 0px 40px;
+  }
+  .popup-library .popupContent .popup-inner .library-items-container {
+    max-height: 45vh !important;
   }
   body.light #pay-popup .popupContent {
     background: white !important;
+  }
+  .mob-item {
+    display: block;
+  }
+  #closeSettingsMob {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #2A2F39;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 15px;
+    background: none;
+  }
+  body.light #closeSettingsMob {
+    color: #626262;
+  }
+  #menu-mob .popupContent {
+    padding: 0px !important;
+  }
+  body.dark #saveSettingsRoles {
+    background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+    filter: drop-shadow(0px 10px 30px rgba(19, 184, 166, 0.3));
+  }
+  section.library .library-items-container {
+    max-height: auto !important;
+    padding: 0px 40px;
+  }
+  section.library .library-items {
+    padding: 0px;
+  }
+  section.library .library-item .hoverItems {
+    border-radius: 10px;
+  }
+  section.library .library-item .hoverItems button {
+    height: 38px;
+    font-size: 14px;
+    align-items: center;
+    gap: 10px;
+  }
+}
+@media (max-width: 800px) {
+  .library-items-container {
+    grid-template-columns: repeat(2, auto) !important;
+  }
+}
+@media (max-width: 600px) {
+  #popup-catalog .prompts-category {
+    grid-template-columns: repeat(1, auto) !important;
+  }
+}
+@media (max-width: 550px) {
+  section.library .library-items-container {
+    grid-template-columns: repeat(1, auto) !important;
+  }
+  section.library .library-items {
+    padding: 0px;
   }
 }/*# sourceMappingURL=main.css.map */

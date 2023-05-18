@@ -73,6 +73,10 @@ pre{
     }
 }
 
+.mob-item{
+    display:none;
+}
+
 //Login 
 .loginForm{
     width:100%;
@@ -477,6 +481,25 @@ body.dark{
 
 body.light{
     background:white;
+    #mobileHeader button{
+        &.active{
+            svg{
+                path{
+                    fill:rgba($color: #000000, $alpha: 0.4) !important;
+                }
+            }
+        }
+    }
+    #menu-mob .menu-header li a.active{
+        background:rgba(19, 184, 166, 0.1) !important;
+    }
+    #settingsMob{
+        svg{
+            path{
+                fill:rgba($color: #000000, $alpha: 0.8) !important;
+            }
+        }
+    }
     form.folder__chat{
         .add-chat{
             &:hover{
@@ -953,45 +976,6 @@ body.light{
     * svg.canbegray{
         path{
             fill:#8E8E8F;
-        }
-    }
-    #tokensLeft{
-        svg{
-            path{
-                &:nth-child(1){
-                    fill:#FFB703;
-                }
-                &:nth-child(2){
-                    fill:#FCD227;
-                }
-                &:nth-child(3){
-                    fill:#FFB703;
-                }
-                &:nth-child(4){
-                    fill:#FF9831;
-                }
-                &:nth-child(5){
-                    fill:#FFB703;
-                }
-                &:nth-child(6){
-                    fill:#FF9831;
-                }
-                &:nth-child(7){
-                    fill:#FFB703;
-                }
-                &:nth-child(8){
-                    fill:#FF9831;
-                }
-                &:nth-child(8){
-                    fill:#FFB703;
-                }
-                &:nth-child(9){
-                    fill:#FF9831;
-                }
-                &:nth-child(10){
-                    fill:#FB8500;
-                }
-            }
         }
     }
     p.aboutRazdel{
@@ -2879,6 +2863,7 @@ button.promptBtn{
     padding-top:4.063vw;
     top:0px;
     overflow-y:auto;
+    overflow-x: hidden !important;
     left:0px;
     background: rgba(0, 0, 0, 0.7);
     z-index: 100;
@@ -4468,6 +4453,8 @@ table{
 
     //Сайдбар настроек
     .sidebarMain.right{
+        overflow-x: hidden;
+        overflow-y: auto;
         transform: translateY(-100%);
         pointer-events: none;
         padding:20px 40px;
@@ -4584,13 +4571,14 @@ table{
             .popup-setting-content.withoutBorder .modelSettings{
                 height:50px;
                 border-radius: 10px;
+                padding:20px;
             }
         }
     }
 
     //Попапы
 
-    #popup-library{
+    #popup-library, #popup-catalog{
         .popup-inner{
             width: 100%;
             padding:40px;
@@ -4598,12 +4586,13 @@ table{
             h2{
                 font-size: 24px;
                 padding-bottom: 30px;
+                line-height: 30px;
             }
             .prompts-category{
                 grid-gap:10px;
             }
             button.tablink-library{
-                height: 38px;
+                height: 45px;
                 width: 100%;
                 font-size: 15px;
                 gap:10px;
@@ -4626,6 +4615,35 @@ table{
             }
         }
     }
+
+    #popup-catalog{
+        h2{
+            font-size:16px;
+            word-break: normal;
+        }
+        p.role__description{
+            font-size:15px;
+            line-height: 24px;
+        }
+        .prompts-category{
+            padding:0px 20px !important;
+            grid-template-columns: repeat(2 , auto) !important;
+        }
+        .library-item{
+            padding:20px;
+            h2{
+                padding-bottom: 10px;
+            }
+            .hoverItems{
+                button{
+                    height:38px;
+                    font-size:14px;
+                    gap:10px;
+                }
+            }
+        }
+    }
+
     .colorSheme{
         padding:14px 20px;
         border-radius: 10px;
@@ -4644,6 +4662,23 @@ table{
             }
         }
     }
+    .closeBtnBuy{
+        top: 39.994px;
+        right: -25.998px;
+        button{
+            border-radius: 0px 10.003px 10.003px 0px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .popup{
+        .popupContent{
+            padding:0px 40px;
+        }
+    }
     //Библиотека подсказок
     section.library{
         h2{
@@ -4654,12 +4689,17 @@ table{
         .library-items-mob{
             flex-direction: column;
             display: flex;
+            position: absolute;
+            background: white;
+            z-index: 2;width: 100%;
             padding:40px 40px 0px 40px;
             margin-bottom: 30px;
             .tablinks-library{
                 width: 100%;
                 position: absolute;
                 display: flex;
+                background:white;
+                padding-bottom: 10px;
                 overflow-x: scroll;
                 flex-direction: row;
                 gap:20px;
@@ -4684,19 +4724,16 @@ table{
         }
         .library-items{
             padding:0px 40px;
-            margin-top: 70px;
+            padding-top: 180px !important;
             .library-items-container{
                 grid-gap:20px;
-                padding-right: 5px;
                 grid-template-columns: repeat(2, auto);
+                padding-bottom: 40px;
             }
             .library-item{
                 border-radius: 8px;
                 border: 1px solid #374151;
                 padding:20px;
-                &:last-of-type{
-                    margin-bottom: 180px;
-                }
                 p{
                     font-size: 15px;
                     line-height: 24px;
@@ -4718,7 +4755,7 @@ table{
                 }
             }
         }
-        &.catalog{
+        &.prompts{
             .library-items-mob{
                 button{
                     height: 50px;
@@ -4728,12 +4765,7 @@ table{
                 }
             }
             .library-items{
-                margin-top: 20px;
-            }
-            .library-item{
-                &:last-of-type{
-                    margin-bottom: 180px;
-                }
+                padding-top: 110px !important;
             }
         }
         button.about-razdel-btn{
@@ -4777,13 +4809,127 @@ table{
     .linear-container{
         width: 100%;
         position: relative;
+        height:auto;
+        button{
+            margin:0px 0px 20px 0px !important;
+        }
     }
     //Попапы
+
+    .popup-library{
+        .popupContent{
+            .popup-inner{
+                padding:40px 0px !important;
+                .prompts-category, .library-items-container{
+                    padding:0px 40px;
+                }
+
+                
+    .library-items-container{
+        max-height: 45vh !important;
+    }
+            }
+        }
+    }
+
     body.light{
         #pay-popup{
             .popupContent{
                 background:white !important;
             }
+        }
+    }
+
+    .mob-item{
+        display:block;
+    }
+
+    #closeSettingsMob{
+        width:100%;
+        height:46px;
+        border: 1px solid #2A2F39;
+        border-radius: 10px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+        color:white;
+        font-size:15px;
+        background:none;
+    }
+
+    body.light{
+        #closeSettingsMob{
+            color:#626262;
+        }
+    }
+    
+    #menu-mob{
+        .popupContent{
+            padding:0px !important;
+        }
+    }
+
+    body.dark{
+        #saveSettingsRoles{
+            background: linear-gradient(180deg, #13B8A6 0%, #0A897B 100%);
+            filter: drop-shadow(0px 10px 30px rgba(19, 184, 166, 0.3));
+        }
+    }
+
+    //Страницы библиотека подсказок + каталог ролей
+    section.library{
+        .library-items-container{
+            max-height: auto !important;
+            padding:0px 40px;
+        }
+
+        .library-items{
+            padding:0px;
+        }
+
+        .library-item{
+            .hoverItems{
+                border-radius: 10px;
+                button{
+                    height:38px;
+                    font-size:14px;
+                    align-items: center;
+                    gap:10px;
+                }
+            }
+        }
+    }
+}
+
+//Адаптив 580 пикселей
+
+@media(max-width:800px){
+    .library-items-container{
+        grid-template-columns: repeat(2 ,auto) !important;
+    }
+}
+
+//Адаптив 600 пикселей
+
+@media(max-width:600px){
+    #popup-catalog{
+        .prompts-category{
+            grid-template-columns: repeat(1 , auto) !important;
+        }
+    }
+}
+
+//Адаптив 550 пикселей
+
+@media(max-width:550px){
+    section.library{
+        .library-items-container{
+            grid-template-columns: repeat(1, auto) !important;
+        }
+
+        .library-items{
+            padding:0px;
         }
     }
 }
