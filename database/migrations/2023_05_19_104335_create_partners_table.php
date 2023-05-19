@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->foreignId('user_id')->index()->nullable()->constrained('users');
+            $table->foreignId('user_id')->index()->nullable()->constrained('users')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
