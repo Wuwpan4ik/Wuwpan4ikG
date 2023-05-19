@@ -691,6 +691,15 @@ function autoResize(item) {
         item.style.height = 88 + "px";
         item.style.height = item.scrollHeight + "px";
     }
+
+    if(document.querySelector('#mainHeader #tokensLeft span.tokens').innerText <= 0){
+        document.getElementById('pay-popup').classList.add('active');
+        if(window.innerWidth < 1000){
+            document.querySelector('#mobileHeader #tokensLeft').classList.add('active');
+        }else{
+            document.querySelector('#mainHeader #tokensLeft').classList.add('active');
+        }
+    }
 }
 
 //Открытие попапа

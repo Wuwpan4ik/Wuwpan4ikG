@@ -10,6 +10,10 @@ html, body {
   overflow: hidden;
 }
 
+textarea#systemRoleText {
+  transition: 0s;
+}
+
 @font-face {
   font-family: Inter;
   font-weight: 300;
@@ -379,6 +383,15 @@ body {
   display: flex;
 }
 
+body.dark #profile-popup .popupContent .popup-inner .profile-info .profile-photo {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+body.dark .library-items-mob {
+  background: #0f131b !important;
+}
+body.dark .library-items-mob .tablinks-library {
+  background: #0f131b !important;
+}
 body.dark html {
   background: #0F131B;
 }
@@ -472,8 +485,14 @@ body.dark h2.aboutRs {
 body.light {
   background: white;
 }
+body.light #mobileHeader nav ul li button.active {
+  background: #13B8A6;
+}
 body.light #openMenu.active svg path, body.light #openChats.active svg path {
   fill: rgba(0, 0, 0, 0.4) !important;
+}
+body.light #popup-catalog .popup-inner h2:first-child, body.light #popup-library .popup-inner h2:first-child {
+  color: rgba(0, 0, 0, 0.8);
 }
 body.light #menu-mob .menu-header li a.active {
   background: rgba(19, 184, 166, 0.1) !important;
@@ -1336,12 +1355,13 @@ div.switchMenu {
   max-width: 100%;
   min-width: 100%;
   background: none;
+  line-height: 1.25vw;
   border: none;
   height: auto;
   min-height: auto;
   max-height: auto;
   color: white;
-  margin-bottom: 1.042vw;
+  margin-bottom: 0.261vw;
 }
 .systemRole .formSystemRole textarea:focus {
   outline: none;
@@ -1496,6 +1516,8 @@ div.switchMenu {
 }
 .folderBtn .hoverItems {
   display: flex;
+  position: absolute;
+  right: 2.344vw;
   gap: 0.521vw;
   align-items: center;
 }
@@ -1519,9 +1541,19 @@ div.switchMenu {
   width: 0.521vw !important;
   height: 0.521vw !important;
 }
+.folderBtn .dropdownButton {
+  pointer-events: none;
+}
 
 .folderBtn.opened .buttonOpen {
   background: #1D2129;
+  /*Фикс по мобилкам
+  .hoverItems.folder{
+      .hoverItems-folder{
+          opacity:1;
+      }
+  }
+  */
 }
 .folderBtn.opened .buttonOpen .dropdownButton {
   transform: rotate(0deg);
@@ -3113,8 +3145,9 @@ button.add-chat:hover {
 }
 
 .tablinks-container {
-  max-height: 27.344vw;
-  overflow: auto;
+  max-height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .tablinks-container .tablinks-library {
   display: flex;
@@ -3697,7 +3730,7 @@ table th {
   .sidebarMain.left {
     display: none;
     width: 100%;
-    padding: 20px;
+    padding: 20px 0px;
     height: 100%;
     margin-top: 0px;
   }
@@ -3715,15 +3748,16 @@ table th {
   .sidebarMain.left .folderBtn .buttonOpen input {
     height: 35px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 13.843px;
     padding: 8px 6px;
     width: 100%;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems {
+    right: 50px;
     gap: 10px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems .hoverItems-folder {
-    gap: 10px;
+    gap: 5px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems .hoverItems-folder button {
     width: 22px;
@@ -3755,6 +3789,7 @@ table th {
   }
   .sidebarMain.left .folderRow {
     gap: 20px;
+    padding: 0px 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #2A2F39;
     margin-bottom: 20px;
@@ -3772,7 +3807,11 @@ table th {
     height: 18px !important;
   }
   .sidebarMain.left .tablinks-container {
+    height: 100%;
     max-height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0px 20px;
   }
   .sidebarMain.left .addChatIcon {
     height: 50px;
@@ -3806,7 +3845,113 @@ table th {
     font-size: 12px;
     max-width: 100%;
     padding: 0px 40px;
-    line-height: 125%;
+    line-height: 150%;
+  }
+  #profile-popup {
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+  #profile-popup .popupContent {
+    background: none !important;
+    align-items: flex-start;
+    height: auto;
+  }
+  #profile-popup .popupContent .popup-inner {
+    margin: 40px 0px;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+  }
+  #profile-popup .popupContent .popup-inner .profile-info .profile-photo {
+    border-radius: 10.003px;
+    padding: 10.003px;
+    border: 1px dashed rgba(0, 0, 0, 0.2) !important;
+    margin-top: 20px;
+  }
+  #profile-popup .popupContent .popup-inner .profile-info .profile-photo form img {
+    width: 40px;
+    height: 40px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  #profile-popup .popupContent .popup-inner .profile-info .profile-photo form .change-photo {
+    height: 38px;
+    font-size: 12px;
+    padding: 0px 23.04px;
+    border-radius: 10px;
+  }
+  #profile-popup .popupContent .popup-inner .profile-info .profile-photo form .change-photo label div {
+    font-size: 12px;
+    gap: 10px;
+  }
+  #profile-popup .popupContent .popup-inner h2 {
+    font-size: 22px;
+    line-height: 27px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile {
+    padding-top: 20px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput {
+    padding-bottom: 15px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .input-label {
+    font-size: 12px;
+    color: #A2A2A3;
+    padding-bottom: 10.003px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input {
+    gap: 10px;
+    height: 46px;
+    border-radius: 10.003px;
+    padding: 12px 20.006px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .input-span p {
+    font-size: 12px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .input-span input {
+    font-size: 12px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .hoverItems button {
+    width: 22px;
+    height: 22px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .hoverItems button svg {
+    width: 10.003px !important;
+    height: 10.003px !important;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .about-input {
+    padding-top: 10.003px;
+    font-size: 10.003px;
+    line-height: 12px;
+  }
+  #profile-popup .popupContent .popup-inner .history-payments {
+    padding-top: 20px;
+  }
+  #profile-popup .popupContent .popup-inner .history-payments h2 {
+    padding-bottom: 20px;
+  }
+  #profile-popup .popupContent .popup-inner .history-payments .history-payments-inner {
+    border-radius: 10.003px;
+    padding: 15.994px 20.006px;
+  }
+  #profile-popup .popupContent .popup-inner .history-payments .history-payments-item .count {
+    gap: 10px;
+  }
+  #profile-popup .popupContent .popup-inner .history-payments .history-payments-item .count .count-much {
+    font-size: 13.997px;
+  }
+  #profile-popup .popupContent .popup-inner .history-payments .history-payments-item .count .count-tokens {
+    font-size: 10.003px;
+  }
+  #profile-popup .popupContent .popup-inner .history-payments .history-payments-item .date-payment {
+    font-size: 13.997px;
+  }
+  #profile-popup .popupContent .popup-inner #forgotPassBtn, #profile-popup .popupContent .popup-inner #popupPayBtnProf, #profile-popup .popupContent .popup-inner #activatePromoBtn {
+    height: 46px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  #profile-popup .popupContent .popup-inner #popupPayBtnProf {
+    margin-top: 20px;
   }
   .messageInput {
     padding: 20px;
@@ -4110,18 +4255,21 @@ table th {
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .finalPrice {
     font-size: 60px;
   }
+  #pay-popup .popupContent .popup-inner .pay-popup-wrapper .payRange img {
+    bottom: -4px;
+  }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch {
     flex-direction: column;
   }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuch-title {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchTokens {
     font-size: 32px;
   }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step.first {
     width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
   }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner {
     border-radius: 10px;
@@ -4135,10 +4283,10 @@ table th {
     gap: 10px;
   }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner .howMuchIn .words {
-    gap: 4px;
+    gap: 7px;
   }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-step .howMuchInner .howMuchIn .papers {
-    gap: 4px;
+    gap: 7px;
   }
   #pay-popup .popupContent .popup-inner .pay-popup-wrapper .howMuch .howMuch-title {
     font-size: 12px;
@@ -4300,27 +4448,38 @@ table th {
   #popup-library .popup-inner .prompts-in-category, #popup-catalog .popup-inner .prompts-in-category {
     margin-top: 30px;
   }
-  #popup-library .popup-inner .prompts-in-category .library-item, #popup-catalog .popup-inner .prompts-in-category .library-item {
+  #popup-library .popup-inner .library-item, #popup-catalog .popup-inner .library-item {
+    border-radius: 10px !important;
+    border: 1px solid #D1D1D1;
     padding: 20px;
   }
-  #popup-library .popup-inner .prompts-in-category .library-item p, #popup-catalog .popup-inner .prompts-in-category .library-item p {
+  #popup-library .popup-inner .library-item p, #popup-catalog .popup-inner .library-item p {
     font-size: 15px;
     line-height: 24px;
   }
-  #popup-library .popup-inner .prompts-in-category .library-item .hoverItems button, #popup-catalog .popup-inner .prompts-in-category .library-item .hoverItems button {
+  #popup-library .popup-inner .library-item .hoverItems, #popup-catalog .popup-inner .library-item .hoverItems {
+    border-radius: 10px;
+  }
+  #popup-library .popup-inner .library-item .hoverItems button, #popup-catalog .popup-inner .library-item .hoverItems button {
     height: 39px;
     font-size: 12px;
     border: 1px solid #374151;
     border-radius: 10px;
   }
+  #popup-library .prompts-category-container {
+    position: relative;
+    padding: 0px 40px !important;
+    height: 45px !important;
+  }
   #popup-library .prompts-category {
     display: flex !important;
-    position: absolute;
+    position: relative;
     gap: 10px;
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 0px !important;
+    padding-bottom: 5px !important;
   }
   #popup-library .prompts-category button {
     padding: 0px 14px;
@@ -4360,9 +4519,18 @@ table th {
     font-size: 15px;
     gap: 10px;
   }
+  .colorSheme .secondCol {
+    border: 0.998px solid #2A2F39;
+    border-radius: 10.003px;
+    padding: 6.01px;
+    display: flex;
+    gap: 10.003px;
+  }
   .colorSheme .secondCol button {
     height: 26px;
     width: 50px;
+    border-radius: 10.003px;
+    padding: 6.01px 14.995px;
   }
   .colorSheme .secondCol button svg {
     width: 12px !important;
@@ -4370,7 +4538,7 @@ table th {
   }
   .closeBtnBuy {
     top: 39.994px;
-    right: -25.998px;
+    right: -29.998px;
   }
   .closeBtnBuy button {
     border-radius: 0px 10.003px 10.003px 0px;
@@ -4400,7 +4568,7 @@ table th {
   }
   section.library .library-items-mob .tablinks-library {
     width: 100%;
-    position: absolute;
+    position: relative;
     display: flex;
     background: white;
     padding-bottom: 10px;
@@ -4408,7 +4576,7 @@ table th {
     flex-direction: row;
     gap: 20px;
     flex-wrap: nowrap;
-    padding: 0px 60px 5px 0px;
+    padding: 0px 0px 5px 0px;
   }
   section.library .library-items-mob .tablinks-library button {
     padding: 14px 20px;
@@ -4521,6 +4689,30 @@ table th {
   .mob-item {
     display: block;
   }
+  #about-user {
+    width: 38px;
+  }
+  #about-user img {
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+  }
+  #systemRole .hoverItems {
+    padding: 20.006px;
+    gap: 8.006px;
+    border-radius: 8.006px;
+  }
+  #systemRole .hoverItems button svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  #systemRole .formSystemRole textarea {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  #systemRole .formSystemRole .buttons button {
+    border-radius: 10px;
+  }
   #closeSettingsMob {
     width: 100%;
     height: 46px;
@@ -4560,6 +4752,44 @@ table th {
     align-items: center;
     gap: 10px;
   }
+  #about-popup .popup-inner, #popup-develop .popup-inner {
+    max-width: 100%;
+    padding: 20px !important;
+  }
+  #about-popup .popup-inner h2, #popup-develop .popup-inner h2 {
+    font-size: 22px;
+  }
+  #about-popup .popup-inner .about-project-inner p, #popup-develop .popup-inner .about-project-inner p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  #about-popup .popup-inner .about-project-inner p:last-of-type, #popup-develop .popup-inner .about-project-inner p:last-of-type {
+    padding-bottom: 0px;
+  }
+  #about-popup .popup-inner .about-project-soc, #popup-develop .popup-inner .about-project-soc {
+    padding-top: 20px;
+    font-size: 14px;
+    gap: 10px;
+    flex-direction: column;
+  }
+  #about-popup .popup-inner .about-project-soc button, #popup-develop .popup-inner .about-project-soc button {
+    height: 38px;
+    font-size: 12px;
+    gap: 10px;
+    border-radius: 5px;
+  }
+  #menu-mob .popup-inner {
+    padding: 20px 20px 40px 20px;
+  }
+  #menu-mob .menu-items .colorSheme {
+    padding: 14px 0px;
+  }
+  #menu-mob .menu-items a {
+    padding: 14px 0px;
+  }
+  #menu-mob .menu-items form button {
+    padding: 14px 0px;
+  }
 }
 @media (max-width: 800px) {
   .library-items-container {
@@ -4570,6 +4800,9 @@ table th {
   #popup-catalog .prompts-category {
     grid-template-columns: repeat(1, auto) !important;
   }
+  #pay-popup .howMuchIn {
+    flex-direction: column !important;
+  }
 }
 @media (max-width: 550px) {
   section.library .library-items-container {
@@ -4577,5 +4810,27 @@ table th {
   }
   section.library .library-items {
     padding: 0px;
+  }
+  #popup-catalog .library-items-container, #popup-library .library-items-container {
+    grid-template-columns: repeat(1, 100%) !important;
+    grid-gap: 10px;
+  }
+  #popup-catalog .library-items-container .library-item p, #popup-library .library-items-container .library-item p {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
+@media (max-width: 420px) {
+  #popup-library h2:first-child, #popup-catalog h2:first-child {
+    font-size: 18px !important;
+  }
+  #popup-library button.tablink-library {
+    font-size: 12px !important;
+  }
+  #popup-library .prompts-category-container {
+    padding: 0px 20px !important;
+  }
+  #popup-library .library-items-container {
+    padding: 0px 20px;
   }
 }/*# sourceMappingURL=main.css.map */

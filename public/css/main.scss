@@ -12,6 +12,10 @@ html, body{
     overflow: hidden;
 }
 
+textarea#systemRoleText{
+    transition:0s;
+}
+
 //Fonts
 
 @font-face {
@@ -402,6 +406,16 @@ body{
 }
 
 body.dark{
+    #profile-popup .popupContent .popup-inner .profile-info .profile-photo{
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    .library-items-mob{
+        background:#0f131b !important;
+        .tablinks-library{
+            background:#0f131b !important;
+        }
+    }
+
     html{
         background:#0F131B
     }
@@ -500,12 +514,22 @@ body.dark{
 
 body.light{
     background:white;
+    #mobileHeader nav ul li button.active{
+        background: #13B8A6;
+    }
     #openMenu, #openChats{
         &.active{
             svg{
                 path{
                     fill:rgba($color: #000000, $alpha: 0.4) !important;
                 }
+            }
+        }
+    }
+    #popup-catalog, #popup-library{
+        .popup-inner{
+            h2:first-child{
+                color:rgba($color: #000000, $alpha: 0.8)
             }
         }
     }
@@ -1542,12 +1566,13 @@ div.switchMenu{
             max-width: 100%;
             min-width: 100%;
             background:none;
+            line-height: 1.25vw;
             border:none;
             height:auto;
             min-height: auto;
             max-height: auto;
             color:white;
-            margin-bottom: 1.042vw;
+            margin-bottom: 0.261vw;
             &:focus{
                 outline: none;
             }
@@ -1709,6 +1734,8 @@ div.switchMenu{
     position: relative;
     .hoverItems{
         display:flex;
+        position: absolute;
+        right:2.344vw;
         gap:0.521vw;
         align-items: center;
         .hoverItems-folder{
@@ -1730,6 +1757,9 @@ div.switchMenu{
             }
         }
     }
+    .dropdownButton{
+        pointer-events: none;
+    }
 }
 
 .folderBtn.opened{
@@ -1738,6 +1768,13 @@ div.switchMenu{
         .dropdownButton{
             transform: rotate(0deg);
         }
+        /*Фикс по мобилкам
+        .hoverItems.folder{
+            .hoverItems-folder{
+                opacity:1;
+            }
+        }
+        */
     }
     .folderItems{
         display:flex;
@@ -3381,8 +3418,9 @@ input[type=range].styled-slider {
 //Library
 
 .tablinks-container{
-    max-height: 27.344vw;
-    overflow: auto;
+    max-height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
     .tablinks-library{
         display: flex;
         flex-wrap:wrap;
@@ -3995,7 +4033,7 @@ table{
     .sidebarMain.left{
         display: none;
         width: 100%;
-        padding:20px;
+        padding:20px 0px;
         height: 100%;
         margin-top:0px;
         .folderBtn {
@@ -4008,14 +4046,15 @@ table{
                 input{
                     height: 35px;
                     border-radius: 10px;
-                    font-size: 15px;
+                    font-size: 13.843px;
                     padding:8px 6px;
                     width: 100%;
                 }
                 .hoverItems{
+                    right:50px;
                     gap:10px;
                     .hoverItems-folder{
-                        gap:10px;
+                        gap:5px;
                         button{
                             width: 22px;
                             height: 22px;
@@ -4046,6 +4085,7 @@ table{
         }
         .folderRow{
             gap:20px;
+            padding:0px 20px;
             padding-bottom: 20px;
             border-bottom: 1px solid #2A2F39;
             margin-bottom: 20px;
@@ -4063,7 +4103,11 @@ table{
             }
         }
         .tablinks-container{
+            height:100%;
             max-height: 80%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding:0px 20px;
         }
         .addChatIcon{
             height: 50px;font-size: 15px;
@@ -4096,8 +4140,126 @@ table{
         font-size: 12px;
         max-width: 100%;
         padding:0px 40px;
-        line-height: 125%;
+        line-height: 150%;
     }
+
+    #profile-popup{
+        background:rgba(0, 0, 0, 0.8) !important;
+        .popupContent{
+            background:none !important;
+            align-items: flex-start;
+            height: auto;
+            .popup-inner{
+                margin:40px 0px;
+                padding:20px;
+                border-radius: 10px;
+                .profile-info{
+                    .profile-photo{
+                        border-radius: 10.003px;
+                        padding: 10.003px;
+                        border: 1px dashed rgba(0, 0, 0, 0.2) !important;
+                        margin-top:20px;
+                        form{
+                            img{
+                                width: 40px;
+                                height: 40px;
+                                object-fit: cover;
+                            }
+                            .change-photo{
+                                height:38px;
+                                font-size:12px;
+                                padding:0px 23.04px;
+                                border-radius: 10px;
+                                label{
+                                    div{
+                                        font-size:12px;
+                                        gap:10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                max-width: 100%;
+                h2{
+                    font-size:22px;
+                    line-height: 27px;
+                }
+                .form-profile{
+                    padding-top: 20px;
+                    .coolInput{
+                        padding-bottom: 15px;
+                        .input-label{
+                            font-size: 12px;
+                            color: #A2A2A3;
+                            padding-bottom: 10.003px;
+                        }
+                        .inner-input{
+                            gap:10px;height:46px;
+                            border-radius: 10.003px;
+                            padding: 12px 20.006px;
+                            .input-span{
+                                p{
+                                    font-size: 12px;
+                                }
+                                input{
+                                    font-size:12px;
+                                }
+                            }
+                            .hoverItems{
+                                button{
+                                    width: 22px;
+                                    height:22px;
+                                    svg{
+                                        width: 10.003px !important;
+                                        height: 10.003px !important;
+                                    }
+                                }
+                            }
+                        }
+                        .about-input{
+                            padding-top: 10.003px;
+                            font-size: 10.003px;
+                            line-height: 12px;
+                        }
+                    }
+                }
+                .history-payments{
+                    padding-top:20px;
+                    h2{
+                        padding-bottom: 20px;
+                    }
+                    .history-payments-inner{
+                        border-radius: 10.003px;
+                        padding: 15.994px 20.006px;
+                    }
+                    .history-payments-item{
+                        .count{
+                            gap:10px;
+                            .count-much{
+                                font-size: 13.997px;
+                            }
+                            .count-tokens{
+                                font-size: 10.003px;
+                            }
+                        }
+                        .date-payment{
+                            font-size: 13.997px;
+                        }
+                    }
+                }
+                #forgotPassBtn, #popupPayBtnProf, #activatePromoBtn{
+                    height:46px;
+                    font-size:12px;
+                    border-radius: 10px;
+                }
+                #popupPayBtnProf{
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
     //Message input
     .messageInput{
         padding:20px;
@@ -4406,19 +4568,23 @@ table{
                     .finalPrice{
                         font-size: 60px;
                     }
-                    
+                    .payRange{
+                        img{
+                            bottom:-4px;
+                        }
+                    }
                     .howMuch{
                         flex-direction: column;
                         .howMuch-step{
                             .howMuch-title{
-                                padding-bottom: 10px;
+                                padding-bottom: 20px;
                             }
                             .howMuchTokens{
                                 font-size: 32px;
                             }
                             &.first{
                                 width:100%;
-                                padding-bottom: 20px;
+                                padding-bottom: 10px;
                             }
                             .howMuchInner{
                                 border-radius: 10px;
@@ -4430,10 +4596,10 @@ table{
                                     font-size:12px;
                                     gap:10px;
                                     .words{
-                                        gap:4px;
+                                        gap:7px;
                                     }
                                     .papers{
-                                        gap:4px;
+                                        gap:7px;
                                     }
                                 }
                             }
@@ -4619,32 +4785,40 @@ table{
             }
             .prompts-in-category{
                 margin-top: 30px;
-                .library-item{
-                    padding:20px;
-                    p{
-                        font-size: 15px;
-                        line-height: 24px;
-                    }
-                    .hoverItems{
-                        button{
-                            height: 39px;font-size: 12px;border: 1px solid #374151;
-                            border-radius: 10px;
-                        }
+            }
+            .library-item{
+                border-radius: 10px !important;
+                border: 1px solid #D1D1D1;
+                padding:20px;
+                p{
+                    font-size: 15px;
+                    line-height: 24px;
+                }
+                .hoverItems{
+                    border-radius: 10px;
+                    button{
+                        height: 39px;font-size: 12px;border: 1px solid #374151;
+                        border-radius: 10px;
                     }
                 }
             }
         }
     }
-
     #popup-library{
+        .prompts-category-container{
+            position: relative;
+            padding:0px 40px !important;
+            height:45px !important;
+        }
         .prompts-category{
             display:flex !important;
-            position: absolute;
+            position: relative;
             gap:10px;
             width:100%;
             overflow-x: auto;
             overflow-y: hidden;
             padding:0px !important;
+            padding-bottom: 5px !important;
             button{
                 padding:0px 14px;
                 svg{
@@ -4691,9 +4865,16 @@ table{
             gap:10px;
         }
         .secondCol{
+            border: 0.998px solid #2A2F39;
+            border-radius: 10.003px;
+            padding: 6.01px;
+            display: flex;
+            gap: 10.003px;
             button{
                 height: 26px;
                 width: 50px;
+                border-radius: 10.003px;
+                padding:6.01px 14.995px;
                 svg{
                     width: 12px !important;
                     height: 12px !important;
@@ -4703,7 +4884,7 @@ table{
     }
     .closeBtnBuy{
         top: 39.994px;
-        right: -25.998px;
+        right: -29.998px;
         button{
             border-radius: 0px 10.003px 10.003px 0px;
             width: 30px;
@@ -4735,7 +4916,7 @@ table{
             margin-bottom: 30px;
             .tablinks-library{
                 width: 100%;
-                position: absolute;
+                position: relative;
                 display: flex;
                 background:white;
                 padding-bottom: 10px;
@@ -4743,7 +4924,7 @@ table{
                 flex-direction: row;
                 gap:20px;
                 flex-wrap: nowrap;
-                padding: 0px 60px 5px 0px;
+                padding: 0px 0px 5px 0px;
                 button{
                     padding:14px 20px;
                     width: auto;
@@ -4882,6 +5063,38 @@ table{
     .mob-item{
         display:block;
     }
+    #about-user{
+        width:38px;
+        img{
+            width:30px;
+            height: 30px;
+            padding:0px;
+        }
+    }
+    #systemRole{
+        .hoverItems{
+            padding: 20.006px;
+            gap: 8.006px;
+            border-radius: 8.006px;
+            button{
+                svg{
+                    width:18px !important;
+                    height: 18px !important;
+                }
+            }
+        }
+        .formSystemRole{
+            textarea{
+                font-size:14px;
+                line-height: 1.5;
+            }
+            .buttons{
+                button{
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
 
     #closeSettingsMob{
         width:100%;
@@ -4939,6 +5152,56 @@ table{
             }
         }
     }
+    //Попапы о проект и "В разработке"
+
+    #about-popup, #popup-develop{
+        .popup-inner{
+            max-width: 100%;
+            padding:20px !important;
+            h2{
+                font-size:22px;
+            }
+            .about-project-inner{
+                p{
+                    font-size:12px;
+                    line-height: 1.5;
+                    &:last-of-type{
+                        padding-bottom: 0px;
+                    }
+                }
+            }
+            .about-project-soc{
+                padding-top: 20px;
+                font-size:14px;
+                gap:10px;
+                flex-direction: column;
+                button{
+                    height:38px;
+                    font-size: 12px;
+                    gap:10px;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+    #menu-mob{
+        .popup-inner{
+            padding:20px 20px 40px 20px;
+        }
+        .menu-items{
+            .colorSheme{
+                padding:14px 0px;
+            }
+            a{
+                padding:14px 0px;
+            }
+            form{
+                button{
+                    padding:14px 0px;
+                }
+            }
+        }
+    }
 }
 
 //Адаптив 580 пикселей
@@ -4957,6 +5220,12 @@ table{
             grid-template-columns: repeat(1 , auto) !important;
         }
     }
+
+    #pay-popup{
+        .howMuchIn{
+            flex-direction: column !important;
+        }
+    }
 }
 
 //Адаптив 550 пикселей
@@ -4969,6 +5238,38 @@ table{
 
         .library-items{
             padding:0px;
+        }
+    }
+    #popup-catalog, #popup-library{
+        .library-items-container{
+            grid-template-columns: repeat(1, 100%) !important;
+            grid-gap:10px;
+            .library-item{
+                p{
+                    font-size: 12px;
+                    line-height: 1.25;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:420px){
+    #popup-library, #popup-catalog{
+        h2:first-child{
+            font-size:18px !important;
+        }
+    }
+
+    #popup-library{
+        button.tablink-library{
+            font-size:12px !important;
+        }
+        .prompts-category-container{
+            padding:0px 20px !important;
+        }
+        .library-items-container{
+            padding:0px 20px;
         }
     }
 }

@@ -127,7 +127,7 @@
                                 @csrf
                                 <div class="coolInput">
                                     <div class="input-label">
-                                        {{__("profileHavePromo")}}
+                                        {{__("profileYouHavePromo")}}
                                     </div>
                                     <div class="inner-input">
                                         <div class="icon-input">
@@ -148,7 +148,7 @@
                         </div>
                         <!--История платежей-->
                         <div class="history-payments">
-                            <h2{{__('profileHistoryHeading')}}</h2>
+                            <h2>{{__('profileHistoryHeading')}}</h2>
                             <div class="history-payments-inner">
                                 <!--Выдается всем после регистрации-->
                                 <div class="history-payments-item">

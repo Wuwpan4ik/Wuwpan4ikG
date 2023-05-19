@@ -4,15 +4,6 @@
     <!--Lottie-->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
-<style>
-    @media(max-width:1000px){
-        .prompts-category-container{
-            position: relative;
-            padding:0px 40px !important;
-            height:45px !important;
-        }
-    }
-</style>
     <div class="mainWrapper @if(session()->get('show_sidebar')) switchedSidebar @endif">
         <section class="msger">
             <main class="msger-chat">
@@ -63,7 +54,7 @@
                 <h2>
                     {{__('Library')}}
                 </h2>
-                <div classs="prompts-category-container" style="position:relative;">
+                <div class="prompts-category-container">
                     <div class="prompts-category">
                         @foreach($prompts_category as $prompt)
                             <button class="tablink-library" onclick="promptsBlock({{ $prompt->id }})" style="background-color: {{ $prompt->main_background_color }}; color: {{ $prompt->main_color }}">
@@ -95,10 +86,10 @@
     @include('components.popups.popup-profile')
     @include('components.popups.popup-mob')
     <!--Скрипты-->
-    <script type="text/javascript" src="{{asset('js/jquery-1.10.0.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
+    <script src="{{asset('js/jquery-1.10.2.min.js')}}"></script>
+    <script src="{{asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
     <script src="{{ asset('js/markdown-it.min.js') }}"></script>
-    <script src="{{asset('js/script.js')}}"></script>
+    <script src="{{ asset('js/script.js')}}"></script>
     {{-- Восстановление пароля в профиле --}}
     <script>
         function forgotPass(item){
@@ -140,6 +131,7 @@
             let dataInput = {}
             if(document.querySelector('.sidebarMain.left').classList.contains('active')){
                 document.querySelector('.sidebarMain.left').classList.remove('active');
+                document.getElementById('openChats').classList.remove('active');
             }
             if (form.classList.contains('folder__chat')) {
                 dataInput = {
@@ -442,7 +434,10 @@
                 val.classList.remove('active')
             })
             $('.msger-chat').load(`/messages/get/${id}`);
-
+            if(document.querySelector('.sidebarMain.left').classList.contains('active')){
+                document.querySelector('.sidebarMain.left').classList.remove('active');
+                document.getElementById('openChats').classList.remove('active');
+            }
             let stateObj = { id: "100" };
             window.history.replaceState(stateObj,
                 "Page 3", `/chats/${uuid}`);
@@ -458,7 +453,7 @@
             scrollInit();
             setTimeout(function() {
                 $(".msger-chat").scrollTop($(".msger-chat")[0].scrollHeight);
-            }, 300)
+            }, 300);
         }
     </script>
 @endsection

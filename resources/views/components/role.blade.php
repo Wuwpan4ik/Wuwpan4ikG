@@ -47,7 +47,7 @@
 
                 <form class="change__role" onsubmit="return changeRole(event)" action="{{ route('chat.updateRole', $chat->id) }}" method="POST">
                     @csrf
-                    <textarea name="role" id="systemRoleText"></textarea>
+                    <textarea name="role" id="systemRoleText" oninput="autoResize(this);"></textarea>
                     <div class="buttons">
                         <button type="submit">
                             {{__('btnSave')}}
@@ -271,8 +271,9 @@
     document.querySelector('.systemRole button.renameChat').onclick = () =>{
         document.querySelector('.formSystemRole').classList.toggle('nonActive');
         document.querySelector('.systemRole .hoverItems').classList.toggle('nonActive');
-        document.getElementById('systemRoleText').innerText = String(document.querySelector('.systemRole p').textContent).trim();
-        document.querySelector('.systemRole p').classList.add('display-none');
+        document.getElementById('systemRoleText').value = String(document.querySelector('#systemRole .systemRoleP').textContent).trim();
+        document.querySelector('#systemRole .systemRoleP').classList.add('display-none');
+        autoResize(document.getElementById('systemRoleText'));
     }
 
     //Кнопка отменить в системной роли
