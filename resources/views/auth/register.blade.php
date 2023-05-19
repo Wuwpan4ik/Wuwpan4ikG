@@ -84,10 +84,9 @@
                                 <x-input-error :messages="$errors->get('code')" class="mt-2" />
                             </div>
                         @endguest
-                        Неверный код {{ Auth::user()->is_verified }}
                         @isset($error)
                              <div class="error">
-
+                                 Неверный код {{ Auth::user()->is_verified }}
                              </div>
                         @endif
 
