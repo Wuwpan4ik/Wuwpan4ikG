@@ -5,8 +5,8 @@
             <lottie-player src="{{ asset('assets/success.json') }}"  background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
         <div class="responseStat">
-            <p>Настройки применены!</p>
-            <span>Ваши настройки успешно применились.</span>
+            <p>{{__('loaderSettingsHead')}}</p>
+            <span>{{__('loaderSettingsDesc')}}</span>
         </div>
     </div>
     <div class="secondRow">

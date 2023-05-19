@@ -5,7 +5,7 @@
             <lottie-player src="{{ asset('assets/success.json') }}"  background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
         <div class="responseStat">
-            <p>Данные успешно обновлены!</p>
+            <p>{{__('loaderResponseProfileSuccess')}}</p>
         </div>
     </div>
     <div class="secondRow">
@@ -19,7 +19,7 @@
             <lottie-player src="{{ asset('assets/success.json') }}"  background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
         <div class="responseStat">
-            <p>Ваш новый пароль выслан на почту.</p>
+            <p>{{__('loaderResponsePassword')}}</p>
         </div>
     </div>
     <div class="secondRow">
@@ -33,7 +33,7 @@
             🥳
         </div>
         <div class="responseStat">
-            <p>Промокод успешно активирован!</p>
+            <p>{{__('loaderPromoActive')}}</p>
         </div>
     </div>
     <div class="secondRow">
@@ -47,7 +47,7 @@
             <lottie-player src="https://assets2.lottiefiles.com/temp/lf20_QYm9j9.json"  background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
         <div class="responseStat">
-            <p>Такого промокода не существует!</p>
+            <p>{{__('loaderPromoBad')}}</p>
         </div>
     </div>
     <div class="secondRow">
@@ -61,7 +61,7 @@
             <lottie-player src="https://assets2.lottiefiles.com/temp/lf20_QYm9j9.json"  background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
         <div class="responseStat">
-            <p>Вы уже использовали этот промокод!</p>
+            <p>{{__('loaderPromoUsed')}}</p>
         </div>
     </div>
     <div class="secondRow">
