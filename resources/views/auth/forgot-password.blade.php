@@ -8,11 +8,10 @@
 
 <x-guest-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <div class="first-row">
-            <img src="../assets/reg-mob.jpg" alt="" />
+            <img src="{{ asset('assets/reg-mob.jpg') }}" alt="" />
         </div>
         <!-- Name -->
         <div class="second-row">
@@ -31,6 +30,8 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+
                 <div class="buttonSubmit">
                     <x-primary-button>
                         {{ __('sendNewPass') }}
@@ -40,5 +41,6 @@
             <div class="bottom-row">
                 {{__("haveAccount")}} <a href='{{ route("login") }}'>{{__("logBtn")}}</a>
             </div>
+        </div>
     </form>
 </x-guest-layout>
