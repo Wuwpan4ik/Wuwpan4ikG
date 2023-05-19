@@ -91,7 +91,7 @@
     <div class="envelope-container">
         <div class="envelope-inner">
             <div class="envelope-plate">
-                <img src="/assets/back.jpg" alt="">
+                <img src="{{ asset('assets/back.jpg') }}" alt="">
             </div>
             <div class="envelope-about">
                 <h2>
@@ -102,10 +102,17 @@
                 </p>
                 <div class="envelope-info">
                     <div class="info-block">
-                        <p>Ваш логин:</p>
+                        <p>Ваше имя:</p>
                         <!--Выводим логин пользователя-->
                         <div>
-                            LoginName
+                            {{ $name }}
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <p>Ваш код:</p>
+                        <!--Выводим логин пользователя-->
+                        <div>
+                            {{ $code }}
                         </div>
                     </div>
                     <div class="info-block">
