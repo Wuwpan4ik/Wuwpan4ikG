@@ -9,34 +9,34 @@
                                 <img src="../assets/asset-zapic.jpg" alt="Запись">
                             </div>
                             <div class="form-text">
-                                <h2>Хотите обучить chatGPT на своих данных и внедрить в  ваш проект?</h2>
+                                <h2>{{__('popupZapic2Heading')}}</h2>
                                 <div class="form-input">
                                     <label for="user-email">
-                                        Введите ваш email *
+                                    {{__('popupZapicEmail')}}*
                                     </label>
                                     <input type="text" name="user-email" placeholder="example@gmail.com" required>
                                 </div>
                                 <div class="form-input">
                                     <label for="user-tg">
-                                        Введите ваш telegram*
+                                    {{__('popupZapicTg')}}*
                                     </label>
                                     <input type="text" name="user-tg" placeholder="@telegram" required>
                                 </div>
                                 <div class="form-input">
                                     <label for="user-project">
-                                        Опишите ваш проект (можете указать ссылки в тексте)
+                                        {{__('tellAboutPrjct')}}
                                     </label>
-                                    <textarea name="user-project" placeholder="Мы старатап по работе..." required></textarea>
+                                    <textarea name="user-project" placeholder="{{__('tellAboutPrjctPlaceholder')}}" required></textarea>
                                 </div>
                                 <div class="form-input">
                                     <label for="user-ask">
-                                        Зачем вы хотите участвовать в тестировании?
+                                        {{__('WhyFor')}}
                                     </label>
-                                    <textarea name="user-ask" placeholder="Я хочу..." required></textarea>
+                                    <textarea name="user-ask" placeholder="{{__('whyForPlaceholder')}}" required></textarea>
                                 </div>
                                 <div class="send-mess">
                                     <button type="submit">
-                                        Записаться
+                                        {{__('btnZapic')}}
                                     </button>
                                 </div>
                             </div>

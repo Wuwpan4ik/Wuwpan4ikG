@@ -8,7 +8,7 @@
     @endforeach
     <li class="chat-with-base">
         <a id="chat-with-base">
-            Чат с базой данных
+            {{__('chatWithDatabase')}}
             <div class="soon-plate">
                 {{__('soonPlate')}}
             </div>

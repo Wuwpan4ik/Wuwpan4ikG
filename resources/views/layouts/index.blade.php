@@ -134,8 +134,8 @@
 <div class="theme" style="display: none;"></div>
 <!--Попапы-->
 @include('components.popups.popup-pay')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/highlight.min.js')}}"></script>
 @yield('script')
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
 <script>

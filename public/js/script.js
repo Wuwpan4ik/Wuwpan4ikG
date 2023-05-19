@@ -650,10 +650,12 @@ document.getElementById('openPrompts').onclick = () =>{
 }
 */
 //Открытие попапа профиля
-document.getElementById('about-user').onclick = () =>{
-    document.getElementById('profile-popup').classList.add('active');
-    closePopContainer('profile-popup', '#profile-popup .popupContent');
-}
+document.querySelectorAll('button#about-user').forEach((item)=>{
+    item.onclick = () =>{
+        document.getElementById('profile-popup').classList.add('active');
+        closePopContainer('profile-popup', '#profile-popup .popupContent');
+    }
+})
 
 //Откытие попапа о проекте
 document.querySelectorAll('a#aboutProject').forEach((item)=>{

@@ -2,7 +2,7 @@
     <div class="popup" id="profile-popup">
         <div class="popupContent">
             <div class="popup-inner">
-                <h2>Основная информация</h2>
+                <h2>{{__('profileHeading')}}</h2>
                 <div class="profile-info">
                     <!--Фото профиля-->
                     <div class="profile-photo">
@@ -16,7 +16,7 @@
                                 <label for="upload-photo" >
                                     <div>
                                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_642_3258)"><path d="M9.00089 1.99996C9.99577 2.00323 10.9801 2.20377 11.897 2.58998C12.8139 2.97619 13.645 3.5404 14.3424 4.24996H12.0009C11.802 4.24996 11.6112 4.32898 11.4706 4.46963C11.3299 4.61029 11.2509 4.80105 11.2509 4.99996C11.2509 5.19888 11.3299 5.38964 11.4706 5.53029C11.6112 5.67095 11.802 5.74996 12.0009 5.74996H15.1081C15.4775 5.74976 15.8316 5.60297 16.0927 5.34182C16.3539 5.08067 16.5007 4.72653 16.5009 4.35721V1.24996C16.5009 1.05105 16.4219 0.860285 16.2812 0.719633C16.1406 0.57898 15.9498 0.499963 15.7509 0.499963C15.552 0.499963 15.3612 0.57898 15.2206 0.719633C15.0799 0.860285 15.0009 1.05105 15.0009 1.24996V2.80846C13.7613 1.69205 12.2353 0.94277 10.594 0.644525C8.95259 0.346279 7.2606 0.510847 5.70747 1.1198C4.15434 1.72875 2.8014 2.75804 1.80014 4.09241C0.79889 5.42677 0.188866 7.01352 0.0383843 8.67496C0.0286968 8.77941 0.0408711 8.88472 0.0741315 8.9842C0.107392 9.08368 0.161009 9.17514 0.231567 9.25275C0.302124 9.33037 0.388075 9.39243 0.483943 9.43499C0.579811 9.47756 0.683493 9.49968 0.788384 9.49996C0.971825 9.5023 1.14954 9.43609 1.28673 9.3143C1.42392 9.1925 1.51072 9.02389 1.53013 8.84146C1.69709 6.97452 2.55612 5.23749 3.93845 3.97159C5.32078 2.70569 7.1265 2.00243 9.00089 1.99996Z" fill="white" fill-opacity="0.3"/><path d="M17.2133 9.50018C17.0298 9.49784 16.8521 9.56405 16.7149 9.68585C16.5777 9.80764 16.4909 9.97626 16.4715 10.1587C16.3475 11.5861 15.8167 12.948 14.942 14.0828C14.0673 15.2177 12.8854 16.0778 11.5366 16.5611C10.1878 17.0445 8.72865 17.1308 7.33226 16.8098C5.93588 16.4888 4.66087 15.774 3.6585 14.7502H6C6.19891 14.7502 6.38968 14.6712 6.53033 14.5305C6.67098 14.3899 6.75 14.1991 6.75 14.0002C6.75 13.8013 6.67098 13.6105 6.53033 13.4699C6.38968 13.3292 6.19891 13.2502 6 13.2502H2.89275C2.70982 13.2501 2.52867 13.2861 2.35965 13.356C2.19063 13.426 2.03706 13.5286 1.90771 13.6579C1.77836 13.7872 1.67577 13.9408 1.60582 14.1098C1.53586 14.2789 1.4999 14.46 1.5 14.6429V17.7502C1.5 17.9491 1.57902 18.1399 1.71967 18.2805C1.86032 18.4212 2.05109 18.5002 2.25 18.5002C2.44891 18.5002 2.63968 18.4212 2.78033 18.2805C2.92098 18.1399 3 17.9491 3 17.7502V16.1917C4.23962 17.3081 5.76556 18.0574 7.40693 18.3556C9.04829 18.6539 10.7403 18.4893 12.2934 17.8804C13.8465 17.2714 15.1995 16.2421 16.2007 14.9078C17.202 13.5734 17.812 11.9866 17.9625 10.3252C17.9722 10.2207 17.96 10.1154 17.9268 10.0159C17.8935 9.91647 17.8399 9.82501 17.7693 9.74739C17.6988 9.66978 17.6128 9.60772 17.5169 9.56515C17.4211 9.52259 17.3174 9.50046 17.2125 9.50018H17.2133Z" fill="white" fill-opacity="0.3"/></g><defs><clipPath id="clip0_642_3258"><rect width="18" height="18" fill="white" transform="translate(0 0.5)"/></clipPath></defs></svg>
-                                        Заменить
+                                        {{__('profileZamena')}}
                                     </div>
                                 </label>
                                 <input onchange="this.parentElement.parentElement.submit()" type="file" accept="image/png, image/jpg, image/gif" name="avatar" id="upload-photo">
@@ -30,7 +30,7 @@
                             @method("PATCH")
                             <div class="coolInput">
                                 <div class="input-label">
-                                    Ваше имя
+                                    {{__('profileName')}}
                                 </div>
                                 <div class="inner-input">
                                     <div class="icon-input">
@@ -59,7 +59,7 @@
                             </div>
                             <div class="coolInput">
                                 <div class="input-label">
-                                    Ваш email
+                                    {{__('profileEmail')}}
                                 </div>
                                 <div class="inner-input">
                                     <div class="icon-input">
@@ -88,7 +88,7 @@
                             </div>
                             <div class="coolInput">
                                 <div class="input-label">
-                                    Ваш telegram
+                                    {{__('profileTg')}}
                                 </div>
                                 <div class="inner-input">
                                     <div class="icon-input">
@@ -118,7 +118,7 @@
                             </div>
                             <div class="forgot-pass">
                                 <button type="button" id="forgotPassBtn" onclick="forgotPass(this)">
-                                    Восстановить пароль
+                                    {{__('profileResetPass')}}
                                 </button>
                             </div>
                         </form>
@@ -127,7 +127,7 @@
                                 @csrf
                                 <div class="coolInput">
                                     <div class="input-label">
-                                        Есть промокод?
+                                        {{__("profileHavePromo")}}
                                     </div>
                                     <div class="inner-input">
                                         <div class="icon-input">
@@ -138,23 +138,23 @@
                                         </div>
                                     </div>
                                     <div class="about-input">
-                                        Активация промокодов позволит получить токены
+                                        {{__('profileAboutPromo')}}
                                     </div>
                                 </div>
                                 <button id="activatePromoBtn" type="button">
-                                    Активировать промокод
+                                    {{__('profileActivatePromo')}}
                                 </button>
                             </form>
                         </div>
                         <!--История платежей-->
                         <div class="history-payments">
-                            <h2>История платежей</h2>
+                            <h2{{__('profileHistoryHeading')}}</h2>
                             <div class="history-payments-inner">
                                 <!--Выдается всем после регистрации-->
                                 <div class="history-payments-item">
                                     <div class="count">
                                         <div class="count-much">Free</div>
-                                        <div class="count-tokens">(10 000 токенов)</div>
+                                        <div class="count-tokens">(10 000 {{(__('profileHistoryTokens'))}})</div>
                                     </div>
                                     <div class="date-payment">
                                         20.10.2023
@@ -165,7 +165,7 @@
                                     <div class="history-payments-item">
                                         <div class="count">
                                             <div class="count-much">+ {{ $purchase->price }} ₽</div>
-                                            <div class="count-tokens">({{ $purchase->tokens }} токенов)</div>
+                                            <div class="count-tokens">({{ $purchase->tokens }} {{__('profileHistoryTokens')}})</div>
                                         </div>
                                         <div class="date-payment">
                                             {{ $purchase->price }}

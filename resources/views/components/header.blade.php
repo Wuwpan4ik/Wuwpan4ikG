@@ -109,6 +109,11 @@
                     <span class="tokens">{{ Auth::user()->tokens }}</span>
                 </button>
             </li>
+            <li>
+                <button id="about-user">
+                    <img src="{{ Storage::url(Auth::user()->avatar) }}">
+                </button>
+            </li>
         </ul>
     </nav>
 </header>

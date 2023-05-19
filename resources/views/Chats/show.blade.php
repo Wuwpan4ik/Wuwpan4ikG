@@ -4,19 +4,17 @@
     <!--Lottie-->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
+<style>
+    @media(max-width:1000px){
+        .prompts-category-container{
+            position: relative;
+            padding:0px 40px !important;
+            height:45px !important;
+        }
+    }
+</style>
     <div class="mainWrapper @if(session()->get('show_sidebar')) switchedSidebar @endif">
         <section class="msger">
-            <!--
-            <header class="msger-header">
-                <div class="msger-header-title">
-                    <i class="fas fa-comment-alt"></i> ChatGPT
-                    &nbsp;| ID: <input type="text" id="id" hidden> <span class="id_session"></span>
-                </div>
-                <div class="msger-header-options" style="display:none;">
-                    <button id="delete-button">Delete History</button>
-                </div>
-            </header>
-            -->
             <main class="msger-chat">
                 <!--Плашка в начале чата-->
                 @include('components.message')
@@ -63,15 +61,17 @@
         <div class="popupContent">
             <div class="popup-inner">
                 <h2>
-                    Библиотека подсказок
+                    {{__('Library')}}
                 </h2>
-                <div class="prompts-category">
-                    @foreach($prompts_category as $prompt)
-                        <button class="tablink-library" onclick="promptsBlock({{ $prompt->id }})" style="background-color: {{ $prompt->main_background_color }}; color: {{ $prompt->main_color }}">
-                            {!! $prompt->main_image !!}
-                            {{ $prompt->title }}
-                        </button>
-                    @endforeach
+                <div classs="prompts-category-container" style="position:relative;">
+                    <div class="prompts-category">
+                        @foreach($prompts_category as $prompt)
+                            <button class="tablink-library" onclick="promptsBlock({{ $prompt->id }})" style="background-color: {{ $prompt->main_background_color }}; color: {{ $prompt->main_color }}">
+                                {!! $prompt->main_image !!}
+                                {{ $prompt->title }}
+                            </button>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="prompts-in-category">
 
@@ -95,8 +95,8 @@
     @include('components.popups.popup-profile')
     @include('components.popups.popup-mob')
     <!--Скрипты-->
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/jquery-1.10.0.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
     <script src="{{ asset('js/markdown-it.min.js') }}"></script>
     <script src="{{asset('js/script.js')}}"></script>
     {{-- Восстановление пароля в профиле --}}
@@ -308,6 +308,10 @@
             document.getElementById('popup-library').classList.add('active');
             closePopContainer('popup-library', '#popup-library .popupContent');
         }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            promptsBlock(1);
+        })
     </script>
 
     <script>
