@@ -23,7 +23,7 @@
                 <!-- Email Address -->
                 <div class="mt-4 input-form">
                     <x-input-label for="email" :value="__('yourEmail')" />
-                    <x-text-input id="email" placeholder="example@gmail.com" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    <input id="email" value="@isset (Auth::user()->email) {{Auth::user()->email}}  @endisset" placeholder="example@gmail.com" class="block mt-1 w-full" type="email" name="email" required autofocus>
                     <div class="desc-info">
                         Укажите email на который вы регистрировали аккунт, чтобы мы могли прислать на него письмо с новым паролем
                     </div>
