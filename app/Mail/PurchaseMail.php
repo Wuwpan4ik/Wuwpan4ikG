@@ -11,14 +11,17 @@ use Illuminate\Queue\SerializesModels;
 
 class PurchaseMail extends Mailable
 {
+    protected $tokens;
+    protected $price;
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($tokens, $price)
     {
-        //
+        $this->tokens = $tokens;
+        $this->price = $price;
     }
 
     /**
@@ -38,6 +41,10 @@ class PurchaseMail extends Mailable
     {
         return new Content(
             view: 'mail.purchase',
+            with: [
+                'tokens' => $this->tokens,
+                'price' => $this->price
+            ]
         );
     }
 

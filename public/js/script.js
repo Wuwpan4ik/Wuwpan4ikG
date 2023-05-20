@@ -290,7 +290,11 @@ function sendMsg(msg) {
                 }
             };
             stream.onerror = function (e) {
-                console.log('error')
+                params = {
+                    'id': document.querySelector('#chat_id').value,
+                    'txt': document.getElementById(uuid).innerHTML
+                }
+                fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                 fetch(`/message/getCostMessage/${data}`)
                 loader.classList.remove('showed');
                 document.getElementById('loaderResponseError').classList.add('showed');
@@ -372,15 +376,17 @@ document.querySelector('input#priceStealer').oninput = countTokens;
 //Папки - открытие и закрытие
 function openFolder() {
     $('div.folderBtn .buttonOpen').click(function (evt) {
-        if (!evt.currentTarget.parentElement.classList.contains('opened')) {
-            $('div.folderBtn').each(function () {
-                this.classList.remove('opened')
-            })
-            if (evt.currentTarget === evt.target || evt.target.classList.contains('folderName')) {
-                this.parentElement.classList.toggle('opened');
+        if (evt.currentTarget === evt.target) {
+            if (!evt.currentTarget.parentElement.classList.contains('opened')) {
+                $('div.folderBtn').each(function () {
+                    this.classList.remove('opened')
+                })
+                if (evt.currentTarget === evt.target || evt.target.classList.contains('folderName')) {
+                    this.parentElement.classList.toggle('opened');
+                }
+            } else {
+                this.parentElement.classList.remove('opened');
             }
-        } else {
-            this.parentElement.classList.remove('opened');
         }
     })
 }
@@ -730,14 +736,20 @@ document.getElementById('switchLang').onclick = () =>{
 }
 
 // Экономный режим
-function onEconom() {
+function onEconom(elem) {
+    document.querySelectorAll('.econom-btn').forEach(item => {
+        item.classList.remove('active');
+    })
+    elem.classList.add('active');
     fetch(`/settings/changeEconom?econom=1`)
-    window.location.reload()
 }
 
-function offEconom() {
+function offEconom(elem) {
+    document.querySelectorAll('.econom-btn').forEach(item => {
+        item.classList.remove('active');
+    })
+    elem.classList.add('active');
     fetch(`/settings/changeEconom?econom=0`)
-    window.location.reload()
 }
 
 //Кнопка скрытия меню

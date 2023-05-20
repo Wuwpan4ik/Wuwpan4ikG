@@ -101,10 +101,10 @@
                         {{__('modelSettingsLabelEco')}}
                     </div>
                     <div class="popup-setting-btns">
-                        <button type="button" onclick="onEconom()" class="@if(session()->get('econom')) active @endif">
+                        <button type="button" onclick="onEconom(this)" class="econom-btn @if(session()->get('econom')) active @endif">
                             {{__('turnOn')}}
                         </button>
-                        <button type="button" onclick="offEconom()" class="@if(!session()->get('econom')) active @endif">
+                        <button type="button" onclick="offEconom(this)" class="econom-btn @if(!session()->get('econom')) active @endif">
                             {{__('turnOff')}}
                         </button>
                     </div>

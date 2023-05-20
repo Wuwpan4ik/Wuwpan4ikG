@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Payer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payer\BuyRequest;
+use App\Mail\PurchaseMail;
+use App\Mail\RegistrationMail;
 use App\Models\Purchace;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PayerController extends Controller
 {
@@ -15,14 +18,16 @@ class PayerController extends Controller
     {
         $data = $request->validated();
         $user_id = $data['user_id'];
-        $amount = $data['amount'];
+        $price = $data['amount'];
+        $tokens = 1450 * $price;
 
-        User::where('id', $user_id)->increment('tokens', 1450 * $amount);
+        User::where('id', $user_id)->increment('tokens', $tokens);
         Purchace::create([
-            'price' => $amount,
-            'tokens' => 1450 * $amount,
+            'price' => $price,
+            'tokens' => $tokens,
             'user_id' => $user_id
         ]);
+        Mail::to(Auth::user()->email)->send(new PurchaseMail($tokens, $price));
     }
 
     public function store_test(Request $request)

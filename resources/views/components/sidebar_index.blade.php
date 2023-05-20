@@ -44,7 +44,7 @@
                     </div>
                     <!--Подтверждение смены имени папки-->
                     <div class="renameFolderConfirm nonActive">
-                        <button class="removeFolderYes" type="button" onclick="renFolder(.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form'))">
+                        <button class="removeFolderYes" type="button" onclick="renFolder(this.parentElement.parentElement.parentElement.parentElement.querySelector('.chat__update-form'))">
                             <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_47_1398)"><path d="M9.29976 2.34625L3.54184 8.10375C3.50313 8.14262 3.45712 8.17346 3.40646 8.1945C3.3558 8.21554 3.30149 8.22637 3.24663 8.22637C3.19178 8.22637 3.13746 8.21554 3.0868 8.1945C3.03614 8.17346 2.99014 8.14262 2.95142 8.10375L0.724756 5.875C0.686044 5.83614 0.640038 5.8053 0.589379 5.78426C0.538719 5.76321 0.484403 5.75238 0.429548 5.75238C0.374692 5.75238 0.320376 5.76321 0.269717 5.78426C0.219057 5.8053 0.173052 5.83614 0.134339 5.875V5.875C0.0954739 5.91372 0.0646354 5.95972 0.043593 6.01038C0.0225507 6.06104 0.0117187 6.11536 0.0117188 6.17021C0.0117187 6.22507 0.0225507 6.27938 0.043593 6.33004C0.0646354 6.3807 0.0954739 6.42671 0.134339 6.46542L2.36184 8.6925C2.59682 8.92705 2.91525 9.05877 3.24726 9.05877C3.57926 9.05877 3.89769 8.92705 4.13267 8.6925L9.89017 2.93625C9.92898 2.89755 9.95976 2.85157 9.98077 2.80095C10.0018 2.75033 10.0126 2.69606 10.0126 2.64125C10.0126 2.58645 10.0018 2.53218 9.98077 2.48156C9.95976 2.43094 9.92898 2.38496 9.89017 2.34625C9.85146 2.30739 9.80546 2.27655 9.7548 2.25551C9.70414 2.23446 9.64982 2.22363 9.59497 2.22363C9.54011 2.22363 9.48579 2.23446 9.43513 2.25551C9.38447 2.27655 9.33847 2.30739 9.29976 2.34625Z" fill="white"/></g><defs><clipPath id="clip0_47_1398"><rect width="10" height="10" fill="white" transform="translate(0 0.5)"/></clipPath></defs></svg>
                         </button>
                         <button class="renameFolderNo" type="button" onclick="renameFolder(this)">
@@ -61,7 +61,7 @@
         </div>
         <div class="folderItems">
             @foreach($folder->children as $children)
-                <div data-uuid="{{ $children->uuid }}" onclick="myFunction({{ $children->id }}, '{{ $children->uuid }}')" class=" @if($children->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
+                <div data-uuid="{{ $children->uuid }}" onclick="if(event.currentTarget == event.target) myFunction({{ $children->id }}, '{{ $children->uuid }}')" class=" @if($children->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
                     @include('components.chat', ['main' => $children])
                 </div>
             @endforeach
@@ -87,7 +87,7 @@
 @endforeach
 @foreach($chats as $chat_local)
     @php $first_id = $chats[count($chats) - 1]->id; @endphp
-    <div data-uuid="{{ $chat_local->uuid }}" onclick="myFunction({{ $chat_local->id }}, '{{ $chat_local->uuid }}')" class=" @if($chat_local->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
+    <div data-uuid="{{ $chat_local->uuid }}" onclick="if(event.currentTarget == event.target) myFunction({{ $chat_local->id }}, '{{ $chat_local->uuid }}')" class=" @if($chat_local->id == $chat->id) active @endif tablink addChatIcon tab__link-edit">
         @include('components.chat', ['main' => $chat_local] )
     </div>
 @endforeach

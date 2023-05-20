@@ -15,6 +15,12 @@ class Message extends Model
         'message',
         'is_bot',
         'chat_id',
-        'id'
+        'id',
+        'created_at'
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime:H:i',
+    ];
+
 }

@@ -16,6 +16,7 @@ class OpenAiController extends Controller
 
     public function send__message(SendRequest $request)
     {
+//      Проверка на количество токенов в middleware
         $data = $request->validated();
         $message = new Message;
         $message->message = $data['message'];
@@ -31,7 +32,7 @@ class OpenAiController extends Controller
         $prompt_tokens = 0;
         $count_message = env('count_message');
         if (session()->get('econom')) $count_message = 1;
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($count_message)->get()->sortBy('id');
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($count_message + 1)->get()->sortBy('id');
         foreach ($message as $mess) {
             $prompt_tokens += count($this->gpt_encode($mess->message));
         }
@@ -91,12 +92,12 @@ class OpenAiController extends Controller
         ];
 
         Debugbar::log($opts);
+        Debugbar::log($prompt_tokens);
 
         $open_ai = new OpenAi(env('open_ai_key'));
         while (true) {
             return response()->stream(function () use ($open_ai, $opts, $chat, $prompt_tokens, $id) {
-                $txt = '';
-                $this->chat($open_ai, $opts, $chat, $prompt_tokens, $txt);
+                $txt = $this->chat($open_ai, $opts, $chat, $prompt_tokens, '');
                 $cost_tokens = count($this->gpt_encode($txt)) + $prompt_tokens;
                 Auth::user()->tokens -= $cost_tokens;
                 Auth::user()->save();
@@ -111,10 +112,6 @@ class OpenAiController extends Controller
     protected function chat($open_ai, $opts, $chat, $prompt_tokens, $txt) {
         $open_ai->chat($opts, function ($curl_info, $data) use (&$txt, &$chat, &$prompt_tokens) {
             if ($obj = json_decode($data) and $obj->error->message != "") {
-                $cost_tokens = count($this->gpt_encode($txt)) + $prompt_tokens;
-                Auth::user()->tokens -= $cost_tokens;
-                Auth::user()->save();
-                $chat->increment('token_cost', $cost_tokens);
                 error_log(json_encode($obj->error->message));
             } else {
                 echo $data;
@@ -128,6 +125,7 @@ class OpenAiController extends Controller
             flush();
             return strlen($data);
         });
+        return $txt;
     }
 
     private function gpt_utf8_encode(string $str): string

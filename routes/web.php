@@ -59,7 +59,7 @@ Route::middleware(['auth', 'code'])->group(function() {
     Route::get("/get_tokens", function () { return view('components.count_tokens'); });
     Route::get("/add_formPrompt/{prompts_id}", [\App\Http\Controllers\Prompt\PromptController::class, 'showAddForm']);
 
-    Route::post('/sendMessage', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'send__message'])->name('sendMessage');
+    Route::post('/sendMessage', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'send__message'])->name('sendMessage')->middleware('user_tokens');
     Route::get('/event-stream/{chat}', [\App\Http\Controllers\OpenAi\OpenAiController::class, 'event__stream'])->middleware('check_user_chat');
 
     Route::get("/settings/langChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeLanguage"])->name("changeLanguage");
