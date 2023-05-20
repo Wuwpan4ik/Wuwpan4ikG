@@ -33,7 +33,7 @@ class OpenAiController extends Controller
         if (session()->get('econom')) $count_message = 1;
         $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($count_message)->get()->sortBy('id');
         foreach ($message as $mess) {
-            $prompt_tokens += count($this->gpt_encode($mess));
+            $prompt_tokens += count($this->gpt_encode($mess->message));
         }
         Debugbar::log($prompt_tokens);
         Auth::user()->tokens -= $prompt_tokens;
@@ -65,7 +65,7 @@ class OpenAiController extends Controller
                 $user_message = $mess->message;
                 $history[] = ["role" => 'user', "content" => trim(($user_message))];
             }
-            $prompt_tokens += count($this->gpt_encode($mess));
+            $prompt_tokens += count($this->gpt_encode($mess->message));
         }
 
         $temperature = (float)$chat->temperature;

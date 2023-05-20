@@ -93,6 +93,7 @@
     {{-- Восстановление пароля в профиле --}}
     <script>
         function forgotPass(item){
+            window.location.replace('/forgot-password')
             document.getElementById('resetPasswordLoader').classList.add('showed');
             setTimeout(()=>{
                 document.getElementById('resetPasswordLoader').classList.remove('showed');

@@ -232,6 +232,7 @@ function sendMsg(msg) {
             });
             //Кнопка остановки генерации ответа от гпт
             document.getElementById('responseStop').onclick = () =>{
+                console.log('stop')
                 msgerSendBtn.disabled = false
                 isPaused = true;
                 params = {
@@ -248,6 +249,7 @@ function sendMsg(msg) {
             }
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
+                    console.log('done')
                     msgerSendBtn.disabled = false
                     $('.tokens').load("/get_tokens");
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
@@ -288,6 +290,7 @@ function sendMsg(msg) {
                 }
             };
             stream.onerror = function (e) {
+                console.log('error')
                 fetch(`/message/getCostMessage/${data}`)
                 loader.classList.remove('showed');
                 document.getElementById('loaderResponseError').classList.add('showed');
@@ -428,6 +431,12 @@ for(let i =0; i < renameChats.length;i++){
         renameChat(renameChats[i]);
     }
 }
+
+// Смена языка
+$(".changeLang").click(function(){
+    fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
+    window.location.reload()
+});
 
 
 //Удаление чата
