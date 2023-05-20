@@ -156,5 +156,7 @@
     "loaderPromoBad": "Такого промокода не существует!",
     "loaderPromoUser": "Вы уже использовали этот промокод!",
     "loaderSettingsHead": "Настройки применены!",
-    "loaderSettingsDesc": "Ваши настройки успешно применились."
+    "loaderSettingsDesc": "Ваши настройки успешно применились.",
+    "loaderResponseNoTokensH": "На вашем счету закончились токены",
+    "loaderResponseNoTokens": "Пополните баланс"
 }
