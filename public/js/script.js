@@ -266,6 +266,14 @@ function sendMsg(msg) {
                         mdBuffer += text;
                         html = showdownConverter.render(mdBuffer);
                         div.innerHTML = html;
+
+                        //Код для автоматической прокрутки контейнера вниз
+
+                        /*
+                        if(document.querySelector('.msger-chat').classList.contains('scrollable')){
+                            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                        }
+                        */
                         if(div.querySelector('.msg-text pre code')){
                             let el = div.querySelectorAll('.msg-text pre code');
                             el.forEach(function(item){
