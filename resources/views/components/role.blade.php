@@ -101,12 +101,15 @@
                         {{__('modelSettingsLabelEco')}}
                     </div>
                     <div class="popup-setting-btns">
-                        <button type="button" onclick="onEconom(this)" class="econom-btn @if(session()->get('econom')) active @endif">
-                            {{__('turnOn')}}
-                        </button>
-                        <button type="button" onclick="offEconom(this)" class="econom-btn @if(!session()->get('econom')) active @endif">
-                            {{__('turnOff')}}
-                        </button>
+                        <input type="range" min="1" max="6" step="1" value="2" class="econom-rezhim slider-progress" name="eco-input">
+                        <div class="eco-stats">
+                        <p>
+                            {{__('ecoRezh')}}
+                        </p>
+                        <p>
+                            {{__('tranzhRezh')}}
+                        </p>
+                        </div>
                     </div>
                     <div class="popup-setting-desc">
                         {{__('modelSettingsDescEco')}}
@@ -329,4 +332,11 @@
             summInputs(btn.parentElement.parentElement.parentElement.querySelector('input'), "minus")
         }
     })
+
+    for (let e of document.querySelectorAll('input[type="range"].econom-rezhim')) {
+        e.style.setProperty('--value', e.value);
+        e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+        e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+        e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+    }
 </script>

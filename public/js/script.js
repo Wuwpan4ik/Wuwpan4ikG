@@ -221,11 +221,13 @@ function sendMsg(msg) {
             stream = new EventSource(`/event-stream/${data}?message=${messagetext}`);
             const div = document.getElementById(uuid);
             var isPaused = false;
+            var scrollable = true;
             var loader = document.getElementById('loaderResponse');
             loader.classList.add('showed');
             let text = "",
             mdBuffer = "",
             html = "",
+            msgerChatContainer = document.querySelector('main.msger-chat');
             showdownConverter = window.markdownit({
                 html: true,
                 linkify: true,
@@ -249,7 +251,6 @@ function sendMsg(msg) {
             }
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
-                    console.log('done')
                     msgerSendBtn.disabled = false
                     $('.tokens').load("/get_tokens");
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
@@ -261,6 +262,7 @@ function sendMsg(msg) {
                     fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     loader.classList.remove('showed');
                     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                    msgerChatContainer.removeEventListener('scroll')
                     stream.close();
                 } else {
                     text = JSON.parse(e.data).choices[0].delta.content;
@@ -269,13 +271,18 @@ function sendMsg(msg) {
                         html = showdownConverter.render(mdBuffer);
                         div.innerHTML = html;
 
-                        //Код для автоматической прокрутки контейнера вниз
+                        msgerChatContainer.addEventListener('scroll', function(){
+                            if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
+                                scrollable = true;
+                            }else{
+                                scrollable = false;
+                            }
+                        });
 
-                        /*
-                        if(document.querySelector('.msger-chat').classList.contains('scrollable')){
+                        if(scrollable == true){
                             $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                         }
-                        */
+
                         if(div.querySelector('.msg-text pre code')){
                             let el = div.querySelectorAll('.msg-text pre code');
                             el.forEach(function(item){
