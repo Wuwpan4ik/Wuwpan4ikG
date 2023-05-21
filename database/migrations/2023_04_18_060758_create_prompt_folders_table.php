@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->index()->constrained('users');
             $table->string('title')->default('Новый раздел');
-
+            $table->string('title_en')->default('New section');
             $table->text('main_image')->nullable();
             $table->boolean('is_main')->default(0);
             $table->string('main_background_color')->nullable();
