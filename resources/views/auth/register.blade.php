@@ -11,9 +11,8 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
-
-
+    <link rel="stylesheet" href="{{ asset('main.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
     <!-- Scripts -->
 </head>
 <body class="font-sans text-gray-900 antialiased">
@@ -72,7 +71,7 @@
                         </div>
                         @else
                             <div class="mt-4 input-form after_hide">
-                                <x-input-label for="code" :value="__('enterCode')" />
+                                <x-input-label for="code" :value="{{__('enterCode')}}" />
 
                                 <x-text-input id="code" class="block mt-1 w-full"
                                               type="number"

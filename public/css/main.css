@@ -3722,6 +3722,12 @@ table th {
     background: #13B8A6;
     border: 0.998px solid #b2b2b2;
   }
+  .popup-setting-btns .eco-stats {
+    margin: 10px 0px !important;
+  }
+  .popup-setting-btns .eco-stats p {
+    font-size: 12px !important;
+  }
   .msg-img img {
     width: 20px;
     height: 20px;

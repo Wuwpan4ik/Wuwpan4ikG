@@ -2,6 +2,7 @@
     <title>
         Meta GPT - {{__('loginTitle')}}
     </title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
 </head>
 
 <x-guest-layout>

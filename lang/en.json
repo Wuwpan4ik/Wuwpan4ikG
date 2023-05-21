@@ -158,5 +158,6 @@
      "loaderSettingsHead": "Settings applied!",
      "loaderSettingsDesc": "Your settings have been applied successfully.",
      "ecoRezh": "Economy",
-     "tranzhRezh": "Spender"
+     "tranzhRezh": "Spender",
+     "enterCode": "Enter confirmation code"
 }
