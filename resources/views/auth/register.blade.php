@@ -71,7 +71,7 @@
                         </div>
                         @else
                             <div class="mt-4 input-form after_hide">
-                                <x-input-label for="code" :value="{{__('enterCode')}}" />
+                                <x-input-label for="code" :value="__('enterCode')" />
 
                                 <x-text-input id="code" class="block mt-1 w-full"
                                               type="number"

@@ -187,6 +187,37 @@ if (document.querySelector('.settings_form')) {
     })
 }
 
+//Функция блокирования всего
+
+function blockAll(status){
+    let chats = document.querySelectorAll('div.tablink.addChatIcon'),
+    folders = document.querySelectorAll('div.folderBtn'),
+    roleSidebar = document.querySelector('.sidebarMain.right'),
+    statusClass = "disabled"
+
+    if(status == true){
+        chats.forEach((item)=>{
+            item.classList.add(statusClass);
+        });
+    
+        folders.forEach((item)=>{
+            item.classList.add(statusClass);
+        });
+    
+        roleSidebar.classList.add(statusClass);
+    }else{
+        chats.forEach((item)=>{
+            item.classList.remove(statusClass);
+        });
+
+        folders.forEach((item)=>{
+            item.classList.remove(statusClass);
+        });
+
+        roleSidebar.classList.remove(statusClass);
+    }
+}
+
 //Функция копирования кода
 
 function copyToClipboard(item){
@@ -218,7 +249,7 @@ function sendMsg(msg) {
         .then(data => {
             let uuid = uuidv4()
             appendMessage(BOT_NAME, BOT_IMG, "left", "", uuid);
-            stream = new EventSource(`/event-stream/${data}?message=${messagetext}`);
+            stream = new EventSource(`/event-stream/${data}`);
             const div = document.getElementById(uuid);
             var isPaused = false;
             var scrollable = true;
@@ -247,6 +278,7 @@ function sendMsg(msg) {
                 fetch(`/message/getCostMessage/${data}`)
                 $('.tokens').load("/get_tokens");
                 $('.tokensSpent').load(`/messages-cost/get/${data}`);
+                blockAll(false);
                 stream.close();
             }
             stream.onmessage = function (e) {
@@ -261,8 +293,8 @@ function sendMsg(msg) {
                     }
                     fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                     loader.classList.remove('showed');
+                    blockAll(false);
                     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-                    msgerChatContainer.removeEventListener('scroll')
                     stream.close();
                 } else {
                     text = JSON.parse(e.data).choices[0].delta.content;
@@ -271,6 +303,8 @@ function sendMsg(msg) {
                         html = showdownConverter.render(mdBuffer);
                         div.innerHTML = html;
 
+                        blockAll(true);
+
                         msgerChatContainer.addEventListener('scroll', function(){
                             if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
                                 scrollable = true;
@@ -278,7 +312,7 @@ function sendMsg(msg) {
                                 scrollable = false;
                             }
                         });
-
+                        
                         if(scrollable == true){
                             $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                         }
