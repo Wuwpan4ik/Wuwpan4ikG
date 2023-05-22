@@ -841,6 +841,11 @@ document.addEventListener('DOMContentLoaded', function(){
 document.getElementById('popupPayBtnProf').onclick = () =>{
     document.getElementById('pay-popup').classList.add('active');
     document.getElementById('profile-popup').classList.remove('active');
+
+    if(window.innerWidth <= 1000){
+        document.querySelector('#mobileHeader #tokensLeft').classList.add('active');
+    }
+
 }
 
 if(document.getElementById('closeSettingsMob')){
