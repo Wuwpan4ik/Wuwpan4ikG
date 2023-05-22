@@ -142,32 +142,38 @@
     // Отправка промокода
     $('#activatePromoBtn').on('click', function (e) {
         e.preventDefault()
-        let form = $('.promocode-form');
-        $.ajax({
+        let form = $('.promocode-form'),
+        promocodeInput = document.querySelector('form.promocode-form input[name="promocode"]');
+
+        if(String(promocodeInput.value).trim() != ""){
+            $.ajax({
             type: "POST",    // Метод отправки данных (POST, GET и т.д.)
             url: $(form).attr('action'),     // URL-адрес, куда отправляются данные формы
             data: form.serialize(),      // Сериализуем данные формы в строку
             success: function(data, textStatus, jqXHR) {
-                $('.tokens').load("/get_tokens");
-                document.getElementById('promocodeActivate').classList.add('showed');
-                setTimeout(() => {
-                    document.getElementById('promocodeActivate').classList.remove('showed');
-                }, 2000);
-            },
+                    $('.tokens').load("/get_tokens");
+                    document.getElementById('promocodeActivate').classList.add('showed');
+                    setTimeout(() => {
+                        document.getElementById('promocodeActivate').classList.remove('showed');
+                    }, 2000);
+                },
             error: function (data, textStatus, jqXHR) {
-                if(data.responseText == '{"error":"1"}'){
-                    document.getElementById('promocodeActivateBad').classList.add('showed');
-                    setTimeout(function(){
-                        document.getElementById('promocodeActivateBad').classList.remove('showed');
-                    }, 2000)
-                }else{
-                    document.getElementById('promocodeActivateUsed').classList.add('showed');
-                    setTimeout(function(){
-                        document.getElementById('promocodeActivateUsed').classList.remove('showed');
-                    }, 2000)
+                    if(data.responseText == '{"error":"1"}'){
+                        document.getElementById('promocodeActivateBad').classList.add('showed');
+                        setTimeout(function(){
+                            document.getElementById('promocodeActivateBad').classList.remove('showed');
+                        }, 2000)
+                    }else{
+                        document.getElementById('promocodeActivateUsed').classList.add('showed');
+                        setTimeout(function(){
+                            document.getElementById('promocodeActivateUsed').classList.remove('showed');
+                        }, 2000)
+                    }
                 }
-            }
-        })
+            });
+        }else{
+            console.log('promocode is null')
+        }
     })
 </script>
 <script>

@@ -3730,6 +3730,16 @@ table th {
   .msg-info-avatar {
     font-size: 10px;
   }
+  #responseStop {
+    gap: 5px;
+    padding: 12px 20.006px;
+    border-radius: 10.003px;
+    border: 0.998px solid #374151;
+    font-size: 10px;
+  }
+  #profileSuccess, #resetPasswordLoader, #promocodeActivate, #promocodeActivateBad, #promocodeActivateUsed {
+    padding: 10.003px;
+  }
   #about-user .msg-info-avatar {
     width: 38px;
     height: 38px;
@@ -3838,13 +3848,6 @@ table th {
     font-size: 12px;
   }
   .loaderResponse .firstRow .responseStat span {
-    font-size: 10px;
-  }
-  .loaderResponse .secondRow button {
-    gap: 5px;
-    padding: 12px 20.006px;
-    border-radius: 10.003px;
-    border: 0.998px solid #374151;
     font-size: 10px;
   }
   .loaderResponse.error {
