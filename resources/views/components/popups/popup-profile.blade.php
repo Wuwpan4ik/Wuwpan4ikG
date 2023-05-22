@@ -10,7 +10,13 @@
                             @csrf
                             @method('PATCH')
                             <!--Фото пользователя-->
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}">
+                            @if (Auth::user()->avatar == 'user.jpg')
+                                <div class="msg-info-avatar">
+                                    {{ Str::limit(Auth::user()->name, 1, '') }}
+                                </div>
+                            @else
+                                <img src="{{ Storage::url(Auth::user()->avatar) }}">
+                            @endif
                             <!--Замена фото-->
                             <div class="change-photo">
                                 <label for="upload-photo" >
@@ -19,7 +25,7 @@
                                         {{__('profileZamena')}}
                                     </div>
                                 </label>
-                                <input onchange="this.parentElement.parentElement.submit()" type="file" accept="image/png, image/jpg, image/gif" name="avatar" id="upload-photo">
+                                <input onchange="this.parentElement.parentElement.submit()" type="file" accept="image/png, image/jpg" name="avatar" id="upload-photo">
                             </div>
                         </form>
                     </div>

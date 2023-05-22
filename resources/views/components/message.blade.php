@@ -7,7 +7,13 @@
                         @if($message->is_bot)
                             <img src="{{ asset('assets/botlogo.jpg') }}" alt="">
                         @else
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}">
+                            @if (Auth::user()->avatar == 'user.jpg')
+                                <div class="msg-info-avatar">
+                                    {{ Str::limit(Auth::user()->name, 1, '') }}
+                                </div>
+                            @else
+                                <img src="{{ Storage::url(Auth::user()->avatar) }}">
+                            @endif
                         @endif
                     </div>
                     <div class="msg-info-name">@if($message->is_bot) MetaGPT @else {{ Auth::user()->name }} @endif</div>

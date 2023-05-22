@@ -193,7 +193,9 @@ function blockAll(status){
     let chats = document.querySelectorAll('div.tablink.addChatIcon'),
     folders = document.querySelectorAll('div.folderBtn'),
     roleSidebar = document.querySelector('.sidebarMain.right'),
-    statusClass = "disabled"
+    statusClass = "disabled",
+    settingsMob = document.getElementById('settingsMob'),
+    chatsMob = document.getElementById('openChats');
 
     if(status == true){
         chats.forEach((item)=>{
@@ -203,8 +205,12 @@ function blockAll(status){
         folders.forEach((item)=>{
             item.classList.add(statusClass);
         });
-    
+
         roleSidebar.classList.add(statusClass);
+
+        //Моб версия
+        settingsMob.classList.add(statusClass);
+        chatsMob.classList.add(statusClass);
     }else{
         chats.forEach((item)=>{
             item.classList.remove(statusClass);
@@ -215,6 +221,10 @@ function blockAll(status){
         });
 
         roleSidebar.classList.remove(statusClass);
+
+        //Моб версия
+        settingsMob.classList.remove(statusClass);
+        chatsMob.classList.remove(statusClass);
     }
 }
 
@@ -820,6 +830,13 @@ window.addEventListener('resize', function(){
         document.querySelector('.mainWrapper').classList.add('switchedSidebar');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function(){
+    if(window.innerWidth < 1000){
+        document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
+        document.querySelector('.sidebarMain.right').classList.remove('switched');
+    }
+})
 
 document.getElementById('popupPayBtnProf').onclick = () =>{
     document.getElementById('pay-popup').classList.add('active');
