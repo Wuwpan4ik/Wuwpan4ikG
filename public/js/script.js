@@ -201,7 +201,7 @@ function blockAll(status){
         chats.forEach((item)=>{
             item.classList.add(statusClass);
         });
-    
+
         folders.forEach((item)=>{
             item.classList.add(statusClass);
         });
@@ -293,6 +293,7 @@ function sendMsg(msg) {
             }
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
+                    stream.close();
                     msgerSendBtn.disabled = false
                     $('.tokens').load("/get_tokens");
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
@@ -305,7 +306,7 @@ function sendMsg(msg) {
                     loader.classList.remove('showed');
                     blockAll(false);
                     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-                    stream.close();
+                    msgerChatContainer.removeEventListener('scroll')
                 } else {
                     text = JSON.parse(e.data).choices[0].delta.content;
                     if (text !== undefined) {
@@ -322,7 +323,7 @@ function sendMsg(msg) {
                                 scrollable = false;
                             }
                         });
-                        
+
                         if(scrollable == true){
                             $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                         }

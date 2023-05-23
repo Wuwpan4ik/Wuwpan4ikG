@@ -102,7 +102,7 @@
                         {{__('modelSettingsLabelEco')}}
                     </div>
                     <div class="popup-setting-btns">
-                        <input type="range" min="1" max="6" step="1" value="2" class="econom-rezhim slider-progress" name="eco-input">
+                        <input type="range" min="1" max="6" step="1" value="{{ session()->get('econom') }}" class="econom-rezhim slider-progress" id="eco-input" name="eco-input">
                         <div class="eco-stats">
                         <p>
                             {{__('ecoRezh')}}
@@ -243,6 +243,15 @@
     </div>
 @endempty
 <script>
+
+    // Экономный режим
+    if (document.querySelector('#eco-input')) {
+        document.querySelector('#eco-input').addEventListener('mouseup', function () {
+            let input = document.querySelector('#eco-input')
+            let eco_number = input.value;
+            fetch(`/settings/changeEconom?econom=${eco_number}`)
+        })
+    }
 
     //Copy btn system role
     document.querySelector("button.copyBtn").onclick = function() {
