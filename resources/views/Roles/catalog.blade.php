@@ -117,10 +117,10 @@
                     @foreach($roles as $role)
                         <div class="library-item">
                             @if($role->title)
-                                <h2 class="library-item-title">{{ $role->title }}</h2>
+                                <h2 class="library-item-title">@if(App::getLocale() == 'en') @if($role->title_en) {{ $role->title_en }}@endif @elseif(App::getLocale() == 'ru') @if($role->title) {{ $role->title }}@endif  @endif</h2>
                             @endif
-                            <p>{{ $role->description }}</p>
-                            <p class="role" style="display:none;">{{ $role->role }}</p>
+                            <p>@if(App::getLocale() == 'en') @if($role->description_en) {{ $role->description_en }}@endif @elseif(App::getLocale() == 'ru') @if($role->description) {{ $role->description }}@endif  @endif</p>
+                            <p class="role" style="display:none;">@if(App::getLocale() == 'en') @if($role->role_en) {{ $role->role_en }}@endif @elseif(App::getLocale() == 'ru') @if($role->role) {{ $role->role }}@endif  @endif</p>
                             <div class="hoverItems">
                                 <button class="copyRole">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -171,8 +171,8 @@
     <script>
         $(".changeLang").click(function(){
             fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
+            window.location.reload()
         });
-
         $(".switchTheme").click(function(){
             $.each($(".switchTheme"), function (num, item) {
                 item.classList.remove('active')

@@ -498,12 +498,6 @@ for(let i =0; i < renameChats.length;i++){
     }
 }
 
-// Смена языка
-$(".changeLang").click(function(){
-    fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
-    window.location.reload()
-});
-
 
 //Удаление чата
 function deleteChat(item){

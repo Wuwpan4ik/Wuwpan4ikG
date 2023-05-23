@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('title_en')->nullable();
-            $table->text('description');
-            $table->text('description_en');
-            $table->text('role');
-            $table->text('role_en');
+            $table->text('description')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_ua')->nullable();
+            $table->text('role')->nullable();
+            $table->text('role_en')->nullable();
+            $table->text('role_ua')->nullable();
             $table->timestamps();
         });
     }

@@ -12,13 +12,13 @@
                         <form onsubmit="return changeRole(event)" action="{{ route('chat.updateRole', $chat->id) }}" method="POST">
                             @csrf
                             @if($role->title)
-                                <h2 class="library-item-title">{{ $role->title }}</h2>
+                                <h2 class="library-item-title">@if(App::getLocale() == 'en') @if($role->title_en) {{ $role->title_en }}@endif @elseif(App::getLocale() == 'ru') @if($role->title) {{ $role->title }}@endif  @endif</h2>
                             @endif
-                            <p class="role__description">{{ $role->description }}</p>
-                            <p class="role" style="display:none;">{{ $role->role }}</p>
-                            <textarea class="display-none" name="role" id="systemRoleText">{{ $role->role }}</textarea>
+                            <p class="role__description">@if(App::getLocale() == 'en') @if($role->description_en) {{ $role->description_en }}@endif @elseif(App::getLocale() == 'ru') @if($role->description) {{ $role->description }}@endif  @endif</p>
+                            <p class="role" style="display:none;">@if(App::getLocale() == 'en') @if($role->role_en) {{ $role->role_en }}@endif @elseif(App::getLocale() == 'ru') @if($role->role) {{ $role->role }}@endif  @endif</p>
+                            <textarea class="display-none" name="role" id="systemRoleText">@if(App::getLocale() == 'en') @if($role->role_en) {{ $role->role_en }}@endif @elseif(App::getLocale() == 'ru') @if($role->role) {{ $role->role }}@endif  @endif</textarea>
                             <div class="hoverItems">
-                                <button class="copyRole" type="submit">   
+                                <button class="copyRole" type="submit">
                                     <svg class="canbegray" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_861_4547)"><path d="M14.5 14.4922H7.5C6.11553 14.4922 4.76216 14.0816 3.61101 13.3125C2.45987 12.5433 1.56266 11.4501 1.03285 10.171C0.503033 8.89189 0.36441 7.48443 0.634506 6.12656C0.904603 4.76869 1.57129 3.52141 2.55026 2.54244C3.52922 1.56348 4.7765 0.89679 6.13437 0.626694C7.49224 0.356597 8.8997 0.495221 10.1788 1.02503C11.4579 1.55485 12.5511 2.45205 13.3203 3.6032C14.0895 4.75434 14.5 6.10772 14.5 7.49219V14.4922ZM7.5 1.65886C5.95291 1.65886 4.46918 2.27344 3.37521 3.3674C2.28125 4.46136 1.66667 5.94509 1.66667 7.49219C1.66667 9.03929 2.28125 10.523 3.37521 11.617C4.46918 12.7109 5.95291 13.3255 7.5 13.3255H13.3333V7.49219C13.3316 5.94562 12.7165 4.46287 11.6229 3.36928C10.5293 2.27568 9.04658 1.66056 7.5 1.65886V1.65886ZM7.44692 10.0699L11.4083 6.15752L10.5917 5.32686L6.6215 9.23519L4.40834 7.07511L3.59167 7.90927L5.79959 10.0676C6.01825 10.2854 6.31432 10.4077 6.62296 10.4077C6.93161 10.4077 7.22767 10.2854 7.44634 10.0676L7.44692 10.0699Z" fill="white"/></g><defs><clipPath id="clip0_861_4547"><rect width="14" height="14" fill="white" transform="translate(0.5 0.492188)"/></clipPath></defs></svg>
                                     {{__('choosePrompt')}}
                                 </button>

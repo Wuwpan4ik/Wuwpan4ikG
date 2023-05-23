@@ -14,8 +14,9 @@
         <h2 class="title">
             {{ __("systemRole") }}
         </h2>
+        {{App::getLocale()}}
         <div class="systemRole" id="systemRole">
-            <p class="systemRoleP">@if($chat->role) {{ $chat->role }} @else{{__('defaultSystemRole')}}@endif
+            <p class="systemRoleP">@if($chat->role) {{ $chat->role }} @else{{__('defaultSystemRole')}} @endif
             </p>
             <div class="hoverItems prompts">
                 <button class="copyBtn">

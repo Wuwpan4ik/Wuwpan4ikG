@@ -235,6 +235,7 @@
 <script>
     $(".changeLang").click(function(){
         fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
+        window.location.reload()
     });
 
     $(".switchTheme").click(function(){

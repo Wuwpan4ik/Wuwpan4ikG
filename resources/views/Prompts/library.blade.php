@@ -160,6 +160,10 @@
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
     <script src="{{asset('js/script.js')}}"></script>
     <script>
+        $(".changeLang").click(function(){
+            fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
+            window.location.reload()
+        });
 
         $(".switchTheme").click(function(){
             $.each($(".switchTheme"), function (num, item) {

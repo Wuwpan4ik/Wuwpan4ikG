@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('description')->nullable();
             $table->text('description_en')->nullable();
+            $table->text('description_ua')->nullable();
             $table->foreignId('user_id')->nullable()->index()->constrained('users')->onDelete('CASCADE');
             $table->foreignId('folder_id')->nullable()->index()->constrained('prompt_folders')->onDelete('CASCADE');
             $table->timestamps();
