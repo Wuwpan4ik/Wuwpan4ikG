@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('telegram_url')->nullable();
-            $table->string('avatar')->default(env('default_avatar'));
+            $table->string('avatar')->default('user.jpg');
         });
     }
 
