@@ -107,13 +107,14 @@ function copyBtnPre(){
     });
 }
 
+
 function appendMessage(name, img, side, text, id) {
     //   Simple solution for small apps
     const msgHTML = `
     <div class="msg ${side}-msg">
         <div class="msg-header">
             <div class="firstRow">
-                <div class="msg-img"><img src="${img}"></div>
+                <div class="msg-img">${img.includes('user.jpg') ? `<div class="msg-info-avatar">${String(userName).trim()[0]}</div>` : `<img src="${img}" alt="">`}</div>
                 <div class="msg-info-name">${name}</div>
                 <div class="msg-info-time">${formatDate(new Date())}</div>
             </div>
@@ -273,6 +274,7 @@ function sendMsg(msg) {
                 html: true,
                 linkify: true,
             });
+            blockAll(true);
             //Кнопка остановки генерации ответа от гпт
             document.getElementById('responseStop').onclick = () =>{
                 console.log('stop')
@@ -306,15 +308,12 @@ function sendMsg(msg) {
                     loader.classList.remove('showed');
                     blockAll(false);
                     $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-                    msgerChatContainer.removeEventListener('scroll')
                 } else {
                     text = JSON.parse(e.data).choices[0].delta.content;
                     if (text !== undefined) {
                         mdBuffer += text;
                         html = showdownConverter.render(mdBuffer);
                         div.innerHTML = html;
-
-                        blockAll(true);
 
                         msgerChatContainer.addEventListener('scroll', function(){
                             if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
@@ -821,7 +820,10 @@ window.addEventListener('resize', function(){
     if(window.innerWidth < 1000){
         document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
     }
-    if(window.innerWidth > 1000 && document.querySelector('.sidebarMain.right').classList.contains('.switched')){
+    else if(window.innerWidth < 1000 && document.querySelector('.sidebarMain.right').classList.contains('switched')){
+        document.querySelector('.mainWrapper').classList.add('switchedSidebar');
+    }
+    else if(window.innerWidth > 1000 && document.querySelector('.sidebarMain.right').classList.contains('switched')){
         document.querySelector('.mainWrapper').classList.add('switchedSidebar');
     }
 });

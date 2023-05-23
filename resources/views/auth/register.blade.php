@@ -77,7 +77,7 @@
                                               type="number"
                                               name="code"
                                               maxLength="6"
-                                              placeholder="{{__('code')}}"
+                                              placeholder="{{__('123456')}}"
                                               required />
 
                                 <x-input-error :messages="$errors->get('code')" class="mt-2" />
