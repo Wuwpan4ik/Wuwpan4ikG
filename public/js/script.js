@@ -497,23 +497,6 @@ for(let i =0; i < renameChats.length;i++){
     }
 }
 
-$(".changeLang").click(function(){
-    fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
-    window.location.reload()
-});
-
-$(".switchTheme").click(function(){
-    $.each($(".switchTheme"), function (num, item) {
-        item.classList.remove('active')
-    })
-    $(this).addClass('active')
-
-    fetch("{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme"))
-
-    // $('body').toggleClass('dark light');
-});
-
-
 //Удаление чата
 function deleteChat(item){
     if(item.parentElement.parentElement.querySelector('.renameChat').classList.contains('nonActive')){

@@ -135,9 +135,6 @@
 <!--Попапы-->
 @include('components.popups.popup-pay')
 <script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/highlight.min.js')}}"></script>
-@yield('script')
-<script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
 <script>
     $(".changeLang").click(function(){
         fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
@@ -155,6 +152,9 @@
         // $('body').toggleClass('dark light');
     });
 </script>
+<script src="{{asset('js/highlight.min.js')}}"></script>
+@yield('script')
+<script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
 <script>
     // Отправка промокода
     $('#activatePromoBtn').on('click', function (e) {
