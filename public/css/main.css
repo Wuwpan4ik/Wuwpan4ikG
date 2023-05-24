@@ -519,6 +519,9 @@ body.dark h2.aboutRs {
 body.light {
   background: white;
 }
+body.light .msg-text a {
+  color: black;
+}
 body.light #mobileHeader nav ul li button.active {
   background: #13B8A6;
 }
@@ -780,6 +783,7 @@ body.light #showFeatures.active {
 }
 body.light .welcome-chat {
   background-image: url("../assets/background.png");
+  background-size: cover;
 }
 body.light header#mainHeader {
   background: #FFFFFF;
@@ -1489,6 +1493,14 @@ div.switchMenu {
   font-weight: 400;
 }
 
+#popup-library .popupContent {
+  height: auto;
+  padding: 3.646vw 0vw;
+}
+#popup-library .popupContent .popup-inner {
+  height: auto;
+}
+
 #showFeatures {
   display: flex;
   padding: 0.833vw 1.042vw;
@@ -1531,10 +1543,12 @@ div.switchMenu {
 .folderBtn {
   position: relative;
 }
+.folderBtn .firstRow {
+  pointer-events: none;
+}
 .folderBtn .hoverItems {
   display: flex;
-  position: absolute;
-  right: 2.344vw;
+  position: relative;
   gap: 0.521vw;
   align-items: center;
 }
@@ -1558,6 +1572,15 @@ div.switchMenu {
   width: 0.521vw !important;
   height: 0.521vw !important;
 }
+.folderBtn .secondRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.26vw;
+}
+.folderBtn .secondRow .dropdownButton {
+  opacity: 0;
+  display: none;
+}
 .folderBtn .dropdownButton {
   pointer-events: none;
 }
@@ -1575,6 +1598,9 @@ div.switchMenu {
 .folderBtn.opened .buttonOpen .dropdownButton {
   transform: rotate(0deg);
 }
+.folderBtn.opened .buttonOpen .firstRow input {
+  pointer-events: all;
+}
 .folderBtn.opened .folderItems {
   display: flex;
 }
@@ -1582,13 +1608,12 @@ div.switchMenu {
 .folderBtn .buttonOpen {
   font-size: 0.729vw;
   display: flex;
-  justify-content: space-between;
   height: 2.604vw;
   background: none;
   cursor: pointer;
   border-radius: 0.521vw;
   color: white;
-  padding: 0.833vw 1.042vw;
+  padding: 0.833vw 2.3vw 0.833vw 1.042vw;
   align-items: center;
   border: none;
 }
@@ -1596,7 +1621,9 @@ div.switchMenu {
   gap: 0.521vw;
   display: flex;
   align-items: center;
-  padding-right: 2.552vw;
+}
+.folderBtn .buttonOpen .firstRow p {
+  pointer-events: none;
 }
 .folderBtn .buttonOpen .hoverItems.showed .hoverItems-folder {
   opacity: 1;
@@ -1605,6 +1632,8 @@ div.switchMenu {
   transform: rotate(-180deg);
 }
 .folderBtn .buttonOpen .dropdownButton {
+  position: absolute;
+  right: 1.042vw;
   transform: rotate(-90deg);
 }
 .folderBtn .buttonOpen:hover {
@@ -1629,6 +1658,10 @@ div.switchMenu {
   display: flex;
   gap: 0.521vw;
   align-items: center;
+  pointer-events: none;
+}
+.addChatIcon .firstRow input {
+  pointer-events: all;
 }
 .addChatIcon input {
   width: 100%;
@@ -1704,6 +1737,7 @@ button.promptBtn .promptText {
   height: 100%;
   background: url("../assets/background.jpg");
   background-repeat: no-repeat;
+  background-size: cover !important;
   background-size: 100%;
   display: flex;
   flex-direction: column;
@@ -1732,7 +1766,7 @@ button.promptBtn .promptText {
 }
 
 .welcome-chat {
-  background-size: cover;
+  background-size: cover !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2554,15 +2588,9 @@ button.promptBtn .promptText {
   z-index: 9999;
   padding-top: 0px !important;
 }
-.popup-library.pop-catalog .popupContent .popup-inner {
-  max-height: 70%;
-}
-.popup-library.pop-catalog .popupContent .popup-inner .prompts-category {
-  overflow-y: auto;
-  grid-template-columns: repeat(3, auto);
-  grid-gap: 1.042vw;
-  overflow-x: hidden;
-  max-height: 70%;
+.popup-library.pop-catalog .popupContent {
+  height: auto;
+  padding: 3.646vw 0px;
 }
 .popup-library.pop-catalog .popupContent .popup-inner .prompts-category h2 {
   font-size: 1.042vw;
@@ -2613,12 +2641,6 @@ button.promptBtn .promptText {
   gap: 0.521vw;
   color: white;
   font-size: 0.781vw;
-}
-.popup-library .popupContent .popup-inner .library-items-container {
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 50vh;
-  padding: 0px 2.083vw;
 }
 .popup-library .popupContent .popup-inner .prompts-in-category {
   margin-top: 1.563vw;
@@ -3284,7 +3306,8 @@ button.add-chat:hover {
 }
 
 .tablinks-container {
-  max-height: 80%;
+  max-height: 24.958vw;
+  position: relative;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -3468,10 +3491,6 @@ button.add-chat:hover {
 }
 
 pre {
-  padding: 0.521vw;
-}
-
-pre.after-code {
   padding: 0px;
 }
 
@@ -3911,7 +3930,7 @@ table th {
     height: 50px;
     font-size: 15px;
     border-radius: 10px;
-    padding: 16px 20px;
+    padding: 16px 45px 16px 20px;
     margin-bottom: 15px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .firstRow {
@@ -3926,7 +3945,6 @@ table th {
     width: 100%;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems {
-    right: 50px;
     gap: 10px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems .hoverItems-folder {
@@ -4588,6 +4606,24 @@ table th {
     border-radius: 10px;
     padding: 20px;
   }
+  pre {
+    border-radius: 5.76px;
+    margin: 5px 0vw;
+  }
+  .block-info {
+    padding: 4.992px 9.6px;
+    border-top-right-radius: 5.76px;
+    border-top-left-radius: 5.76px;
+    display: flex;
+    height: 24px;
+  }
+  .block-info button {
+    width: 16px;
+    height: 16px;
+  }
+  #popup-library .popupContent, #popup-catalog .popupContent {
+    padding: 120px 40px 70px 40px;
+  }
   #popup-library .popup-inner, #popup-catalog .popup-inner {
     width: 100%;
     padding: 40px;
@@ -4837,14 +4873,21 @@ table th {
   .linear-container button {
     margin: 0px 0px 20px 0px !important;
   }
+  .folderBtn .buttonOpen {
+    display: flex;
+    justify-content: space-between;
+  }
+  .folderBtn .buttonOpen .dropdownButton {
+    right: 20px;
+  }
+  #popup-catalog .prompts-in-category {
+    margin-top: 0px !important;
+  }
   .popup-library .popupContent .popup-inner {
     padding: 40px 0px !important;
   }
   .popup-library .popupContent .popup-inner .prompts-category, .popup-library .popupContent .popup-inner .library-items-container {
     padding: 0px 40px;
-  }
-  .popup-library .popupContent .popup-inner .library-items-container {
-    max-height: 45vh !important;
   }
   body.light #pay-popup .popupContent {
     background: white !important;

@@ -277,7 +277,6 @@ function sendMsg(msg) {
             blockAll(true);
             //Кнопка остановки генерации ответа от гпт
             document.getElementById('responseStop').onclick = () =>{
-                console.log('stop')
                 msgerSendBtn.disabled = false
                 isPaused = true;
                 params = {
@@ -315,18 +314,6 @@ function sendMsg(msg) {
                         html = showdownConverter.render(mdBuffer);
                         div.innerHTML = html;
 
-                        msgerChatContainer.addEventListener('scroll', function(){
-                            if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
-                                scrollable = true;
-                            }else{
-                                scrollable = false;
-                            }
-                        });
-
-                        if(scrollable == true){
-                            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
-                        }
-
                         if(div.querySelector('.msg-text pre code')){
                             let el = div.querySelectorAll('.msg-text pre code');
                             el.forEach(function(item){
@@ -345,6 +332,19 @@ function sendMsg(msg) {
                                 item.parentElement.insertBefore(blockInfo, item);
                             });
                         }
+
+                        msgerChatContainer.addEventListener('scroll', function(){
+                            if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
+                                scrollable = true;
+                            }else{
+                                scrollable = false;
+                            }
+                        });
+
+                        if(scrollable == true){
+                            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                        }
+                        
                     }
                 }
             };
@@ -447,7 +447,7 @@ function openFolder() {
                 this.parentElement.classList.remove('opened');
             }
         }
-    })
+    });
 }
 openFolder();
 

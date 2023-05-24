@@ -103,7 +103,11 @@
                                     <div class="input-span">
                                         <!--Если нет вешаем "Здесь пока нет"-->
                                         <p>
-                                            {{ Auth::user()->telegram_url }}
+                                            @if (Auth::user()->telegram_url)
+                                                {{ Auth::user()->telegram_url }}
+                                            @else
+                                                {{__('noUrl')}}
+                                            @endif
                                         </p>
                                         <input type="text" value="{{ Auth::user()->telegram_url }}" class="nonActive" name="telegram_url">
                                     </div>
@@ -160,10 +164,10 @@
                                 <div class="history-payments-item">
                                     <div class="count">
                                         <div class="count-much">Free</div>
-                                        <div class="count-tokens">(10 000 {{(__('profileHistoryTokens'))}})</div>
+                                        <div class="count-tokens">(5 000 {{(__('profileHistoryTokens'))}})</div>
                                     </div>
                                     <div class="date-payment">
-                                        20.10.2023
+                                        
                                     </div>
                                 </div>
                                 <!--Выдается после платежа-->

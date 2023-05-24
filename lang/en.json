@@ -159,5 +159,6 @@
      "loaderSettingsDesc": "Your settings have been applied successfully.",
      "ecoRezh": "Economy",
      "tranzhRezh": "Spender",
-     "enterCode": "Enter confirmation code"
+     "enterCode": "Enter confirmation code",
+     "noUrl": "It's empty here"
 }

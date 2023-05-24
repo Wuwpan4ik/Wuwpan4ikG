@@ -558,6 +558,11 @@ body.dark{
 }
 
 body.light{
+    .msg-text{
+        a{
+            color:black;
+        }
+    }
     background:white;
     #mobileHeader nav ul li button.active{
         background: #13B8A6;
@@ -914,7 +919,8 @@ body.light{
         }
     }
     .welcome-chat{
-        background-image:url('../assets/background.png')
+        background-image:url('../assets/background.png');
+        background-size: cover;
     }
     header#mainHeader{
         background:#FFFFFF;
@@ -1717,6 +1723,17 @@ div.switchMenu{
     }
 }
 
+
+#popup-library{
+    .popupContent{
+        height: auto;
+        padding:3.646vw 0vw;
+        .popup-inner{
+            height: auto;
+        }
+    }
+}
+
 #showFeatures{
     display: flex;
     padding:0.833vw 1.042vw;
@@ -1760,10 +1777,12 @@ div.switchMenu{
 }
 .folderBtn{
     position: relative;
+    .firstRow{
+        pointer-events: none;
+    }
     .hoverItems{
         display:flex;
-        position: absolute;
-        right:2.344vw;
+        position: relative;
         gap:0.521vw;
         align-items: center;
         .hoverItems-folder{
@@ -1785,6 +1804,15 @@ div.switchMenu{
             }
         }
     }
+    .secondRow{
+        display: flex;
+        justify-content: flex-end;
+        gap:0.26vw;
+        .dropdownButton{
+            opacity: 0;
+            display: none;
+        }
+    }
     .dropdownButton{
         pointer-events: none;
     }
@@ -1795,6 +1823,11 @@ div.switchMenu{
         background: #1D2129;
         .dropdownButton{
             transform: rotate(0deg);
+        }
+        .firstRow{
+            input{
+                pointer-events: all;
+            }
         }
         /*Фикс по мобилкам
         .hoverItems.folder{
@@ -1811,20 +1844,21 @@ div.switchMenu{
 .folderBtn .buttonOpen{
     font-size: 0.729vw;
     display:flex;
-    justify-content: space-between;
     height: 2.604vw;
     background:none;
     cursor: pointer;
     border-radius: 0.521vw;
     color:white;
-    padding:0.833vw 1.042vw;
+    padding:0.833vw 2.3vw 0.833vw 1.042vw;
     align-items: center;
     border:none;
     .firstRow{
         gap:0.521vw;
         display: flex;
         align-items: center;
-        padding-right: 2.552vw;
+        p{
+            pointer-events: none;
+        }
     }
     .hoverItems.showed{
         .hoverItems-folder{
@@ -1838,6 +1872,8 @@ div.switchMenu{
         }
     }
     .dropdownButton{
+        position: absolute;
+        right: 1.042vw;
         transform: rotate(-90deg);
     }
     &:hover{
@@ -1864,6 +1900,10 @@ div.switchMenu{
         display: flex;
         gap:0.521vw;
         align-items: center;
+        pointer-events: none;
+        input{
+            pointer-events: all;
+        }
     }
     input{
         width: 100%;
@@ -1949,6 +1989,7 @@ button.promptBtn{
     height: 100%;
     background:url("../assets/background.jpg");
     background-repeat: no-repeat;
+    background-size: cover !important;
     background-size:100%;
     display: flex;
     flex-direction: column;
@@ -1977,7 +2018,7 @@ button.promptBtn{
 }
 
 .welcome-chat{
-    background-size:cover;
+    background-size:cover !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2823,14 +2864,10 @@ button.promptBtn{
     padding-top: 0px !important;
     &.pop-catalog{
         .popupContent{
+            height:auto;
+            padding:3.646vw 0px;
             .popup-inner{
-                max-height: 70%;
                 .prompts-category{
-                    overflow-y: auto;
-                    grid-template-columns: repeat(3, auto);
-                    grid-gap:1.042vw;
-                    overflow-x: hidden;
-                    max-height: 70%;
                     h2{
                         font-size: 1.042vw;
                         line-height: 1.25vw;
@@ -2879,12 +2916,6 @@ button.promptBtn{
                     color:white;
                     font-size:0.781vw;
                 }
-            }
-            .library-items-container{
-                overflow-y: auto;
-                overflow-x:hidden;
-                max-height: 50vh;
-                padding:0px 2.083vw;
             }
             .prompts-in-category{
                 margin-top: 1.563vw;
@@ -3572,7 +3603,8 @@ input[type=range].styled-slider {
 //Library
 
 .tablinks-container{
-    max-height: 80%;
+    max-height: 24.958vw;
+    position: relative;
     overflow-y: auto;
     overflow-x: hidden;
     .tablinks-library{
@@ -3742,18 +3774,17 @@ color:#df3079
 .hljs-title {
 color:#f22c3d
 }
+
 pre{
-    padding: 0.521vw;
+    padding: 0px;
 }
-pre.after-code{
-    padding:0px;
-}
+
 pre code.hljs{
-color:white;
-font-family: inherit !important;
-overflow-x: auto;
-padding: 1em !important;
-display: block;
+    color:white;
+    font-family: inherit !important;
+    overflow-x: auto;
+    padding: 1em !important;
+    display: block;
 }
 
 .msg.right-msg{
@@ -4235,7 +4266,7 @@ table{
         margin-top:0px;
         .folderBtn {
            .buttonOpen{
-                height: 50px;font-size: 15px;border-radius: 10px;padding:16px 20px;margin-bottom: 15px;
+                height: 50px;font-size: 15px;border-radius: 10px;padding:16px 45px 16px 20px;margin-bottom: 15px;
                 .firstRow{
                     gap:10px;
                     width: 100%;
@@ -4248,7 +4279,6 @@ table{
                     width: 100%;
                 }
                 .hoverItems{
-                    right:50px;
                     gap:10px;
                     .hoverItems-folder{
                         gap:5px;
@@ -4948,9 +4978,29 @@ table{
         }
     }
 
+    pre{
+        border-radius: 5.76px;
+        margin: 5px 0vw;
+    }
+
+    .block-info{
+        padding: 4.992px 9.6px;
+        border-top-right-radius: 5.76px;
+        border-top-left-radius: 5.76px;
+        display: flex;
+        height: 24px;
+        button{
+            width: 16px;
+            height: 16px;
+        }
+    }
+    
     //Попапы
 
     #popup-library, #popup-catalog{
+        .popupContent{
+            padding:120px 40px 70px 40px;
+        }
         .popup-inner{
             width: 100%;
             padding:40px;
@@ -5223,18 +5273,27 @@ table{
     }
     //Попапы
 
+    .folderBtn .buttonOpen{
+        display: flex;
+        justify-content: space-between;
+        .dropdownButton{
+            right:20px;
+        }
+    }
+
+    #popup-catalog{
+        .prompts-in-category {
+            margin-top: 0px !important;
+          }
+    }
+
     .popup-library{
         .popupContent{
             .popup-inner{
-                padding:40px 0px !important;
+                padding:40px  0px !important;
                 .prompts-category, .library-items-container{
                     padding:0px 40px;
                 }
-
-                
-    .library-items-container{
-        max-height: 45vh !important;
-    }
             }
         }
     }

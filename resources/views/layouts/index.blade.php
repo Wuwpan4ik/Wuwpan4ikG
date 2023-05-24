@@ -191,7 +191,7 @@
         }else{
             console.log('promocode is null')
         }
-    })
+    });
 </script>
 <script>
     $(".switchTheme").click(function(){

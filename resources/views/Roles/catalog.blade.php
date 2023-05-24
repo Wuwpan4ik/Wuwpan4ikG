@@ -164,6 +164,9 @@
     @include('components.popups.popup-develop')
     @include('components.popups.popup-profile')
     @include('components.popups.popup-mob')
+    @include('components.popups.popup-zapic')
+    @include('components.popups.popup-zapic2')
+    @include('components.loaders.loader-profile')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src=" https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js "></script>
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
@@ -227,6 +230,44 @@
 
         $('#checkout').click(pay);
 
+    </script>
+    <script>
+    // Отправка промокода
+    $('#activatePromoBtn').on('click', function (e) {
+        e.preventDefault()
+        let form = $('.promocode-form'),
+        promocodeInput = document.querySelector('form.promocode-form input[name="promocode"]');
+
+        if(String(promocodeInput.value).trim() != ""){
+            $.ajax({
+            type: "POST",    // Метод отправки данных (POST, GET и т.д.)
+            url: $(form).attr('action'),     // URL-адрес, куда отправляются данные формы
+            data: form.serialize(),      // Сериализуем данные формы в строку
+            success: function(data, textStatus, jqXHR) {
+                    $('.tokens').load("/get_tokens");
+                    document.getElementById('promocodeActivate').classList.add('showed');
+                    setTimeout(() => {
+                        document.getElementById('promocodeActivate').classList.remove('showed');
+                    }, 2000);
+                },
+            error: function (data, textStatus, jqXHR) {
+                    if(data.responseText == '{"error":"1"}'){
+                        document.getElementById('promocodeActivateBad').classList.add('showed');
+                        setTimeout(function(){
+                            document.getElementById('promocodeActivateBad').classList.remove('showed');
+                        }, 2000)
+                    }else{
+                        document.getElementById('promocodeActivateUsed').classList.add('showed');
+                        setTimeout(function(){
+                            document.getElementById('promocodeActivateUsed').classList.remove('showed');
+                        }, 2000)
+                    }
+                }
+            });
+        }else{
+            console.log('promocode is null')
+        }
+    });
     </script>
     <script>
     //Закрытие попапов

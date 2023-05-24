@@ -346,6 +346,8 @@
                         item.classList.add('nonActive')
                     }
                 });
+
+
                 editProfileP.forEach(item=>item.classList.remove('nonActive'));
                 //Скрипт
                 editProfile[i].classList.add('nonActive');
@@ -354,6 +356,7 @@
                 editProfileInput[i].classList.remove('nonActive');
                 editProfileInput[i].value = String(editProfileP[i].innerText).trim();
                 editProfileP[i].classList.add('nonActive');
+
                 let lastText = String(editProfileP[i].innerText).trim();
                 //Да
                 editProfileConfirm[i].querySelector('button.renameProfileYes').onclick = () =>{
