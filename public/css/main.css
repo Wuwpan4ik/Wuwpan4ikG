@@ -1596,6 +1596,7 @@ div.switchMenu {
   gap: 0.521vw;
   display: flex;
   align-items: center;
+  padding-right: 2.552vw;
 }
 .folderBtn .buttonOpen .hoverItems.showed .hoverItems-folder {
   opacity: 1;
