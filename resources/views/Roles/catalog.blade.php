@@ -169,22 +169,6 @@
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
     <script src="{{asset('js/script.js')}}"></script>
     <script>
-        $(".changeLang").click(function(){
-            fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
-            window.location.reload()
-        });
-        $(".switchTheme").click(function(){
-            $.each($(".switchTheme"), function (num, item) {
-                item.classList.remove('active')
-            })
-            $(this).addClass('active')
-
-            fetch("{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme"))
-
-            $('body').toggleClass('dark light');
-        });
-    </script>
-    <script>
         this.pay = function () {
             var widget = new cp.CloudPayments();
             widget.pay('auth', // или 'charge'

@@ -498,6 +498,22 @@ for(let i =0; i < renameChats.length;i++){
     }
 }
 
+$(".changeLang").click(function(){
+    fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
+    window.location.reload()
+});
+
+$(".switchTheme").click(function(){
+    $.each($(".switchTheme"), function (num, item) {
+        item.classList.remove('active')
+    })
+    $(this).addClass('active')
+
+    fetch("{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme"))
+
+    // $('body').toggleClass('dark light');
+});
+
 
 //Удаление чата
 function deleteChat(item){
@@ -787,23 +803,6 @@ function openPopUpZayavka2(item){
 //Смена языка
 document.getElementById('switchLang').onclick = () =>{
     document.getElementById('switchLang').parentElement.classList.toggle('active');
-}
-
-// Экономный режим
-function onEconom(elem) {
-    document.querySelectorAll('.econom-btn').forEach(item => {
-        item.classList.remove('active');
-    })
-    elem.classList.add('active');
-    fetch(`/settings/changeEconom?econom=1`)
-}
-
-function offEconom(elem) {
-    document.querySelectorAll('.econom-btn').forEach(item => {
-        item.classList.remove('active');
-    })
-    elem.classList.add('active');
-    fetch(`/settings/changeEconom?econom=0`)
 }
 
 //Кнопка скрытия меню

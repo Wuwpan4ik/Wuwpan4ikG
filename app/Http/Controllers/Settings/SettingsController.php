@@ -39,13 +39,6 @@ class SettingsController extends Controller
         return redirect()->back();
     }
 
-    public function changeEconom(Request $request)
-    {
-        session()->put('econom', $request->econom);
-
-        return redirect()->back();
-    }
-
     public function store(StoreRequest $request)
     {
         $validated  = $request->except(['_token']);

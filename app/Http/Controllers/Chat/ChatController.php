@@ -57,7 +57,15 @@ class ChatController extends Controller
      */
     public function updateSettings(Request $request, Chat $chat)
     {
-        $chat->update($request->except(['_token', '_method']));
+        $data = $request->except(['_token', '_method']);
+        $chat->update($data);
+        return true;
+    }
+
+    public function changeEconom(Request $request, Chat $chat)
+    {
+        $data = $request->except(['_token', '_method']);
+        $chat->update($data);
         return true;
     }
 

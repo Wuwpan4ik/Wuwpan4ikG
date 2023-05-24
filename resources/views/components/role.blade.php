@@ -103,7 +103,7 @@
                         {{__('modelSettingsLabelEco')}}
                     </div>
                     <div class="popup-setting-btns">
-                        <input type="range" min="1" max="6" step="1" value="{{ session()->get('econom') }}" class="econom-rezhim slider-progress" id="eco-input" name="eco-input">
+                        <input type="range" min="1" max="6" step="1" value="{{ $chat->econom }}" class="econom-rezhim slider-progress" id="eco-input" name="eco-input">
                         <div class="eco-stats">
                         <p>
                             {{__('ecoRezh')}}
@@ -250,7 +250,8 @@
         document.querySelector('#eco-input').addEventListener('mouseup', function () {
             let input = document.querySelector('#eco-input')
             let eco_number = input.value;
-            fetch(`/settings/changeEconom?econom=${eco_number}`)
+            console.log(`/chat/changeEconom/{{ $chat->id }}?econom=${eco_number}`)
+            fetch(`/chat/changeEconom/{{ $chat->id }}?econom=${eco_number}`)
         })
     }
 

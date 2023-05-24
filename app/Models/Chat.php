@@ -27,7 +27,8 @@ class Chat extends Model
         'temperature',
         'frequency',
         'presence',
-        'top_p'
+        'top_p',
+        'econom'
     ];
 
     protected $casts = [
