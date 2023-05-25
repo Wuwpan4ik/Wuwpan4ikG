@@ -30,7 +30,6 @@ class OpenAiController extends Controller
     {
         $id = $chat->id;
         $prompt_tokens = 0;
-        $count_message = env('count_message');
         $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($chat->econom + 1)->get()->sortBy('id');
         foreach ($message as $mess) {
             $prompt_tokens += count($this->gpt_encode($mess->message));
@@ -52,8 +51,8 @@ class OpenAiController extends Controller
             $history[] = array("role" => "system", "content" => $chat->role);
             $prompt_tokens += count($this->gpt_encode($chat->role));
         }
-        $count_message = env('count_message');
-        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take($chat->econom + 1)->get()->sortBy('id');
+        Debugbar::log($chat);
+        $message =  Message::where('chat_id', $id)->orderByDesc('id')->take(3)->get()->sortBy('id');
 
 
         foreach ($message as $mess) {

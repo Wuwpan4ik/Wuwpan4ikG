@@ -136,10 +136,6 @@
 @include('components.popups.popup-pay')
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script>
-    $(".changeLang").click(function(){
-        fetch("{{ route('changeLanguage') }}" + "?lang="+ $(this).data("lang"))
-        window.location.reload()
-    });
 
     $(".switchTheme").click(function(){
         $.each($(".switchTheme"), function (num, item) {

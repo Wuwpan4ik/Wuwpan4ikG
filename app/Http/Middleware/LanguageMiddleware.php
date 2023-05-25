@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -16,7 +17,7 @@ class LanguageMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session()->has('locale')) {
+        if (session()->get('locale') && App::getLocale() != session()->get('locale')) {
             App::setLocale(session()->get('locale'));
         } else {
             $locale = $request->getPreferredLanguage([

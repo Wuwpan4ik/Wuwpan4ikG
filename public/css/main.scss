@@ -138,7 +138,7 @@ pre{
     display:none;
 }
 
-//Login 
+//Login
 .loginForm{
     width:100%;
     height:100%;
@@ -558,11 +558,6 @@ body.dark{
 }
 
 body.light{
-    .msg-text{
-        a{
-            color:black;
-        }
-    }
     background:white;
     #mobileHeader nav ul li button.active{
         background: #13B8A6;
@@ -759,7 +754,7 @@ body.light{
                 }
             }
         }
-       } 
+       }
     }
     #popup-develop{
         p{
@@ -804,7 +799,7 @@ body.light{
                 color:black !important;
             }
             input, textarea{
-                background: #E3E3E3 !important; 
+                background: #E3E3E3 !important;
                 color:black !important;
                 border: 1px solid #D1D1D1 !important;
                 &::placeholder{
@@ -919,8 +914,7 @@ body.light{
         }
     }
     .welcome-chat{
-        background-image:url('../assets/background.png');
-        background-size: cover;
+        background-image:url('../assets/background.png')
     }
     header#mainHeader{
         background:#FFFFFF;
@@ -1474,7 +1468,7 @@ body.light{
             }
         }
     }
-    &:hover{    
+    &:hover{
         .firstCol{
             color: #A2A2A3;
         }
@@ -1723,17 +1717,6 @@ div.switchMenu{
     }
 }
 
-
-#popup-library{
-    .popupContent{
-        height: auto;
-        padding:3.646vw 0vw;
-        .popup-inner{
-            height: auto;
-        }
-    }
-}
-
 #showFeatures{
     display: flex;
     padding:0.833vw 1.042vw;
@@ -1777,12 +1760,10 @@ div.switchMenu{
 }
 .folderBtn{
     position: relative;
-    .firstRow{
-        pointer-events: none;
-    }
     .hoverItems{
         display:flex;
-        position: relative;
+        position: absolute;
+        right:2.344vw;
         gap:0.521vw;
         align-items: center;
         .hoverItems-folder{
@@ -1804,15 +1785,6 @@ div.switchMenu{
             }
         }
     }
-    .secondRow{
-        display: flex;
-        justify-content: flex-end;
-        gap:0.26vw;
-        .dropdownButton{
-            opacity: 0;
-            display: none;
-        }
-    }
     .dropdownButton{
         pointer-events: none;
     }
@@ -1823,11 +1795,6 @@ div.switchMenu{
         background: #1D2129;
         .dropdownButton{
             transform: rotate(0deg);
-        }
-        .firstRow{
-            input{
-                pointer-events: all;
-            }
         }
         /*Фикс по мобилкам
         .hoverItems.folder{
@@ -1844,21 +1811,20 @@ div.switchMenu{
 .folderBtn .buttonOpen{
     font-size: 0.729vw;
     display:flex;
+    justify-content: space-between;
     height: 2.604vw;
     background:none;
     cursor: pointer;
     border-radius: 0.521vw;
     color:white;
-    padding:0.833vw 2.3vw 0.833vw 1.042vw;
+    padding:0.833vw 1.042vw;
     align-items: center;
     border:none;
     .firstRow{
         gap:0.521vw;
         display: flex;
         align-items: center;
-        p{
-            pointer-events: none;
-        }
+        padding-right: 2.552vw;
     }
     .hoverItems.showed{
         .hoverItems-folder{
@@ -1872,8 +1838,6 @@ div.switchMenu{
         }
     }
     .dropdownButton{
-        position: absolute;
-        right: 1.042vw;
         transform: rotate(-90deg);
     }
     &:hover{
@@ -1900,10 +1864,6 @@ div.switchMenu{
         display: flex;
         gap:0.521vw;
         align-items: center;
-        pointer-events: none;
-        input{
-            pointer-events: all;
-        }
     }
     input{
         width: 100%;
@@ -1989,7 +1949,6 @@ button.promptBtn{
     height: 100%;
     background:url("../assets/background.jpg");
     background-repeat: no-repeat;
-    background-size: cover !important;
     background-size:100%;
     display: flex;
     flex-direction: column;
@@ -2018,7 +1977,7 @@ button.promptBtn{
 }
 
 .welcome-chat{
-    background-size:cover !important;
+    background-size:cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2864,10 +2823,14 @@ button.promptBtn{
     padding-top: 0px !important;
     &.pop-catalog{
         .popupContent{
-            height:auto;
-            padding:3.646vw 0px;
             .popup-inner{
+                max-height: 70%;
                 .prompts-category{
+                    overflow-y: auto;
+                    grid-template-columns: repeat(3, auto);
+                    grid-gap:1.042vw;
+                    overflow-x: hidden;
+                    max-height: 70%;
                     h2{
                         font-size: 1.042vw;
                         line-height: 1.25vw;
@@ -2916,6 +2879,12 @@ button.promptBtn{
                     color:white;
                     font-size:0.781vw;
                 }
+            }
+            .library-items-container{
+                overflow-y: auto;
+                overflow-x:hidden;
+                max-height: 50vh;
+                padding:0px 2.083vw;
             }
             .prompts-in-category{
                 margin-top: 1.563vw;
@@ -3256,18 +3225,18 @@ input[type=range].econom-rezhim {
     width:100%;
     -webkit-appearance: none;
   }
-  
+
   /*progress support*/
   input[type=range].econom-rezhim.slider-progress {
     --range: calc(var(--max) - var(--min));
     --ratio: calc((var(--value) - var(--min)) / var(--range));
     --sx: calc(0.5 * 16px + var(--ratio) * (100% - 16px));
   }
-  
+
   input[type=range].econom-rezhim:focus {
     outline: none;
   }
-  
+
   /*webkit*/
   input[type=range].econom-rezhim::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -3279,7 +3248,7 @@ input[type=range].econom-rezhim {
     box-shadow: 0 0 2px black;
     margin-top: calc(16px * 0.5 - max(16px * 0.5,4px));
   }
-  
+
   input[type=range].econom-rezhim::-webkit-slider-runnable-track {
     height: 16px;
     border: none;
@@ -3287,11 +3256,11 @@ input[type=range].econom-rezhim {
     background: #111419;
     box-shadow: none;
   }
-  
+
   input[type=range].econom-rezhim.slider-progress::-webkit-slider-runnable-track {
     background: linear-gradient(#1D2129,#1D2129) 0/var(--sx) 100% no-repeat, #111419;
   }
-  
+
   /*mozilla*/
   input[type=range].econom-rezhim::-moz-range-thumb {
     width: max(calc(16px - 4px - 4px),0px);
@@ -3301,7 +3270,7 @@ input[type=range].econom-rezhim {
     border: 4px solid #FFFFFF;
     box-shadow: 0 0 2px black;
   }
-  
+
   input[type=range].econom-rezhim::-moz-range-track {
     height: 16px;
     border: none;
@@ -3309,22 +3278,22 @@ input[type=range].econom-rezhim {
     background: #111419;
     box-shadow: none;
   }
-  
+
   input[type=range].econom-rezhim.slider-progress::-moz-range-track {
     background: linear-gradient(#1D2129,#1D2129) 0/var(--sx) 100% no-repeat, #111419;
   }
-  
+
   /*ms*/
   input[type=range].econom-rezhim::-ms-fill-upper {
     background: transparent;
     border-color: transparent;
   }
-  
+
   input[type=range].econom-rezhim::-ms-fill-lower {
     background: transparent;
     border-color: transparent;
   }
-  
+
   input[type=range].econom-rezhim::-ms-thumb {
     width: 16px;
     height: 16px;
@@ -3335,7 +3304,7 @@ input[type=range].econom-rezhim {
     margin-top: 0;
     box-sizing: border-box;
   }
-  
+
   input[type=range].econom-rezhim::-ms-track {
     height: 16px;
     border-radius: 8px;
@@ -3344,7 +3313,7 @@ input[type=range].econom-rezhim {
     box-shadow: none;
     box-sizing: border-box;
   }
-  
+
   input[type=range].econom-rezhim.slider-progress::-ms-fill-lower {
     height: 16px;
     border-radius: 8px 0 0 8px;
@@ -3352,7 +3321,7 @@ input[type=range].econom-rezhim {
     background: #1D2129;
     border: none;
     border-right-width: 0;
-  }  
+  }
 
 //Buy
 input[type=range].styled-slider {
@@ -3427,7 +3396,7 @@ input[type=range].styled-slider {
 
   input[type=range].styled-slider:active::-moz-range-track {
     border-color: #c1c1c1;
-    
+
   }
 
   input[type=range].styled-slider.slider-progress::-moz-range-track {
@@ -3603,8 +3572,7 @@ input[type=range].styled-slider {
 //Library
 
 .tablinks-container{
-    max-height: 24.958vw;
-    position: relative;
+    max-height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
     .tablinks-library{
@@ -3774,17 +3742,18 @@ color:#df3079
 .hljs-title {
 color:#f22c3d
 }
-
 pre{
-    padding: 0px;
+    padding: 0.521vw;
 }
-
+pre.after-code{
+    padding:0px;
+}
 pre code.hljs{
-    color:white;
-    font-family: inherit !important;
-    overflow-x: auto;
-    padding: 1em !important;
-    display: block;
+color:white;
+font-family: inherit !important;
+overflow-x: auto;
+padding: 1em !important;
+display: block;
 }
 
 .msg.right-msg{
@@ -4146,7 +4115,7 @@ table{
     background: #13B8A6;
     border: 0.998px solid #b2b2b2;
     }
-    
+
     .popup-setting-btns{
         .eco-stats{
             margin:10px 0px !important;
@@ -4266,7 +4235,7 @@ table{
         margin-top:0px;
         .folderBtn {
            .buttonOpen{
-                height: 50px;font-size: 15px;border-radius: 10px;padding:16px 45px 16px 20px;margin-bottom: 15px;
+                height: 50px;font-size: 15px;border-radius: 10px;padding:16px 20px;margin-bottom: 15px;
                 .firstRow{
                     gap:10px;
                     width: 100%;
@@ -4279,6 +4248,7 @@ table{
                     width: 100%;
                 }
                 .hoverItems{
+                    right:50px;
                     gap:10px;
                     .hoverItems-folder{
                         gap:5px;
@@ -4978,29 +4948,9 @@ table{
         }
     }
 
-    pre{
-        border-radius: 5.76px;
-        margin: 5px 0vw;
-    }
-
-    .block-info{
-        padding: 4.992px 9.6px;
-        border-top-right-radius: 5.76px;
-        border-top-left-radius: 5.76px;
-        display: flex;
-        height: 24px;
-        button{
-            width: 16px;
-            height: 16px;
-        }
-    }
-    
     //Попапы
 
     #popup-library, #popup-catalog{
-        .popupContent{
-            padding:120px 40px 70px 40px;
-        }
         .popup-inner{
             width: 100%;
             padding:40px;
@@ -5011,7 +4961,7 @@ table{
                 line-height: 30px;
             }
             .prompts-category{
-                grid-gap:10px;  
+                grid-gap:10px;
             }
             button.tablink-library{
                 height: 45px;
@@ -5273,24 +5223,10 @@ table{
     }
     //Попапы
 
-    .folderBtn .buttonOpen{
-        display: flex;
-        justify-content: space-between;
-        .dropdownButton{
-            right:20px;
-        }
-    }
-
-    #popup-catalog{
-        .prompts-in-category {
-            margin-top: 0px !important;
-          }
-    }
-
     .popup-library{
         .popupContent{
             .popup-inner{
-                padding:40px  0px !important;
+                padding:40px 0px !important;
                 .prompts-category, .library-items-container{
                     padding:0px 40px;
                 }
@@ -5361,7 +5297,7 @@ table{
             color:#626262;
         }
     }
-    
+
     #menu-mob{
         .popupContent{
             padding:0px !important;
@@ -5527,3 +5463,4 @@ table{
         }
     }
 }
+

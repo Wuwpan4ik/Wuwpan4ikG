@@ -398,7 +398,7 @@ body {
   padding: 0.417vw 0.521vw;
   display: none;
 }
-.switchLangContainer .dropdownLang button {
+.switchLangContainer .dropdownLang a {
   background: none !important;
   padding: 0.313vw;
   font-size: 0.625vw;
@@ -407,10 +407,10 @@ body {
   border-radius: 0.521vw;
   margin-bottom: 0.417vw;
 }
-.switchLangContainer .dropdownLang button.active {
+.switchLangContainer .dropdownLang a.active {
   background: #484D59 !important;
 }
-.switchLangContainer .dropdownLang button:hover {
+.switchLangContainer .dropdownLang a:hover {
   background: #484D59 !important;
 }
 .switchLangContainer.active .dropdownLang {
@@ -575,7 +575,7 @@ body.light #sidebarSwitchRight {
 body.light .switchLangContainer.active .dropdownLang {
   background: #DFDFDF !important;
 }
-body.light .switchLangContainer.active .dropdownLang button {
+body.light .switchLangContainer.active .dropdownLang a {
   color: #626262 !important;
   border: 0.052vw solid #D1D1D1 !important;
   background: none;

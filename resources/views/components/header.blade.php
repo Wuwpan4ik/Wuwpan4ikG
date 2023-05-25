@@ -59,15 +59,15 @@
                         </svg>
                     </button>
                     <div class="dropdownLang">
-                        <button data-lang="en" class="changeLang @if(App::getLocale() == 'en') active @endif" type="button">
+                        <a href="{{ route('changeLanguage', ['lang' => 'en']) }}" class="changeLang @if(App::getLocale() == 'en') active @endif">
                             EN
-                        </button>
-                        <button data-lang="ru" class="changeLang @if(App::getLocale() == 'ru') active @endif" type="button">
+                        </a>
+                        <a href="{{ route('changeLanguage', ['lang' => 'ru']) }}" class="changeLang @if(App::getLocale() == 'ru') active @endif">
                             RU
-                        </button>
-                        <button data-lang="ua" class="changeLang @if(App::getLocale() == 'ua') active @endif" type="button">
+                        </a>
+                        <a href="{{ route('changeLanguage', ['lang' => 'ua']) }}" class="changeLang @if(App::getLocale() == 'ua') active @endif">
                             UA
-                        </button>
+                        </a>
                     </div>
                 </div>
             </li>
