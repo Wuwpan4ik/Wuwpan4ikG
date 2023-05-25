@@ -68,7 +68,7 @@ Route::middleware(['auth', 'code', 'lang'])->group(function() {
     Route::get("/theme/get", function() { return view("components.get_theme"); });
 
     Route::post("/store_test", [\App\Http\Controllers\Payer\PayerController::class, 'store_test'])->name('store_test');
-
+    Route::post("/telegram", [\App\Http\Controllers\Telegram\TelegramBot::class, 'store'])->name('telegram');
 });
     Route::get("/settings/langChange", [\App\Http\Controllers\Settings\SettingsController::class, "changeLanguage"])->name("changeLanguage");
 

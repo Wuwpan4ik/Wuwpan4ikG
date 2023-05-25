@@ -22,18 +22,27 @@ class PromocodeController extends Controller
     {
         $data = $request->except('_method');
         $code = $data['promocode'];
-        if (count(UserPromocodes::where('user_id', Auth::id())->where('promocode', $code)->get()) === 0) {
-            $promocode = Promocode::where('code', $code)->first();
+        $promocode = Promocode::where('code', $code)->first();
+        if (count(UserPromocodes::where('user_id', Auth::id())->where('promocode', $code)->where('is_partner', 0)->get()) === 0 || (count(UserPromocodes::where('user_id', Auth::id())->where('is_partner', 1)->get()) === 0 )) {
             if (is_null($promocode)) {
                 return response()->json(['error' => '1'], 404);
             } else {
+                $is_partner = 0;
+                if (isset($promocode->partner_id)) {
+                    $is_partner = 1;
+                }
+
                 $promocode->update([
                     'count' => $promocode->count - 1
+
                 ]);
-                UserPromocodes::create([
+                $data = [
                     'user_id' => Auth::id(),
                     'promocode' => $code,
-                ]);
+                    'is_partner' => $is_partner
+                ];
+                Debugbar::log($data);
+                UserPromocodes::create();
                 Auth::user()->tokens += $promocode->amount;
                 Auth::user()->save();
             }

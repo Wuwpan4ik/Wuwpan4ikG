@@ -3,7 +3,8 @@
     <div class="popupContent">
             <div class="popup-inner">
                 <div class="form-popup">
-                    <form action="" method="post">
+                    <form action="{{ route('telegram') }}" method="post">
+                        @csrf
                         <div class="form-inner">
                             <div class="form-image">
                                 <img src="../assets/asset-zapic.jpg" alt="Запись">
@@ -11,28 +12,28 @@
                             <div class="form-text">
                                 <h2>{{__('popupZapic2Heading')}}</h2>
                                 <div class="form-input">
-                                    <label for="user-email">
+                                    <label for="email">
                                     {{__('popupZapicEmail')}}*
                                     </label>
-                                    <input type="text" name="user-email" placeholder="example@gmail.com" required>
+                                    <input type="text" name="email" placeholder="example@gmail.com" required>
                                 </div>
                                 <div class="form-input">
-                                    <label for="user-tg">
+                                    <label for="telegram">
                                     {{__('popupZapicTg')}}*
                                     </label>
-                                    <input type="text" name="user-tg" placeholder="@telegram" required>
+                                    <input type="text" name="telegram" placeholder="@telegram" required>
                                 </div>
                                 <div class="form-input">
-                                    <label for="user-project">
+                                    <label for="prof">
                                         {{__('tellAboutPrjct')}}
                                     </label>
-                                    <textarea name="user-project" placeholder="{{__('tellAboutPrjctPlaceholder')}}" required></textarea>
+                                    <textarea name="prof" placeholder="{{__('tellAboutPrjctPlaceholder')}}" required></textarea>
                                 </div>
                                 <div class="form-input">
-                                    <label for="user-ask">
+                                    <label for="question">
                                         {{__('WhyFor')}}
                                     </label>
-                                    <textarea name="user-ask" placeholder="{{__('whyForPlaceholder')}}" required></textarea>
+                                    <textarea name="question" placeholder="{{__('whyForPlaceholder')}}" required></textarea>
                                 </div>
                                 <div class="send-mess">
                                     <button type="submit">

@@ -13,6 +13,7 @@ class UserPromocodes extends Model
     protected $fillable = [
         'user_id',
         'promocode',
-
+        'partner_id',
+        'code'
     ];
 }

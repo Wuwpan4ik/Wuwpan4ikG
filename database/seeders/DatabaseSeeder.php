@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             LanguageSeeder::class,
             PromptsSeeder::class,
-            TestPromocodeSeeder::class
+            PartnerSeeder::class,
+            TestPromocodeSeeder::class,
         ]);
     }
 }

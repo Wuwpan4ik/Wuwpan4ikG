@@ -3,7 +3,7 @@
         <div class="popupContent">
             <div class="popup-inner">
                 <div class="form-popup">
-                    <form action="{{ route('store_test') }}" method="post">
+                    <form action="{{ route('telegram') }}" method="post">
                         @csrf
                         <div class="form-inner">
                             <div class="form-image">
@@ -12,28 +12,28 @@
                             <div class="form-text">
                                 <h2>{{__('popupZapicHeading')}}</h2>
                                 <div class="form-input">
-                                    <label for="user-email">
+                                    <label for="email">
                                         {{__('popupZapicEmail')}}*
                                     </label>
-                                    <input type="text" name="user-email" placeholder="example@gmail.com" required>
+                                    <input type="text" name="email" placeholder="example@gmail.com" required>
                                 </div>
                                 <div class="form-input">
-                                    <label for="user-tg">
+                                    <label for="telegram">
                                         {{__('popupZapicTg')}}*
                                     </label>
-                                    <input type="text" name="user-tg" placeholder="@telegram" required>
+                                    <input type="text" name="telegram" placeholder="@telegram" required>
                                 </div>
                                 <div class="form-input">
-                                    <label for="user-prof">
+                                    <label for="prof">
                                         {{__('popupZapicProf')}}
                                     </label>
-                                    <input type="text" name="user-prof" placeholder="{{__('popupZapucProfPlaceholder')}}" required>
+                                    <input type="text" name="prof" placeholder="{{__('popupZapucProfPlaceholder')}}" required>
                                 </div>
                                 <div class="form-input">
-                                    <label for="user-ask">
+                                    <label for="question">
                                         {{__('WhyFor')}}
                                     </label>
-                                    <textarea name="user-ask" placeholder="{{__('whyForPlaceholder')}}" required> </textarea>
+                                    <textarea name="question" placeholder="{{__('whyForPlaceholder')}}" required> </textarea>
                                 </div>
                                 <div class="send-mess">
                                     <button type="submit">
