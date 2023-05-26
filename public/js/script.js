@@ -535,6 +535,25 @@ function initDelete() {
 }
 initDelete()
 
+$("#telegram").on('submit', function(e) {
+    let form = $(this)
+    e.preventDefault();
+    $.ajax({
+        type: "POST",    // Метод отправки данных (POST, GET и т.д.)
+        url: form.attr('action'),     // URL-адрес, куда отправляются данные формы
+        data: form.serialize(),      // Сериализуем данные формы в строку
+        success: function(response) { // Callback-функция, которая вызывается при успешной отправке формы
+            console.log(response);      // Выводим в консоль ответ сервера
+            // Здесь можно выполнить дополнительные действия после успешной отправки формы
+        },
+        error: function(xhr, ajaxOptions, thrownError) { // Callback-функция, которая вызывается при ошибке отправки формы
+            console.log(xhr.status);    // Выводим в консоль код ошибки
+            console.log(thrownError);   // Выводим в консоль сообщение об ошибке
+            // Здесь можно выполнить дополнительные действия при ошибке отправки формы
+        }
+    });
+    $('#popup-zapic').removeClass('active');
+})
 
 //Копирование подсказок
 let copyPromptBtns = document.querySelectorAll('button.promptBtn');
