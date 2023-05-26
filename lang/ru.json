@@ -138,9 +138,8 @@
     "loaderSettingsDesc": "Ваши настройки успешно применились.",
     "loaderResponseNoTokensH": "На вашем счету закончились токены",
     "loaderResponseNoTokens": "Пополните баланс",
-    "WebDesign": "Веб-дизайн",
-    "ecoRezh": "Эконом",
     "tranzhRezh": "Транжира",
     "enterCode": "Введите код подтверждения",
-    "noUrl": "Здесь пока пусто"
+    "noUrl": "Здесь пока пусто",
+    "ecoRezh": "Эконом"
 }

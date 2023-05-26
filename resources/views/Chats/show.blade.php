@@ -59,7 +59,7 @@
                         @foreach($prompts_category as $prompt)
                             <button class="tablink-library" onclick="promptsBlock({{ $prompt->id }})" style="background-color: {{ $prompt->main_background_color }}; color: {{ $prompt->main_color }}">
                                 {!! $prompt->main_image !!}
-                                {{ $prompt->title }}
+                                @if(App::getLocale() == 'en') @if($prompt->title_en) {{ $prompt->title_en }}@endif @elseif(App::getLocale() == 'ru') @if($prompt->title) {{ $prompt->title }}@endif  @endif
                             </button>
                         @endforeach
                     </div>
