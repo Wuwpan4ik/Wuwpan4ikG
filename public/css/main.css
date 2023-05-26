@@ -507,6 +507,15 @@ body.dark h2.aboutRs {
 body.light {
   background: white;
 }
+body.light input[type=range].econom-rezhim.slider-progress::-webkit-slider-runnable-track {
+  background: linear-gradient(#D3D3D3, #D3D3D3) 0/var(--sx) 100% no-repeat, #DFDFDF;
+}
+body.light input[type=range].econom-rezhim.slider-progress::-moz-range-track {
+  background: linear-gradient(#D3D3D3, #D3D3D3) 0/var(--sx) 100% no-repeat, #DFDFDF;
+}
+body.light .chatSettings .popup-setting .popup-setting-btns .eco-stats p {
+  color: #A2A2A3 !important;
+}
 body.light #popup-midj p {
   color: rgba(0, 0, 0, 0.6) !important;
 }
@@ -2983,6 +2992,18 @@ input[type=range].econom-rezhim::-webkit-slider-runnable-track {
   border-radius: 8px;
   background: #111419;
   box-shadow: none;
+}
+
+input[type=range].econom-rezhim::-webkit-slider-runnable-track {
+  height: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #111419;
+  box-shadow: none;
+}
+
+input[type=range].econom-rezhim.slider-progress::-webkit-slider-runnable-track {
+  background: linear-gradient(#1D2129, #1D2129) 0/var(--sx) 100% no-repeat, #111419;
 }
 
 input[type=range].econom-rezhim.slider-progress::-webkit-slider-runnable-track {

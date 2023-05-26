@@ -29,7 +29,6 @@ class TelegramBot extends Controller
      */
     public function store(Request $request)
     {
-        Debugbar::log($request);
         $email = $request->email;
         $telegram = $request->telegram;
         $category = $request->zayavka;

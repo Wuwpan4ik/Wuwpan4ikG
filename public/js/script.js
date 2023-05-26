@@ -15,6 +15,9 @@ const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
+const navigator = window.navigator;
+
+console.log(navigator.oscpu);
 
 let userName = 'User';
 let userImg = '../assets/user.jpg';
