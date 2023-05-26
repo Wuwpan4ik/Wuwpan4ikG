@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <title>Meta GPT</title>
+    <title>
+        Meta GPT - {{__('Chat')}}
+    </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">

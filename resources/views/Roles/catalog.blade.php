@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meta GPT - {{__('catalogTitle')}}</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
 </head>
 <body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
     <style>
