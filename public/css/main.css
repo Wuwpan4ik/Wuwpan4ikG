@@ -399,19 +399,7 @@ body {
   display: none;
 }
 .switchLangContainer .dropdownLang a {
-  background: none !important;
-  padding: 0.313vw;
-  font-size: 0.625vw;
-  color: #FFFFFF;
-  line-height: 0.781vw;
-  border-radius: 0.521vw;
   margin-bottom: 0.417vw;
-}
-.switchLangContainer .dropdownLang a.active {
-  background: #484D59 !important;
-}
-.switchLangContainer .dropdownLang a:hover {
-  background: #484D59 !important;
 }
 .switchLangContainer.active .dropdownLang {
   display: flex;
@@ -519,8 +507,8 @@ body.dark h2.aboutRs {
 body.light {
   background: white;
 }
-body.light .msg-text a {
-  color: black;
+body.light #popup-midj p {
+  color: rgba(0, 0, 0, 0.6) !important;
 }
 body.light #mobileHeader nav ul li button.active {
   background: #13B8A6;
@@ -575,7 +563,7 @@ body.light #sidebarSwitchRight {
 body.light .switchLangContainer.active .dropdownLang {
   background: #DFDFDF !important;
 }
-body.light .switchLangContainer.active .dropdownLang a {
+body.light .switchLangContainer.active .dropdownLang button {
   color: #626262 !important;
   border: 0.052vw solid #D1D1D1 !important;
   background: none;
@@ -675,27 +663,27 @@ body.light #about-popup h2 {
 body.light #about-popup svg path {
   fill: white !important;
 }
-body.light #popup-zapic2 h2, body.light #popup-zapic h2 {
+body.light #popup-zapic2 h2, body.light #popup-zapic h2, body.light #popup-zapic3 h2 {
   color: black !important;
 }
-body.light #popup-zapic2 .popup-inner, body.light #popup-zapic .popup-inner {
+body.light #popup-zapic2 .popup-inner, body.light #popup-zapic .popup-inner, body.light #popup-zapic3 .popup-inner {
   background: unset !important;
 }
-body.light #popup-zapic2 .form-text, body.light #popup-zapic .form-text {
+body.light #popup-zapic2 .form-text, body.light #popup-zapic .form-text, body.light #popup-zapic3 .form-text {
   background: white !important;
 }
-body.light #popup-zapic2 .form-input label, body.light #popup-zapic .form-input label {
+body.light #popup-zapic2 .form-input label, body.light #popup-zapic .form-input label, body.light #popup-zapic3 .form-input label {
   color: black !important;
 }
-body.light #popup-zapic2 .form-input input, body.light #popup-zapic2 .form-input textarea, body.light #popup-zapic .form-input input, body.light #popup-zapic .form-input textarea {
+body.light #popup-zapic2 .form-input input, body.light #popup-zapic2 .form-input textarea, body.light #popup-zapic .form-input input, body.light #popup-zapic .form-input textarea, body.light #popup-zapic3 .form-input input, body.light #popup-zapic3 .form-input textarea {
   background: #E3E3E3 !important;
   color: black !important;
   border: 1px solid #D1D1D1 !important;
 }
-body.light #popup-zapic2 .form-input input::-moz-placeholder, body.light #popup-zapic2 .form-input textarea::-moz-placeholder, body.light #popup-zapic .form-input input::-moz-placeholder, body.light #popup-zapic .form-input textarea::-moz-placeholder {
+body.light #popup-zapic2 .form-input input::-moz-placeholder, body.light #popup-zapic2 .form-input textarea::-moz-placeholder, body.light #popup-zapic .form-input input::-moz-placeholder, body.light #popup-zapic .form-input textarea::-moz-placeholder, body.light #popup-zapic3 .form-input input::-moz-placeholder, body.light #popup-zapic3 .form-input textarea::-moz-placeholder {
   color: rgba(0, 0, 0, 0.7) !important;
 }
-body.light #popup-zapic2 .form-input input::placeholder, body.light #popup-zapic2 .form-input textarea::placeholder, body.light #popup-zapic .form-input input::placeholder, body.light #popup-zapic .form-input textarea::placeholder {
+body.light #popup-zapic2 .form-input input::placeholder, body.light #popup-zapic2 .form-input textarea::placeholder, body.light #popup-zapic .form-input input::placeholder, body.light #popup-zapic .form-input textarea::placeholder, body.light #popup-zapic3 .form-input input::placeholder, body.light #popup-zapic3 .form-input textarea::placeholder {
   color: rgba(0, 0, 0, 0.7) !important;
 }
 body.light .closeBtnBuy button svg path {
@@ -783,7 +771,6 @@ body.light #showFeatures.active {
 }
 body.light .welcome-chat {
   background-image: url("../assets/background.png");
-  background-size: cover;
 }
 body.light header#mainHeader {
   background: #FFFFFF;
@@ -1077,21 +1064,10 @@ body.light .msg-options button svg path {
   font-weight: 400;
   display: flex;
 }
-#mainHeader .navbar a#chat-with-base {
+#mainHeader .navbar a#chat-with-base, #mainHeader .navbar #chat-with-mdjrny {
   display: flex;
   gap: 0.521vw;
   font-size: 0.781vw;
-}
-#mainHeader .navbar a#chat-with-base .soon-plate {
-  background: #EF4444;
-  border-radius: 10px;
-  padding: 0.104vw 0.313vw;
-  color: white;
-  font-size: 0.521vw;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 #mainHeader .navbar button {
   padding: 0.521vw;
@@ -1178,6 +1154,18 @@ body.light .msg-options button svg path {
 }
 #mobileHeader nav ul li button#tokensLeft.active {
   background: #13B8A6;
+}
+
+.soon-plate {
+  background: #EF4444;
+  border-radius: 10px;
+  padding: 0.104vw 0.313vw;
+  color: white;
+  font-size: 0.521vw;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebarMain {
@@ -1493,14 +1481,6 @@ div.switchMenu {
   font-weight: 400;
 }
 
-#popup-library .popupContent {
-  height: auto;
-  padding: 3.646vw 0vw;
-}
-#popup-library .popupContent .popup-inner {
-  height: auto;
-}
-
 #showFeatures {
   display: flex;
   padding: 0.833vw 1.042vw;
@@ -1543,9 +1523,6 @@ div.switchMenu {
 .folderBtn {
   position: relative;
 }
-.folderBtn .firstRow {
-  pointer-events: none;
-}
 .folderBtn .hoverItems {
   display: flex;
   position: relative;
@@ -1572,17 +1549,9 @@ div.switchMenu {
   width: 0.521vw !important;
   height: 0.521vw !important;
 }
-.folderBtn .secondRow {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.26vw;
-}
-.folderBtn .secondRow .dropdownButton {
-  opacity: 0;
-  display: none;
-}
 .folderBtn .dropdownButton {
   pointer-events: none;
+  position: absolute;
 }
 
 .folderBtn.opened .buttonOpen {
@@ -1598,9 +1567,6 @@ div.switchMenu {
 .folderBtn.opened .buttonOpen .dropdownButton {
   transform: rotate(0deg);
 }
-.folderBtn.opened .buttonOpen .firstRow input {
-  pointer-events: all;
-}
 .folderBtn.opened .folderItems {
   display: flex;
 }
@@ -1608,6 +1574,7 @@ div.switchMenu {
 .folderBtn .buttonOpen {
   font-size: 0.729vw;
   display: flex;
+  justify-content: space-between;
   height: 2.604vw;
   background: none;
   cursor: pointer;
@@ -1621,9 +1588,10 @@ div.switchMenu {
   gap: 0.521vw;
   display: flex;
   align-items: center;
-}
-.folderBtn .buttonOpen .firstRow p {
   pointer-events: none;
+}
+.folderBtn .buttonOpen .firstRow input {
+  pointer-events: all;
 }
 .folderBtn .buttonOpen .hoverItems.showed .hoverItems-folder {
   opacity: 1;
@@ -1632,9 +1600,9 @@ div.switchMenu {
   transform: rotate(-180deg);
 }
 .folderBtn .buttonOpen .dropdownButton {
+  transform: rotate(-90deg);
   position: absolute;
   right: 1.042vw;
-  transform: rotate(-90deg);
 }
 .folderBtn .buttonOpen:hover {
   background: #1D2129;
@@ -1737,7 +1705,6 @@ button.promptBtn .promptText {
   height: 100%;
   background: url("../assets/background.jpg");
   background-repeat: no-repeat;
-  background-size: cover !important;
   background-size: 100%;
   display: flex;
   flex-direction: column;
@@ -1766,7 +1733,7 @@ button.promptBtn .promptText {
 }
 
 .welcome-chat {
-  background-size: cover !important;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2178,6 +2145,13 @@ button.promptBtn .promptText {
   cursor: pointer;
 }
 
+#popup-library .popupContent {
+  height: auto;
+  padding: 3.646vw 0vw;
+}
+#popup-library .popupContent .popup-inner {
+  height: auto;
+}
 #popup-catalog .popup-inner {
   padding: 2.083vw 0px;
 }
@@ -2219,38 +2193,38 @@ button.promptBtn .promptText {
   line-height: 1.25vw;
 }
 
-#popup-develop {
+#popup-develop, #popup-midj {
   z-index: 500;
   padding-top: 0px;
 }
-#popup-develop .popupContent {
+#popup-develop .popupContent, #popup-midj .popupContent {
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
 }
-#popup-develop .popupContent .popup-inner {
+#popup-develop .popupContent .popup-inner, #popup-midj .popupContent .popup-inner {
   background: #0F131B;
   border-radius: 1.042vw;
   padding: 2.083vw;
 }
-#popup-develop .popupContent .popup-inner h2 {
+#popup-develop .popupContent .popup-inner h2, #popup-midj .popupContent .popup-inner h2 {
   padding-bottom: 1.042vw;
 }
-#popup-develop .popupContent .popup-inner p {
+#popup-develop .popupContent .popup-inner p, #popup-midj .popupContent .popup-inner p {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.833vw;
   padding-bottom: 20px;
   font-weight: 400;
   line-height: 1.25vw;
 }
-#popup-develop .about-project-soc a:hover {
+#popup-develop .about-project-soc a:hover, #popup-midj .about-project-soc a:hover {
   opacity: 0.8;
 }
-#popup-develop .about-project-soc a.first button {
+#popup-develop .about-project-soc a.first button, #popup-midj .about-project-soc a.first button {
   background: #13B8A6;
 }
-#popup-develop .about-project-soc a.sec button {
+#popup-develop .about-project-soc a.sec button, #popup-midj .about-project-soc a.sec button {
   border: 0.104vw solid #13B8A6;
   background: none;
 }
@@ -2496,51 +2470,51 @@ button.promptBtn .promptText {
   color: #FFFFFF;
 }
 
-#popup-zapic, #popup-zapic2 {
+#popup-zapic, #popup-zapic2, #popup-zapic3 {
   z-index: 9999;
   padding-top: 0px;
 }
-#popup-zapic .popupContent, #popup-zapic2 .popupContent {
+#popup-zapic .popupContent, #popup-zapic2 .popupContent, #popup-zapic3 .popupContent {
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#popup-zapic .popupContent .popup-inner, #popup-zapic2 .popupContent .popup-inner {
+#popup-zapic .popupContent .popup-inner, #popup-zapic2 .popupContent .popup-inner, #popup-zapic3 .popupContent .popup-inner {
   padding-top: 0px;
 }
-#popup-zapic .popupContent .popup-inner form .form-image, #popup-zapic2 .popupContent .popup-inner form .form-image {
+#popup-zapic .popupContent .popup-inner form .form-image, #popup-zapic2 .popupContent .popup-inner form .form-image, #popup-zapic3 .popupContent .popup-inner form .form-image {
   height: 7.708vw;
 }
-#popup-zapic .popupContent .popup-inner form .form-image img, #popup-zapic2 .popupContent .popup-inner form .form-image img {
+#popup-zapic .popupContent .popup-inner form .form-image img, #popup-zapic2 .popupContent .popup-inner form .form-image img, #popup-zapic3 .popupContent .popup-inner form .form-image img {
   border-radius: 1.042vw 1.042vw 0px 0px;
   width: 27.083vw;
   height: 100%;
 }
-#popup-zapic .popupContent .popup-inner form .form-text, #popup-zapic2 .popupContent .popup-inner form .form-text {
+#popup-zapic .popupContent .popup-inner form .form-text, #popup-zapic2 .popupContent .popup-inner form .form-text, #popup-zapic3 .popupContent .popup-inner form .form-text {
   background: #1D2129;
   border-radius: 0px 0px 1.042vw 1.042vw;
   padding: 2.083vw;
   width: 27.083vw;
 }
-#popup-zapic .popupContent .popup-inner form .form-text h2, #popup-zapic2 .popupContent .popup-inner form .form-text h2 {
+#popup-zapic .popupContent .popup-inner form .form-text h2, #popup-zapic2 .popupContent .popup-inner form .form-text h2, #popup-zapic3 .popupContent .popup-inner form .form-text h2 {
   font-size: 1.354vw;
   font-weight: 700;
   line-height: 130%;
   padding-bottom: 1.563vw;
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input {
   display: flex;
   flex-direction: column;
   padding-bottom: 1.042vw;
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input label, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input label {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input label, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input label, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input label {
   color: #FFFFFF;
   padding-bottom: 0.521vw;
   font-size: 0.729vw;
   font-weight: 500;
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input input, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input input {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input input, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input input, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input input {
   background: #272B34;
   border: 0.052vw solid #374151;
   border-radius: 0.521vw;
@@ -2549,13 +2523,13 @@ button.promptBtn .promptText {
   color: white;
   font-size: 0.781vw;
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input input::-moz-placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input input::-moz-placeholder {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input input::-moz-placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input input::-moz-placeholder, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input input::placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input input::placeholder {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input input::placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input input::placeholder, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input textarea, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input textarea {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input textarea, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input textarea, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input textarea {
   height: 7.292vw;
   outline: none;
   border: 0.052vw solid #374151;
@@ -2564,13 +2538,13 @@ button.promptBtn .promptText {
   padding: 0.938vw 0.833vw;
   color: white;
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input textarea::-moz-placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input textarea::-moz-placeholder {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input textarea::-moz-placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input textarea::-moz-placeholder, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input textarea::-moz-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
-#popup-zapic .popupContent .popup-inner form .form-text .form-input textarea::placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input textarea::placeholder {
+#popup-zapic .popupContent .popup-inner form .form-text .form-input textarea::placeholder, #popup-zapic2 .popupContent .popup-inner form .form-text .form-input textarea::placeholder, #popup-zapic3 .popupContent .popup-inner form .form-text .form-input textarea::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
-#popup-zapic .popupContent .popup-inner form .form-text .send-mess button, #popup-zapic2 .popupContent .popup-inner form .form-text .send-mess button {
+#popup-zapic .popupContent .popup-inner form .form-text .send-mess button, #popup-zapic2 .popupContent .popup-inner form .form-text .send-mess button, #popup-zapic3 .popupContent .popup-inner form .form-text .send-mess button {
   background: #13B8A6;
   width: 100%;
   border: none;
@@ -2589,8 +2563,15 @@ button.promptBtn .promptText {
   padding-top: 0px !important;
 }
 .popup-library.pop-catalog .popupContent {
-  height: auto;
   padding: 3.646vw 0px;
+  height: auto;
+}
+.popup-library.pop-catalog .popupContent .popup-inner {
+  height: auto;
+}
+.popup-library.pop-catalog .popupContent .popup-inner .prompts-category {
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 1.042vw;
 }
 .popup-library.pop-catalog .popupContent .popup-inner .prompts-category h2 {
   font-size: 1.042vw;
@@ -2803,12 +2784,13 @@ button.promptBtn .promptText {
 .popup-setting-content {
   height: 2.604vw;
   border: 0.052vw solid #2A2F39;
-  border-radius: 10px;
+  border-radius: 0.521vw;
   background: none;
   padding: 0.313vw;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.521vw;
+  position: relative;
 }
 .popup-setting-content button {
   width: 100%;
@@ -2855,7 +2837,9 @@ button.promptBtn .promptText {
 }
 .popup-setting-content.withoutBorder .modelSettings .secondRow {
   display: flex;
+  position: absolute;
   gap: 0.521vw;
+  right: 1.042vw;
 }
 .popup-setting-content.withoutBorder .modelSettings .secondRow button {
   width: 0.938vw;
@@ -2900,9 +2884,10 @@ button.promptBtn .promptText {
 }
 
 .popup-setting-desc {
-  font-size: 0.521vw;
-  color: rgba(162, 162, 163, 0.4);
+  font-size: 0.625vw;
+  color: rgba(162, 162, 163, 0.6);
   padding-top: 0.521vw;
+  line-height: 1.5;
 }
 
 #settingsTab {
@@ -2984,10 +2969,12 @@ input[type=range].econom-rezhim::-webkit-slider-thumb {
   width: 16px;
   height: 16px;
   border-radius: 8px;
-  background: #13B8A6;
   border: 4px solid #FFFFFF;
   box-shadow: 0 0 2px black;
   margin-top: 0px;
+}
+input[type=range].econom-rezhim::-webkit-slider-thumb:hover {
+  background: #13B8A6;
 }
 
 input[type=range].econom-rezhim::-webkit-slider-runnable-track {
@@ -3007,9 +2994,11 @@ input[type=range].econom-rezhim::-moz-range-thumb {
   width: 8px;
   height: 8px;
   border-radius: 8px;
-  background: #13B8A6;
   border: 4px solid #FFFFFF;
   box-shadow: 0 0 2px black;
+}
+input[type=range].econom-rezhim::-moz-range-thumb:hover {
+  background: #13B8A6;
 }
 
 input[type=range].econom-rezhim::-moz-range-track {
@@ -3306,8 +3295,7 @@ button.add-chat:hover {
 }
 
 .tablinks-container {
-  max-height: 24.958vw;
-  position: relative;
+  max-height: 24.219vw;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -3491,6 +3479,10 @@ button.add-chat:hover {
 }
 
 pre {
+  padding: 0.521vw;
+}
+
+pre.after-code {
   padding: 0px;
 }
 
@@ -3746,7 +3738,216 @@ table th {
   right: 2.5vw;
 }
 
+@media (max-width: 1500px) {
+  * select, textarea {
+    font-size: 12px !important;
+  }
+  .chatSettings h2 {
+    font-size: 18px;
+  }
+  * h2 {
+    font-size: 18px;
+  }
+  .popup-setting-title {
+    font-size: 12px;
+    line-height: 14.995px;
+    padding-bottom: 10.003px;
+  }
+  .chatSettings .popup-setting .popup-setting-btns .eco-stats p {
+    font-size: 10px;
+  }
+  #switchMenu {
+    font-size: 10px;
+    gap: 10px;
+  }
+  .popup-setting-desc {
+    font-size: 12px;
+  }
+  #saveSettingsRoles {
+    gap: 10.003px;
+    height: 42px;
+    font-size: 12px;
+  }
+  .popup-setting-content select {
+    height: 42px;
+  }
+  #showFeatures, .chooseRoleFrom button {
+    height: 42px;
+    padding: 15.994px 20.006px;
+    line-height: 18.01px;
+    font-size: 11px;
+  }
+  .chatSettings {
+    padding-bottom: 40.995px;
+  }
+  .systemRole {
+    font-size: 12px;
+  }
+  .popup-setting-content.withoutBorder input {
+    font-size: 12px;
+  }
+  .popup-setting-desc {
+    padding-top: 10.003px;
+  }
+  .popup-setting-content .secondRow {
+    top: 12px;
+  }
+  .popup-setting-content .secondRow button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18.01px !important;
+    height: 18.01px !important;
+  }
+  .popup-setting-content .secondRow button svg {
+    width: 100%;
+    height: 100%;
+  }
+  .popup-setting-content.withoutBorder .modelSettings {
+    height: 42px;
+  }
+  .popup-setting-content {
+    height: 42px;
+  }
+  .switchLangContainer .dropdownLang {
+    right: 14px;
+  }
+  #mainHeader .navbar a#chat-with-base, #mainHeader .navbar #chat-with-mdjrny {
+    gap: 10.003px;
+    font-size: 11px;
+  }
+  #mainHeader .navbar ul li a {
+    font-size: 11px;
+  }
+  .switchLangContainer #switchLang {
+    font-size: 10px;
+    gap: 5px;
+  }
+  #mainHeader .navbar button {
+    padding: 10.003px;
+    border-radius: 10.003px;
+    height: 32px;
+  }
+  #about-user img {
+    height: 32px;
+    width: 32px;
+  }
+  #mainHeader #tokensLeft {
+    gap: 5px;
+    font-size: 12px;
+  }
+  .addChatIcon, .folderBtn .buttonOpen {
+    height: 36px;
+    font-size: 12px;
+  }
+  .addChatIcon input, .folderBtn .buttonOpen input {
+    height: 30px;
+    border-radius: 0.521vw;
+    padding: 8.006px 6.01px;
+    font-size: 12px;
+  }
+  button.add-chat {
+    height: 36px;
+  }
+  p.folderName, p.chat__name {
+    font-size: 12px;
+  }
+  .addChatIcon button.buttonTool {
+    width: 22.003px;
+    height: 22.003px;
+  }
+  .addChatIcon button.buttonTool svg {
+    width: 10.003px !important;
+    height: 10.003px !important;
+  }
+  .folderRow form button {
+    height: 32px;
+    font-size: 10px;
+    gap: 10.003px;
+  }
+  .colorSheme .firstCol {
+    font-size: 10px;
+  }
+  .menu-items form button, .menu-items a {
+    font-size: 10px;
+  }
+  * svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .msg-bubble .msg-text {
+    font-size: 12px;
+    padding: 4.992px 0px;
+    line-height: 1.5;
+  }
+  .msg-info-name {
+    font-size: 11px;
+  }
+  .msg-info-time {
+    font-size: 8px;
+  }
+}
 @media (max-width: 1000px) {
+  #chat-with-mdjrny, #chat-with-base {
+    display: flex;
+    gap: 10px;
+  }
+  #menu-mob .menu-header li {
+    height: 20px;
+  }
+  .soon-plate {
+    border-radius: 10px;
+    padding: 1.997px 6.01px;
+    font-size: 10.003px;
+  }
+  #popup-library, #popup-catalog {
+    z-index: 999;
+  }
+  #popup-library .popupContent, #popup-catalog .popupContent {
+    padding: 0px 40px;
+  }
+  #popup-library .popupContent .popup-inner, #popup-catalog .popupContent .popup-inner {
+    margin: 50px 0px 50px 0px;
+  }
+  .block-info {
+    padding: 4.992px 9.6px;
+    border-top-right-radius: 5.76px;
+    border-top-left-radius: 5.76px;
+    height: 24px;
+  }
+  .block-info button {
+    width: 16px;
+    height: 16px;
+  }
+  pre {
+    margin: 5px 0vw;
+    border-radius: 5.76px;
+  }
+  .msg-bubble table {
+    margin: 5px 0px;
+  }
+  .msg-bubble table thead {
+    border-bottom-width: 1px;
+  }
+  .msg-bubble table tr {
+    border-bottom-width: 1px;
+    border: #5c606a solid 1px;
+    border-bottom: #5c606a solid 1px;
+  }
+  .msg-bubble table tr:first-child {
+    border-bottom-left-radius: 1px;
+    border-bottom: #5c606a solid 0.998px;
+  }
+  .msg-bubble table th {
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    padding: 2px 6px;
+  }
+  .msg-bubble table th:first-child {
+    border-top-left-radius: 1px;
+  }
   .msg-info-avatar {
     font-size: 10px;
   }
@@ -3831,9 +4032,6 @@ table th {
   }
   .msg:first-of-type {
     padding-top: 20px;
-  }
-  #chat-with-base {
-    display: none;
   }
   p.folderName, p.chat__name {
     font-size: 13.843px;
@@ -3930,7 +4128,7 @@ table th {
     height: 50px;
     font-size: 15px;
     border-radius: 10px;
-    padding: 16px 45px 16px 20px;
+    padding: 16px 20px;
     margin-bottom: 15px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .firstRow {
@@ -3945,6 +4143,7 @@ table th {
     width: 100%;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems {
+    right: 15px;
     gap: 10px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems .hoverItems-folder {
@@ -4166,7 +4365,7 @@ table th {
     border: 1px solid #374151;
     border-radius: 8px;
     font-size: 15px !important;
-    padding: 20px 40px 20px 20px;
+    padding: 20px 53px 20px 20px;
   }
   .msger-send-btn {
     width: 44px;
@@ -4606,24 +4805,6 @@ table th {
     border-radius: 10px;
     padding: 20px;
   }
-  pre {
-    border-radius: 5.76px;
-    margin: 5px 0vw;
-  }
-  .block-info {
-    padding: 4.992px 9.6px;
-    border-top-right-radius: 5.76px;
-    border-top-left-radius: 5.76px;
-    display: flex;
-    height: 24px;
-  }
-  .block-info button {
-    width: 16px;
-    height: 16px;
-  }
-  #popup-library .popupContent, #popup-catalog .popupContent {
-    padding: 120px 40px 70px 40px;
-  }
   #popup-library .popup-inner, #popup-catalog .popup-inner {
     width: 100%;
     padding: 40px;
@@ -4873,16 +5054,6 @@ table th {
   .linear-container button {
     margin: 0px 0px 20px 0px !important;
   }
-  .folderBtn .buttonOpen {
-    display: flex;
-    justify-content: space-between;
-  }
-  .folderBtn .buttonOpen .dropdownButton {
-    right: 20px;
-  }
-  #popup-catalog .prompts-in-category {
-    margin-top: 0px !important;
-  }
   .popup-library .popupContent .popup-inner {
     padding: 40px 0px !important;
   }
@@ -4958,31 +5129,35 @@ table th {
     align-items: center;
     gap: 10px;
   }
-  #about-popup .popup-inner, #popup-develop .popup-inner {
+  #about-popup .popup-inner, #popup-develop .popup-inner, #popup-midj .popup-inner {
     max-width: 100%;
     padding: 20px !important;
   }
-  #about-popup .popup-inner h2, #popup-develop .popup-inner h2 {
+  #about-popup .popup-inner h2, #popup-develop .popup-inner h2, #popup-midj .popup-inner h2 {
     font-size: 22px;
   }
-  #about-popup .popup-inner .about-project-inner p, #popup-develop .popup-inner .about-project-inner p {
+  #about-popup .popup-inner .about-project-inner p, #popup-develop .popup-inner .about-project-inner p, #popup-midj .popup-inner .about-project-inner p {
     font-size: 12px;
     line-height: 1.5;
   }
-  #about-popup .popup-inner .about-project-inner p:last-of-type, #popup-develop .popup-inner .about-project-inner p:last-of-type {
+  #about-popup .popup-inner .about-project-inner p:last-of-type, #popup-develop .popup-inner .about-project-inner p:last-of-type, #popup-midj .popup-inner .about-project-inner p:last-of-type {
     padding-bottom: 0px;
   }
-  #about-popup .popup-inner .about-project-soc, #popup-develop .popup-inner .about-project-soc {
+  #about-popup .popup-inner .about-project-soc, #popup-develop .popup-inner .about-project-soc, #popup-midj .popup-inner .about-project-soc {
     padding-top: 20px;
     font-size: 14px;
     gap: 10px;
     flex-direction: column;
   }
-  #about-popup .popup-inner .about-project-soc button, #popup-develop .popup-inner .about-project-soc button {
+  #about-popup .popup-inner .about-project-soc button, #popup-develop .popup-inner .about-project-soc button, #popup-midj .popup-inner .about-project-soc button {
     height: 38px;
     font-size: 12px;
     gap: 10px;
     border-radius: 5px;
+  }
+  #popup-midj .popupContent .popup-inner p {
+    font-size: 12px;
+    line-height: 1.5;
   }
   #menu-mob .popup-inner {
     padding: 20px 10px 40px 10px;

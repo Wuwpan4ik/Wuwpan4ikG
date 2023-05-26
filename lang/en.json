@@ -160,5 +160,11 @@
      "ecoRezh": "Economy",
      "tranzhRezh": "Spender",
      "enterCode": "Enter confirmation code",
-     "noUrl": "It's empty here"
+     "chatWithMidjourney": "Chat with Midjourney",
+     "noUrl": "It's empty here",
+     "profilePromocode": "Enter promocode",
+     "midjHeading": "What is a chat with Midjourney",
+     "midj1h": "Chat with Midjourney is a unique service that allows you to create individual chats and communicate with Midjourney AI using text queries. With this service, you can receive unique and creative images created by Midjourney in response to your requests. In addition, the service has a library of ready-made hints that will help you quickly and easily create requests and receive answers. You can also group chats into groups for ease of use. Chat with Midjourney is an easy and convenient way to get unique and creative images for a variety of purposes such as design, marketing, advertising and more.",
+     "midjHeading2": "Why is it beneficial to use the chat with us?",
+     "midj2h": "Using chat with Midjourney with us will be beneficial for several reasons. Firstly, our service allows you to generate unique and creative images that can be used for various purposes such as design, marketing, advertising, and more. Secondly, unlike a Midjourney subscription, our service allows you to replenish your balance with the internal currency (token) and spend it only on generating each image. This allows you to generate images inexpensively and only pay for what you use. In addition to all of the above, using our solution is definitely more profitable!"
 }

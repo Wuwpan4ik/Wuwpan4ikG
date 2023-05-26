@@ -83,7 +83,9 @@
     @include('components.popups.popup-develop')
     @include('components.popups.popup-zapic')
     @include('components.popups.popup-zapic2')
+    @include('components.popups.popup-zapic3')
     @include('components.popups.popup-profile')
+    @include('components.popups.popup-midjourney')
     @include('components.popups.popup-mob')
     <!--Скрипты-->
     <script src="{{asset('js/jquery-1.10.2.min.js')}}"></script>

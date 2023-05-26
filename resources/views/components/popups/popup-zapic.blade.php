@@ -6,6 +6,7 @@
                     <form action="{{ route('telegram') }}" method="post">
                         @csrf
                         <div class="form-inner">
+                            <input type="text" name="zayavka" value="Заявка на умного бота" hidden>
                             <div class="form-image">
                                 <img src="../assets/asset-zapic.jpg" alt="Запись">
                             </div>
