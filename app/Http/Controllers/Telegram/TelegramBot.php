@@ -32,14 +32,20 @@ class TelegramBot extends Controller
         Debugbar::log($request);
         $email = $request->email;
         $telegram = $request->telegram;
-        $prof = $request->prof;
-        $question = $request->question;
-        $text = "
-        Пользователь: $telegram,
-        Почта: $email,
-        Профессия: $prof,
-        Потребность: $question
-        ";
+        $category = $request->zayavka;
+        if($category == 'Заявка на Midjourney'){
+            $text = "Пользователь оставил заявку на тестирование Midjourney\n\nПользователь: $telegram \n\nПочта: $email";
+        }
+        if($category == "Заявка на умного бота" or $category == "Заявка на внедрение умного бота"){
+            $prof = $request->prof;
+            $question = $request->question;
+        }
+        if($category == "Заявка на умного бота"){
+            $text = "Пользователь оставил заявку на тестирование умного бота\n\nПользователь: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
+        }
+        if($category == "Заявка на внедрение умного бота"){
+            $text = "Пользователь оставил заявку на внедрение умного бота\n\nПользователь: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
+        }
         $response = [
             'chat_id' => '-836677384',
             'text' => $text
@@ -52,6 +58,8 @@ class TelegramBot extends Controller
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_exec($ch);
         curl_close($ch);
+        
+        header('Location: /');
     }
 
     /**

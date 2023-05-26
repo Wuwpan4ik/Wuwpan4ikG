@@ -332,7 +332,7 @@ function sendMsg(msg) {
                                 item.parentElement.insertBefore(blockInfo, item);
                             });
                         }
-
+                        /*
                         msgerChatContainer.addEventListener('scroll', function(){
                             if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
                                 scrollable = true;
@@ -344,7 +344,7 @@ function sendMsg(msg) {
                         if(scrollable == true){
                             $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                         }
-                        
+                        */
                     }
                 }
             };
@@ -356,6 +356,7 @@ function sendMsg(msg) {
                 fetch('/messages', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
                 fetch(`/message/getCostMessage/${data}`)
                 loader.classList.remove('showed');
+                blockAll(false);
                 document.getElementById('loaderResponseError').classList.add('showed');
                 setTimeout(() => {
                     document.getElementById('loaderResponseError').classList.remove('showed');
@@ -730,7 +731,14 @@ document.querySelectorAll('a#aboutProject').forEach((item)=>{
         document.getElementById('about-popup').classList.add('active');
         closePopContainer('about-popup', '#about-popup .popupContent');
     }
-})
+});
+
+//Открытие попапа Миджорни
+document.querySelectorAll('a#chat-with-mdjrny').forEach((item)=>{
+    item.onclick = () =>{
+        document.getElementById('popup-midj').classList.add('active');
+    }
+});
 
 //Открытие попапа в разработке
 document.getElementById('chat-with-base').onclick = () =>{
@@ -781,6 +789,10 @@ function openPopUpZayavka2(item){
     closePopContainer('popup-zapic', '#popup-zapic .popupContent');
 }
 
+function openPopUpZayavka3(item){
+    document.getElementById('popup-zapic3').classList.add('active');
+    closePopContainer('popup-zapic3', '#popup-zapic3 .popupContent');
+}
 
 //Смена языка
 document.getElementById('switchLang').onclick = () =>{

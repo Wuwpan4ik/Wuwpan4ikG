@@ -427,20 +427,8 @@ body{
         flex-direction: column;
         padding:0.417vw 0.521vw;
         display:none;
-        button{
-            background:none !important;
-            padding: 0.313vw;
-            font-size: 0.625vw;
-            color: #FFFFFF;
-            line-height: 0.781vw;
-            border-radius: 0.521vw;
+        a{
             margin-bottom: 0.417vw;
-            &.active{
-                background: #484D59 !important;
-            }
-            &:hover{
-                background: #484D59 !important;
-            }
         }
     }
     &.active{
@@ -558,6 +546,13 @@ body.dark{
 }
 
 body.light{
+
+    #popup-midj{
+        p{
+            color: rgba(0, 0, 0, 0.6) !important;
+        }
+    }
+
     background:white;
     #mobileHeader nav ul li button.active{
         background: #13B8A6;
@@ -784,7 +779,7 @@ body.light{
             }
         }
     }
-    #popup-zapic2, #popup-zapic{
+    #popup-zapic2, #popup-zapic, #popup-zapic3{
         h2{
             color:black !important;
         }
@@ -1282,20 +1277,10 @@ body.light{
                 }
             }
         }
-        a#chat-with-base{
+        a#chat-with-base, #chat-with-mdjrny{
             display: flex;
             gap:0.521vw;
             font-size: 0.781vw;
-            .soon-plate{
-                background: #EF4444;
-                border-radius: 10px;padding:0.104vw 0.313vw;
-                color:white;
-                font-size: 0.521vw;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
         }
         button{
             padding:0.521vw;
@@ -1391,6 +1376,18 @@ body.light{
             }
         }
     }
+}
+
+
+.soon-plate{
+    background: #EF4444;
+    border-radius: 10px;padding:0.104vw 0.313vw;
+    color:white;
+    font-size: 0.521vw;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 //Sidebar
@@ -1762,8 +1759,7 @@ div.switchMenu{
     position: relative;
     .hoverItems{
         display:flex;
-        position: absolute;
-        right:2.344vw;
+        position: relative;
         gap:0.521vw;
         align-items: center;
         .hoverItems-folder{
@@ -1787,6 +1783,7 @@ div.switchMenu{
     }
     .dropdownButton{
         pointer-events: none;
+        position: absolute;
     }
 }
 
@@ -1817,19 +1814,21 @@ div.switchMenu{
     cursor: pointer;
     border-radius: 0.521vw;
     color:white;
-    padding:0.833vw 1.042vw;
+    padding:0.833vw 2.3vw 0.833vw 1.042vw;
     align-items: center;
     border:none;
     .firstRow{
         gap:0.521vw;
         display: flex;
         align-items: center;
-        padding-right: 2.552vw;
+        pointer-events: none;
+        input{
+            pointer-events: all;
+        }
     }
     .hoverItems.showed{
         .hoverItems-folder{
             opacity: 1;
-
         }
     }
     .hoverItems.active{
@@ -1839,6 +1838,8 @@ div.switchMenu{
     }
     .dropdownButton{
         transform: rotate(-90deg);
+        position: absolute;
+        right:1.042vw;
     }
     &:hover{
         background: #1D2129;
@@ -1864,6 +1865,10 @@ div.switchMenu{
         display: flex;
         gap:0.521vw;
         align-items: center;
+        pointer-events: none;
+        input{
+            pointer-events: all;
+        }
     }
     input{
         width: 100%;
@@ -2403,6 +2408,22 @@ button.promptBtn{
 
 //Попапы
 
+
+#popup-library{
+    .popupContent{
+        height: auto;
+        padding: 3.646vw 0vw;
+        .popup-inner{
+            height: auto;
+            .prompts-in-category{
+                .library-items-container{
+
+                }
+            }
+        }
+    }
+}
+
 #popup-catalog{
     .popup-inner{
         padding:2.083vw 0px;
@@ -2449,7 +2470,7 @@ button.promptBtn{
     }
 }
 
-#popup-develop{
+#popup-develop, #popup-midj{
     z-index: 500;
     padding-top: 0px;
     .popupContent{
@@ -2731,7 +2752,7 @@ button.promptBtn{
     }
 }
 
-#popup-zapic, #popup-zapic2{
+#popup-zapic, #popup-zapic2, #popup-zapic3{
     z-index: 9999;
     padding-top: 0px;
     .popupContent{
@@ -2823,14 +2844,13 @@ button.promptBtn{
     padding-top: 0px !important;
     &.pop-catalog{
         .popupContent{
+            padding:3.646vw 0px;
+            height:auto;
             .popup-inner{
-                max-height: 70%;
+                height: auto;
                 .prompts-category{
-                    overflow-y: auto;
                     grid-template-columns: repeat(3, auto);
                     grid-gap:1.042vw;
-                    overflow-x: hidden;
-                    max-height: 70%;
                     h2{
                         font-size: 1.042vw;
                         line-height: 1.25vw;
@@ -2879,12 +2899,6 @@ button.promptBtn{
                     color:white;
                     font-size:0.781vw;
                 }
-            }
-            .library-items-container{
-                overflow-y: auto;
-                overflow-x:hidden;
-                max-height: 50vh;
-                padding:0px 2.083vw;
             }
             .prompts-in-category{
                 margin-top: 1.563vw;
@@ -3058,12 +3072,13 @@ button.promptBtn{
 .popup-setting-content{
     height: 2.604vw;
     border: 0.052vw solid #2A2F39;
-    border-radius: 10px;
+    border-radius: 0.521vw;
     background:none;
     padding:0.313vw;
     display: flex;
     align-items: center;
-    gap:10px;
+    gap:0.521vw;
+    position: relative;
     button{
         width: 100%;
         display: flex;
@@ -3107,7 +3122,9 @@ button.promptBtn{
             }
             .secondRow{
                 display:flex;
+                position: absolute;
                 gap:0.521vw;
+                right:1.042vw;
                 button{
                     width:0.938vw;
                     height:0.938vw;
@@ -3155,9 +3172,10 @@ button.promptBtn{
 }
 
 .popup-setting-desc{
-    font-size: 0.521vw;
-    color: rgba(162, 162, 163, 0.4);
+    font-size: 0.625vw;
+    color: rgba(162, 162, 163, 0.6);
     padding-top:0.521vw;
+    line-height: 1.5;
 }
 
 
@@ -3243,10 +3261,12 @@ input[type=range].econom-rezhim {
     width: 16px;
     height: 16px;
     border-radius: 8px;
-    background: #13B8A6;
     border: 4px solid #FFFFFF;
     box-shadow: 0 0 2px black;
     margin-top: calc(16px * 0.5 - max(16px * 0.5,4px));
+    &:hover{
+        background: #13B8A6;
+    }
   }
 
   input[type=range].econom-rezhim::-webkit-slider-runnable-track {
@@ -3266,9 +3286,11 @@ input[type=range].econom-rezhim {
     width: max(calc(16px - 4px - 4px),0px);
     height: max(calc(16px - 4px - 4px),0px);
     border-radius: 8px;
-    background: #13B8A6;
     border: 4px solid #FFFFFF;
     box-shadow: 0 0 2px black;
+    &:hover{
+        background: #13B8A6;
+    }
   }
 
   input[type=range].econom-rezhim::-moz-range-track {
@@ -3572,7 +3594,7 @@ input[type=range].styled-slider {
 //Library
 
 .tablinks-container{
-    max-height: 80%;
+    max-height: 24.219vw;
     overflow-y: auto;
     overflow-x: hidden;
     .tablinks-library{
@@ -4026,8 +4048,261 @@ table{
     right: 2.5vw;
 }
 
+
+//Адаптив под ноуты
+@media(max-width:1500px){
+    //Сайдбар с ролями
+    * select, textarea{
+        font-size: 12px !important;
+    }
+    .chatSettings h2{
+        font-size: 18px;
+    }
+    * h2{
+        font-size: 18px;
+    }
+    .popup-setting-title{
+        font-size: 12px;
+        line-height: 14.995px;
+        padding-bottom: 10.003px;
+    }
+    .chatSettings .popup-setting .popup-setting-btns .eco-stats p{
+        font-size: 10px;
+    }
+    #switchMenu{
+        font-size: 10px;
+        gap:10px;
+    }
+    .popup-setting-desc{
+        font-size:12px;
+    }
+    #saveSettingsRoles{
+        gap: 10.003px;
+        height: 42px;
+        font-size: 12px;
+    }
+    .popup-setting-content select{
+        height: 42px;
+    }
+    #showFeatures, .chooseRoleFrom button{
+        height: 42px;
+        padding: 15.994px 20.006px;
+        line-height: 18.01px;
+        font-size: 11px;
+    }
+    .chatSettings{
+        padding-bottom: 40.995px;
+    }
+    .linear-container{
+
+    }
+    .systemRole{
+        font-size: 12px;
+    }
+    .popup-setting-content.withoutBorder input{
+        font-size: 12px;
+    }
+
+    .popup-setting-desc{
+        padding-top: 10.003px;
+    }
+    .popup-setting-content{
+        .secondRow{
+            top:12px;
+            button{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 18.01px !important;
+                height: 18.01px !important;
+                svg{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    .popup-setting-content.withoutBorder .modelSettings{
+        height: 42px;
+
+    }
+
+    .popup-setting-content{
+        height: 42px;
+    }
+
+    //Header
+
+    .switchLangContainer .dropdownLang{
+        right: 14px;
+    }
+
+    #mainHeader .navbar a#chat-with-base, #mainHeader .navbar #chat-with-mdjrny{
+        gap: 10.003px;
+        font-size: 11px;
+    }
+    #mainHeader .navbar ul li a{
+        font-size: 11px;
+    }
+
+    .switchLangContainer #switchLang{
+        font-size: 10px;
+        gap:5px;
+    }
+
+    #mainHeader .navbar button{
+        padding: 10.003px;
+        border-radius: 10.003px;
+        height: 32px;
+    }
+
+    #about-user img{
+        height: 32px;
+        width: 32px;
+    }
+
+    #mainHeader #tokensLeft{
+        gap: 5px;
+        font-size: 12px;
+    }
+
+    //Сайдбар с чатами
+
+    .addChatIcon, .folderBtn .buttonOpen{
+        height: 36px;
+        font-size: 12px;
+        input{
+            height: 30px;
+            border-radius: 0.521vw;
+            padding: 8.006px 6.01px;
+            font-size:12px;
+        }
+    }
+    
+    button.add-chat{
+        height: 36px;
+    }
+
+    p.folderName, p.chat__name{
+        font-size: 12px;
+    }
+    .addChatIcon button.buttonTool{
+        width: 22.003px;
+        height: 22.003px;
+        svg{
+            width: 10.003px !important;
+            height: 10.003px !important;
+        }
+    }
+
+    .folderRow form button{
+        height: 32px;
+        font-size: 10px;
+        gap: 10.003px;
+    }
+
+    .colorSheme .firstCol{
+        font-size: 10px;
+    }
+
+    .menu-items form button, .menu-items a{
+        font-size: 10px;
+    }
+
+    //Svg
+    * svg{
+        width:14px !important;
+        height:14px !important;
+    }
+
+
+    //Chat
+    .msg-bubble .msg-text{
+        font-size:12px;
+        padding: 4.992px 0px;
+        line-height: 1.5;
+    }
+
+    .msg-info-name{
+        font-size: 11px;
+    }
+
+    .msg-info-time{
+        font-size:8px;
+    }
+}
+
 //Adaptive
 @media(max-width:1000px){
+    
+    //кнопки чат с миджорни и т.д
+    #chat-with-mdjrny, #chat-with-base{
+        display:flex;
+        gap:10px;
+    }
+    #menu-mob .menu-header li{
+        height:20px;
+    }
+    .soon-plate{
+        border-radius: 10px;
+        padding:1.997px 6.01px;
+        font-size: 10.003px;
+    }
+
+    //Попапы
+
+    #popup-library, #popup-catalog{
+        z-index: 999;
+        .popupContent{
+            padding:0px 40px;
+            .popup-inner{
+                margin:50px 0px 50px 0px;
+            }
+        }
+    }
+
+    //Markdown
+    .block-info{
+        padding: 4.992px 9.6px;
+        border-top-right-radius: 5.76px;
+        border-top-left-radius: 5.76px;
+        height: 24px;
+        button{
+            width: 16px;
+            height: 16px;
+        }
+    }
+    pre{
+        margin: 5px 0vw;
+        border-radius: 5.76px;
+    }
+    .msg-bubble{
+        table{
+            margin: 5px 0px;
+            thead{
+                border-bottom-width: 1px;
+            }
+            tr{
+                border-bottom-width: 1px;
+                border: #5c606a solid 1px;
+                border-bottom: #5c606a solid 1px;
+                &:first-child{
+                    border-bottom-left-radius: 1px;
+                    border-bottom: #5c606a solid 0.998px;
+                }
+            }
+            th{
+                border-bottom-width: 1px;
+                border-left-width: 1px;
+                border-right-width: 1px;
+                border-top-width: 1px;
+                padding: 2px 6px;
+                &:first-child{
+                    border-top-left-radius: 1px;
+                }
+            }
+        }
+    }
     .msg-info-avatar{
         font-size:10px;
     }
@@ -4133,9 +4408,6 @@ table{
     }
     .msg:first-of-type{
         padding-top: 20px;
-    }
-    #chat-with-base{
-        display: none;
     }
     p.folderName, p.chat__name{
         font-size:13.843px;
@@ -4248,7 +4520,7 @@ table{
                     width: 100%;
                 }
                 .hoverItems{
-                    right:50px;
+                    right:15px;
                     gap:10px;
                     .hoverItems-folder{
                         gap:5px;
@@ -4480,7 +4752,7 @@ table{
         border: 1px solid #374151;
         border-radius: 8px;
         font-size: 15px !important;
-        padding:20px 40px 20px 20px;
+        padding:20px 53px 20px 20px;
     }
     .msger-send-btn{
         width: 44px;
@@ -5336,7 +5608,7 @@ table{
     }
     //Попапы о проект и "В разработке"
 
-    #about-popup, #popup-develop{
+    #about-popup, #popup-develop, #popup-midj{
         .popup-inner{
             max-width: 100%;
             padding:20px !important;
@@ -5366,6 +5638,18 @@ table{
             }
         }
     }
+
+    #popup-midj{
+        .popupContent{
+            .popup-inner{
+                p{
+                    font-size:12px;
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
+
     #menu-mob{
         .popup-inner{
             padding:20px 10px 40px 10px;

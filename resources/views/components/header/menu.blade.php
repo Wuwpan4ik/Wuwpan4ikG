@@ -14,4 +14,12 @@
             </div>
         </a>
     </li>
+    <li class="chat-with-mdjrny">
+        <a id="chat-with-mdjrny">
+            {{__('chatWithMidjourney')}}
+            <div class="soon-plate">
+                {{__('soonPlate')}}
+            </div>
+        </a>
+    </li>
 </ul>
