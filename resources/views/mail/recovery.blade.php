@@ -95,21 +95,21 @@
             </div>
             <div class="envelope-about">
                 <h2>
-                    Ваш пароль был изменён 
+                    {{__('passRecovered')}} 
                 </h2>
                 <p class="about-envelope">
-                    Если вы не отправляли запрос и это письмо пришло к вам по ошибке, свяжитесь с нами в телеграмм: <a href="https://t.me/starlinkprod" target="_blank">@MetaGPT</a>
+                    {{__('passRecoveredTg')}} <a href="https://t.me/starlinkprod" target="_blank">@MetaGPT</a>
                 </p>
                 <div class="envelope-info">
                     <div class="info-block">
-                        <p>Ваш логин:</p>
+                        <p>{{__('yourLogin')}}</p>
                         <!--Выводим логин пользователя-->
                         <div>
                             LoginName
                         </div>
                     </div>
                     <div class="info-block">
-                        <p>Ваш пароль:</p>
+                        <p>{{__('yourPass')}}</p>
                         <div>
                             Qazwsxedc1111
                         </div>
@@ -119,7 +119,7 @@
         </div>
         <div class="support-block">
             <p>
-                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="https://t.me/starlinkprod" target="_blank">@MetaGPT</a>
+                {{__('thanksSummMailSupp1')}} <br> {{__('thanksSummMailSupp2')}} <a href="https://t.me/starlinkprod" target="_blank">@MetaGPT</a>
             </p>
         </div>
     </div>

@@ -65,9 +65,11 @@
                         <a href="{{ route('changeLanguage', ['lang' => 'ru']) }}" class="changeLang @if(App::getLocale() == 'ru') active @endif">
                             RU
                         </a>
+                        <!--
                         <a href="{{ route('changeLanguage', ['lang' => 'ua']) }}" class="changeLang @if(App::getLocale() == 'ua') active @endif">
                             UA
                         </a>
+                        -->
                     </div>
                 </div>
             </li>

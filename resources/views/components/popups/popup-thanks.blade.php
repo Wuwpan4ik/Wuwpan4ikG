@@ -11,7 +11,7 @@
     </svg>
   </div>
   <div class="boxtext">
-    <div class="title">СПАСИБО!</div> 
+    <div class="title-thanks">СПАСИБО!</div> 
     <div class="text"> Оплата прошла успешно</div>
   </div>
    <!--  <button class="btn">Перейти к чату</button> -->

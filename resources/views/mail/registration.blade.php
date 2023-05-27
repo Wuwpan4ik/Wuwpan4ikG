@@ -95,28 +95,32 @@
             </div>
             <div class="envelope-about">
                 <h2>
-                    Добро пожаловать в Meta GPT
+                    {{__('welcomeGpt')}}
                 </h2>
                 <p class="about-envelope">
-                    Спасибо, что вы зарегистрировались в Meta GPT! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                    {{__('welcomeThank')}}
                 </p>
                 <div class="envelope-info">
                     <div class="info-block">
-                        <p>Ваше имя:</p>
+                        <p>{{__('nameMail')}}</p>
                         <!--Выводим логин пользователя-->
                         <div>
                             {{ $name }}
                         </div>
                     </div>
                     <div class="info-block">
-                        <p>Ваш код:</p>
+                        <p>
+                            {{__('yourCode')}}
+                        </p>
                         <!--Выводим логин пользователя-->
                         <div>
                             {{ $code }}
                         </div>
                     </div>
                     <div class="info-block">
-                        <p>Вход в аккаунт:</p>
+                        <p>
+                            {{__('yourEnter')}}
+                        </p>
                         <div>
                             <a href="https://meta-gpt.com/login" target="_blank">
                                 https://meta-gpt.com
@@ -128,7 +132,7 @@
         </div>
         <div class="support-block">
             <p>
-                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="https://t.me/starlinkprod">@MetaGPT</a>
+                {{__('thanksSummMailSupp1')}} <br> {{__('thanksSummMailSupp2')}} <a href="https://t.me/starlinkprod" target="_blank">@MetaGPT</a>
             </p>
         </div>
     </div>

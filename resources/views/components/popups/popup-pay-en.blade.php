@@ -1,23 +1,20 @@
-<!--Попап "Midj"-->
-<div class="popup" id="popup-zapic3">
+<!--Попап "Оплаты для англ"-->
+<div class="popup" id="popup-zapic4">
     <div class="popupContent">
             <div class="popup-inner">
                 <div class="form-popup">
                     <form id="telegram" action="{{ route('telegram') }}" method="post">
                         @csrf
                         <div class="form-inner">
-                            <input type="text" name="zayavka" value="Заявка на Midjourney" hidden>
+                            <input type="text" name="zayavka" value="Заявка на пополнение аккаунта" hidden>
                             <div class="form-image">
                                 <img src="../assets/asset-zapic.jpg" alt="Запись">
                             </div>
                             <div class="form-text">
-                                <h2>{{__('popupZapic3Heading')}}</h2>
-                                <div class="form-input">
-                                    <label for="email">
-                                    {{__('popupZapicEmail')}}*
-                                    </label>
-                                    <input type="text" name="email" placeholder="example@gmail.com" required>
-                                </div>
+                                <h2>{{__('popupZapic4Heading')}}</h2>
+                                <p>
+                                    {{__('popupZapuc4Desc')}}
+                                </p>
                                 <div class="form-input">
                                     <label for="telegram">
                                     {{__('popupZapicTg')}}*
@@ -26,10 +23,12 @@
                                 </div>
                                 <div class="send-mess">
                                     <button type="submit">
-                                        {{__('btnZapic')}}
+                                        {{__('submitBtn')}}
                                     </button>
                                 </div>
                             </div>
+                            <input type="text" name="tokens" id="tokensPayEng" style="display:none">
+                            <input type="text" name="summforpay" id="summForPayEng" style="display:none">
                         </div>
                     </form>
                 </div>

@@ -104,7 +104,7 @@
             </div>
             <div class="envelope-about">
                 <h2>
-                    Спасибо за покупку токенов MetaGPT
+                    {{__('thanksForPursacheMail')}}
                 </h2>
                 <div class="envelope-info">
                     <table>
@@ -115,26 +115,26 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    Вы приобрели:
+                                    {{__('thanksForPursacheMailYou')}}
                                 </td>
                                 <td>
-                                    {{ $tokens }} токенов
+                                    {{ $tokens }} {{__('profileHistoryTokens')}}
                                 </td>
                             </tr>
                             <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
                             <tr>
                                 <td>
-                                    На сумму:
+                                    {{__('thanksSummMail')}}
                                 </td>
                                 <td>
-                                    {{ $price }} р.
+                                    {{ $price }} {{__('countryValuta')}}
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="info-block">
-                    <p>Перейдите в аккаунт и начните использовать MetaGPT на полную!</p>
+                    <p>{{_('thanksSummMailGo')}}</p>
                     <div>
                         <a href="https://meta-gpt.com/login" target="_blank">https://meta-gpt.com</a>
                     </div>
@@ -143,7 +143,7 @@
         </div>
         <div class="support-block">
             <p>
-                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="https://t.me/starlinkprod" target="_blank">@MetaGPT</a>
+                {{__('thanksSummMailSupp1')}} <br> {{__('thanksSummMailSupp2')}} <a href="https://t.me/starlinkprod" target="_blank">@MetaGPT</a>
             </p>
         </div>
     </div>

@@ -87,11 +87,24 @@
     @include('components.popups.popup-profile')
     @include('components.popups.popup-midjourney')
     @include('components.popups.popup-mob')
+    @include('components.popups.popup-pay-en')
     <!--Скрипты-->
     <script src="{{asset('js/jquery-1.10.2.min.js')}}"></script>
     <script src="{{asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
     <script src="{{ asset('js/markdown-it.min.js') }}"></script>
     <script src="{{ asset('js/script.js')}}"></script>
+
+    {{-- Закрытие смены языка при нажатии на пустое место --}}
+
+    <script>
+        $(document).mouseup(function (e) {
+            var container = $(".switchLangContainer");
+            if (container.has(e.target).length === 0){
+                document.querySelector('.switchLangContainer').classList.remove('active');
+            }
+        });
+    </script>
+
     {{-- Восстановление пароля в профиле --}}
     <script>
         function forgotPass(item){

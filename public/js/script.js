@@ -16,8 +16,12 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 const msgerSendBtn = get(".msger-send-btn");
 const navigator = window.navigator;
+const userAgent = navigator.userAgent;
+let SafariBrowser = false;
 
-console.log(navigator.oscpu);
+if(userAgent.indexOf("Safari") > -1){
+    SafariBrowser = true;
+}
 
 let userName = 'User';
 let userImg = '../assets/user.jpg';
@@ -335,19 +339,21 @@ function sendMsg(msg) {
                                 item.parentElement.insertBefore(blockInfo, item);
                             });
                         }
-                        /*
-                        msgerChatContainer.addEventListener('scroll', function(){
-                            if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
-                                scrollable = true;
-                            }else{
-                                scrollable = false;
-                            }
-                        });
 
-                        if(scrollable == true){
-                            $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                        if(SafariBrowser == false){
+                            msgerChatContainer.addEventListener('scroll', function(){
+                                if (msgerChatContainer.scrollTop + msgerChatContainer.clientHeight === msgerChatContainer.scrollHeight) {
+                                    scrollable = true;
+                                }else{
+                                    scrollable = false;
+                                }
+                            });
+    
+                            if(scrollable == true){
+                                $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
+                            }
                         }
-                        */
+                        
                     }
                 }
             };
@@ -424,15 +430,21 @@ function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 function countTokens(){
-    let priceAll = document.querySelector('.finalPrice span');
+    let priceAll = document.querySelector('.finalPrice span'),
+    priceLocale = document.querySelector('.finalPrice'),
+    summLoc = 1;
     priceAll.textContent = document.querySelector('input#priceStealer').value;
+    if(priceLocale.classList.contains('eng')){
+        summLoc = 62.5;
+    }
     //Токены
-    document.querySelector(".howMuchTokens").textContent = numberWithSpaces(Math.round(document.querySelector('input#priceStealer').value / 0.69)*1000);
+    document.querySelector(".howMuchTokens").textContent = numberWithSpaces(Math.round((document.querySelector('input#priceStealer').value / 0.69) * summLoc)*1000);
     //Слова
-    document.querySelector(".words span").textContent = numberWithSpaces(Math.round(document.querySelector('input#priceStealer').value / 0.69)*750);
+    document.querySelector(".words span").textContent = numberWithSpaces(Math.round((document.querySelector('input#priceStealer').value / 0.69) * summLoc)*750);
     //Страницы
-    document.querySelector(".papers span").textContent = numberWithSpaces(Math.floor((( document.querySelector('input#priceStealer').value / 0.69)*1000) / 1800));
+    document.querySelector(".papers span").textContent = numberWithSpaces(Math.floor((((document.querySelector('input#priceStealer').value / 0.69) * summLoc)*1000) / 1800));
 }
+
 
 document.querySelector('input#priceStealer').oninput = countTokens;
 
@@ -716,7 +728,7 @@ copyMessagesBtns.forEach((item)=>{
 function closePopContainer(popid, containerid){
     $(document).mouseup(function (e) {
         var container = $(`${containerid}`);
-        if (container.has(e.target).length === 0){
+        if (popid != "popup-midj" && container.has(e.target).length === 0){
             document.getElementById(`${popid}`).classList.remove('active');
             if(popid === 'pay-popup'){
                 tokensLeftBtn.forEach((item)=>{
@@ -732,13 +744,6 @@ function closePopContainer(popid, containerid){
         }
     });
 }
-/*
-//Открытие попапа библиотеки подсказок
-document.getElementById('openPrompts').onclick = () =>{
-    document.getElementById('popup-library').classList.add('active');
-    closePopContainer('popup-library', '#popup-library .popupContent');
-}
-*/
 //Открытие попапа профиля
 document.querySelectorAll('button#about-user').forEach((item)=>{
     item.onclick = () =>{
@@ -763,10 +768,11 @@ document.querySelectorAll('a#chat-with-mdjrny').forEach((item)=>{
 });
 
 //Открытие попапа в разработке
-document.getElementById('chat-with-base').onclick = () =>{
-    document.getElementById('popup-develop').classList.add('active');
-}
-
+document.querySelectorAll('a#chat-with-base').forEach((item)=>{
+    item.onclick = () =>{
+        document.getElementById('popup-develop').classList.add('active');
+    }    
+})
 //Функция скролла вниз
 
 $('#scrollBottomBtn').onclick = () =>{
@@ -784,9 +790,20 @@ function autoResize(item) {
     if(window.innerWidth > 1000){
         item.style.height = 1 + "vw";
         item.style.height = pxToVw(item.scrollHeight) + "vw";
-    }else{
+        if(pxToVw(item.scrollHeight) >= 40){
+            item.classList.add('scroll-on');
+        }else{
+            item.classList.remove('scroll-on')
+        }
+    }
+    else{
         item.style.height = 88 + "px";
         item.style.height = item.scrollHeight + "px";
+        if(item.scrollHeight >= 250){
+            item.classList.add('scroll-on');
+        }else{
+            item.classList.remove('scroll-on')
+        }
     }
 
     if(document.querySelector('#mainHeader #tokensLeft span.tokens').innerText <= 0){
@@ -836,6 +853,10 @@ window.addEventListener('resize', function(){
     if(window.innerWidth < 1000){
         document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
     }
+    else if(window.innerWidth > 1000 && document.querySelector('#menu-mob').classList.contains('active')){
+        document.querySelector('#menu-mob').classList.remove('active');
+        document.getElementById('openMenu').classList.remove('active');
+    }
     else if(window.innerWidth < 1000 && document.querySelector('.sidebarMain.right').classList.contains('switched')){
         document.querySelector('.mainWrapper').classList.add('switchedSidebar');
     }
@@ -845,6 +866,7 @@ window.addEventListener('resize', function(){
 });
 
 document.addEventListener('DOMContentLoaded', function(){
+    countTokens();
     if(window.innerWidth < 1000){
         document.querySelector('.mainWrapper').classList.remove('switchedSidebar');
         document.querySelector('.sidebarMain.right').classList.remove('switched');
@@ -864,5 +886,17 @@ document.getElementById('popupPayBtnProf').onclick = () =>{
 if(document.getElementById('closeSettingsMob')){
     document.getElementById('closeSettingsMob').onclick = () =>{
         document.querySelector('.sidebarMain.right').classList.remove('opened');
+    }
+}
+
+if(document.getElementById('popupPayEng')){
+    document.getElementById('popupPayEng').onclick = () =>{
+        let tokensPay = document.querySelector('#pay-popup div.howMuchTokens').innerHTML,
+        summPay = document.querySelector('#pay-popup .finalPrice').innerText.trim();
+        document.getElementById('popup-zapic4').classList.add('active');
+        document.querySelector('#popup-zapic4 input#tokensPayEng').value = tokensPay.trim();
+        document.querySelector('#popup-zapic4 #summForPayEng').value = summPay;
+
+        console.log(document.querySelector('#popup-zapic4 input#tokensPayEng').value)
     }
 }

@@ -168,6 +168,7 @@
             success: function(data, textStatus, jqXHR) {
                     $('.tokens').load("/get_tokens");
                     document.getElementById('promocodeActivate').classList.add('showed');
+                    promocodeInput.value = "";
                     setTimeout(() => {
                         document.getElementById('promocodeActivate').classList.remove('showed');
                     }, 2000);
@@ -206,6 +207,7 @@
 <script>
     this.pay = function () {
         var widget = new cp.CloudPayments();
+        document.getElementById('checkout').classList.add('disabled');
         widget.pay('auth', // или 'charge'
             { //options
                 publicId: 'test_api_00000000000000000000002', //id из личного кабинета
@@ -224,6 +226,7 @@
                 },
                 onFail: function (reason, options) { // fail
                     //действие при неуспешной оплате
+                    document.getElementById('checkout').classList.add('disabled');
                 },
                 onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
                     if (paymentResult.success) {
@@ -244,7 +247,7 @@
         )
     };
 
-    $('#checkout').click(pay);
+     $('#checkout').click(pay);
 
 </script>
 </body>
