@@ -17,6 +17,7 @@ use App\Models\Role;
 use App\Models\UserModelSettings;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -30,8 +31,14 @@ class ChatController extends Controller
         if (Auth::user()) {
             if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->uuid);
             $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
+            $title = "Новый чат №";
+            if (App::getLocale() == 'en') {
+                $title = "New chat №";
+            } else if (App::getLocale() == 'ua') {
+                $title = "Новий чат №";
+            }
             $chat = Chat::create([
-                'title' => "Новый чат №" . $chat_id,
+                'title' => $title . $chat_id,
                 'user_id' => Auth::id(),
                 'role' => env('default_role')
             ]);
