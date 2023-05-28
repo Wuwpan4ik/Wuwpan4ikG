@@ -32,11 +32,12 @@ class ChatController extends Controller
         if (Auth::user()) {
             if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->uuid);
             $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
-            $title = "Новый чат №";
             if (App::getLocale() == 'en') {
                 $title = "New chat №";
             } else if (App::getLocale() == 'ua') {
                 $title = "Новий чат №";
+            } else {
+                $title = "Новый чат №";
             }
             $chat = Chat::create([
                 'title' => $title . $chat_id,
@@ -84,8 +85,17 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
+
+        if (App::getLocale() == 'en') {
+            $title = "New chat №";
+        } else if (App::getLocale() == 'ua') {
+            $title = "Новий чат №";
+        } else {
+            $title = "Новый чат №";
+        }
+
         $chat = Chat::create([
-            'title' => "Новый чат №" . $chat_id,
+            'title' => $title . $chat_id,
             'user_id' => Auth::id(),
             'role' => env('default_role')
         ]);
@@ -96,9 +106,17 @@ class ChatController extends Controller
     public function storeInFolder(Request $request)
     {
         $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
-        Debugbar::log($request);
+
+        if (App::getLocale() == 'en') {
+            $title = "New chat №";
+        } else if (App::getLocale() == 'ua') {
+            $title = "Новий чат №";
+        } else {
+            $title = "Новый чат №";
+        }
+
         $chat = Chat::create([
-            'title' => "Новый чат №" . $chat_id,
+            'title' => $title . $chat_id,
             'user_id' => Auth::id(),
             'folder_id' => $request->folder_id
         ]);

@@ -16,15 +16,15 @@
 	{
         public function store(StoreRequest $request)
         {
-            $chat_id = count(Folder::where('user_id', Auth::id())->withTrashed()->get()) + 1;
-            $title = "Новая папка №";
             if (App::getLocale() == 'en') {
-                $title = "New folder №";
+                $title = "New folder";
             } else if (App::getLocale() == 'ua') {
-                $title = "Нова папка №";
+                $title = "Нова папка";
+            } else {
+                $title = "Новая папка";
             }
             $folder = Folder::create([
-                'title' => $title . $chat_id,
+                'title' => $title,
                 'user_id' => Auth::id()
             ]);
             Debugbar::log($folder);
