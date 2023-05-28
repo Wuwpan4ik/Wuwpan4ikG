@@ -3,7 +3,7 @@
     <div class="popupContent">
             <div class="popup-inner">
                 <div class="form-popup">
-                    <form id="telegram" action="{{ route('telegram') }}" method="post">
+                    <form id="telegram" onsubmit="sendZayavka(this)" action="{{ route('telegram') }}" method="post">
                         @csrf
                         <div class="form-inner">
                             <input type="text" name="zayavka" value="Заявка на Midjourney" hidden>

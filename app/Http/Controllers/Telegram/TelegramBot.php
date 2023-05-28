@@ -33,17 +33,17 @@ class TelegramBot extends Controller
         $telegram = $request->telegram;
         $category = $request->zayavka;
         if($category == 'Заявка на Midjourney'){
-            $text = "Пользователь оставил заявку на тестирование Midjourney\n\Телеграм пользователя: $telegram \n\nПочта: $email";
+            $text = "Пользователь оставил заявку на тестирование Midjourney\n\nТелеграм пользователя: $telegram \n\nПочта: $email";
         }
         if($category == "Заявка на умного бота" or $category == "Заявка на внедрение умного бота"){
             $prof = $request->prof;
             $question = $request->question;
         }
         if($category == "Заявка на умного бота"){
-            $text = "Пользователь оставил заявку на тестирование умного бота\n\Телеграм пользователя: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
+            $text = "Пользователь оставил заявку на тестирование умного бота\n\nТелеграм пользователя: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
         }
         if($category == "Заявка на внедрение умного бота"){
-            $text = "Пользователь оставил заявку на внедрение умного бота\n\Телеграм пользователя: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
+            $text = "Пользователь оставил заявку на внедрение умного бота\n\nТелеграм пользователя: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
         }
         if($category == "Заявка на пополнение аккаунта"){
             $tokens=$request->tokens;
@@ -51,7 +51,7 @@ class TelegramBot extends Controller
             $text = "Пользователь оставил заявку на пополнение аккаунта\n\nТелеграм пользователя: $telegram\n\nКол-во токенов: $tokens\n\nСумма к оплате: $summforpay";
         }
         $response = [
-            'chat_id' => '-889441539',
+            'chat_id' => '-836677384',
             'text' => $text
         ];
 

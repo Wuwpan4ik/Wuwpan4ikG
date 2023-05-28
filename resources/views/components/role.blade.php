@@ -50,7 +50,7 @@
                     @csrf
                     <textarea name="role" id="systemRoleText" oninput="autoResize(this);"></textarea>
                     <div class="buttons">
-                        <button type="submit">
+                        <button class="renameChat" type="submit">
                             {{__('btnSave')}}
                         </button>
                         <button id="dismissRole" type="button">

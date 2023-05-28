@@ -260,18 +260,18 @@
     <script>
         function changeRole(item) {
             item.preventDefault()
-            let form = item.target
+            let form = item.target;
+            document.querySelector('.systemRole .systemRoleP').innerText = form.querySelector('#systemRoleText').value;
             fetch(form.action, {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": form.querySelector('input[name="_token"]').value}, method: "POST", body: JSON.stringify({'role': form.querySelector('#systemRoleText').value})})
             document.querySelector('.systemRole button.renameChat').click();
             let formText = form.querySelector('#systemRoleText').value;
-            document.querySelector('.systemRole p').textContent = String(formText).trim();
-            document.querySelector('.systemRole p').classList.remove('display-none');
-            setTimeout(function () {
-                $('.msger-chat').load(`/messages/get/${id}`);
-            }, 300)
+            document.querySelector('.systemRole .systemRoleP').classList.remove('display-none');
             document.querySelector('#popup-catalog').classList.remove('active');
             document.querySelector('.formSystemRole').classList.add('nonActive');
             document.querySelector('#systemRole .hoverItems').classList.remove('nonActive');
+            setTimeout(function () {
+                $('.msger-chat').load(`/messages/get/${id}`);
+            }, 300)
         }
     </script>
 
@@ -285,6 +285,42 @@
             setTimeout(function() {
                 loader.removeClass('showed');
             }, 2500)
+            form.submit(function(event) {
+                // Отменяем стандартное поведение браузера
+                event.preventDefault();
+
+                // Отправляем форму асинхронным POST-запросом с помощью jQuery AJAX
+                $.ajax({
+                    type: "PATCH",    // Метод отправки данных (POST, GET и т.д.)
+                    url: form.attr('action'),     // URL-адрес, куда отправляются данные формы
+                    data: form.serialize(),      // Сериализуем данные формы в строку
+                    success: function(response) { // Callback-функция, которая вызывается при успешной отправке формы
+                        console.log(response);      // Выводим в консоль ответ сервера
+                        // Здесь можно выполнить дополнительные действия после успешной отправки формы
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) { // Callback-функция, которая вызывается при ошибке отправки формы
+                        console.log(xhr.status);    // Выводим в консоль код ошибки
+                        console.log(thrownError);   // Выводим в консоль сообщение об ошибке
+                        // Здесь можно выполнить дополнительные действия при ошибке отправки формы
+                    }
+                });
+            });
+            form.submit();
+        }
+    </script>
+
+    {{-- Отправка заявки методом Ajax --}}
+
+    <script>
+        function sendZayavka(item){
+            // Получаем форму
+            var form = item;
+            var loader = document.getElementById('loaderResponseZayavka');
+            loader.classList.add('showed');
+            setTimeout(function() {
+                loader.classList.remove('showed');
+            }, 2500)
+
             form.submit(function(event) {
                 // Отменяем стандартное поведение браузера
                 event.preventDefault();

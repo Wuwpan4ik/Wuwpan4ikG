@@ -3,7 +3,7 @@
         <div class="popupContent">
             <div class="popup-inner">
                 <div class="form-popup">
-                    <form id="telegram" action="{{ route('telegram') }}" method="post">
+                    <form id="telegram" onsubmit="sendZayavka(this)" action="{{ route('telegram') }}" method="post">
                         @csrf
                         <div class="form-inner">
                             <input type="text" name="zayavka" value="Заявка на умного бота" hidden>
@@ -37,7 +37,7 @@
                                     <textarea name="question" placeholder="{{__('whyForPlaceholder')}}" required></textarea>
                                 </div>
                                 <div class="send-mess">
-                                    <button type="submit">
+                                    <button type="submit" onclick="sendZayavka(this)">
                                         {{__('btnZapic')}}
                                     </button>
                                 </div>

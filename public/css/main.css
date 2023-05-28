@@ -3146,6 +3146,10 @@ button.promptBtn .promptText {
   padding-bottom: 1.042vw;
 }
 
+#loaderResponseZayavka {
+  z-index: 999;
+}
+
 #pay-popup {
   padding-top: 0px;
   z-index: 200;
