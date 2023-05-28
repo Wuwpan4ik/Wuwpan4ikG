@@ -8,6 +8,7 @@ use App\Http\Requests\Chat\StoreRequest;
 use App\Http\Requests\Chat\updateChatSettingsRequest;
 use App\Http\Requests\Chat\UpdateRequest;
 use App\Http\Requests\Chat\UpdateRoleRequest;
+use App\Models\BuyHistory;
 use App\Models\Chat;
 use App\Models\Folder;
 use App\Models\Message;
@@ -50,13 +51,14 @@ class ChatController extends Controller
 
     public function show(Chat $chat)
     {
+        $history = BuyHistory::where('user_id', Auth::id())->get();
         $purchases = Purchace::all();
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
         $folders = (new Folder())->getFolders();
         $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
         $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();
         $roles = Role::all();
-        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category', 'roles', 'purchases'));
+        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category', 'roles', 'purchases', 'history'));
     }
 
     /**

@@ -161,15 +161,18 @@
                             <h2>{{__('profileHistoryHeading')}}</h2>
                             <div class="history-payments-inner">
                                 <!--Выдается всем после регистрации-->
-                                <div class="history-payments-item">
-                                    <div class="count">
-                                        <div class="count-much">Free</div>
-                                        <div class="count-tokens">(5 000 {{(__('profileHistoryTokens'))}})</div>
+                                @foreach($history as $item)
+                                    <div class="history-payments-item">
+                                        <div class="count">
+                                            <div class="count-much">@if($item) Free @else Paid @endif</div>
+                                            <div class="count-tokens">({{ $item->tokens }} {{(__('profileHistoryTokens'))}})</div>
+                                        </div>
+                                        <div class="date-payment">
+                                            {{ date("d-m-Y", strtotime($item->created_at)) }}
+                                        </div>
                                     </div>
-                                    <div class="date-payment">
-                                        
-                                    </div>
-                                </div>
+                                @endforeach
+
                                 <!--Выдается после платежа-->
                                 @foreach($purchases as $purchase)
                                     <div class="history-payments-item">
