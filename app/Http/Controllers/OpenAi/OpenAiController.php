@@ -34,8 +34,8 @@ class OpenAiController extends Controller
         foreach ($message as $mess) {
             $prompt_tokens += count($this->gpt_encode($mess->message));
         }
-        Debugbar::log($prompt_tokens);
-        Auth::user()->tokens -= $prompt_tokens;
+        $tokens = Auth::user()->tokens - $prompt_tokens > 0 ? Auth::user()->tokens - $prompt_tokens : 0;
+        Auth::user()->tokens = $tokens;
         Auth::user()->save();
         $chat->increment('token_cost', $prompt_tokens);
     }
@@ -88,15 +88,15 @@ class OpenAiController extends Controller
             'stream' => true,
         ];
 
-        Debugbar::log($opts);
         Debugbar::log($prompt_tokens);
 
-        $open_ai = new OpenAi("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");
+        $open_ai = new OpenAi("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");
         while (true) {
             return response()->stream(function () use ($open_ai, $opts, $chat, $prompt_tokens, $id) {
-                $txt = $this->chat($open_ai, $opts, $chat, $prompt_tokens, '');
+                $txt = $this->chat($open_ai, $opts, $chat, $prompt_tokens);
                 $cost_tokens = count($this->gpt_encode($txt)) + $prompt_tokens;
-                Auth::user()->tokens -= $cost_tokens;
+                $tokens = Auth::user()->tokens - $cost_tokens > 0 ? Auth::user()->tokens - $cost_tokens : 0;
+                Auth::user()->tokens = $tokens;
                 Auth::user()->save();
                 $chat->increment('token_cost', $cost_tokens);
             }, 200, [
@@ -106,8 +106,9 @@ class OpenAiController extends Controller
         }
     }
 
-    protected function chat($open_ai, $opts, $chat, $prompt_tokens, $txt) {
-        $open_ai->chat($opts, function ($curl_info, $data) use (&$txt, &$chat, &$prompt_tokens) {
+    protected function chat($open_ai, $opts, $chat, $prompt_tokens) {
+        $result = '';
+        $open_ai->chat($opts, function ($curl_info, $data) use (&$result, &$chat, &$prompt_tokens) {
             if ($obj = json_decode($data) and $obj->error->message != "") {
                 error_log(json_encode($obj->error->message));
             } else {
@@ -115,14 +116,14 @@ class OpenAiController extends Controller
                 $clean = str_replace("data: ", "", $data);
                 $arr = json_decode($clean, true);
                 if ($data != "data: [DONE]\n\n" and isset($arr["choices"][0]["delta"]["content"])) {
-                    $txt .= $arr["choices"][0]["delta"]["content"];
+                    $result .= $arr["choices"][0]["delta"]["content"];
                 }
             }
             ob_flush();
             flush();
             return strlen($data);
         });
-        return $txt;
+        return $result;
     }
 
     private function gpt_utf8_encode(string $str): string

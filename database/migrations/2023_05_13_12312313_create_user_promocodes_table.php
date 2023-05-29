@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->index()->constrained('users')->onDelete('CASCADE');
             $table->string('promocode')->index()->nullable();
-            $table->foreign('promocode')->references('code')->on('promocodes');
+            $table->foreign('promocode')->references('code')->on('promocodes')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
