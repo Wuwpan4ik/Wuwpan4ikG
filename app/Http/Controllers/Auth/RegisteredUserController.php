@@ -47,14 +47,14 @@ class RegisteredUserController extends Controller
             ];
         } else if(App::getLocale() == 'en') {
             $message = [
-                'email.required' => 'Такая почта уже занята',
-                'email.email' => 'Здесь должна быть почта!',
-                'email.unique' => 'Такая почта уже зарегестрирована',
-                'name.required' => 'Обязательное поле',
-                'name.string' => 'В поле Имя должна быть строка',
-                'name.max' => 'Максимальная длина - 255 символов',
-                'password.required' => 'Обязательное поле',
-                'password.confirmed' => 'Пароли должны совпадать'
+                'email.required' => 'This mail is already taken',
+                'email.email' => 'There should be mail here!',
+                'email.unique' => 'This email is already registered.',
+                'name.required' => 'Obligatory field',
+                'name.string' => 'The Name field should contain the string',
+                'name.max' => 'Maximum length - 255 characters',
+                'password.required' => 'Obligatory field',
+                'password.confirmed' => 'Passwords must match'
             ];
         }
 
