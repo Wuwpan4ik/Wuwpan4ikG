@@ -1,4 +1,4 @@
-    <!--Попап "Раздел в разработке"-->
+    <!--Попап "Midj"-->
     <div class="popup" id="popup-midj">
         <div class="popupContent">
             <div class="popup-inner">

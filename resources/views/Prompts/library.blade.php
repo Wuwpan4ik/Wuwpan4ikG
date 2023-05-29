@@ -27,11 +27,12 @@
 
             <div class="tablinks-container libraryItems sobsRazdeli">
                 <h2>{{__("mineRazdeli")}}</h2>
+                
                 <!--Показывать в случае если пользователь не добавил себе раздел-->
                 <div class="tablinks-mine-razdeli">
                     @include('components.sidebar_library')
                 </div>
-
+                
                 <!--Создание раздела-->
                     <form class="create__folder" action="{{ route('prompts_folder.store') }}" method="POST">
                         @csrf

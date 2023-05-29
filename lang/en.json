@@ -154,7 +154,7 @@
      "loaderResponsePassword": "Your new password has been sent to your email.",
      "loaderPromoActive": "Promo code activated successfully!",
      "loaderPromoBad": "This promo code doesn't exist!",
-     "loaderPromoUser": "You have already used this promo code!",
+     "loaderPromoUsed": "You have already used this promo code!",
      "loaderSettingsHead": "Settings applied!",
      "loaderSettingsDesc": "Your settings have been applied successfully.",
      "ecoRezh": "Economy",
@@ -190,5 +190,6 @@
      "nameMail": "Your name:",
      "yourEnter": "Account login:",
      "welcomeGpt": "Welcome to MetaGPT",
-     "welcomeThank": "Thank you for signing up for Meta GPT! Below is important information about your account. Please keep this letter so you can refer to it later."
+     "welcomeThank": "Thank you for signing up for Meta GPT! Below is important information about your account. Please keep this letter so you can refer to it later.",
+     "Prompts": "Prompts"
 }

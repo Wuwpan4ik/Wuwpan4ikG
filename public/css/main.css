@@ -399,6 +399,8 @@ body {
   display: none;
 }
 .switchLangContainer .dropdownLang a {
+  color: white;
+  font-size: 0.729vw;
   margin-bottom: 0.417vw;
 }
 .switchLangContainer.active .dropdownLang {
@@ -1347,7 +1349,8 @@ body.light .msg-options button svg path {
 }
 
 #mobileHeader {
-  position: relative;
+  position: fixed;
+  width: 100%;
   z-index: 200;
   display: none;
   background: #0F131B;
@@ -2546,7 +2549,7 @@ button.promptBtn .promptText {
 #profile-popup .popupContent .popup-inner .change-photo {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 0.521vw;
-  width: 100%;
+  width: 80%;
   height: 1.979vw;
   display: flex;
   align-items: center;
@@ -4081,8 +4084,27 @@ table th {
   .popup-setting-content {
     height: 42px;
   }
+  #switchLang svg:first-child {
+    display: none;
+  }
   .switchLangContainer .dropdownLang {
-    right: 14px;
+    border: 0.998px solid #374151;
+    border-radius: 10.003px;
+    padding: 8.006px 10.003px;
+    right: 8px;
+  }
+  .switchLangContainer .dropdownLang a {
+    font-size: 12px;
+    margin-bottom: 8.006px;
+    padding: 6px;
+    border-radius: 5px;
+  }
+  .switchLangContainer .dropdownLang a:last-of-type {
+    margin-bottom: 0px;
+  }
+  body.dark .switchLangContainer .dropdownLang a.active {
+    color: #13B8A6;
+    background: #101F25;
   }
   #mainHeader .navbar a#chat-with-base, #mainHeader .navbar #chat-with-mdjrny {
     gap: 10.003px;
@@ -4160,6 +4182,32 @@ table th {
   }
 }
 @media (max-width: 1000px) {
+  .sidebarMain.right, .sidebarMain.left {
+    margin-top: 78px !important;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems {
+    right: 20px;
+  }
+  .loginForm section form {
+    margin-top: 120px;
+    margin-bottom: 40px;
+  }
+  .sparkle-button .particle-pen, .sparkle-button .backdrop {
+    display: none;
+  }
+  button#popupPayEng::before, button#checkout::before {
+    display: none;
+  }
+  button#popupPayEng span.backdrop, button#popupPayEng span.spark, button#popupPayEng .bodydrop, button#popupPayEng .particle-pen, button#checkout span.backdrop, button#checkout span.spark, button#checkout .bodydrop, button#checkout .particle-pen {
+    display: none;
+  }
+  button#popupPayEng svg, button#checkout svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  * {
+    transition: 0s all ease;
+  }
   #chat-with-mdjrny, #chat-with-base {
     display: flex;
     gap: 10px;
@@ -4546,6 +4594,7 @@ table th {
     font-size: 12px;
     padding: 0px 23.04px;
     border-radius: 10px;
+    width: 70%;
   }
   #profile-popup .popupContent .popup-inner .profile-info .profile-photo form .change-photo label div {
     font-size: 12px;
@@ -4571,6 +4620,9 @@ table th {
     height: 46px;
     border-radius: 10.003px;
     padding: 12px 20.006px;
+  }
+  #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .input-span {
+    width: 100%;
   }
   #profile-popup .popupContent .popup-inner .form-profile .coolInput .inner-input .input-span p {
     font-size: 12px;

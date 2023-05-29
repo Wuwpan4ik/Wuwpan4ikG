@@ -428,6 +428,8 @@ body{
         padding:0.417vw 0.521vw;
         display:none;
         a{
+            color:white;
+            font-size:0.729vw;
             margin-bottom: 0.417vw;
         }
     }
@@ -1585,7 +1587,8 @@ body.light{
 }
 
 #mobileHeader{
-    position: relative;
+    position: fixed;
+    width: 100%;
     z-index: 200;
     display:none;
     background: #0F131B;
@@ -2845,7 +2848,7 @@ button.promptBtn{
             .change-photo{
                 background: rgba(255, 255, 255, 0.2);
                 border-radius: 0.521vw;
-                width:100%;
+                width:80%;
                 height: 1.979vw;
                 display: flex;
                 align-items: center;
@@ -4425,8 +4428,37 @@ table{
 
     //Header
 
+    #switchLang{
+        svg:first-child{
+            display:none;
+        }
+    }
+
     .switchLangContainer .dropdownLang{
-        right: 14px;
+        border: 0.998px solid #374151;
+        border-radius: 10.003px;
+        padding: 8.006px 10.003px;
+        right: 8px;
+        a{
+            font-size:12px;
+            margin-bottom: 8.006px;
+            padding:6px;
+            border-radius: 5px;
+            &:last-of-type{
+                margin-bottom: 0px;
+            }
+        }
+    }
+
+    body.dark{
+        .switchLangContainer .dropdownLang{
+            a{
+                &.active{
+                    color: #13B8A6;
+                    background: #101F25;
+                }
+            }
+        }
     }
 
     #mainHeader .navbar a#chat-with-base, #mainHeader .navbar #chat-with-mdjrny{
@@ -4526,7 +4558,49 @@ table{
 
 //Adaptive
 @media(max-width:1000px){
-    
+
+    .sidebarMain.right, .sidebarMain.left{
+        margin-top: 78px !important;
+    }
+
+    #profile-popup .popupContent .popup-inner .form-profile .coolInput .hoverItems{
+        right:20px;
+    }
+
+    //Login / Reg
+    .loginForm{
+        section{
+            form{
+                margin-top: 120px;
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    //Switch lang
+    .sparkle-button{
+        .particle-pen, .backdrop{
+            display:none;
+        }
+    }
+
+    button#popupPayEng, button#checkout{
+        &::before{
+            display: none;
+        }
+        span.backdrop, span.spark, .bodydrop, .particle-pen{
+            display: none;
+        }
+        svg{
+            width: 16px !important;
+            height:16px !important;
+        }
+    }
+
+    *{
+        transition: 0s all ease;
+    }
+
     //кнопки чат с миджорни и т.д
     #chat-with-mdjrny, #chat-with-base{
         display:flex;
@@ -4935,6 +5009,7 @@ table{
                                 font-size:12px;
                                 padding:0px 23.04px;
                                 border-radius: 10px;
+                                width:70%;
                                 label{
                                     div{
                                         font-size:12px;
@@ -4964,6 +5039,7 @@ table{
                             border-radius: 10.003px;
                             padding: 12px 20.006px;
                             .input-span{
+                                width:100%;
                                 p{
                                     font-size: 12px;
                                 }
