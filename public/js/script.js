@@ -898,7 +898,5 @@ if(document.getElementById('popupPayEng')){
         document.getElementById('popup-zapic4').classList.add('active');
         document.querySelector('#popup-zapic4 input#tokensPayEng').value = tokensPay.trim();
         document.querySelector('#popup-zapic4 #summForPayEng').value = summPay;
-
-        console.log(document.querySelector('#popup-zapic4 input#tokensPayEng').value)
     }
 }

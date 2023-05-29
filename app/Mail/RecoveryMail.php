@@ -27,7 +27,7 @@ class RecoveryMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Сброс пароля',
+            subject: "{{__('resetPassSubject')}}",
         );
     }
 

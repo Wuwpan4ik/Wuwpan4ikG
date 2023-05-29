@@ -191,5 +191,8 @@
      "yourEnter": "Account login:",
      "welcomeGpt": "Welcome to MetaGPT",
      "welcomeThank": "Thank you for signing up for Meta GPT! Below is important information about your account. Please keep this letter so you can refer to it later.",
-     "Prompts": "Prompts"
+     "Prompts": "Prompts",
+     "registrationSubject": "Meta GPT - Verify mail",
+     "resetPassSubject": "Meta GPT - Password Recovery",
+     "pursacheSubject": "Meta GPT - Thank you for your purchase!"
 }

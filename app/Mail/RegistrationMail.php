@@ -31,7 +31,7 @@ class RegistrationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Подтвердите почту',
+            subject: "{{__('registrationSubject')}}",
         );
     }
 

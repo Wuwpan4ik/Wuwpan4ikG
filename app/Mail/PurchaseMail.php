@@ -30,7 +30,7 @@ class PurchaseMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Успешная оплата!',
+            subject: '{{__("pursacheSubject")}}',
         );
     }
 
