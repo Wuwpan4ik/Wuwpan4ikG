@@ -91,7 +91,7 @@ class OpenAiController extends Controller
         Debugbar::log($opts);
         Debugbar::log($prompt_tokens);
 
-        $open_ai = new OpenAi(env('open_ai_key'));
+        $open_ai = new OpenAi("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");
         while (true) {
             return response()->stream(function () use ($open_ai, $opts, $chat, $prompt_tokens, $id) {
                 $txt = $this->chat($open_ai, $opts, $chat, $prompt_tokens, '');

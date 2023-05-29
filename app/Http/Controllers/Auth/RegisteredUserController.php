@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\RegistrationMail;
+use App\Models\BuyHistory;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -48,6 +49,12 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        BuyHistory::create([
+            'user_id' => Auth::id(),
+            'description' => "Получил бесплатные токены",
+            'tokens' => 5000
+        ]);
 
         Mail::to(Auth::user()->email)->send(new RegistrationMail());
 

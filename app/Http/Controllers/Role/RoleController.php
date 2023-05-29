@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Role;
 
 use App\Http\Controllers\Controller;
+use App\Models\BuyHistory;
 use App\Models\Purchace;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -16,7 +18,8 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         $purchases = Purchace::all();
-        return view('Roles.catalog', compact('roles', 'purchases'));
+        $history = BuyHistory::where('user_id', Auth::id())->get();
+        return view('Roles.catalog', compact('roles', 'purchases', 'history'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Promocode;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Promocode\UseRequest;
+use App\Models\BuyHistory;
 use App\Models\Promocode;
 use App\Models\UserPromocodes;
 use Barryvdh\Debugbar\Facades\Debugbar;
@@ -41,10 +42,14 @@ class PromocodeController extends Controller
                     'promocode' => $code,
                     'is_partner' => $is_partner
                 ];
-                Debugbar::log($data);
-                UserPromocodes::create();
+                UserPromocodes::create($data);
                 Auth::user()->tokens += $promocode->amount;
                 Auth::user()->save();
+                BuyHistory::create([
+                    'user_id' => Auth::id(),
+                    'description' => "Использовал промокод $code",
+                    'tokens' => $promocode->amount
+                ]);
             }
         } else {
             return response()->json(['error' => '2'], 404);

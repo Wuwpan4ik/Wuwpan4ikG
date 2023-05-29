@@ -8,6 +8,7 @@ use App\Http\Requests\Chat\StoreRequest;
 use App\Http\Requests\Chat\updateChatSettingsRequest;
 use App\Http\Requests\Chat\UpdateRequest;
 use App\Http\Requests\Chat\UpdateRoleRequest;
+use App\Models\BuyHistory;
 use App\Models\Chat;
 use App\Models\Folder;
 use App\Models\Message;
@@ -17,6 +18,7 @@ use App\Models\Role;
 use App\Models\UserModelSettings;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -30,8 +32,15 @@ class ChatController extends Controller
         if (Auth::user()) {
             if ($chat = Chat::where('user_id', Auth::id())->first()) return redirect()->route('chats.show', $chat->uuid);
             $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
+            if (App::getLocale() == 'en') {
+                $title = "New chat №";
+            } else if (App::getLocale() == 'ua') {
+                $title = "Новий чат №";
+            } else {
+                $title = "Новый чат №";
+            }
             $chat = Chat::create([
-                'title' => "Новый чат №" . $chat_id,
+                'title' => $title . $chat_id,
                 'user_id' => Auth::id(),
                 'role' => env('default_role')
             ]);
@@ -43,13 +52,14 @@ class ChatController extends Controller
 
     public function show(Chat $chat)
     {
+        $history = BuyHistory::where('user_id', Auth::id())->get();
         $purchases = Purchace::all();
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
         $folders = (new Folder())->getFolders();
         $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");
         $prompts_category = PromptFolder::where('is_main', 1)->orWhere('user_id', Auth::id())->get();
         $roles = Role::all();
-        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category', 'roles', 'purchases'));
+        return view('Chats.show', compact('chat', 'chats', 'messages', 'folders', 'prompts_category', 'roles', 'purchases', 'history'));
     }
 
     /**
@@ -75,8 +85,17 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
+
+        if (App::getLocale() == 'en') {
+            $title = "New chat №";
+        } else if (App::getLocale() == 'ua') {
+            $title = "Новий чат №";
+        } else {
+            $title = "Новый чат №";
+        }
+
         $chat = Chat::create([
-            'title' => "Новый чат №" . $chat_id,
+            'title' => $title . $chat_id,
             'user_id' => Auth::id(),
             'role' => env('default_role')
         ]);
@@ -87,9 +106,17 @@ class ChatController extends Controller
     public function storeInFolder(Request $request)
     {
         $chat_id = count(Chat::where('user_id', Auth::id())->withTrashed()->get()) + 1;
-        Debugbar::log($request);
+
+        if (App::getLocale() == 'en') {
+            $title = "New chat №";
+        } else if (App::getLocale() == 'ua') {
+            $title = "Новий чат №";
+        } else {
+            $title = "Новый чат №";
+        }
+
         $chat = Chat::create([
-            'title' => "Новый чат №" . $chat_id,
+            'title' => $title . $chat_id,
             'user_id' => Auth::id(),
             'folder_id' => $request->folder_id
         ]);

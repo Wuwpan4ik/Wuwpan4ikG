@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payer\BuyRequest;
 use App\Mail\PurchaseMail;
 use App\Mail\RegistrationMail;
+use App\Models\BuyHistory;
 use App\Models\Purchace;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,6 +27,12 @@ class PayerController extends Controller
             'price' => $price,
             'tokens' => $tokens,
             'user_id' => $user_id
+        ]);
+        BuyHistory::create([
+            'user_id' => Auth::id(),
+            'description' => "Купил токенов на $price",
+            'tokens' => $tokens,
+            'is_free' => 0
         ]);
         Mail::to(Auth::user()->email)->send(new PurchaseMail($tokens, $price));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Prompt;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Prompt\StoreRequest;
 use App\Http\Requests\Prompt\UpdateRequest;
+use App\Models\BuyHistory;
 use App\Models\Prompt;
 use App\Models\PromptFolder;
 use App\Models\Purchace;
@@ -25,6 +26,7 @@ class PromptController extends Controller
 
     public function show($PromptFolder)
     {
+        $history = BuyHistory::where('user_id', Auth::id())->get();
         $purchases = Purchace::all();
         $folder = PromptFolder::where('id', $PromptFolder)->first();
         $main_prompts = PromptFolder::where('is_main', 1)->get();
@@ -32,7 +34,7 @@ class PromptController extends Controller
         $prompts = Prompt::where('folder_id', (int)$PromptFolder)->get();
         $prompts_main = $folder->is_main;
         $prompts_id = (int)$PromptFolder;
-        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_main', 'prompts_id', 'purchases'));
+        return view('Prompts.library', compact('main_prompts', 'folder',  'prompts', 'prompts_folder', 'prompts_main', 'prompts_id', 'purchases', 'history'));
     }
 
     public function showMain($PromptFolder, $library)
