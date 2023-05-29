@@ -10,6 +10,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -33,11 +34,36 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if (App::getLocale() == 'ru') {
+            $message = [
+                'email.required' => 'Такая почта уже занята',
+                'email.email' => 'Здесь должна быть почта!',
+                'email.unique' => 'Такая почта уже зарегестрирована',
+                'name.required' => 'Обязательное поле',
+                'name.string' => 'В поле Имя должна быть строка',
+                'name.max' => 'Максимальная длина - 255 символов',
+                'password.required' => 'Обязательное поле',
+                'password.confirmed' => 'Пароли должны совпадать'
+            ];
+        } else if(App::getLocale() == 'en') {
+            $message = [
+                'email.required' => 'Такая почта уже занята',
+                'email.email' => 'Здесь должна быть почта!',
+                'email.unique' => 'Такая почта уже зарегестрирована',
+                'name.required' => 'Обязательное поле',
+                'name.string' => 'В поле Имя должна быть строка',
+                'name.max' => 'Максимальная длина - 255 символов',
+                'password.required' => 'Обязательное поле',
+                'password.confirmed' => 'Пароли должны совпадать'
+            ];
+        }
+
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ], $message);
 
         $user = User::create([
             'name' => $request->name,
