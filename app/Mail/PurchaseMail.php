@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\App;
 
 class PurchaseMail extends Mailable
 {
@@ -29,8 +30,16 @@ class PurchaseMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        $lang = App::getLocale();
+
+        if($lang == 'ru'){
+            $subject = "Meta GPT - Спасибо за покупку!";
+        }else{
+            $subject = "Meta GPT - Thank you for purchase!";
+        }
+
         return new Envelope(
-            subject: '{{__("pursacheSubject")}}',
+            subject: $subject,
         );
     }
 

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Mail;
-
 use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Bus\Queueable;
@@ -11,6 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class RegistrationMail extends Mailable
 {
@@ -30,8 +30,16 @@ class RegistrationMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        $lang = App::getLocale();
+
+        if($lang == 'ru'){
+            $subject = "Meta GPT - Подтвердите почту";
+        }else{
+            $subject = "Meta GPT - Confirm your email";
+        }
+
         return new Envelope(
-            subject: "{{__('registrationSubject')}}",
+            subject: $subject,
         );
     }
 

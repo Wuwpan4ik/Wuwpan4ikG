@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\App;
 
 class RecoveryMail extends Mailable
 {
@@ -26,8 +27,16 @@ class RecoveryMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        $lang = App::getLocale();
+
+        if($lang == 'ru'){
+            $subject = "Meta GPT - Восстановление пароля";
+        }else{
+            $subject = "Meta GPT - Restore password";
+        }
+        
         return new Envelope(
-            subject: "{{__('resetPassSubject')}}",
+            subject: $subject,
         );
     }
 
