@@ -20,7 +20,7 @@
                 <div class="tokens_chat">
                     <button id="openPrompts">
                         <p class="openPromptsPc">{{__("openPrompts")}}</p>
-                        <p class="openPromptsMob">Подсказки</p>
+                        <p class="openPromptsMob">{{__('Prompts')}}</p>
                     </button>
                     <div class="tokensSpent">
                         @include('components.tokens_in_chat')
@@ -100,7 +100,7 @@
         $(document).mouseup(function (e) {
             var container = $(".switchLangContainer");
             if (container.has(e.target).length === 0){
-                document.querySelector('.switchLangContainer').classList.remove('active');
+                document.querySelectorAll('.switchLangContainer').forEach(item => item.classList.remove('active'));
             }
         });
     </script>

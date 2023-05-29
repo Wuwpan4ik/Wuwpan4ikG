@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>
         Meta GPT - {{__('Chat')}}
@@ -11,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.svg') }}">
 </head>
-
 <body class="@if(session()->get('theme')){{ session()->get('theme') }} @else dark @endif">
 @include('components.header')
 <div class="hiddenContent" id="userNameProf">
@@ -21,10 +19,8 @@
     <img src="{{ Storage::url(Auth::user()->avatar) }}">
 </div>
 <div class="sidebarMain left">
-    <!--Новый чат и новая папка-->
     <div class="first-col">
         <div class="folderRow">
-            <!--Создание чата-->
             <form class="create__chat" action="{{ route('chats.store') }}" method="POST">
                 @csrf
                 <button type="button" class="add-chat" onclick="add_new_chat(this.parentElement)">
@@ -41,7 +37,6 @@
                     {{ __("newchat") }}
                 </button>
             </form>
-            <!--Создание папки-->
             <form action="{{ route('folder.store') }}" method="POST">
                 @csrf
                 <button type="button" class="add-folder" onclick="add_new_folder(this.parentElement)">
@@ -134,7 +129,6 @@
     @include('components.role')
 </div>
 <div class="theme" style="display: none;"></div>
-<!--Попапы-->
 @include('components.popups.popup-pay')
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script>
@@ -146,15 +140,12 @@
         $(this).addClass('active')
 
         fetch("{{ route('changeTheme') }}" + "?theme="+ $(this).data("theme"))
-
-        // $('body').toggleClass('dark light');
     });
 </script>
 <script src="{{asset('js/highlight.min.js')}}"></script>
 @yield('script')
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
 <script>
-    // Отправка промокода
     $('#activatePromoBtn').on('click', function (e) {
         e.preventDefault()
         let form = $('.promocode-form'),
@@ -174,6 +165,7 @@
                     }, 2000);
                 },
             error: function (data, textStatus, jqXHR) {
+                    console.log(data.responseText);
                     if(data.responseText == '{"error":"1"}'){
                         document.getElementById('promocodeActivateBad').classList.add('showed');
                         setTimeout(function(){
@@ -210,7 +202,7 @@
         document.getElementById('checkout').classList.add('disabled');
         widget.pay('auth', // или 'charge'
             { //options
-                publicId: 'test_api_00000000000000000000002', //id из личного кабинета
+                publicId: 'pk_aac9cf63790d4016bbf0f7454f278', //id из личного кабинета
                 description: 'Покупка токенов,',
                 amount: document.querySelector('#priceStealer').value, //сумма
                 currency: 'RUB', //валюта

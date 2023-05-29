@@ -834,9 +834,11 @@ function openPopUpZayavka3(item){
 }
 
 //Смена языка
-document.getElementById('switchLang').onclick = () =>{
-    document.getElementById('switchLang').parentElement.classList.toggle('active');
-}
+document.querySelectorAll('button#switchLang').forEach((item) => {
+    item.onclick = () =>{
+        item.parentElement.classList.toggle('active');
+    }
+});
 
 //Кнопка скрытия меню
 function useSidebar() {
