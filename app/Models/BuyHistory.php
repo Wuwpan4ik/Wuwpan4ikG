@@ -11,6 +11,8 @@ class BuyHistory extends Model
 
     protected $guarded = false;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'user_id',
         'description',

@@ -53,7 +53,7 @@ class ChatController extends Controller
     public function show(Chat $chat)
     {
         $history = BuyHistory::where('user_id', Auth::id())->get();
-        $purchases = Purchace::all();
+        $purchases = Purchace::where('user_id', Auth::id())->get();
         $chats = Chat::whereNull('folder_id')->where('user_id', Auth::id())->orderByDesc("id")->get()->sortBy("id");
         $folders = (new Folder())->getFolders();
         $messages = Message::where('chat_id', $chat->id)->orderByDesc("id")->get()->sortBy("id");

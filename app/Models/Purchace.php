@@ -11,6 +11,8 @@ class Purchace extends Model
 
     protected $guarded = false;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'id',
         'price',
