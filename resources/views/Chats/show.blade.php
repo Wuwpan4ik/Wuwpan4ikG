@@ -314,7 +314,7 @@
     <script>
         function sendZayavka(item){
             // Получаем форму
-            var form = item;
+            var form = $(item);
             var loader = document.getElementById('loaderResponseZayavka');
             loader.classList.add('showed');
             setTimeout(function() {

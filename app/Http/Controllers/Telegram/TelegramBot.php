@@ -62,8 +62,6 @@ class TelegramBot extends Controller
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_exec($ch);
         curl_close($ch);
-        
-        header('Location: /');
     }
 
     /**
