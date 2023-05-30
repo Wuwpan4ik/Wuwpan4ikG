@@ -164,7 +164,7 @@
                                 @foreach($history as $item)
                                     <div class="history-payments-item">
                                         <div class="count">
-                                            <div class="count-much">@if($item) Free @else Paid @endif</div>
+                                            <div class="count-much">@if($item->is_free) Free @else Paid @endif</div>
                                             <div class="count-tokens">({{ $item->tokens }} {{(__('profileHistoryTokens'))}})</div>
                                         </div>
                                         <div class="date-payment">
