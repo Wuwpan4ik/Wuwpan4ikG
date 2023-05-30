@@ -19,10 +19,10 @@ class TestPromocodeSeeder extends Seeder
             $promocode->delete();
         }
         DB::table('promocodes')->insert([
-            'code' => "11112324122111",
+            'code' => "111123241222111",
             'user_id' => Auth::id(),
             'count' => 5,
-            'amount' => 300
+            'amount' => 5000
         ]);
 
         DB::table('promocodes')->insert([

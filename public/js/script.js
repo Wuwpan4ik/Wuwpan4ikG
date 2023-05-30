@@ -250,7 +250,7 @@ function copyToClipboard(item){
 let stream;
 
 function sendMsg(msg) {
-    msgerSendBtn.disabled = true
+    msgerInput.disabled = true
     let key = document.querySelector('input[name=_token]').value;
     let user_id = document.querySelector("#user_id").value;
     let newDiv = document.createElement('div');
@@ -284,7 +284,7 @@ function sendMsg(msg) {
             blockAll(true);
             //Кнопка остановки генерации ответа от гпт
             document.getElementById('responseStop').onclick = () =>{
-                msgerSendBtn.disabled = false
+                msgerInput.disabled = false
                 isPaused = true;
                 params = {
                     'id': document.querySelector('#chat_id').value,
@@ -301,10 +301,10 @@ function sendMsg(msg) {
             }
             stream.onmessage = function (e) {
                 if (e.data == "[DONE]") {
-                    stream.close();
-                    msgerSendBtn.disabled = false
                     $('.tokens').load("/get_tokens");
                     $('.tokensSpent').load(`/messages-cost/get/${data}`);
+                    stream.close();
+                    msgerInput.disabled = false
                     isPaused = true;
                     params = {
                         'id': document.querySelector('#chat_id').value,
@@ -348,12 +348,12 @@ function sendMsg(msg) {
                                     scrollable = false;
                                 }
                             });
-    
+
                             if(scrollable == true){
                                 $("main.msger-chat").scrollTop($("main.msger-chat")[0].scrollHeight);
                             }
                         }
-                        
+
                     }
                 }
             };
@@ -771,7 +771,7 @@ document.querySelectorAll('a#chat-with-mdjrny').forEach((item)=>{
 document.querySelectorAll('a#chat-with-base').forEach((item)=>{
     item.onclick = () =>{
         document.getElementById('popup-develop').classList.add('active');
-    }    
+    }
 })
 //Функция скролла вниз
 
