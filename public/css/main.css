@@ -4182,6 +4182,21 @@ table th {
   }
 }
 @media (max-width: 1000px) {
+  .popup-setting-content.withoutBorder .modelSettings .secondRow {
+    top: 18px !important;
+    right: 20px !important;
+    gap: 5px !important;
+  }
+  #showFeatures .firstRow {
+    gap: 10px;
+  }
+  #popup-zapic4 .form-popup h2 {
+    padding-bottom: 20.006px !important;
+  }
+  #popup-zapic4 .form-popup p {
+    font-size: 10px;
+    padding-bottom: 20.006px;
+  }
   .sidebarMain.right, .sidebarMain.left {
     margin-top: 78px !important;
   }
@@ -4470,6 +4485,7 @@ table th {
     gap: 10px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems .hoverItems-folder {
+    opacity: 1;
     gap: 5px;
   }
   .sidebarMain.left .folderBtn .buttonOpen .hoverItems .hoverItems-folder button {
@@ -4538,7 +4554,8 @@ table th {
     gap: 10px;
   }
   .sidebarMain.left .addChatIcon .hoverItems {
-    gap: 10px;
+    opacity: 1;
+    gap: 5px;
   }
   .sidebarMain.left .addChatIcon input {
     height: 35px;
@@ -5463,7 +5480,11 @@ table th {
     align-items: center;
     gap: 10px;
   }
+  #about-popup .popupContent, #popup-develop .popupContent, #popup-midj .popupContent {
+    height: auto;
+  }
   #about-popup .popup-inner, #popup-develop .popup-inner, #popup-midj .popup-inner {
+    border-radius: 20.006px !important;
     max-width: 100%;
     padding: 20px !important;
   }
@@ -5568,13 +5589,19 @@ table th {
 }
 @media (max-width: 600px) {
   #popup-catalog .prompts-category {
-    grid-template-columns: repeat(1, auto) !important;
+    display: flex !important;
+    flex-direction: column;
   }
   #pay-popup .howMuchIn {
     flex-direction: column !important;
   }
 }
 @media (max-width: 550px) {
+  #about-popup .popupContent, #popup-develop .popupContent, #popup-midj .popupContent, #popup-zapic3 .popupContent, #popup-zapic2 .popupContent, #popup-zapic .popupContent {
+    height: auto;
+    align-items: flex-start;
+    padding: 40px !important;
+  }
   section.library .library-items-container {
     grid-template-columns: repeat(1, auto) !important;
   }
