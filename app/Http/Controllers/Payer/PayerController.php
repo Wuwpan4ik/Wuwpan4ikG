@@ -29,7 +29,7 @@ class PayerController extends Controller
             'user_id' => $user_id
         ]);
         BuyHistory::create([
-            'user_id' => Auth::id(),
+            'user_id' => $data['user_id'],
             'description' => "Купил токенов на $price",
             'tokens' => $tokens,
             'is_free' => 0
