@@ -13,9 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('partner_id')->index()->nullable()->constrained('users');
+            $table->integer('partner_id')->index()->nullable();
             $table->boolean('partner_status')->default(0);
-
         });
     }
 

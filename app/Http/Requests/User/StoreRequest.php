@@ -22,7 +22,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'partner_id' => 'string|exists:users,partner_id'
+            'partner_id' => 'string'
         ];
     }
 }

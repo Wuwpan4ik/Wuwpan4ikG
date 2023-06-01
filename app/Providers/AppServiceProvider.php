@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-//        if (AIModel::take(1)->get()) {
-//            View::share("ai_versions", AIModel::all());
-//        }
+        if (AIModel::take(1)->get()) {
+            View::share("ai_versions", AIModel::all());
+        }
     }
 }

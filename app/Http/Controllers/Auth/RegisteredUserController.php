@@ -7,6 +7,7 @@ use App\Mail\RegistrationMail;
 use App\Models\BuyHistory;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -58,7 +59,6 @@ class RegisteredUserController extends Controller
             ];
         }
 
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
@@ -72,6 +72,8 @@ class RegisteredUserController extends Controller
             'code' => random_int(100000, 999999),
             'partner_id' => session()->get('partner_id'),
         ]);
+
+        Debugbar::log($user);
 
         event(new Registered($user));
 
@@ -87,12 +89,17 @@ class RegisteredUserController extends Controller
             'description' => "Получил бесплатные токены",
             'tokens' => $tokens
         ]);
+        if (session()->get('partner_id')) {
+            try {
+                $partner = User::where('id', session()->get('partner_id'))->first();
+                $partner->update([
+                    'tokens' => $partner->tokens + 10000,
+                ]);
+                $partner->save();
+            } catch (\Exception $exception) {
+            }
 
-        $partner = User::where('id', session()->get('partner_id'))->first();
-        $partner->update([
-            'tokens' => $partner->tokens + 10000,
-        ]);
-        $partner->save();
+        }
 
 //      Сделать уведомление партнёрам тут.
 
