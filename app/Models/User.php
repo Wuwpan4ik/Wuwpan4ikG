@@ -26,7 +26,9 @@ class User extends Authenticatable
         'password',
         'tokens',
         'code',
-        'is_verified'
+        'is_verified',
+        'partner_status',
+        'partner_id'
     ];
 
     /**
