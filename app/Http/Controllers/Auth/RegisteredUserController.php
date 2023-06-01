@@ -69,18 +69,32 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'code' => random_int(100000, 999999)
+            'code' => random_int(100000, 999999),
+            'partner_id' => session()->get('partner_id'),
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
+        $tokens = 5000;
+        if (session()->get('partner_id')) {
+            $tokens += 5000;
+        }
+
         BuyHistory::create([
             'user_id' => Auth::id(),
             'description' => "Получил бесплатные токены",
-            'tokens' => 5000
+            'tokens' => $tokens
         ]);
+
+        $partner = User::where('id', session()->get('partner_id'))->first();
+        $partner->update([
+            'tokens' => $partner->tokens + 10000,
+        ]);
+        $partner->save();
+
+//      Сделать уведомление партнёрам тут.
 
         Mail::to(Auth::user()->email)->send(new RegistrationMail());
 

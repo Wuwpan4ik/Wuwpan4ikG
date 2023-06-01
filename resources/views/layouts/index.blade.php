@@ -218,7 +218,6 @@
                 },
                 onFail: function (reason, options) { // fail
                     //действие при неуспешной оплате
-                    document.getElementById('checkout').classList.add('disabled');
                 },
                 onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
                     if (paymentResult.success) {

@@ -2808,8 +2808,10 @@ button.promptBtn{
     .popupContent{
         background:none;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
+        margin:2.083vw 0px;
+        height:auto;
         .popup-inner{
             max-width: 21.771vw;
             width: 100%;
@@ -2882,6 +2884,22 @@ button.promptBtn{
                     width: 100%;
                     color:white;
                     border:none;
+                }
+            }
+            .referal-program{
+                padding-top:1.562vw;
+                h2{
+                    padding-bottom:1.563vw;
+                }
+                .coolInput{
+                    p{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-line-clamp: 1 !important;
+                        max-width: 12.375vw;
+                        white-space: nowrap;
+                        -webkit-box-orient: horizontal;
+                    }
                 }
             }
             .history-payments{
@@ -4558,6 +4576,25 @@ table{
 
 //Adaptive
 @media(max-width:1000px){
+    .popup-setting-content.withoutBorder .modelSettings .secondRow{
+        top:18px !important;
+        right:20px !important;
+        gap:5px !important;
+    }
+    #showFeatures .firstRow{
+        gap:10px;
+    }
+    #popup-zapic4{
+        .form-popup{
+            h2{
+                padding-bottom: 20.006px !important;
+            }
+            p{
+                font-size:10px;
+                padding-bottom: 20.006px;
+            }
+        }
+    }
 
     .sidebarMain.right, .sidebarMain.left{
         margin-top: 78px !important;
@@ -4892,6 +4929,7 @@ table{
                     right:15px;
                     gap:10px;
                     .hoverItems-folder{
+                        opacity: 1;
                         gap:5px;
                         button{
                             width: 22px;
@@ -4956,7 +4994,8 @@ table{
                 gap:10px;
             }
             .hoverItems{
-                gap:10px;
+                opacity: 1;
+                gap:5px;
             }
             input{
                 height: 35px;border-radius: 10px;
@@ -5982,10 +6021,13 @@ table{
             }
         }
     }
-    //Попапы о проект и "В разработке"
-
+    
     #about-popup, #popup-develop, #popup-midj{
+        .popupContent{
+            height:auto;
+        }
         .popup-inner{
+            border-radius: 20.006px !important;
             max-width: 100%;
             padding:20px !important;
             h2{
@@ -6129,7 +6171,8 @@ table{
 @media(max-width:600px){
     #popup-catalog{
         .prompts-category{
-            grid-template-columns: repeat(1 , auto) !important;
+            display:flex !important;
+            flex-direction: column;
         }
     }
 
@@ -6143,6 +6186,15 @@ table{
 //Адаптив 550 пикселей
 
 @media(max-width:550px){
+    //Попапы о проект и "В разработке"
+
+    #about-popup, #popup-develop, #popup-midj, #popup-zapic3, #popup-zapic2, #popup-zapic{
+        .popupContent{
+            height:auto;
+            align-items: flex-start;
+            padding:40px !important;
+        }
+    }
     section.library{
         .library-items-container{
             grid-template-columns: repeat(1, auto) !important;

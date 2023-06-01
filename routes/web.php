@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Chat\ChatController::class, 'index'])->name('main');
-
+Route::post('/user_p/setPartner', [\App\Http\Controllers\User\UserController::class, 'setPartner'])->name('setPartner');
 Route::middleware(['auth', 'code', 'lang'])->group(function() {
     Route::post("/promocode", [\App\Http\Controllers\Promocode\PromocodeController::class, 'use'])->name('promocode.use');
     Route::patch('/user/{user}', [\App\Http\Controllers\User\UserController::class, 'update'])->name('user.update');

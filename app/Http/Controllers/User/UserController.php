@@ -17,10 +17,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function setPartner(StoreRequest $request)
     {
-        //
+        $data = $request->validated();
+        session()->put('partner_id', $data['partner_id']);
     }
+
 
     /**
      * Update the specified resource in storage.

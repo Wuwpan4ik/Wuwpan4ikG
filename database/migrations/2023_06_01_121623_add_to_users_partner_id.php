@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+    use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -12,7 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->uuid('partner_uuid')->nullable();
+            $table->foreignId('partner_id')->index()->nullable()->constrained('users');
+            $table->boolean('partner_status')->default(0);
+
         });
     }
 
@@ -22,7 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('partner_uuid');
+            $table->dropColumn('partner_id');
+            $table->dropColumn('partner_status');
         });
     }
 };

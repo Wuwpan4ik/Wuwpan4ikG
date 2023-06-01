@@ -19,7 +19,7 @@
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
     <div class="loginForm">
         <section>
-            <form method="POST" @guest() action="{{ route('register') }} @else action="{{ route('check.code') }} @endguest">
+            <form method="POST" id="registration" @guest() action="{{ route('register') }} @else action="{{ route('check.code') }} @endguest">
                 @csrf
                 <div class="first-row">
                     <img src="{{ asset('assets/reg-mob.jpg') }}" alt="" />
@@ -105,6 +105,28 @@
         console.log(c)
     }
 
+</script>
+
+
+<script>
+    function getPartnerIdFromCurrentURL() {
+        const queryParams = new URLSearchParams(location.search);
+        return queryParams.get('p');
+    }
+
+    const partnerId = getPartnerIdFromCurrentURL();
+
+    let form = document.querySelector('#registration');
+    let key = document.querySelector('input[name=_token]').value;
+
+    if (partnerId) {
+        let params = {
+            'partner_id': partnerId,
+        }
+        fetch('{{ route('setPartner') }}', {headers: {'Content-Type': 'application/json;charset=utf-8', "X-CSRF-Token": key}, method: 'POST', body: JSON.stringify(params)})
+        const urlWithoutSearchParams = location.origin + location.pathname;
+        history.pushState({}, '', urlWithoutSearchParams);
+    }
 </script>
 </body>
 </html>
