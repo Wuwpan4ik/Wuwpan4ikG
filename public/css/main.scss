@@ -2808,8 +2808,10 @@ button.promptBtn{
     .popupContent{
         background:none;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
+        margin:2.083vw 0px;
+        height:auto;
         .popup-inner{
             max-width: 21.771vw;
             width: 100%;
@@ -2882,6 +2884,22 @@ button.promptBtn{
                     width: 100%;
                     color:white;
                     border:none;
+                }
+            }
+            .referal-program{
+                padding-top:1.562vw;
+                h2{
+                    padding-bottom:1.563vw;
+                }
+                .coolInput{
+                    p{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-line-clamp: 1 !important;
+                        max-width: 12.375vw;
+                        white-space: nowrap;
+                        -webkit-box-orient: horizontal;
+                    }
                 }
             }
             .history-payments{

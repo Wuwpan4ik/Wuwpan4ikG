@@ -2506,8 +2506,10 @@ button.promptBtn .promptText {
 #profile-popup .popupContent {
   background: none;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  margin: 2.083vw 0px;
+  height: auto;
 }
 #profile-popup .popupContent .popup-inner {
   max-width: 21.771vw;
@@ -2582,6 +2584,20 @@ button.promptBtn .promptText {
   width: 100%;
   color: white;
   border: none;
+}
+#profile-popup .popupContent .popup-inner .referal-program {
+  padding-top: 1.562vw;
+}
+#profile-popup .popupContent .popup-inner .referal-program h2 {
+  padding-bottom: 1.563vw;
+}
+#profile-popup .popupContent .popup-inner .referal-program .coolInput p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1 !important;
+  max-width: 12.375vw;
+  white-space: nowrap;
+  -webkit-box-orient: horizontal;
 }
 #profile-popup .popupContent .popup-inner .history-payments {
   padding-top: 1.562vw;
