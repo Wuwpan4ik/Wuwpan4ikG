@@ -35,21 +35,26 @@ class TelegramBot extends Controller
         if($category == 'Заявка на Midjourney'){
             $text = "Пользователь оставил заявку на тестирование Midjourney\n\nТелеграм пользователя: $telegram \n\nПочта: $email";
         }
+
         if($category == "Заявка на умного бота" or $category == "Заявка на внедрение умного бота"){
             $prof = $request->prof;
             $question = $request->question;
         }
+
         if($category == "Заявка на умного бота"){
             $text = "Пользователь оставил заявку на тестирование умного бота\n\nТелеграм пользователя: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
         }
+
         if($category == "Заявка на внедрение умного бота"){
             $text = "Пользователь оставил заявку на внедрение умного бота\n\nТелеграм пользователя: $telegram \n\nПочта: $email\n\nПрофессия: $prof\n\nВопрос: $question";
         }
+
         if($category == "Заявка на пополнение аккаунта"){
             $tokens=$request->tokens;
             $summforpay = $request->summforpay;
             $text = "Пользователь оставил заявку на пополнение аккаунта\n\nТелеграм пользователя: $telegram\n\nКол-во токенов: $tokens\n\nСумма к оплате: $summforpay";
         }
+
         $response = [
             'chat_id' => '-836677384',
             'text' => $text

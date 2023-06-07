@@ -3,10 +3,10 @@
     <div class="popupContent">
             <div class="popup-inner">
                 <div class="form-popup">
-                    <form id="telegram" action="{{ route('telegram') }}" method="post">
+                    <form id="telegram" class="telegram" action="{{ route('telegram') }}" method="post">
                         @csrf
                         <div class="form-inner">
-                            <input type="text" name="zayavka" value="Заявка на внедрение умного бота" hidden>
+                            <input type="hidden" name="zayavka" value="Заявка на умного бота" >
                             <div class="form-image">
                                 <img src="../assets/asset-zapic.jpg" alt="Запись">
                             </div>
@@ -37,7 +37,7 @@
                                     <textarea name="question" placeholder="{{__('whyForPlaceholder')}}" required></textarea>
                                 </div>
                                 <div class="send-mess">
-                                    <button type="button" onclick="sendZayavka(this.closest('#telegram'))">
+                                    <button type="button" onclick="sendZayavka(this.closest('.telegram'))">
                                         {{__('btnZapic')}}
                                     </button>
                                 </div>

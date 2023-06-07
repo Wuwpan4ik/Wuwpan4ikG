@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\check_user_chat;
+use App\Http\Middleware\CheckCodeAndLogin;
 use App\Http\Middleware\CheckCountTokens;
 use App\Http\Middleware\CodeMiddleware;
 use App\Http\Middleware\LanguageMiddleware;
@@ -57,6 +58,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'authAndCode' => CheckCodeAndLogin::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'code' => CodeMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

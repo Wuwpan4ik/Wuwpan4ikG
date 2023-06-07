@@ -327,7 +327,7 @@
 
                 // Отправляем форму асинхронным POST-запросом с помощью jQuery AJAX
                 $.ajax({
-                    type: "PATCH",    // Метод отправки данных (POST, GET и т.д.)
+                    type: "POST",    // Метод отправки данных (POST, GET и т.д.)
                     url: form.attr('action'),     // URL-адрес, куда отправляются данные формы
                     data: form.serialize(),      // Сериализуем данные формы в строку
                     success: function(response) { // Callback-функция, которая вызывается при успешной отправке формы
@@ -341,7 +341,6 @@
                     }
                 });
             });
-            form.submit();
         }
     </script>
 
