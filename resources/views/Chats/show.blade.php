@@ -314,14 +314,15 @@
     <script>
         function sendZayavka(item){
             // Получаем форму
-            var form = $(item);
+            item.preventDefault()
+            var form = $(item.closest('.telegram'));
             var loader = document.getElementById('loaderResponseZayavka');
             loader.classList.add('showed');
             setTimeout(function() {
                 loader.classList.remove('showed');
             }, 2500)
 
-            form.submit(function(event) {
+            form.on('submit', function(event) {
                 // Отменяем стандартное поведение браузера
                 event.preventDefault();
 

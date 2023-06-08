@@ -25,7 +25,7 @@
                                     <input type="text" name="telegram" placeholder="@telegram" required>
                                 </div>
                                 <div class="send-mess">
-                                    <button type="button" onclick="sendZayavka(this.closest('.telegram'))">
+                                    <button type="button" onclick="sendZayavka(this)">
                                         {{__('btnZapic')}}
                                     </button>
                                 </div>

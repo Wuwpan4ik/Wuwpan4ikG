@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 
-class TelegramBot extends Controller
+class   TelegramBot extends Controller
 {
     /**
      * Display a listing of the resource.

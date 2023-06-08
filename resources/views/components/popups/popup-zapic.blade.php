@@ -37,7 +37,7 @@
                                     <textarea name="question" placeholder="{{__('whyForPlaceholder')}}" required></textarea>
                                 </div>
                                 <div class="send-mess">
-                                    <button type="button" onclick="sendZayavka(this.closest('.telegram'))">
+                                    <button type="button" onclick="sendZayavka(this)">
                                         {{__('btnZapic')}}
                                     </button>
                                 </div>
